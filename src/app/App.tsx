@@ -2,18 +2,23 @@ import React from 'react';
 
 import './App.css';
 import { Button } from '../atom/button/Button';
-import { BUTTON_TYPE } from '../CONST/buttonType';
+import {FertilizerEditor} from "../organism/fertilizerEditor/FertilizerEditor";
+import {BUTTON_TYPE} from '../atom/button/ButtonTypes';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
+        <div>
+            <header>
+
+            </header>
+            <div>
                 <Button
                     type={BUTTON_TYPE.PRIMARY}
                 >
-                    Hello world
+                    Добавить удобрение
                 </Button>
-            </header>
+                <FertilizerEditor/>
+            </div>
         </div>
     );
 }

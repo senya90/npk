@@ -6,7 +6,7 @@ import { ButtonProps } from './ButtonTypes';
 const Button: FunctionComponent<ButtonProps> = (props) => {
     return (
         <ButtonAnt
-            type={props.type}
+            {...props}
         >
             {props.children}
         </ButtonAnt>
