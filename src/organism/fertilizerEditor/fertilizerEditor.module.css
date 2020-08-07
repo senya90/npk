@@ -1,3 +1,16 @@
+.fertilizerEditor {
+    padding: 10px 0;
+}
+
 .element {
     width: 50%;
+    margin-right: 5px;
+}
+
+.elementLine {
+    margin-bottom: 10px;
+}
+
+.elementsBox {
+    margin-bottom: 30px;
 }

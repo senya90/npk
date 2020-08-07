@@ -1,0 +1,15 @@
+.db {
+    display: block;
+}
+
+.mb_nano {
+    margin-bottom: 15px;
+}
+
+.mb_micro {
+    margin-bottom: 22px;
+}
+
+.mb {
+    margin-bottom: 30px;
+}

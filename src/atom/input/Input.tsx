@@ -5,6 +5,7 @@ import { InputProps } from './InputTypes';
 const Input: FunctionComponent<InputProps> = (props) => {
     return (
         <InputAnt
+            {...props}
             placeholder={props.placeholder}
         />
     );

@@ -1,3 +1,4 @@
 export interface InputProps {
-    placeholder?: string
+    placeholder?: string,
+    className?: string
 }

@@ -1,0 +1,14 @@
+{
+    "add": {
+        "ru": "Добавить",
+        "en": "Add"
+    },
+    "close": {
+        "ru": "Закрыть",
+        "en": "Close"
+    },
+    "selectElement": {
+        "ru": "Выберите элемент",
+        "en": "Select element"
+    }
+}

@@ -2,6 +2,8 @@ import React, {FunctionComponent} from 'react';
 import {SelectProps} from "./SelectTypes";
 import {Select as SelectAnt} from 'antd'
 
+import style from './select.module.css'
+
 const Select: FunctionComponent<SelectProps> = (props) => {
 
     const renderOptions = () => {
@@ -20,7 +22,7 @@ const Select: FunctionComponent<SelectProps> = (props) => {
         <SelectAnt
             defaultValue={props.default}
             style={props.containerStyle}
-            className={props.containerClass}
+            className={`${style.select} ${props.containerClass}`}
         >
             {renderOptions()}
         </SelectAnt>
