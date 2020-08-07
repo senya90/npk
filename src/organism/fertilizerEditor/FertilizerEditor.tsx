@@ -1,11 +1,12 @@
 import React from 'react';
-import {Button} from "../../atom/button/Button";
-import {BUTTON_SHAPE, BUTTON_TYPE} from "../../atom/button/ButtonTypes";
+import { Button } from 'atom/button/Button';
+import { BUTTON_TYPE, BUTTON_SHAPE } from 'atom/button/ButtonTypes';
+import { Input } from 'atom/input/Input';
 
 const FertilizerEditor = () => {
     return (
         <form>
-            <input type="text" placeholder={'Введите название удобрения'}/>
+            <Input placeholder={'Введите название удобрения'}/>
             <div>Состав удобрения:</div>
             <div>
                 блок с элементом, его значением и кнопкой удалить

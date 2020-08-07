@@ -1,17 +1,15 @@
 import React from 'react';
 
-import './App.css';
-import { Button } from '../atom/button/Button';
-import {FertilizerEditor} from "../organism/fertilizerEditor/FertilizerEditor";
-import {BUTTON_TYPE} from '../atom/button/ButtonTypes';
+import { Button } from 'atom/button/Button';
+import { BUTTON_TYPE } from 'atom/button/ButtonTypes';
+import { FertilizerEditor } from 'organism/fertilizerEditor/FertilizerEditor';
+
+import styles from './App.module.css'
 
 function App() {
     return (
         <div>
-            <header>
-
-            </header>
-            <div>
+            <div className={styles.container}>
                 <Button
                     type={BUTTON_TYPE.PRIMARY}
                 >
