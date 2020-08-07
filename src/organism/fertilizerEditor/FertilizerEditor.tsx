@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import { Button } from 'atom/button/Button';
 import { BUTTON_TYPE, BUTTON_SHAPE } from 'atom/button/ButtonTypes';
 import { Input } from 'atom/input/Input';
@@ -12,15 +12,26 @@ import { InputNumber } from 'atom/inputNumber/InputNumber';
 import style from './fertilizerEditor.module.css'
 import {commonStyles} from "../../helpers/commonStyle";
 import { InputTypeValue } from 'atom/inputNumber/InputNumberTypes';
+import {FertilizerEditorProps} from "./FertilizerEditorTypes";
+import {Element} from "../../models/element";
+import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
 
-const FertilizerEditor = () => {
+const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
+    const [elements, setElements] = useState<Element[]>([{id: '1232', name: 'dcssds', value: 123}])
 
-    const adaptForSelect = (elements: any[]): SelectOption[] => {
-        return AdapterFertilizer.toSelect(elements)
-    }
+
 
     const onElementChanged = (e: InputTypeValue) => {
         console.log('change', e)
+    }
+
+    const renderElements = () => {
+        return elements.map(element => <FertilizerElement
+            key={element.name}
+            element={element}
+            elementsList={elementMock}
+            onElementChanged={onElementChanged}
+        />)
     }
 
     return (
@@ -31,20 +42,7 @@ const FertilizerEditor = () => {
             />
             <div>Состав удобрения:</div>
 
-            <div className={style.elementsBox}>
-                <div className={style.elementLine}>
-                    <Select
-                        default={translate('selectElement')}
-                        options={adaptForSelect(elementMock)}
-                        containerClass={style.element}
-                    />
-                    <InputNumber
-                        defaultValue={0}
-                        isPositive={true}
-                        onChange={onElementChanged}
-                    />
-                </div>
-            </div>
+            {renderElements()}
 
             <Button
                 type={BUTTON_TYPE.PRIMARY}
