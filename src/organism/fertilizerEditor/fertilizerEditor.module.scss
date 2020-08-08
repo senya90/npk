@@ -1,0 +1,23 @@
+.fertilizerEditor {
+    padding: 10px 0;
+}
+
+.elementsBox {
+    padding: 10px;
+    padding-left: 0;
+
+    &:hover {
+        background-color: #f1f1f1;
+    }
+}
+
+.element {
+    width: 50%;
+    margin-right: 5px;
+}
+
+.addButton {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}

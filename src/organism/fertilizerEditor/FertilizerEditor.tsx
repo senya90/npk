@@ -4,9 +4,8 @@ import { BUTTON_TYPE, BUTTON_SHAPE } from 'atom/button/ButtonTypes';
 import { Input } from 'atom/input/Input';
 import { elementMock } from 'mocks/elementMock';
 
-import style from './fertilizerEditor.module.css'
+import style from './fertilizerEditor.module.scss'
 import {commonStyles} from "../../helpers/commonStyle";
-import { InputTypeValue } from 'atom/inputNumber/InputNumberTypes';
 import {FertilizerEditorProps} from "./FertilizerEditorTypes";
 import {FertilizerEditorElement} from "../../models/fertilizerEditorElement";
 import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
@@ -61,7 +60,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
             <Button
                 type={BUTTON_TYPE.PRIMARY}
                 shape={BUTTON_SHAPE.CIRCLE}
-                containerclass={`${commonStyles.mb_micro} ${commonStyles.db}`}
+                containerclass={style.addButton}
                 onClick={onAddFertilizerNewElement}
             >
                 +

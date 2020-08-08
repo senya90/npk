@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import style from "../fertilizerEditor.module.css";
+import style from "../fertilizerEditor.module.scss";
 import {Select} from "../../../atom/select/Select";
 import {translate} from "../../../helpers/translate/translate";
 import {InputNumber} from "../../../atom/inputNumber/InputNumber";
