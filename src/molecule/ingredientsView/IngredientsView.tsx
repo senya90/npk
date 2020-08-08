@@ -4,6 +4,7 @@ import {elementMock} from "../../mocks/elementMock";
 
 import style from './ingredientView.module.scss'
 
+
 interface IngredientsViewProps {
     ingredients: FertilizerIngredient[],
 }
@@ -31,7 +32,7 @@ const IngredientsView: FunctionComponent<IngredientsViewProps> = ({ingredients})
     }
 
     return (
-        <div>
+        <div className={style.ingredientsWrapper}>
             {renderIngredients()}
         </div>
     );

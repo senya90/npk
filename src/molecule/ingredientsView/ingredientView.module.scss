@@ -1,3 +1,8 @@
+@import "src/index";
+.ingredientsWrapper {
+    line-height: 1;
+    font-size: $font_nano;
+}
 .ingredient {
     margin-right: 10px;
 }

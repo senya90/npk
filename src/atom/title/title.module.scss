@@ -1,5 +1,8 @@
+@import "src/index";
+
 .title {
     text-align: center;
     font-weight: bold;
     border-bottom: 1px solid lightgray;
+    font-size: $font_mbPlus;
 }
