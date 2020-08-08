@@ -22,7 +22,8 @@ const Select: FunctionComponent<SelectProps> = (props) => {
         <SelectAnt
             defaultValue={props.default}
             style={props.containerStyle}
-            className={`${style.select} ${props.containerClass}`}
+            className={`${style.select} ${props.containerclass}`}
+            {...props}
         >
             {renderOptions()}
         </SelectAnt>

@@ -15,8 +15,14 @@ import {translate} from "../../helpers/translate/translate";
 const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
     const [elements, setElements] = useState<FertilizerEditorElement[]>([])
 
-    const onElementChanged = (e: InputTypeValue) => {
-        console.log('change', e)
+    const onElementChanged = (updatedElement: FertilizerEditorElement) => {
+        const updatedElements = elements.map(element => {
+            if (element.id === updatedElement.id) {
+                return updatedElement
+            }
+            return element
+        })
+        updateElements(updatedElements)
     }
 
     const renderElements = () => {
@@ -28,13 +34,18 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
         />)
     }
 
+    const updateElements = (updatedElements: FertilizerEditorElement[]) => {
+        console.log('updatedElements', updatedElements)
+        setElements(updatedElements)
+        // this.onFertilizerElementsUpdated() // notify
+    }
+
     const onAddFertilizerNewElement = (e: React.MouseEvent) => {
         updateElements([...elements, new FertilizerEditorElement()])
     }
 
-    const updateElements = (updatedElements: FertilizerEditorElement[]) => {
-        setElements(updatedElements)
-        // this.onFertilizerElementsUpdated() // notify
+    const onSave = () => {
+        console.log('onSave', elements)
     }
 
     return (
@@ -43,7 +54,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
                 placeholder={translate('enterFertilizerName')}
                 className={`${commonStyles.mb_micro}`}
             />
-            <div>{translate('fertilizerComposition')}:</div>
+            <div className={`${commonStyles.mb_nano} ${commonStyles.title}`}>{translate('fertilizerComposition')}:</div>
 
             {renderElements()}
 
@@ -58,6 +69,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
             <Button
                 type={BUTTON_TYPE.PRIMARY}
                 containerclass={`${commonStyles.mb_nano}`}
+                onClick={onSave}
             >
                 {translate('save')}
             </Button>

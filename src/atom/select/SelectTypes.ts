@@ -1,12 +1,14 @@
 export interface SelectProps {
-    default: string,
+    value?: string
+    default?: string
     options: SelectOption[]
-    containerStyle?: object,
-    containerClass?: string
+    containerStyle?: object
+    containerclass?: string
+    onChange: (value: string) => void
 }
 
 export interface SelectOption {
-    value: string,
-    label: string,
+    value: string
+    label: string
     children?: SelectOption
 }

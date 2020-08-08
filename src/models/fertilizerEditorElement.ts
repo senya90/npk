@@ -2,11 +2,11 @@ import { IdGenerator } from "helpers/idGenerator/IdGenerator";
 
 export class FertilizerEditorElement {
     id: string;
-    name: string;
+    chemicalId: string;
     value: number;
 
-    constructor(name = '', value = 0, id?: string) {
-        this.name = name;
+    constructor(chemicalId = '', value = 0, id?: string) {
+        this.chemicalId = chemicalId;
         this.value = value;
         this.id = id ? id : IdGenerator.generate();
     }

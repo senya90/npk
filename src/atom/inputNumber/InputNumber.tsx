@@ -9,6 +9,7 @@ const InputNumber: FunctionComponent<InputNumberProps> = (props) => {
 
     return (
         <InputNumberAnt
+            {...props}
             onChange={onChange}
         />
     );
