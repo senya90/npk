@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import {FertilizerEditor} from "../../organism/fertilizerEditor/FertilizerEditor";
 import {Fertilizers} from "../../organism/fertilizers/Fertilizers";
 import { Fertilizer } from 'models/fertilizer';
+import {fertilizersMock} from "../../mocks/fertilizersMock";
 
 const Calculator = () => {
-    const [fertilizers, setFertilizers] = useState<Fertilizer[]>([])
+    const [fertilizers, setFertilizers] = useState<Fertilizer[]>(fertilizersMock)
 
     const onSaveFertilizer = (savedFertilizer: Fertilizer) => {
         const found = fertilizers.find(fertilizer => fertilizer.id === savedFertilizer.id)
@@ -29,6 +30,9 @@ const Calculator = () => {
         })
         setFertilizers(newFertilizers)
     }
+
+    console.log(fertilizers)
+    console.log(JSON.stringify(fertilizers))
 
     return (
         <div>

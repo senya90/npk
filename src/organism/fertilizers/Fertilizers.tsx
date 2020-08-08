@@ -9,7 +9,7 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers}) => {
 
     const renderFertilizers = () => {
         return fertilizers.map(fert => {
-            return <div>{fert.id} {fert.name}</div>
+            return <div key={fert.id}>{fert.id} {fert.name}</div>
         })
     }
 
