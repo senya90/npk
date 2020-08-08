@@ -7,8 +7,20 @@
         "ru": "Закрыть",
         "en": "Close"
     },
+    "save": {
+        "ru": "Сохранить",
+        "en": "Save"
+    },
     "selectElement": {
         "ru": "Выберите элемент",
         "en": "Select element"
+    },
+    "enterFertilizerName": {
+        "ru": "Введите название удобрения",
+        "en": "Enter the name of the fertilizer"
+    },
+    "fertilizerComposition": {
+        "ru": "Состав удобрения",
+        "en": "Fertilizer composition"
     }
 }

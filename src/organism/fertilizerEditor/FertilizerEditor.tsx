@@ -10,6 +10,7 @@ import { InputTypeValue } from 'atom/inputNumber/InputNumberTypes';
 import {FertilizerEditorProps} from "./FertilizerEditorTypes";
 import {FertilizerEditorElement} from "../../models/fertilizerEditorElement";
 import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
+import {translate} from "../../helpers/translate/translate";
 
 const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
     const [elements, setElements] = useState<FertilizerEditorElement[]>([])
@@ -35,14 +36,14 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
         setElements(updatedElements)
         // this.onFertilizerElementsUpdated() // notify
     }
-    
+
     return (
         <form className={style.fertilizerEditor}>
             <Input
-                placeholder={'Введите название удобрения'}
+                placeholder={translate('enterFertilizerName')}
                 className={`${commonStyles.mb_micro}`}
             />
-            <div>Состав удобрения:</div>
+            <div>{translate('fertilizerComposition')}:</div>
 
             {renderElements()}
 
@@ -58,7 +59,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
                 type={BUTTON_TYPE.PRIMARY}
                 containerclass={`${commonStyles.mb_nano}`}
             >
-                Сохранить
+                {translate('save')}
             </Button>
 
         </form>
