@@ -10,8 +10,10 @@ import {FertilizerEditorProps} from "./FertilizerEditorTypes";
 import {FertilizerEditorElement} from "../../models/fertilizerEditorElement";
 import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
 import {translate} from "../../helpers/translate/translate";
+import {Fertilizer} from "../../models/fertilizer";
 
 const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
+    const [name, setName] = useState<string>('')
     const [elements, setElements] = useState<FertilizerEditorElement[]>([])
 
     const onElementChanged = (updatedElement: FertilizerEditorElement) => {
@@ -36,22 +38,34 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
     const updateElements = (updatedElements: FertilizerEditorElement[]) => {
         console.log('updatedElements', updatedElements)
         setElements(updatedElements)
-        // this.onFertilizerElementsUpdated() // notify
     }
 
     const onAddFertilizerNewElement = (e: React.MouseEvent) => {
         updateElements([...elements, new FertilizerEditorElement()])
     }
 
+    const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value)
+    }
+
     const onSave = () => {
-        console.log('onSave', elements)
+        const fertilizer = new Fertilizer(name, elements)
+        props.onSaveFertilizer(fertilizer)
+        resetState()
+    }
+
+    const resetState = () => {
+        setElements([])
+        setName('')
     }
 
     return (
         <form className={style.fertilizerEditor}>
             <Input
+                value={name}
                 placeholder={translate('enterFertilizerName')}
                 className={`${commonStyles.mb_micro}`}
+                onChange={onChangeName}
             />
             <div className={`${commonStyles.mb_nano} ${commonStyles.title}`}>{translate('fertilizerComposition')}:</div>
 
