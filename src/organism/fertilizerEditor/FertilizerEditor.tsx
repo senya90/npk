@@ -2,24 +2,17 @@ import React, {FunctionComponent, useState} from 'react';
 import { Button } from 'atom/button/Button';
 import { BUTTON_TYPE, BUTTON_SHAPE } from 'atom/button/ButtonTypes';
 import { Input } from 'atom/input/Input';
-import { Select } from 'atom/select/Select';
 import { elementMock } from 'mocks/elementMock';
-import { SelectOption } from 'atom/select/SelectTypes';
 
-import {AdapterFertilizer} from "../../helpers/adapterFertilizer/AdapterFertilizer";
-import { translate } from 'helpers/translate/translate';
-import { InputNumber } from 'atom/inputNumber/InputNumber';
 import style from './fertilizerEditor.module.css'
 import {commonStyles} from "../../helpers/commonStyle";
 import { InputTypeValue } from 'atom/inputNumber/InputNumberTypes';
 import {FertilizerEditorProps} from "./FertilizerEditorTypes";
-import {Element} from "../../models/element";
+import {FertilizerEditorElement} from "../../models/fertilizerEditorElement";
 import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
 
 const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
-    const [elements, setElements] = useState<Element[]>([{id: '1232', name: 'dcssds', value: 123}])
-
-
+    const [elements, setElements] = useState<FertilizerEditorElement[]>([])
 
     const onElementChanged = (e: InputTypeValue) => {
         console.log('change', e)
@@ -27,13 +20,22 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
 
     const renderElements = () => {
         return elements.map(element => <FertilizerElement
-            key={element.name}
+            key={element.id}
             element={element}
             elementsList={elementMock}
             onElementChanged={onElementChanged}
         />)
     }
 
+    const onAddFertilizerNewElement = (e: React.MouseEvent) => {
+        updateElements([...elements, new FertilizerEditorElement()])
+    }
+
+    const updateElements = (updatedElements: FertilizerEditorElement[]) => {
+        setElements(updatedElements)
+        // this.onFertilizerElementsUpdated() // notify
+    }
+    
     return (
         <form className={style.fertilizerEditor}>
             <Input
@@ -48,6 +50,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
                 type={BUTTON_TYPE.PRIMARY}
                 shape={BUTTON_SHAPE.CIRCLE}
                 containerclass={`${commonStyles.mb_micro} ${commonStyles.db}`}
+                onClick={onAddFertilizerNewElement}
             >
                 +
             </Button>

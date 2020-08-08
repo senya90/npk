@@ -1,9 +1,11 @@
+import React from "react";
 import {ButtonShape, ButtonType} from 'antd/lib/button/button'
 
 export interface ButtonProps {
     type?: ButtonType,
     shape?: ButtonShape,
-    containerclass?: string
+    containerclass?: string,
+    onClick?: (e: React.MouseEvent) => void
 }
 
 
