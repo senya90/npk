@@ -7,7 +7,7 @@ import {SelectOption} from "../../../atom/select/SelectTypes";
 import {AdapterFertilizer} from "../../../helpers/adapterFertilizer/AdapterFertilizer";
 import {InputTypeValue} from "../../../atom/inputNumber/InputNumberTypes";
 import {FertilizerElementProps} from "./FertilizerElementTypes";
-import {FertilizerEditorElement} from "../../../models/fertilizerEditorElement";
+import {FertilizerIngredient} from "../../../models/fertilizerIngredient";
 
 const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => {
     const adaptForSelect = (elements: any[]): SelectOption[] => {
@@ -16,13 +16,13 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
 
     const onNameChange = (chemicalElementId: string) => {
         const {value, id} = props.element
-        const updatedElement = new FertilizerEditorElement(chemicalElementId, value, id )
+        const updatedElement = new FertilizerIngredient(chemicalElementId, value, id )
         props.onElementChanged(updatedElement)
     }
 
     const onValueChange = (value: InputTypeValue) => {
         const {chemicalId, id} = props.element
-        const updatedElement = new FertilizerEditorElement(chemicalId, Number(value), id )
+        const updatedElement = new FertilizerIngredient(chemicalId, Number(value), id )
         props.onElementChanged(updatedElement)
     }
 

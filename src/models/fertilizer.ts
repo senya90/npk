@@ -1,12 +1,12 @@
-import { FertilizerEditorElement } from "./fertilizerEditorElement"
+import { FertilizerIngredient } from "./fertilizerIngredient"
 import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
 
 export class Fertilizer {
     id: string
     name: string
-    composition: FertilizerEditorElement[]
+    composition: FertilizerIngredient[]
 
-    constructor(name: string, composition: FertilizerEditorElement[], id?: string) {
+    constructor(name: string, composition: FertilizerIngredient[], id?: string) {
         this.name = name
         this.composition = composition;
         this.id = id ? id : IdGenerator.generate();

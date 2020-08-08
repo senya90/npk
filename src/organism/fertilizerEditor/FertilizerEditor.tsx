@@ -7,16 +7,16 @@ import { elementMock } from 'mocks/elementMock';
 import style from './fertilizerEditor.module.scss'
 import {commonStyles} from "../../helpers/commonStyle";
 import {FertilizerEditorProps} from "./FertilizerEditorTypes";
-import {FertilizerEditorElement} from "../../models/fertilizerEditorElement";
+import {FertilizerIngredient} from "../../models/fertilizerIngredient";
 import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
 import {translate} from "../../helpers/translate/translate";
 import {Fertilizer} from "../../models/fertilizer";
 
 const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
     const [name, setName] = useState<string>('')
-    const [elements, setElements] = useState<FertilizerEditorElement[]>([])
+    const [elements, setElements] = useState<FertilizerIngredient[]>([])
 
-    const onElementChanged = (updatedElement: FertilizerEditorElement) => {
+    const onElementChanged = (updatedElement: FertilizerIngredient) => {
         const updatedElements = elements.map(element => {
             if (element.id === updatedElement.id) {
                 return updatedElement
@@ -35,13 +35,13 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
         />)
     }
 
-    const updateElements = (updatedElements: FertilizerEditorElement[]) => {
+    const updateElements = (updatedElements: FertilizerIngredient[]) => {
         console.log('updatedElements', updatedElements)
         setElements(updatedElements)
     }
 
     const onAddFertilizerNewElement = (e: React.MouseEvent) => {
-        updateElements([...elements, new FertilizerEditorElement()])
+        updateElements([...elements, new FertilizerIngredient()])
     }
 
     const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {

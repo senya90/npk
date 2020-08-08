@@ -1,6 +1,6 @@
 import { IdGenerator } from "helpers/idGenerator/IdGenerator";
 
-export class FertilizerEditorElement {
+export class FertilizerIngredient {
     id: string;
     chemicalId: string;
     value: number;

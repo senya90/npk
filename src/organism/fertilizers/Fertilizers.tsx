@@ -4,13 +4,12 @@ import {Button} from "../../atom/button/Button";
 import {translate} from "../../helpers/translate/translate";
 import Title from 'atom/title/Title';
 import {FertilizersProps} from "./FertilizersType";
+import {FertilizerView} from "../../molecule/fertilizerView/FertilizerView";
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers}) => {
 
     const renderFertilizers = () => {
-        return fertilizers.map(fert => {
-            return <div key={fert.id}>{fert.id} {fert.name}</div>
-        })
+        return fertilizers.map(fertilizer => <FertilizerView key={fertilizer.id} fertilizer={fertilizer}/>)
     }
 
     return (

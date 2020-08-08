@@ -1,7 +1,7 @@
-import {FertilizerEditorElement} from "../../../models/fertilizerEditorElement";
+import {FertilizerIngredient} from "../../../models/fertilizerIngredient";
 
 export interface FertilizerElementProps {
-    element: FertilizerEditorElement
+    element: FertilizerIngredient
     elementsList: any // list of chemical elements
-    onElementChanged: (updatedElement: FertilizerEditorElement) => void
+    onElementChanged: (updatedElement: FertilizerIngredient) => void
 }
