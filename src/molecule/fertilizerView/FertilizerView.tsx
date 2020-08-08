@@ -10,7 +10,7 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) =>
     return (
         <div>
             {fertilizer.name}
-            <IngredientsView composition={fertilizer.composition} />
+            <IngredientsView ingredients={fertilizer.ingredients} />
         </div>
     );
 };

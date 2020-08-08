@@ -5,16 +5,16 @@ import {elementMock} from "../../mocks/elementMock";
 import style from './ingredientView.module.scss'
 
 interface IngredientsViewProps {
-    composition: FertilizerIngredient[],
+    ingredients: FertilizerIngredient[],
 }
 
-const IngredientsView: FunctionComponent<IngredientsViewProps> = ({composition}) => {
+const IngredientsView: FunctionComponent<IngredientsViewProps> = ({ingredients}) => {
     const getChemicalElements = () => {
         return elementMock
     }
 
     const renderIngredients = () => {
-        return composition.map(ingredient => {
+        return ingredients.map(ingredient => {
             const chemicalElement = getChemicalElements().find(element => element.id === ingredient.chemicalId)
             if (chemicalElement) {
                 return (
