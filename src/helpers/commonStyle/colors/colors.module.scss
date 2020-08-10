@@ -1,0 +1,17 @@
+@import "src/index";
+
+.colorText {
+    color: $text;
+}
+
+.colorsTextSecondary {
+    color: $textSecondary;
+}
+
+.colorDescription {
+    color: $description;
+}
+
+.colorBack {
+    background-color: $back;
+}

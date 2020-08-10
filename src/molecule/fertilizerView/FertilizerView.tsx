@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {Fertilizer} from "../../models/fertilizer";
 import {IngredientsView} from "../ingredientsView/IngredientsView";
-import {fonts} from "../../helpers/styles/fonts";
+import {fonts} from "../../helpers/commonStyle/fonts";
 
 import style from './fertilizerView.module.scss'
 
