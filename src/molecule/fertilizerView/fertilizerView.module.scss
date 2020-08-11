@@ -1,3 +1,18 @@
+@import "src/index";
+@import "src/helpers/commonStyle/mixins.module";
+
 .fertilizer {
-    margin-bottom: 10px;
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid $color_separator;
+}
+
+.addToMixture {
+    position: absolute;
+    padding: 10px;
+    @include hover;
+
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
 }

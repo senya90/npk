@@ -18,7 +18,9 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers}) => {
     return (
         <div className={style.fertilizers_wrapper}>
             <Title>{translate('fertilizers')}</Title>
-            {renderFertilizers()}
+            <div className={style.fertilizersBox}>
+                {renderFertilizers()}
+            </div>
             <Button
                 type={BUTTON_TYPE.PRIMARY}
             >
