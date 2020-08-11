@@ -28,5 +28,36 @@ export const fertilizersMock: Fertilizer[] = [
             }
         ]
     },
-
+    {
+        id: 'aeb89623-3085-4e82-8927-a8c48ef93f31',
+        name: 'Удобрение 3',
+        ingredients: [
+            {
+                id: '2b346d3a-9144-44b5-876d-f57d71835b83',
+                chemicalId: '5M',
+                value: 1.2
+            },
+            {
+                id: '1991ccdd-a335-4bc8-9b71-1c3c286ea132',
+                chemicalId: '4C',
+                value: 0.5
+            },
+            {
+                id: '62475a3f-3f26-41e1-ace3-741c36c089f8',
+                chemicalId: '1N',
+                value: 0.3
+            }
+        ]
+    },
+    {
+        id: 'bc407186-75f3-47d7-b0fc-da50ede7329a',
+        name: 'Удобрение 4',
+        ingredients: [
+            {
+                id: '1fb853e0-3914-47db-ad5b-a7037e79ef84',
+                chemicalId: '8F',
+                value: 10
+            }
+        ]
+    },
 ]
