@@ -3,6 +3,10 @@ import {FertilizerEditor} from "../../organism/fertilizerEditor/FertilizerEditor
 import {Fertilizers} from "../../organism/fertilizers/Fertilizers";
 import { Fertilizer } from 'models/fertilizer';
 import {fertilizersMock} from "../../mocks/fertilizersMock";
+import {MixtureComposition} from "../../organism/mixtureComposition/MixtureComposition";
+
+import style from './calculator.module.scss'
+
 
 const Calculator = () => {
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>(fertilizersMock)
@@ -36,9 +40,18 @@ const Calculator = () => {
 
     return (
         <div>
-            <Fertilizers
-                fertilizers={fertilizers}
-            />
+            <div className={style.box}>
+                <Fertilizers
+                    fertilizers={fertilizers}
+                />
+                <MixtureComposition />
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <FertilizerEditor
                 onSaveFertilizer={onSaveFertilizer}
             />

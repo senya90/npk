@@ -36,7 +36,6 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
     }
 
     const updateElements = (updatedElements: FertilizerIngredient[]) => {
-        console.log('updatedElements', updatedElements)
         setElements(updatedElements)
     }
 

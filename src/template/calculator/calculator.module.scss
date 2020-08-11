@@ -1,0 +1,12 @@
+.box {
+    display: flex;
+
+    & > div {
+        flex: 1 0 auto;
+        padding-right: 10px;
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+}

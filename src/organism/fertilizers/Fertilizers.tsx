@@ -3,8 +3,11 @@ import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {Button} from "../../atom/button/Button";
 import {translate} from "../../helpers/translate/translate";
 import Title from 'atom/title/Title';
-import {FertilizersProps} from "./FertilizersType";
+import {FertilizersProps} from "./FertilizersTypes";
 import {FertilizerView} from "../../molecule/fertilizerView/FertilizerView";
+
+import style from './fertilizers.module.scss'
+
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers}) => {
 
@@ -13,8 +16,8 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers}) => {
     }
 
     return (
-        <div>
-            <Title>Удобрения</Title>
+        <div className={style.fertilizers_wrapper}>
+            <Title>{translate('fertilizers')}</Title>
             {renderFertilizers()}
             <Button
                 type={BUTTON_TYPE.PRIMARY}

@@ -26,5 +26,13 @@
     "addFertilizer": {
         "ru": "Добавить удобрение",
         "en": "Add fertilizer"
+    },
+    "fertilizers": {
+        "ru": "Удобрения",
+        "en": "Fertilizers"
+    },
+    "mixtureComposition": {
+        "ru": "Состав раствора",
+        "en": "Mixture composition"
     }
 }
