@@ -5,6 +5,7 @@ export type CalculatorContextType = {
     onDeleteFertilizer: (fertilizerId: string) => boolean
     onSaveFertilizer: (fertilizer: Fertilizer) => Fertilizer
     onEditFertilizer: (fertilizerId: string) => Fertilizer
+    onAddFertilizerToMixture: (fertilizerId: string) => void
 
     getFertilizerById?: (fertilizerId: string) => Fertilizer | undefined
 }
@@ -18,6 +19,7 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     },
     onEditFertilizer(fertilizerId: string): Fertilizer {
         return new Fertilizer('template', []);
+    },
+    onAddFertilizerToMixture(fertilizerId: string): void {
     }
-
 })

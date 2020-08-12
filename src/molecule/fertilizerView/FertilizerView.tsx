@@ -13,7 +13,7 @@ interface FertilizerViewProps {
 
 const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) => {
     const [active, setActive] = useState<boolean>(false)
-    const {onDeleteFertilizer, onEditFertilizer} = useContext(CalculatorContext)
+    const {onDeleteFertilizer, onEditFertilizer, onAddFertilizerToMixture} = useContext(CalculatorContext)
 
     const toggleActive = (e: React.MouseEvent<HTMLDivElement>) => {
         setActive(!active)
@@ -29,6 +29,11 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) =>
         onDeleteFertilizer(fertilizer.id)
     }
 
+    const addToMixture = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        onAddFertilizerToMixture(fertilizer.id)
+    }
+
     const footerStyle = active ? `${style.footer} ${style.activeFooter}` : style.footer
 
     return (
@@ -37,6 +42,7 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) =>
             <Icon
                 className={style.addToMixture}
                 type={ICON_TYPE.RightOutlined}
+                onClick={addToMixture}
             />
             <div className={footerStyle}>
                 <IngredientsView
