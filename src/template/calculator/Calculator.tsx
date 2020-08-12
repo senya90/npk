@@ -64,7 +64,8 @@ const Calculator = () => {
             <CalculatorContext.Provider value={{
                 onDeleteFertilizer: onFertilizerDelete,
                 onSaveFertilizer: onSaveFertilizer,
-                onEditFertilizer: onFertilizerEdit
+                onEditFertilizer: onFertilizerEdit,
+                getFertilizerById: getFertilizerById
             }}
             >
                 <div className={style.box}>
