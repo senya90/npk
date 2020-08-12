@@ -12,7 +12,7 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
         }
 
         return mixture.dosages.map(dosage => (
-            <DosageView key={dosage.fertilizer.id} />
+            <DosageView key={dosage.fertilizer.id} dosage={dosage} />
         ))
     }
 
