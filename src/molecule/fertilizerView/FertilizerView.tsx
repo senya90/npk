@@ -1,10 +1,11 @@
-import React, {FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, useContext, useState} from 'react';
 import {Fertilizer} from "../../models/fertilizer";
 import {IngredientsView} from "../ingredientsView/IngredientsView";
 
 import style from './fertilizerView.module.scss'
 import {Icon} from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
+import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 interface FertilizerViewProps {
     fertilizer: Fertilizer
@@ -12,6 +13,7 @@ interface FertilizerViewProps {
 
 const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) => {
     const [active, setActive] = useState<boolean>(false)
+    const {onDeleteFertilizer, onEditFertilizer} = useContext(CalculatorContext)
 
     const toggleActive = (e: React.MouseEvent<HTMLDivElement>) => {
         setActive(!active)
@@ -19,6 +21,12 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) =>
 
     const editFertilizer = (e: React.MouseEvent) => {
         e.stopPropagation()
+        onEditFertilizer(fertilizer.id)
+    }
+
+    const deleteFertilizer = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        onDeleteFertilizer(fertilizer.id)
     }
 
     const footerStyle = active ? `${style.footer} ${style.activeFooter}` : style.footer
@@ -47,7 +55,7 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) =>
                         type={ICON_TYPE.Delete}
                         size={20}
                         className={`${style.icon}`}
-                        onClick={editFertilizer}
+                        onClick={deleteFertilizer}
                     />
                 </div>
                 }

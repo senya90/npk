@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, useContext, useState} from 'react';
 import { Button } from 'atom/button/Button';
 import { BUTTON_TYPE, BUTTON_SHAPE } from 'atom/button/ButtonTypes';
 import { Input } from 'atom/input/Input';
@@ -11,10 +11,12 @@ import {FertilizerIngredient} from "../../models/fertilizerIngredient";
 import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
 import {translate} from "../../helpers/translate/translate";
 import {Fertilizer} from "../../models/fertilizer";
+import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
 
-const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
+const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = () => {
     const [name, setName] = useState<string>('')
     const [elements, setElements] = useState<FertilizerIngredient[]>([])
+    const {onSaveFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
 
     const onElementChanged = (updatedElement: FertilizerIngredient) => {
         const updatedElements = elements.map(element => {
@@ -49,7 +51,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = (props) => {
 
     const onSave = () => {
         const fertilizer = new Fertilizer(name, elements)
-        props.onSaveFertilizer(fertilizer)
+        onSaveFertilizer(fertilizer)
         resetState()
     }
 

@@ -6,19 +6,21 @@ import {fertilizersMock} from "../../mocks/fertilizersMock";
 import {MixtureComposition} from "../../organism/mixtureComposition/MixtureComposition";
 
 import style from './calculator.module.scss'
+import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
 
 
 const Calculator = () => {
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>(fertilizersMock)
 
-    const onSaveFertilizer = (savedFertilizer: Fertilizer) => {
+    const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
         const found = fertilizers.find(fertilizer => fertilizer.id === savedFertilizer.id)
         if (!found) {
             addFertilizer(savedFertilizer)
-            return
+            return savedFertilizer
         }
 
         updateFertilizer(savedFertilizer)
+        return savedFertilizer
     }
 
     const addFertilizer = (savedFertilizer: Fertilizer) => {
@@ -35,26 +37,44 @@ const Calculator = () => {
         setFertilizers(newFertilizers)
     }
 
+    const onFertilizerDelete = (fertilizerId: string): boolean => {
+        const updatedFertilizers = fertilizers.filter(fertilizer => fertilizer.id !== fertilizerId)
+        setFertilizers(updatedFertilizers)
+        return true
+    }
+
+    const onFertilizerEdit = (fertilizerId: string): Fertilizer => {
+        console.log('fertilizerId', fertilizerId)
+        return new Fertilizer('123', [])
+    }
+
     console.log(fertilizers)
     console.log(JSON.stringify(fertilizers))
 
     return (
         <div>
-            <div className={style.box}>
-                <Fertilizers
-                    fertilizers={fertilizers}
-                />
-                <MixtureComposition />
-            </div>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <FertilizerEditor
-                onSaveFertilizer={onSaveFertilizer}
-            />
+            <CalculatorContext.Provider value={{
+                onDeleteFertilizer: onFertilizerDelete,
+                onSaveFertilizer: onSaveFertilizer,
+                onEditFertilizer: onFertilizerEdit
+            }}
+            >
+                <div className={style.box}>
+
+                    <Fertilizers
+                        fertilizers={fertilizers}
+                    />
+                    <MixtureComposition />
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <FertilizerEditor />
+            </CalculatorContext.Provider>
+
         </div>
     );
 };
