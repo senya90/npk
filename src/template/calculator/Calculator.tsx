@@ -11,9 +11,12 @@ import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
 
 const Calculator = () => {
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>(fertilizersMock)
+    const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
 
     const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
         const found = fertilizers.find(fertilizer => fertilizer.id === savedFertilizer.id)
+        setEditableFertilizer(undefined)
+
         if (!found) {
             addFertilizer(savedFertilizer)
             return savedFertilizer
@@ -44,12 +47,17 @@ const Calculator = () => {
     }
 
     const onFertilizerEdit = (fertilizerId: string): Fertilizer => {
-        console.log('fertilizerId', fertilizerId)
-        return new Fertilizer('123', [])
+        const found = getFertilizerById(fertilizerId)
+        if (found) {
+            setEditableFertilizer(found)
+            return found
+        }
+        return new Fertilizer()
     }
 
-    console.log(fertilizers)
-    console.log(JSON.stringify(fertilizers))
+    const getFertilizerById = (fertilizerId: string): Fertilizer | undefined => {
+        return fertilizers.find(fertilizer => fertilizer.id === fertilizerId)
+    }
 
     return (
         <div>
@@ -68,11 +76,9 @@ const Calculator = () => {
                 </div>
                 <br/>
                 <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <FertilizerEditor />
+                <FertilizerEditor
+                    editableFertilizer={editableFertilizer}
+                />
             </CalculatorContext.Provider>
 
         </div>

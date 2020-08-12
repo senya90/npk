@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useState} from 'react';
+import React, {FunctionComponent, useContext, useEffect, useState} from 'react';
 import { Button } from 'atom/button/Button';
 import { BUTTON_TYPE, BUTTON_SHAPE } from 'atom/button/ButtonTypes';
 import { Input } from 'atom/input/Input';
@@ -13,10 +13,17 @@ import {translate} from "../../helpers/translate/translate";
 import {Fertilizer} from "../../models/fertilizer";
 import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
 
-const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = () => {
+const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFertilizer}) => {
     const [name, setName] = useState<string>('')
     const [elements, setElements] = useState<FertilizerIngredient[]>([])
     const {onSaveFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
+
+    useEffect(() => {
+        if (editableFertilizer) {
+            setName(editableFertilizer.name)
+            setElements(editableFertilizer.ingredients)
+        }
+    }, [editableFertilizer])
 
     const onElementChanged = (updatedElement: FertilizerIngredient) => {
         const updatedElements = elements.map(element => {
@@ -26,15 +33,6 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = () => {
             return element
         })
         updateElements(updatedElements)
-    }
-
-    const renderElements = () => {
-        return elements.map(element => <FertilizerElement
-            key={element.id}
-            element={element}
-            elementsList={elementMock}
-            onElementChanged={onElementChanged}
-        />)
     }
 
     const updateElements = (updatedElements: FertilizerIngredient[]) => {
@@ -50,7 +48,10 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = () => {
     }
 
     const onSave = () => {
-        const fertilizer = new Fertilizer(name, elements)
+        let fertilizer = new Fertilizer(name, elements)
+        if (editableFertilizer) {
+            fertilizer = new Fertilizer(name, elements, editableFertilizer.id)
+        }
         onSaveFertilizer(fertilizer)
         resetState()
     }
@@ -58,6 +59,15 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = () => {
     const resetState = () => {
         setElements([])
         setName('')
+    }
+
+    const renderElements = () => {
+        return elements.map(element => <FertilizerElement
+            key={element.id}
+            element={element}
+            elementsList={elementMock}
+            onElementChanged={onElementChanged}
+        />)
     }
 
     return (
