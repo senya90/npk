@@ -2,8 +2,32 @@
 .ingredientsWrapper {
     line-height: 1;
     font-size: $font_nano;
+
+    &.fullSize {
+        font-size: $font_mini;
+
+        .ingredient {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .chemicalName {
+            margin-right: 20px;
+            min-width: 40px;
+            display: inline-block;
+        }
+    }
 }
+
 .ingredient {
     margin-right: 10px;
     color: $color_description;
+}
+
+.chemicalName {
+    margin-right: 5px;
+}
+
+.chemicalValue {
+
 }

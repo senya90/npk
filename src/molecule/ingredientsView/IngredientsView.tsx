@@ -7,15 +7,16 @@ import style from './ingredientView.module.scss'
 
 interface IngredientsViewProps {
     ingredients: FertilizerIngredient[],
+    fullSize?: boolean
 }
 
-const IngredientsView: FunctionComponent<IngredientsViewProps> = ({ingredients}) => {
+const IngredientsView: FunctionComponent<IngredientsViewProps> = (props) => {
     const getChemicalElements = () => {
         return elementMock
     }
 
     const renderIngredients = () => {
-        return ingredients.map(ingredient => {
+        return props.ingredients.map(ingredient => {
             const chemicalElement = getChemicalElements().find(element => element.id === ingredient.chemicalId)
             if (chemicalElement) {
                 return (
@@ -23,7 +24,8 @@ const IngredientsView: FunctionComponent<IngredientsViewProps> = ({ingredients})
                         key={ingredient.id}
                         className={style.ingredient}
                     >
-                        {chemicalElement.name} {ingredient.value}
+                        <span className={style.chemicalName}>{chemicalElement.name}</span>
+                        <span className={style.chemicalValue}>{ingredient.value}%</span>
                     </span>
                 )
             }
@@ -31,8 +33,10 @@ const IngredientsView: FunctionComponent<IngredientsViewProps> = ({ingredients})
         })
     }
 
+    const ingredientsWrapperStyle = props.fullSize ? `${style.fullSize} ${style.ingredientsWrapper}` : style.ingredientsWrapper
+
     return (
-        <div className={style.ingredientsWrapper}>
+        <div className={ingredientsWrapperStyle}>
             {renderIngredients()}
         </div>
     );

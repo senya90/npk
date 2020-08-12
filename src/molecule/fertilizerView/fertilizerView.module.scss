@@ -1,10 +1,14 @@
 @import "src/index";
-@import "src/helpers/commonStyle/mixins.module";
+@import "../../mixins.module";
 
 .fertilizer {
     position: relative;
-    padding: 10px 0;
     border-bottom: 1px solid $color_separator;
+    @include hoverBack($color_separator);
+
+    &:active {
+        background-color: $color_back;
+    }
 }
 
 .addToMixture {
@@ -15,4 +19,32 @@
     right: 0;
     top: 50%;
     transform: translate(0, -50%);
+}
+
+.name {
+    font-size: $font_mb;
+    margin-bottom: 6px;
+    padding: 10px 10px 0;
+}
+
+.footer {
+    padding: 0 10px 10px;
+
+    &.activeFooter {
+        box-shadow: inset 0px -15px 10px -10px rgba(214,228,255,1);
+    }
+}
+
+.icon {
+    display: inline-block;
+    padding: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
+    @include hover;
+}
+
+.deleteIcon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }

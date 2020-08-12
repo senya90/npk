@@ -11,3 +11,12 @@
         opacity: .8;
     }
 }
+
+@mixin hoverBack($toBack) {
+    cursor: pointer;
+    transition: background-color .15s ease-in-out;
+
+    &:hover {
+        background-color: $toBack;
+    }
+}

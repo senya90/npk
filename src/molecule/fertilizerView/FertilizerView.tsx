@@ -1,10 +1,9 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import {Fertilizer} from "../../models/fertilizer";
 import {IngredientsView} from "../ingredientsView/IngredientsView";
-import {fonts} from "../../helpers/commonStyle/fonts";
 
 import style from './fertilizerView.module.scss'
-import { Icon } from 'atom/icon/Icon';
+import {Icon} from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 
 interface FertilizerViewProps {
@@ -12,14 +11,49 @@ interface FertilizerViewProps {
 }
 
 const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) => {
+    const [active, setActive] = useState<boolean>(false)
+
+    const toggleActive = (e: React.MouseEvent<HTMLDivElement>) => {
+        setActive(!active)
+    }
+
+    const editFertilizer = (e: React.MouseEvent) => {
+        e.stopPropagation()
+    }
+
+    const footerStyle = active ? `${style.footer} ${style.activeFooter}` : style.footer
+
     return (
-        <div className={style.fertilizer}>
-            <div className={fonts.font_md}>{fertilizer.name}</div>
-            <IngredientsView ingredients={fertilizer.ingredients} />
+        <div className={style.fertilizer} onClick={toggleActive}>
+            <div className={style.name}>{fertilizer.name}</div>
             <Icon
                 className={style.addToMixture}
                 type={ICON_TYPE.RightOutlined}
             />
+            <div className={footerStyle}>
+                <IngredientsView
+                    ingredients={fertilizer.ingredients}
+                    fullSize={active}
+                />
+                {active &&
+                <div>
+                    <Icon
+                        type={ICON_TYPE.Edit}
+                        size={20}
+                        className={style.icon}
+                        onClick={editFertilizer}
+                    />
+                    <Icon
+                        type={ICON_TYPE.Delete}
+                        size={20}
+                        className={`${style.icon}`}
+                        onClick={editFertilizer}
+                    />
+                </div>
+                }
+
+            </div>
+
         </div>
     );
 };
