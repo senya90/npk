@@ -4,7 +4,11 @@ import {IconsProvider} from "./iconsProvider";
 
 const Icon:FunctionComponent<IconProps> = (props) => {
 
-    const style = props.size ? {fontSize: props.size} : {}
+    let style: any = {}
+
+    if (props.size) {
+        style.fontSize = props.size
+    }
 
     return (
         <i

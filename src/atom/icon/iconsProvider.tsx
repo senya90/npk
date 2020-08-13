@@ -5,7 +5,10 @@ import {
     EditOutlined,
     DeleteOutlined,
     PlusSquareOutlined,
-    MinusSquareOutlined
+    MinusSquareOutlined,
+    PlusCircleOutlined,
+    MinusCircleOutlined,
+    CloseOutlined
 } from '@ant-design/icons';
 
 export function IconsProvider(iconType: ICON_TYPE) {
@@ -24,6 +27,15 @@ export function IconsProvider(iconType: ICON_TYPE) {
 
         case (ICON_TYPE.MinusSquare):
             return <MinusSquareOutlined />
+
+        case (ICON_TYPE.PlusCircle):
+            return <PlusCircleOutlined />
+
+        case (ICON_TYPE.MinusCircle):
+            return <MinusCircleOutlined />
+
+        case (ICON_TYPE.Cross):
+            return <CloseOutlined />
 
         default:
             return <div/>

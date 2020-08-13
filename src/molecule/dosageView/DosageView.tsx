@@ -6,12 +6,16 @@ import {Input} from 'atom/input/Input';
 import {Icon} from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {commonStyles} from "../../helpers/commonStyle";
+import { colors } from 'helpers/commonStyle/colors';
 
 
 const DosageView: FunctionComponent<DosageViewProps> = ({dosage}) => {
     return (
         <div className={style.dosageWrapper}>
-            <div className={style.delete}>x</div>
+                <Icon
+                    className={style.delete}
+                    type={ICON_TYPE.Cross}
+                />
             <div className={style.main}>
                 <div className={style.name}>{dosage.fertilizer.name}</div>
                 <div className={style.dosagePanel}>
@@ -24,13 +28,13 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage}) => {
                     </div>
                     <div className={style.buttons}>
                         <Icon
-                            className={style.button}
-                            type={ICON_TYPE.PlusSquare}
+                            className={`${colors.positive} ${style.button}`}
+                            type={ICON_TYPE.PlusCircle}
                             size={20}
                         />
                         <Icon
-                            className={style.button}
-                            type={ICON_TYPE.MinusSquare}
+                            className={`${colors.negative} ${style.button}`}
+                            type={ICON_TYPE.MinusCircle}
                             size={20}
                         />
                     </div>

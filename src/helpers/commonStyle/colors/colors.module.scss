@@ -1,17 +1,24 @@
 @import "src/index";
 
-.colorText {
-    color: $text;
+.text {
+    color: $color_text;
+}
+.textSecondary {
+    color: $color_textSecondary;
+}
+.positive {
+    color: $color_positive;
+}
+.negative {
+    color: $color_negative;
 }
 
-.colorsTextSecondary {
-    color: $textSecondary;
+////////////////////////////////////////////////////////
+
+.description {
+    color: $color_description;
 }
 
-.colorDescription {
-    color: $description;
-}
-
-.colorBack {
-    background-color: $back;
+.back {
+    background-color: $color_back;
 }
