@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useEffect, useState} from 'react';
 import {DosageViewProps} from "./DosageViewTypes";
 
 import style from './dosageView.module.scss'
@@ -10,6 +10,28 @@ import { colors } from 'helpers/commonStyle/colors';
 
 
 const DosageView: FunctionComponent<DosageViewProps> = ({dosage}) => {
+    const [dosageValue, setDosageValue] = useState<number>(dosage.value)
+
+    const inputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDosageValue(Number(e.target.value))
+    }
+
+    const increaseValue = () => {
+        setDosageValue(dosageValue + 0.01)
+    }
+
+    const decreaseValue = () => {
+        if (dosageValue - 0.01 <= 0) {
+            setDosageValue(0)
+            return
+        }
+        setDosageValue(dosageValue - 0.01)
+    }
+
+    useEffect(() => {
+        setDosageValue(dosage.value)
+    }, [dosage.value])
+
     return (
         <div className={style.dosageWrapper}>
                 <Icon
@@ -23,7 +45,8 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage}) => {
                         <div className={commonStyles.text_c}>г/л</div>
                         <Input
                             className={style.dosageValue}
-                            value={String(dosage.value)}
+                            value={String(dosageValue)}
+                            onChange={inputValue}
                         />
                     </div>
                     <div className={style.buttons}>
@@ -31,11 +54,13 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage}) => {
                             className={`${colors.positive} ${style.button}`}
                             type={ICON_TYPE.PlusCircle}
                             size={20}
+                            onClick={increaseValue}
                         />
                         <Icon
                             className={`${colors.negative} ${style.button}`}
                             type={ICON_TYPE.MinusCircle}
                             size={20}
+                            onClick={decreaseValue}
                         />
                     </div>
                 </div>
