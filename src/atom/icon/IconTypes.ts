@@ -13,4 +13,6 @@ export class ICON_TYPE {
     static readonly LeftOutlined = 'LeftOutlined'
     static readonly Edit = 'EditOutlined'
     static readonly Delete = 'DeleteOutlined'
+    static readonly PlusSquare = 'PlusSquareOutlined'
+    static readonly MinusSquare = 'MinusSquareOutlined'
 }

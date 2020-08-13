@@ -1,0 +1,71 @@
+@import "src/mixins.module";
+@import "src/index";
+
+.dosageWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    min-height: 50px;
+
+    border-bottom: 2px solid $color_separator;
+}
+
+.delete {
+    width: 20px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    background-color: #f5a4a4; // TODO
+    color: red; // TODO
+    @include hover;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 auto;
+    height: 100%;
+}
+
+.name {
+    display: inline-block;
+    padding-left: 10px;
+    flex: 1 1 0;
+}
+
+.dosagePanel {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.dosageValue {
+    width: 60px;
+}
+
+.dosageInput {
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-top: 11px;
+
+    i {
+        display: block;
+    }
+}
+
+.button {
+    padding: 2px 5px;
+    line-height: 1.1;
+    @include hover;
+}
