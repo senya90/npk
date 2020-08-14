@@ -6,4 +6,5 @@ export interface DosageViewProps {
     onDosageValueIncrease?: () => void
     onDosageValueDecrease?: () => void
     deleteFertilizerFromMixture: (fertilizer: Fertilizer) => void
+    onDosageChanged: (dosage: Dosage) => void
 }

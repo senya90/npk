@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useState} from 'react';
+import React, {FunctionComponent} from 'react';
 import {DosageViewProps} from "./DosageViewTypes";
 
 import style from './dosageView.module.scss'
@@ -7,34 +7,35 @@ import {Icon} from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {commonStyles} from "../../helpers/commonStyle";
 import { colors } from 'helpers/commonStyle/colors';
+import { Dosage } from 'models/dosage';
+import { Utils } from 'helpers/utils';
 
 
-const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilizerFromMixture}) => {
-    const [dosageValue, setDosageValue] = useState<number>(dosage.value)
+const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilizerFromMixture, onDosageChanged}) => {
 
     const inputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDosageValue(Number(e.target.value))
+        onDosageChanged(updateDosageByValue(Number(e.target.value)))
     }
 
     const increaseValue = () => {
-        setDosageValue(dosageValue + 0.01)
+        onDosageChanged(updateDosageByValue(dosage.value + 0.01))
     }
 
     const decreaseValue = () => {
-        if (dosageValue - 0.01 <= 0) {
-            setDosageValue(0)
-            return
+        let newValue = dosage.value - 0.01
+        if (newValue <= 0) {
+            newValue = 0
         }
-        setDosageValue(dosageValue - 0.01)
+        onDosageChanged(updateDosageByValue(newValue))
+    }
+
+    const updateDosageByValue = (toValue: number): Dosage => {
+        return {...dosage, value: Utils.round(toValue)}
     }
 
     const deleteFertilizer = () => {
         deleteFertilizerFromMixture(dosage.fertilizer)
     }
-
-    useEffect(() => {
-        setDosageValue(dosage.value)
-    }, [dosage.value])
 
     return (
         <div className={style.dosageWrapper}>
@@ -50,7 +51,7 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilize
                         <div className={commonStyles.text_c}>г/л</div>
                         <Input
                             className={style.dosageValue}
-                            value={String(dosageValue)}
+                            value={String(dosage.value)}
                             onChange={inputValue}
                         />
                     </div>
@@ -70,7 +71,6 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilize
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };

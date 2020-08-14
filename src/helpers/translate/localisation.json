@@ -34,5 +34,9 @@
     "mixtureComposition": {
         "ru": "Состав раствора",
         "en": "Mixture composition"
+    },
+    "inputMixtureName": {
+        "ru": "Введите название раствора",
+        "en": "Input the mixture name"
     }
 }

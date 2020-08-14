@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useState} from 'react';
+import React, {FunctionComponent, useContext} from 'react';
 import {MixtureCompositionProps} from "./MixtureCompositionTypes";
 import {translate} from "../../helpers/translate/translate";
 import Title from "../../atom/title/Title";
@@ -8,9 +8,10 @@ import {Fertilizer} from "../../models/fertilizer";
 import {Mixture} from "../../models/mixture";
 import {Input} from 'atom/input/Input';
 
-const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture}) => {
-    const [mixtureName, setMixtureName] = useState<string>(mixture.name)
+import style from './mixtureComposition.module.scss'
+import {Dosage} from "../../models/dosage";
 
+const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture}) => {
     const {onMixtureUpdated} = useContext<CalculatorContextType>(CalculatorContext)
 
     const renderMixture = () => {
@@ -23,6 +24,7 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
                 key={dosage.fertilizer.id}
                 dosage={dosage}
                 deleteFertilizerFromMixture={onDeleteFertilizerFromMixture}
+                onDosageChanged={onDosageChanged}
             />
         ))
     }
@@ -37,8 +39,22 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
         return updatedMixture
     }
 
+    const onDosageChanged = (updatedDosage: Dosage) => {
+        let updatedMixture = Mixture.getActualMixture(mixture)
+        updatedMixture.dosages = updatedMixture.dosages.map(dosage => {
+            if (dosage.fertilizer.id === updatedDosage.fertilizer.id) {
+                return updatedDosage
+            }
+            return dosage
+        })
+
+        onMixtureUpdated(updatedMixture)
+    }
+
     const onMixtureNameChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setMixtureName(e.target.value)
+        const updatedMixture = Mixture.getActualMixture(mixture)
+        updatedMixture.name = e.target.value
+        onMixtureUpdated(updatedMixture)
     }
 
     return (
@@ -49,8 +65,10 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
             }
             {mixture && mixture.dosages.length > 0 &&
                 <Input
-                    value={mixtureName}
+                    className={style.mixtureName}
+                    value={mixture.name}
                     onChange={onMixtureNameChanged}
+                    placeholder={translate('inputMixtureName')}
                 />
             }
 
