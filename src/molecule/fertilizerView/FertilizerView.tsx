@@ -7,6 +7,7 @@ import {Icon} from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
+
 interface FertilizerViewProps {
     fertilizer: Fertilizer
 }

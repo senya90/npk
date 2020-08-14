@@ -9,7 +9,7 @@ import {commonStyles} from "../../helpers/commonStyle";
 import { colors } from 'helpers/commonStyle/colors';
 
 
-const DosageView: FunctionComponent<DosageViewProps> = ({dosage}) => {
+const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilizerFromMixture}) => {
     const [dosageValue, setDosageValue] = useState<number>(dosage.value)
 
     const inputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,6 +28,10 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage}) => {
         setDosageValue(dosageValue - 0.01)
     }
 
+    const deleteFertilizer = () => {
+        deleteFertilizerFromMixture(dosage.fertilizer)
+    }
+
     useEffect(() => {
         setDosageValue(dosage.value)
     }, [dosage.value])
@@ -37,6 +41,7 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage}) => {
                 <Icon
                     className={style.delete}
                     type={ICON_TYPE.Cross}
+                    onClick={deleteFertilizer}
                 />
             <div className={style.main}>
                 <div className={style.name}>{dosage.fertilizer.name}</div>

@@ -13,11 +13,33 @@ export class Mixture {
         this.id = id ? id : IdGenerator.generate()
     }
 
+    static getActualMixture = (fromMixture: Mixture | undefined) => {
+        let actualMixture = new Mixture()
+        if (fromMixture) {
+            const {name, dosages, id} = fromMixture
+            actualMixture = new Mixture(name, dosages, id)
+        }
+        return actualMixture
+    }
+
     addFertilizer = (fertilizer: Fertilizer) => {
         this.addDosageItem(fertilizer)
     }
 
     private addDosageItem = (fertilizer: Fertilizer) => {
         this.dosages.push(new Dosage(fertilizer))
+    }
+
+    isAvailableForFertilizer = (fertilizer?: Fertilizer): boolean => {
+        if (!this || this.dosages.length === 0 || !fertilizer) {
+            return true
+        }
+
+        for (let i = 0; i < this.dosages.length; i++) {
+            if (this.dosages[i].fertilizer.id === fertilizer.id) {
+                return false
+            }
+        }
+        return true
     }
 }
