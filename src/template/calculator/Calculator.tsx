@@ -8,12 +8,14 @@ import {MixtureComposition} from "../../organism/mixtureComposition/MixtureCompo
 import style from './calculator.module.scss'
 import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
 import {Mixture} from "../../models/mixture";
+import { Solutions } from 'organism/solutions/Solutions';
 
 
 const Calculator = () => {
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>(fertilizersMock)
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
-    const [mixture, setMixture] = useState<Mixture>(new Mixture())
+    const [allMixtures, setAllMixtures] = useState<Mixture[]>([])
+    const [mixture, setMixture] = useState<Mixture>()
 
 
     const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
@@ -65,7 +67,7 @@ const Calculator = () => {
     const onAddFertilizerToMixture = (fertilizerId: string) => {
         const addedFertilizer = getFertilizerById(fertilizerId)
 
-        if (!mixture.isAvailableForFertilizer(addedFertilizer)) {
+        if (mixture && !mixture.isAvailableForFertilizer(addedFertilizer)) {
             return
         }
 
@@ -80,6 +82,17 @@ const Calculator = () => {
         setMixture(mixture)
     }
 
+    const onMixtureSave = () => {
+        if (mixture) {
+            setAllMixtures([...allMixtures, mixture])
+            clearEditingMixture()
+        }
+    }
+
+    const clearEditingMixture = () => {
+        setMixture(undefined)
+    }
+
     return (
         <div>
             <CalculatorContext.Provider value={{
@@ -90,16 +103,21 @@ const Calculator = () => {
                 getFertilizerById: getFertilizerById,
 
                 onMixtureUpdated: onMixtureUpdated,
-                onAddFertilizerToMixture: onAddFertilizerToMixture
+                onAddFertilizerToMixture: onAddFertilizerToMixture,
+                onMixtureSave: onMixtureSave
             }}
             >
                 <div className={style.box}>
-
                     <Fertilizers
                         fertilizers={fertilizers}
                     />
                     <MixtureComposition
                         mixture={mixture}
+                    />
+                </div>
+                <div>
+                    <Solutions
+                        mixtures={allMixtures}
                     />
                 </div>
                 <br/>

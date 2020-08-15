@@ -37,6 +37,10 @@
     },
     "inputMixtureName": {
         "ru": "Введите название раствора",
-        "en": "Input the mixture name"
+        "en": "Enter solution name"
+    },
+    "solutions": {
+        "ru": "Растворы",
+        "en": "Solutions"
     }
 }

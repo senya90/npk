@@ -10,9 +10,11 @@ import {Input} from 'atom/input/Input';
 
 import style from './mixtureComposition.module.scss'
 import {Dosage} from "../../models/dosage";
+import { Button } from 'atom/button/Button';
+import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 
 const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture}) => {
-    const {onMixtureUpdated} = useContext<CalculatorContextType>(CalculatorContext)
+    const {onMixtureUpdated, onMixtureSave} = useContext<CalculatorContextType>(CalculatorContext)
 
     const renderMixture = () => {
         if (!mixture) {
@@ -57,6 +59,10 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
         onMixtureUpdated(updatedMixture)
     }
 
+    const saveMixtureComposition = () => {
+        onMixtureSave()
+    }
+
     return (
         <div>
             <Title>{translate('mixtureComposition')}</Title>
@@ -64,12 +70,20 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
                 renderMixture()
             }
             {mixture && mixture.dosages.length > 0 &&
-                <Input
-                    className={style.mixtureName}
-                    value={mixture.name}
-                    onChange={onMixtureNameChanged}
-                    placeholder={translate('inputMixtureName')}
-                />
+                <>
+                    <Input
+                        className={style.mixtureName}
+                        value={mixture.name}
+                        onChange={onMixtureNameChanged}
+                        placeholder={translate('inputMixtureName')}
+                    />
+                    <Button
+                        type={BUTTON_TYPE.PRIMARY}
+                        onClick={saveMixtureComposition}
+                    >
+                        {translate('save')}
+                    </Button>
+                </>
             }
 
         </div>

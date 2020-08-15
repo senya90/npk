@@ -9,6 +9,7 @@ export type CalculatorContextType = {
 
     onAddFertilizerToMixture: (fertilizerId: string) => void
     onMixtureUpdated: (mixture: Mixture) => void
+    onMixtureSave: () => void
 
     getFertilizerById: (fertilizerId: string) => Fertilizer | undefined
 }
@@ -28,6 +29,9 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     },
     onAddFertilizerToMixture(fertilizerId: string): void {
     },
+    onMixtureSave(): void {
+    },
+
 
     getFertilizerById(fertilizerId: string): Fertilizer | undefined {
         return undefined;
