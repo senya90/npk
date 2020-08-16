@@ -1,4 +1,4 @@
-@import "src/index";
+@import "../../index";
 
 
 .mixture {
@@ -14,7 +14,17 @@
 .fertilizerBox {
     display: flex;
     flex-wrap: wrap;
+}
+
+.fertilizerPreview {
+    flex: 1 1 auto;
     max-width: 300px;
+}
+
+.fertilizerCalculated {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid $color_separator;
 }
 
 .fertilizerLine {

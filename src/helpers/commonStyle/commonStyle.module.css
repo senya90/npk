@@ -2,6 +2,10 @@
     display: block;
 }
 
+.df {
+    display: flex;
+}
+
 .mb_nano {
     margin-bottom: 15px;
 }
