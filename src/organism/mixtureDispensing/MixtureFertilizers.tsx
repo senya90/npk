@@ -44,7 +44,7 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
             </div>
             <MixtureDistributor
                 percent={90}
-                volume={3}
+                volume={volume}
             />
         </div>
 

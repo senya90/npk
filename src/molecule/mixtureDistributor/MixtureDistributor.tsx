@@ -1,20 +1,44 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useContext} from 'react';
 import {MixtureDistributorProps} from "./MixtureDistributorTypes";
 
 import style from './mixtureDistributor.module.scss'
+import {InputNumber} from "../../atom/inputNumber/InputNumber";
+import {DispensingContext, DispensingContextType} from "../../helpers/contexts/DispensingContext";
+import {InputTypeValue} from "../../atom/inputNumber/InputNumberTypes";
+import {translate} from "../../helpers/translate/translate";
 
 
 const MixtureDistributor: FunctionComponent<MixtureDistributorProps> = (props) => {
     const {volume, percent = 100} = props
+    const {onVolumeChanged} = useContext<DispensingContextType>(DispensingContext)
+
+    const changeVolume = (value: InputTypeValue) => {
+        onVolumeChanged(Number(value))
+    }
 
     return (
         <div
             className={style.mixtureDistributor}
             {...props}
         >
-            MixtureLiterCtrl
-            {volume}
-            {percent}
+            <div className={style.distrLine}>
+                {translate('forValue')}
+                <InputNumber
+                    className={style.input}
+                    value={volume}
+                    onChange={changeVolume}
+                />
+                {translate('litres')}
+            </div>
+            <div>
+                {translate('forValue')}
+                <InputNumber
+                    className={style.input}
+                    value={percent}
+                    onChange={() => {}}
+                />
+                {translate('dispenserPercent')}
+            </div>
         </div>
     );
 };
