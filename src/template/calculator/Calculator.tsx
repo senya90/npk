@@ -8,7 +8,7 @@ import {MixtureComposition} from "../../organism/mixtureComposition/MixtureCompo
 import style from './calculator.module.scss'
 import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
 import {Mixture} from "../../models/mixture";
-import { Solutions } from 'organism/solutions/Solutions';
+import { Mixtures } from 'organism/mixtures/Mixtures';
 import {mixturesMock} from "../../mocks/mixturesMock";
 
 
@@ -118,7 +118,7 @@ const Calculator = () => {
                     />
                 </div>
                 <div>
-                    <Solutions
+                    <Mixtures
                         mixtures={allMixtures}
                     />
                 </div>

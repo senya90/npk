@@ -2,11 +2,11 @@ import React, {FunctionComponent} from 'react';
 import {Dosage} from "../../models/dosage";
 import {translate} from "../../helpers/translate/translate";
 
-interface SolutionFertilizersProps {
+interface MixtureFertilizersProps {
     dosages: Dosage[]
 }
 
-const SolutionFertilizers: FunctionComponent<SolutionFertilizersProps> = ({dosages}) => {
+const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages}) => {
     return (
         <div>
             {dosages.map(dosage => {
@@ -21,4 +21,4 @@ const SolutionFertilizers: FunctionComponent<SolutionFertilizersProps> = ({dosag
     );
 };
 
-export {SolutionFertilizers}
+export {MixtureFertilizers}
