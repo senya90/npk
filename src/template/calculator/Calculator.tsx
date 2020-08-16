@@ -9,12 +9,14 @@ import style from './calculator.module.scss'
 import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
 import {Mixture} from "../../models/mixture";
 import { Solutions } from 'organism/solutions/Solutions';
+import {mixturesMock} from "../../mocks/mixturesMock";
 
 
 const Calculator = () => {
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>(fertilizersMock)
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
-    const [allMixtures, setAllMixtures] = useState<Mixture[]>([])
+    // @ts-ignore
+    const [allMixtures, setAllMixtures] = useState<Mixture[]>(mixturesMock)
     const [mixture, setMixture] = useState<Mixture>()
 
 

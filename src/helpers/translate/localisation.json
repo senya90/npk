@@ -42,5 +42,9 @@
     "solutions": {
         "ru": "Растворы",
         "en": "Solutions"
+    },
+    "gramLiter": {
+        "ru": "г/л",
+        "en": "g/l"
     }
 }
