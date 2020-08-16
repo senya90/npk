@@ -10,3 +10,26 @@
     font-size: $font_mb;
     margin-bottom: 10px;
 }
+
+.fertilizerBox {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 300px;
+}
+
+.fertilizerLine {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.name {
+    max-width: 300px;
+}
+
+.value {
+    flex: 1 1 auto;
+    text-align: right;
+    margin-left: 20px;
+    min-width: 75px;
+}
