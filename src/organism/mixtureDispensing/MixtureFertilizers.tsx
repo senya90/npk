@@ -9,9 +9,10 @@ import {MixtureDistributor} from "../../molecule/mixtureDistributor/MixtureDistr
 interface MixtureFertilizersProps {
     dosages: Dosage[]
     volume?: number
+    percent?: number
 }
 
-const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages, volume= 0}) => {
+const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages, volume= 0, percent= 100}) => {
 
     const renderDosages = () => {
         return dosages.map(dosage => {
@@ -43,7 +44,7 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
                 {renderDosagesValueByVolume()}
             </div>
             <MixtureDistributor
-                percent={90}
+                percent={percent}
                 volume={volume}
             />
         </div>

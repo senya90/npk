@@ -10,10 +10,14 @@ import {translate} from "../../helpers/translate/translate";
 
 const MixtureDistributor: FunctionComponent<MixtureDistributorProps> = (props) => {
     const {volume, percent = 100} = props
-    const {onVolumeChanged} = useContext<DispensingContextType>(DispensingContext)
+    const {onVolumeChanged, onPercentChanged} = useContext<DispensingContextType>(DispensingContext)
 
     const changeVolume = (value: InputTypeValue) => {
         onVolumeChanged(Number(value))
+    }
+
+    const changePercent = (value: InputTypeValue) => {
+        onPercentChanged(Number(value))
     }
 
     return (
@@ -21,7 +25,7 @@ const MixtureDistributor: FunctionComponent<MixtureDistributorProps> = (props) =
             className={style.mixtureDistributor}
             {...props}
         >
-            <div className={style.distrLine}>
+            <div className={style.inputLine}>
                 {translate('forValue')}
                 <InputNumber
                     className={style.input}
@@ -35,7 +39,7 @@ const MixtureDistributor: FunctionComponent<MixtureDistributorProps> = (props) =
                 <InputNumber
                     className={style.input}
                     value={percent}
-                    onChange={() => {}}
+                    onChange={changePercent}
                 />
                 {translate('dispenserPercent')}
             </div>

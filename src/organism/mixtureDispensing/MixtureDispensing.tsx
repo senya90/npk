@@ -12,9 +12,14 @@ interface MixtureDispensingProps {
 
 const MixtureDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture}) => {
     const [volume, setVolume] = useState<number>(0)
+    const [percent, setPercent] = useState<number>(100)
 
     const onVolumeChanged = (volume: number) => {
         setVolume(volume)
+    }
+
+    const onPercentChanged = (percent: number) => {
+        setPercent(percent)
     }
 
     return (
@@ -23,11 +28,13 @@ const MixtureDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture})
                 <>
                     <div className={style.mixtureName}>{mixture.name}</div>
                     <DispensingContext.Provider value={{
-                        onVolumeChanged: onVolumeChanged
+                        onVolumeChanged: onVolumeChanged,
+                        onPercentChanged: onPercentChanged
                     }}>
                         <MixtureFertilizers
                             dosages={mixture.dosages}
                             volume={volume}
+                            percent={percent}
                         />
                     </DispensingContext.Provider>
 
