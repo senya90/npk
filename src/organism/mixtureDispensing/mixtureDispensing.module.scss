@@ -1,14 +1,20 @@
 @import "../../index";
-
+@import "src/mixins.module";
 
 .mixture {
-    margin-bottom: 20px;
+
+    &._mixtureActive {
+        background-color: $color_backSecondary;
+        padding: 10px;
+        padding-bottom: 20px;
+    }
 }
 
 .mixtureName {
     font-weight: bold;
     font-size: $font_mb;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    @include hover;
 }
 
 .fertilizerBox {
