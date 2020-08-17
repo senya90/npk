@@ -27,6 +27,12 @@
     border-left: 1px solid $color_separator;
 }
 
+.fertilizerPercent {
+    margin-left: 20px;
+    padding-left: 20px;
+    color: $color_description;
+}
+
 .fertilizerLine {
     display: flex;
     width: 100%;

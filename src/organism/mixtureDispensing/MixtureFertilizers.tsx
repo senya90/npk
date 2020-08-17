@@ -4,6 +4,7 @@ import {translate} from "../../helpers/translate/translate";
 
 import style from './mixtureDispensing.module.scss'
 import {MixtureDistributor} from "../../molecule/mixtureDistributor/MixtureDistributor";
+import {MixtureDistributorVolume} from "../../molecule/mixtureDistributor/MixtureDistributorVolume";
 
 
 interface MixtureFertilizersProps {
@@ -28,11 +29,21 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
     const renderDosagesValueByVolume = () => {
         return dosages.map(dosage => {
             return (
-                <div key={dosage.fertilizer.id} className={style.fertilizerLine}>
-                    {dosage.value * volume} {translate('gramLiter')}
-                </div>
+                <MixtureDistributorVolume key={dosage.fertilizer.id} dosage={dosage} volume={volume}/>
             )
         })
+    }
+
+    const renderDosagesValueByPercentVolume = () => {
+        return dosages.map(dosage => {
+            return (
+                <MixtureDistributorVolume key={dosage.fertilizer.id} dosage={dosage} volume={volume} percent={percent}/>
+            )
+        })
+    }
+
+    const isShowPercentVolume = (): boolean => {
+        return !(percent && percent === 100)
     }
 
     return (
@@ -43,6 +54,11 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
             <div className={style.fertilizerCalculated}>
                 {renderDosagesValueByVolume()}
             </div>
+            {isShowPercentVolume() &&
+                <div className={style.fertilizerPercent}>
+                    {renderDosagesValueByPercentVolume()}
+                </div>
+            }
             <MixtureDistributor
                 percent={percent}
                 volume={volume}

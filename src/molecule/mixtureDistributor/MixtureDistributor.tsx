@@ -37,7 +37,7 @@ const MixtureDistributor: FunctionComponent<MixtureDistributorProps> = (props) =
             <div>
                 {translate('forValue')}
                 <InputNumber
-                    className={style.input}
+                    className={`${style.percent} ${style.input}`}
                     value={percent}
                     onChange={changePercent}
                 />

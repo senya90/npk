@@ -1,3 +1,5 @@
+@import "src/index";
+
 .mixtureDistributor {
     margin-left: 30px;
 
@@ -10,4 +12,8 @@
 .input {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.percent {
+    color: $color_description;
 }
