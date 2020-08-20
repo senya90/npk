@@ -1,5 +1,4 @@
 import {ChemicalUnit} from "../models/chemicalUnit";
-import {ChemicalUnitValue} from "../models/chemicalUnitValue";
 
 export const chemicalUnitsMock: ChemicalUnit[] = [
     {

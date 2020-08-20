@@ -66,5 +66,9 @@
     "crops": {
         "ru": "Агрокультуры",
         "en": "Agricultural crops"
+    },
+    "tableSolutions": {
+        "ru": "Таблица смесей",
+        "en": "Table of solutions"
     }
 }

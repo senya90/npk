@@ -12,6 +12,7 @@ import { Mixtures } from 'organism/mixtures/Mixtures';
 import {mixturesMock} from "../../mocks/mixturesMock";
 import {Crops} from "../../organism/crops/Crops";
 import {cropsMock} from "../../mocks/cropsMock";
+import {ChemicalComparison} from "../../organism/checmicalComparison/ChemicalComparison";
 
 
 const Calculator = () => {
@@ -117,6 +118,8 @@ const Calculator = () => {
                     />
                     <MixtureComposition
                         mixture={mixture}
+                    />
+                    <ChemicalComparison
                     />
                     <Crops
                         crops={cropsMock}
