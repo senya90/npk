@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 
-const TableRaw = () => {
+import style from './tableRaw.module.scss'
+
+
+const TableRaw: FunctionComponent = (props) => {
     return (
-        <div>
-            TableRaw
+        <div className={style.tableRaw}>
+            {props.children}
         </div>
     );
 };

@@ -4,17 +4,25 @@ import {translate} from "../../helpers/translate/translate";
 import {ChemicalComparisonProps} from "./ChemicalComparisonTypes";
 import { Table } from 'organism/table/Table';
 import {TableRaw} from "../table/tableRow/TableRaw";
+import {chemicalUnitsMock} from "../../mocks/chemicalMock";
+import {TableCell} from "../table/tableCell/TableCell";
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
+
+    const renderChemicalComposition = () => {
+        return chemicalUnitsMock.map(chemical => (
+            <TableRaw>
+                <TableCell>{chemical.id}</TableCell>
+                <TableCell>{chemical.name}</TableCell>
+            </TableRaw>
+        ))
+    }
+
     return (
         <div>
             <Title>{translate('tableSolutions')}</Title>
             <Table>
-                <TableRaw key={1}/>
-                <TableRaw key={2}/>
-                <TableRaw key={3}/>
-                <TableRaw key={4}/>
-                <TableRaw key={5}/>
+                {renderChemicalComposition()}
             </Table>
         </div>
     );
