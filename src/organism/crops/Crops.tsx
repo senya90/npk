@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react';
+import React, {FunctionComponent} from 'react';
 import Title from 'atom/title/Title';
 import {translate} from 'helpers/translate/translate';
 import {CropsProps} from "./CropsTypes";

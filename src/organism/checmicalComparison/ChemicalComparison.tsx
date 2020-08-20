@@ -6,15 +6,17 @@ import { Table } from 'organism/table/Table';
 import {TableRaw} from "../table/tableRow/TableRaw";
 import {chemicalUnitsMock} from "../../mocks/chemicalMock";
 import {TableCell} from "../table/tableCell/TableCell";
+import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalComparisonView';
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
 
     const renderChemicalComposition = () => {
         return chemicalUnitsMock.map(chemical => (
-            <TableRaw key={chemical.id}>
-                <TableCell>{chemical.id}</TableCell>
-                <TableCell>{chemical.name}</TableCell>
-            </TableRaw>
+            <ChemicalComparisonView
+                key={chemical.id}
+                chemical={chemical}
+                activeCrop={props.activeCrop}
+            />
         ))
     }
 
@@ -22,6 +24,12 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         <div>
             <Title>{translate('tableSolutions')}</Title>
             <Table>
+                <TableRaw>
+                    <TableCell>Элемент</TableCell>
+                    <TableCell>Замешано</TableCell>
+                    <TableCell>Вегетация</TableCell>
+                    <TableCell>Цветение</TableCell>
+                </TableRaw>
                 {renderChemicalComposition()}
             </Table>
         </div>
