@@ -100,7 +100,6 @@ const Calculator = () => {
     }
 
     const onCropSelect = (crop: Crop) => {
-        console.log(crop)
         setActiveCrop(crop)
     }
 
@@ -132,6 +131,7 @@ const Calculator = () => {
                     />
                     <Crops
                         crops={cropsMock}
+                        activeCrop={activeCrop}
                     />
                 </div>
                 <div>

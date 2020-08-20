@@ -1,0 +1,11 @@
+@import "src/index";
+
+.crop {
+
+    transition: padding .15s ease-in-out;
+
+    &.activeCrop {
+        padding-left: 10px;
+        background-color: $color_backSecondary;
+    }
+}
