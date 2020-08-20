@@ -1,9 +1,9 @@
+import {Mixture} from "../models/mixture";
 
-export const mixturesMock = [
-    {
-        id: "15a0788b-2e76-4ad6-99ef-206e11e751bf",
-        name: "Для огурцов",
-        dosages: [
+export const mixturesMock: Mixture[] = [
+    new Mixture(
+        "Для огурцов",
+        [
             {
                 fertilizer: {
                     id: '806d985b-3319-4a27-b0d3-89aafb48d09e',
@@ -61,12 +61,12 @@ export const mixturesMock = [
                 },
                 value: 22
             },
-        ]
-    },
-    {
-        id: "15a0788b-2e76-4ad6-99ef-206e11e75122",
-        name: "Для помидор",
-        dosages: [
+        ],
+        "15a0788b-2e76-4ad6-99ef-206e11e751bf"
+    ),
+    new Mixture(
+        "Для помидор",
+        [
             {
                 fertilizer: {
                     id: '806d985b-3319-4a27-b0d3-89aafb48d09e',
@@ -124,6 +124,7 @@ export const mixturesMock = [
                 },
                 value: 31.23
             },
-        ]
-    }
+        ],
+        "15a0788b-2e76-4ad6-99ef-206e11e75122"
+    )
 ]

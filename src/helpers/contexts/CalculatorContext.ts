@@ -1,6 +1,7 @@
 import React from "react";
 import {Fertilizer} from "../../models/fertilizer";
 import { Mixture } from "models/mixture";
+import { Crop } from "models/crop";
 
 export type CalculatorContextType = {
     onDeleteFertilizer: (fertilizerId: string) => boolean
@@ -12,6 +13,8 @@ export type CalculatorContextType = {
     onMixtureSave: () => void
 
     getFertilizerById: (fertilizerId: string) => Fertilizer | undefined
+
+    onCropSelect: (crop: Crop) => void
 }
 
 export const CalculatorContext = React.createContext<CalculatorContextType>({
@@ -35,5 +38,8 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
 
     getFertilizerById(fertilizerId: string): Fertilizer | undefined {
         return undefined;
+    },
+
+    onCropSelect(crop: Crop): void {
     }
 })

@@ -13,14 +13,15 @@ import {mixturesMock} from "../../mocks/mixturesMock";
 import {Crops} from "../../organism/crops/Crops";
 import {cropsMock} from "../../mocks/cropsMock";
 import {ChemicalComparison} from "../../organism/checmicalComparison/ChemicalComparison";
+import {Crop} from "../../models/crop";
 
 
 const Calculator = () => {
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>(fertilizersMock)
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
-    // @ts-ignore
     const [allMixtures, setAllMixtures] = useState<Mixture[]>(mixturesMock)
     const [mixture, setMixture] = useState<Mixture>()
+    const [activeCrop, setActiveCrop] = useState<Crop>(cropsMock[0])
 
 
     const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
@@ -98,6 +99,11 @@ const Calculator = () => {
         setMixture(undefined)
     }
 
+    const onCropSelect = (crop: Crop) => {
+        console.log(crop)
+        setActiveCrop(crop)
+    }
+
     return (
         <div>
             <CalculatorContext.Provider value={{
@@ -109,7 +115,9 @@ const Calculator = () => {
 
                 onMixtureUpdated: onMixtureUpdated,
                 onAddFertilizerToMixture: onAddFertilizerToMixture,
-                onMixtureSave: onMixtureSave
+                onMixtureSave: onMixtureSave,
+
+                onCropSelect: onCropSelect
             }}
             >
                 <div className={style.box}>
@@ -120,6 +128,7 @@ const Calculator = () => {
                         mixture={mixture}
                     />
                     <ChemicalComparison
+                        activeCrop={activeCrop}
                     />
                     <Crops
                         crops={cropsMock}

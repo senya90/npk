@@ -11,7 +11,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
 
     const renderChemicalComposition = () => {
         return chemicalUnitsMock.map(chemical => (
-            <TableRaw>
+            <TableRaw key={chemical.id}>
                 <TableCell>{chemical.id}</TableCell>
                 <TableCell>{chemical.name}</TableCell>
             </TableRaw>
