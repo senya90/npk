@@ -10,6 +10,8 @@ import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
 import {Mixture} from "../../models/mixture";
 import { Mixtures } from 'organism/mixtures/Mixtures';
 import {mixturesMock} from "../../mocks/mixturesMock";
+import {Crops} from "../../organism/crops/Crops";
+import {cropsMock} from "../../mocks/cropsMock";
 
 
 const Calculator = () => {
@@ -115,6 +117,9 @@ const Calculator = () => {
                     />
                     <MixtureComposition
                         mixture={mixture}
+                    />
+                    <Crops
+                        crops={cropsMock}
                     />
                 </div>
                 <div>

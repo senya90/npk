@@ -62,5 +62,9 @@
     "mixtures": {
         "ru": "Готовые растворы",
         "en": "Ready-to-use solutions"
+    },
+    "crops": {
+        "ru": "Агрокультуры",
+        "en": "Agricultural crops"
     }
 }
