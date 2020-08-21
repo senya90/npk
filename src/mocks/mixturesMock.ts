@@ -11,12 +11,12 @@ export const mixturesMock: Mixture[] = [
                     ingredients: [
                         {
                             id: 'c81915c0-e114-4c85-bcc5-b671b5027c7d',
-                            chemicalId: '2P',
+                            chemicalComplexId: '2P',
                             valuePercent: 10
                         },
                         {
                             id: 'd245d35c-4c20-49eb-a3c9-e16a34298a90',
-                            chemicalId: '3K',
+                            chemicalComplexId: '3K',
                             valuePercent: 3.2
                         }
                     ]
@@ -30,7 +30,7 @@ export const mixturesMock: Mixture[] = [
                     ingredients: [
                         {
                             id: '009d3587-2fbb-4bde-a4a5-abc5054130a8',
-                            chemicalId: '1N',
+                            chemicalComplexId: '1N',
                             valuePercent: 33
                         }
                     ]
@@ -44,17 +44,17 @@ export const mixturesMock: Mixture[] = [
                     ingredients: [
                         {
                             id: '2b346d3a-9144-44b5-876d-f57d71835b83',
-                            chemicalId: '5M',
+                            chemicalComplexId: '5M',
                             valuePercent: 1.2
                         },
                         {
                             id: '1991ccdd-a335-4bc8-9b71-1c3c286ea132',
-                            chemicalId: '4C',
+                            chemicalComplexId: '4C',
                             valuePercent: 0.5
                         },
                         {
                             id: '62475a3f-3f26-41e1-ace3-741c36c089f8',
-                            chemicalId: '1N',
+                            chemicalComplexId: '1N',
                             valuePercent: 0.3
                         }
                     ]
@@ -74,12 +74,12 @@ export const mixturesMock: Mixture[] = [
                     ingredients: [
                         {
                             id: 'c81915c0-e114-4c85-bcc5-b671b5027c7d',
-                            chemicalId: '2P',
+                            chemicalComplexId: '2P',
                             valuePercent: 10
                         },
                         {
                             id: 'd245d35c-4c20-49eb-a3c9-e16a34298a90',
-                            chemicalId: '3K',
+                            chemicalComplexId: '3K',
                             valuePercent: 3.2
                         }
                     ]
@@ -93,7 +93,7 @@ export const mixturesMock: Mixture[] = [
                     ingredients: [
                         {
                             id: '009d3587-2fbb-4bde-a4a5-abc5054130a8',
-                            chemicalId: '1N',
+                            chemicalComplexId: '1N',
                             valuePercent: 33
                         }
                     ]
@@ -107,17 +107,17 @@ export const mixturesMock: Mixture[] = [
                     ingredients: [
                         {
                             id: '2b346d3a-9144-44b5-876d-f57d71835b83',
-                            chemicalId: '5M',
+                            chemicalComplexId: '5M',
                             valuePercent: 1.2
                         },
                         {
                             id: '1991ccdd-a335-4bc8-9b71-1c3c286ea132',
-                            chemicalId: '4C',
+                            chemicalComplexId: '4C',
                             valuePercent: 0.5
                         },
                         {
                             id: '62475a3f-3f26-41e1-ace3-741c36c089f8',
-                            chemicalId: '1N',
+                            chemicalComplexId: '1N',
                             valuePercent: 0.3
                         }
                     ]

@@ -2,11 +2,11 @@ import { IdGenerator } from "helpers/idGenerator/IdGenerator";
 
 export class FertilizerIngredient {
     id: string;
-    chemicalId: string;
+    chemicalComplexId: string;
     valuePercent: number;
 
     constructor(chemicalId = '', value = 0, id?: string) {
-        this.chemicalId = chemicalId;
+        this.chemicalComplexId = chemicalId;
         this.valuePercent = value;
         this.id = id ? id : IdGenerator.generate();
     }

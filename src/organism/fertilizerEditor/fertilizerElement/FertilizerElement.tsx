@@ -14,33 +14,33 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
         return AdapterFertilizer.toSelect(elements)
     }
 
-    const onNameChange = (chemicalElementId: string) => {
-        const {valuePercent, id} = props.element
-        const updatedElement = new FertilizerIngredient(chemicalElementId, valuePercent, id )
-        props.onElementChanged(updatedElement)
+    const onNameChange = (chemicalComplexId: string) => {
+        const {valuePercent, id} = props.chemical
+        const updatedElement = new FertilizerIngredient(chemicalComplexId, valuePercent, id)
+        props.onChemicalChanged(updatedElement)
     }
 
     const onValueChange = (value: InputTypeValue) => {
-        const {chemicalId, id} = props.element
-        const updatedElement = new FertilizerIngredient(chemicalId, Number(value), id )
-        props.onElementChanged(updatedElement)
+        const {chemicalComplexId, id} = props.chemical
+        const updatedElement = new FertilizerIngredient(chemicalComplexId, Number(value), id )
+        props.onChemicalChanged(updatedElement)
     }
 
-    const chemicalId = props.element.chemicalId ? props.element.chemicalId : undefined
+    const chemicalComplexId = props.chemical.chemicalComplexId ? props.chemical.chemicalComplexId : undefined
 
     return (
         <div className={style.elementsBox}>
             <div className={style.elementLine}>
                 <Select
                     default={translate('selectElement')}
-                    value={chemicalId}
-                    options={adaptForSelect(props.elementsList)}
+                    value={chemicalComplexId}
+                    options={adaptForSelect(props.chemicalList)}
                     containerclass={style.element}
                     onChange={onNameChange}
                 />
                 <InputNumber
                     defaultValue={0}
-                    value={props.element.valuePercent}
+                    value={props.chemical.valuePercent}
                     isPositive={true}
                     onChange={onValueChange}
                 />

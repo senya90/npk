@@ -1,8 +1,9 @@
 import React, {FunctionComponent} from 'react';
 import {FertilizerIngredient} from "../../models/fertilizerIngredient";
-import {elementMock} from "../../mocks/elementMock";
+import {chemicalComplexMock} from "../../mocks/chemicalComplexMock";
 
 import style from './ingredientView.module.scss'
+import {ChemicalComplex} from "../../models/chemicalComplex";
 
 
 interface IngredientsViewProps {
@@ -11,13 +12,13 @@ interface IngredientsViewProps {
 }
 
 const IngredientsView: FunctionComponent<IngredientsViewProps> = (props) => {
-    const getChemicalElements = () => {
-        return elementMock
+    const getChemicalElements = (): ChemicalComplex[] => {
+        return chemicalComplexMock
     }
 
     const renderIngredients = () => {
         return props.ingredients.map(ingredient => {
-            const chemicalElement = getChemicalElements().find(element => element.id === ingredient.chemicalId)
+            const chemicalElement = getChemicalElements().find(element => element.id === ingredient.chemicalComplexId)
             if (chemicalElement) {
                 return (
                     <span
