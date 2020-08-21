@@ -1,12 +1,15 @@
 import { ChemicalComplex } from "models/chemicalComplex";
 import { chemicalUnitsMock } from "./chemicalMock";
 import { ChemicalAtom } from "models/chemicalAtom";
+import {ChemicalAggregate} from "../models/chemicalAggregate";
 
 export const chemicalComplexMock: ChemicalComplex[] = [
     new ChemicalComplex(
         'N',
         [
-            new ChemicalAtom(chemicalUnitsMock[0])
+            new ChemicalAggregate(
+                [new ChemicalAtom(chemicalUnitsMock[0])]
+            )
         ],
         '1N'
     ),
@@ -14,7 +17,9 @@ export const chemicalComplexMock: ChemicalComplex[] = [
     new ChemicalComplex(
         'P',
         [
-            new ChemicalAtom(chemicalUnitsMock[1])
+            new ChemicalAggregate(
+                [new ChemicalAtom(chemicalUnitsMock[1])]
+            )
         ],
         '2P'
     ),
@@ -22,7 +27,9 @@ export const chemicalComplexMock: ChemicalComplex[] = [
     new ChemicalComplex(
         'K',
         [
-            new ChemicalAtom(chemicalUnitsMock[2])
+            new ChemicalAggregate(
+                [new ChemicalAtom(chemicalUnitsMock[2])]
+            )
         ],
         '3K'
     ),
@@ -30,45 +37,80 @@ export const chemicalComplexMock: ChemicalComplex[] = [
     new ChemicalComplex(
         'Ca',
         [
-            new ChemicalAtom(chemicalUnitsMock[3])
+            new ChemicalAggregate(
+                [new ChemicalAtom(chemicalUnitsMock[3])]
+            )
         ],
         '4Ca'
     ),
     new ChemicalComplex(
         'Mg',
         [
-            new ChemicalAtom(chemicalUnitsMock[4])
+            new ChemicalAggregate(
+                [new ChemicalAtom(chemicalUnitsMock[4])]
+            )
         ],
         '5Mg'
     ),
     new ChemicalComplex(
         'S',
         [
-            new ChemicalAtom(chemicalUnitsMock[5])
+            new ChemicalAggregate(
+                [new ChemicalAtom(chemicalUnitsMock[5])]
+            )
         ],
         '6S'
     ),
     new ChemicalComplex(
         'B',
         [
-            new ChemicalAtom(chemicalUnitsMock[6])
+            new ChemicalAggregate(
+                [new ChemicalAtom(chemicalUnitsMock[6])]
+            )
         ],
         '7B'
     ),
     new ChemicalComplex(
         'Fe',
         [
-            new ChemicalAtom(chemicalUnitsMock[7])
+            new ChemicalAggregate(
+                [new ChemicalAtom(chemicalUnitsMock[7])]
+            )
         ],
         '8Fe'
     ),
     new ChemicalComplex(
         'MgSO4',
         [
-            new ChemicalAtom(chemicalUnitsMock[4], 1),
-            new ChemicalAtom(chemicalUnitsMock[5], 1),
-            new ChemicalAtom(chemicalUnitsMock[12], 4),
+            new ChemicalAggregate(
+                [
+                    new ChemicalAtom(chemicalUnitsMock[4]),
+                    new ChemicalAtom(chemicalUnitsMock[5]),
+                    new ChemicalAtom(chemicalUnitsMock[12], 4),
+                ]
+            )
+
         ],
         '9MgSO4'
+    ),
+    new ChemicalComplex(
+        'MgSO4 * 7H2O',
+        [
+            new ChemicalAggregate(
+                [
+                    new ChemicalAtom(chemicalUnitsMock[4]),
+                    new ChemicalAtom(chemicalUnitsMock[5]),
+                    new ChemicalAtom(chemicalUnitsMock[12], 4),
+                ]
+            ),
+            new ChemicalAggregate(
+                [
+                    new ChemicalAtom(chemicalUnitsMock[13], 2),
+                    new ChemicalAtom(chemicalUnitsMock[12])
+                ],
+                7
+            )
+        ],
+        '10MgSO47H2O'
     ),
 ]

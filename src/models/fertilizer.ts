@@ -6,7 +6,7 @@ export class Fertilizer {
     name: string
     ingredients: FertilizerIngredient[]
 
-    constructor(name = 'empty', ingredients?: FertilizerIngredient[], id?: string) {
+    constructor(name = '', ingredients?: FertilizerIngredient[], id?: string) {
         this.name = name
         this.ingredients = ingredients ? ingredients : [];
         this.id = id ? id : IdGenerator.generate();

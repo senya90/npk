@@ -66,4 +66,9 @@ export const chemicalUnitsMock: ChemicalUnit[] = [
         name: 'O',
         molar: 15.9994
     },
+    {
+        id: 'ac4dd1de-da32-488c-bb12-03fb9b1c23f7',
+        name: 'H',
+        molar: 1.00797
+    }
 ]
