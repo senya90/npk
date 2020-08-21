@@ -20,7 +20,7 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
             return (
                 <div className={style.fertilizerLine} key={dosage.fertilizer.id}>
                     <span className={style.name}>{dosage.fertilizer.name}</span>
-                    <span className={style.value}>{dosage.value} {translate('gramLiter')}</span>
+                    <span className={style.value}>{dosage.valueGram} {translate('gramLiter')}</span>
                 </div>
             )
         })

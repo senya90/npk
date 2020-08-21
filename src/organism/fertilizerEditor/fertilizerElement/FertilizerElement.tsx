@@ -15,8 +15,8 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
     }
 
     const onNameChange = (chemicalElementId: string) => {
-        const {value, id} = props.element
-        const updatedElement = new FertilizerIngredient(chemicalElementId, value, id )
+        const {valuePercent, id} = props.element
+        const updatedElement = new FertilizerIngredient(chemicalElementId, valuePercent, id )
         props.onElementChanged(updatedElement)
     }
 
@@ -40,7 +40,7 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
                 />
                 <InputNumber
                     defaultValue={0}
-                    value={props.element.value}
+                    value={props.element.valuePercent}
                     isPositive={true}
                     onChange={onValueChange}
                 />

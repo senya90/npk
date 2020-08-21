@@ -5,6 +5,7 @@ import {ChemicalUnit} from "../../models/chemicalUnit";
 
 interface ChemicalComparisonViewProps {
     chemical: ChemicalUnit
+    mixed: number
     vegetation: number
     bloom: number
 }
@@ -14,7 +15,7 @@ const ChemicalComparisonView: FunctionComponent<ChemicalComparisonViewProps> = (
     return (
             <TableRaw>
                 <TableCell>{props.chemical.name}</TableCell>
-                <TableCell>0000</TableCell>
+                <TableCell>{props.mixed}</TableCell>
                 <TableCell>{props.vegetation}</TableCell>
                 <TableCell>{props.bloom}</TableCell>
             </TableRaw>

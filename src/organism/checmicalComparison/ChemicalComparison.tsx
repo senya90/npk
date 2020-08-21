@@ -9,6 +9,7 @@ import {TableCell} from "../table/tableCell/TableCell";
 import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalComparisonView';
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
+import {DosageChemicalAdapter} from "../../helpers/adapters/dosageChemicalAdapter/DosageChemicalAdapter";
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
 
@@ -20,6 +21,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
                 <ChemicalComparisonView
                     key={chemical.id}
                     chemical={chemical}
+                    mixed={getMixedValueFromMixture()}
                     vegetation={getVegetationValueFromCrop(chemical)}
                     bloom={getBloomValueFromCrop(chemical)}
                 />
@@ -27,11 +29,23 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         })
     }
 
-    const getVegetationValueFromCrop = (chemical: ChemicalUnit) => {
+    const getMixedValueFromMixture = (): number => {
+        const {mixture} = props
+        if (mixture && mixture.dosages) {
+            mixture.dosages.map(dosage => {
+                // console.log('dosage', dosage)
+                const adapter = new DosageChemicalAdapter(dosage)
+                adapter.convertIngredientsToChemicalValue()
+            })
+        }
+        return 9999
+    }
+
+    const getVegetationValueFromCrop = (chemical: ChemicalUnit): number => {
         return _ejectResult(_findByChemicalIn(chemical, props.activeCrop.vegetation))
     }
 
-    const getBloomValueFromCrop = (chemical: ChemicalUnit) => {
+    const getBloomValueFromCrop = (chemical: ChemicalUnit): number => {
         return _ejectResult(_findByChemicalIn(chemical, props.activeCrop.bloom))
     }
 

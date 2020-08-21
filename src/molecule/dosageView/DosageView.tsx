@@ -20,11 +20,11 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilize
     }
 
     const increaseValue = () => {
-        onDosageChanged(updateDosageByValue(dosage.value + 0.01))
+        onDosageChanged(updateDosageByValue(dosage.valueGram + 0.01))
     }
 
     const decreaseValue = () => {
-        let newValue = dosage.value - 0.01
+        let newValue = dosage.valueGram - 0.01
         if (newValue <= 0) {
             newValue = 0
         }
@@ -32,7 +32,7 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilize
     }
 
     const updateDosageByValue = (toValue: number): Dosage => {
-        return {...dosage, value: Utils.round(toValue)}
+        return {...dosage, valueGram: Utils.round(toValue)}
     }
 
     const deleteFertilizer = () => {
@@ -53,7 +53,7 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilize
                         <div className={commonStyles.text_c}>{translate('gramLiter')}</div>
                         <InputNumber
                             className={style.dosageValue}
-                            value={dosage.value}
+                            value={dosage.valueGram}
                             onChange={inputValue}
                         />
                     </div>

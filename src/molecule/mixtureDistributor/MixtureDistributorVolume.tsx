@@ -14,10 +14,10 @@ const MixtureDistributorVolume: FunctionComponent<MixtureDistributorVolumeProps>
 
     const calculateVolume = (): number => {
         if (!percent) {
-            return dosage.value * volume
+            return dosage.valueGram * volume
         }
 
-        return (dosage.value * (percent / 100)) * volume
+        return (dosage.valueGram * (percent / 100)) * volume
     }
 
     return (

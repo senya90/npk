@@ -2,10 +2,10 @@ import {Fertilizer} from "./fertilizer";
 
 export class Dosage {
     fertilizer: Fertilizer
-    value: number
+    valueGram: number
 
     constructor(fertilizer: Fertilizer, value = 0) {
         this.fertilizer = fertilizer;
-        this.value = value;
+        this.valueGram = value;
     }
 }

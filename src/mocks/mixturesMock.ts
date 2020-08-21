@@ -12,16 +12,16 @@ export const mixturesMock: Mixture[] = [
                         {
                             id: 'c81915c0-e114-4c85-bcc5-b671b5027c7d',
                             chemicalId: '2P',
-                            value: 10
+                            valuePercent: 10
                         },
                         {
                             id: 'd245d35c-4c20-49eb-a3c9-e16a34298a90',
                             chemicalId: '3K',
-                            value: 3.2
+                            valuePercent: 3.2
                         }
                     ]
                 },
-                value: 11
+                valueGram: 11
             },
             {
                 fertilizer: {
@@ -31,11 +31,11 @@ export const mixturesMock: Mixture[] = [
                         {
                             id: '009d3587-2fbb-4bde-a4a5-abc5054130a8',
                             chemicalId: '1N',
-                            value: 33
+                            valuePercent: 33
                         }
                     ]
                 },
-                value: 22
+                valueGram: 22
             },
             {
                 fertilizer: {
@@ -45,21 +45,21 @@ export const mixturesMock: Mixture[] = [
                         {
                             id: '2b346d3a-9144-44b5-876d-f57d71835b83',
                             chemicalId: '5M',
-                            value: 1.2
+                            valuePercent: 1.2
                         },
                         {
                             id: '1991ccdd-a335-4bc8-9b71-1c3c286ea132',
                             chemicalId: '4C',
-                            value: 0.5
+                            valuePercent: 0.5
                         },
                         {
                             id: '62475a3f-3f26-41e1-ace3-741c36c089f8',
                             chemicalId: '1N',
-                            value: 0.3
+                            valuePercent: 0.3
                         }
                     ]
                 },
-                value: 22
+                valueGram: 22
             },
         ],
         "15a0788b-2e76-4ad6-99ef-206e11e751bf"
@@ -75,16 +75,16 @@ export const mixturesMock: Mixture[] = [
                         {
                             id: 'c81915c0-e114-4c85-bcc5-b671b5027c7d',
                             chemicalId: '2P',
-                            value: 10
+                            valuePercent: 10
                         },
                         {
                             id: 'd245d35c-4c20-49eb-a3c9-e16a34298a90',
                             chemicalId: '3K',
-                            value: 3.2
+                            valuePercent: 3.2
                         }
                     ]
                 },
-                value: 11
+                valueGram: 11
             },
             {
                 fertilizer: {
@@ -94,11 +94,11 @@ export const mixturesMock: Mixture[] = [
                         {
                             id: '009d3587-2fbb-4bde-a4a5-abc5054130a8',
                             chemicalId: '1N',
-                            value: 33
+                            valuePercent: 33
                         }
                     ]
                 },
-                value: 2.2
+                valueGram: 2.2
             },
             {
                 fertilizer: {
@@ -108,21 +108,21 @@ export const mixturesMock: Mixture[] = [
                         {
                             id: '2b346d3a-9144-44b5-876d-f57d71835b83',
                             chemicalId: '5M',
-                            value: 1.2
+                            valuePercent: 1.2
                         },
                         {
                             id: '1991ccdd-a335-4bc8-9b71-1c3c286ea132',
                             chemicalId: '4C',
-                            value: 0.5
+                            valuePercent: 0.5
                         },
                         {
                             id: '62475a3f-3f26-41e1-ace3-741c36c089f8',
                             chemicalId: '1N',
-                            value: 0.3
+                            valuePercent: 0.3
                         }
                     ]
                 },
-                value: 31.23
+                valueGram: 31.23
             },
         ],
         "15a0788b-2e76-4ad6-99ef-206e11e75122"

@@ -25,7 +25,7 @@ const IngredientsView: FunctionComponent<IngredientsViewProps> = (props) => {
                         className={style.ingredient}
                     >
                         <span className={style.chemicalName}>{chemicalElement.name}</span>
-                        <span className={style.chemicalValue}>{ingredient.value}%</span>
+                        <span className={style.chemicalValue}>{ingredient.valuePercent}%</span>
                     </span>
                 )
             }
