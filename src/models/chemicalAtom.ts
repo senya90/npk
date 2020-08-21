@@ -1,16 +1,16 @@
 import {ChemicalUnit} from "./chemicalUnit";
 
 export class ChemicalAtom {
-    chemical: ChemicalUnit
+    chemicalUnit: ChemicalUnit
     atomsCount: number // how many atoms
 
 
     constructor(chemical: ChemicalUnit, atomsCount = 1) {
-        this.chemical = chemical;
+        this.chemicalUnit = chemical;
         this.atomsCount = atomsCount;
     }
 
     getMolarMass = (): number => {
-        return this.chemical.molar * this.atomsCount
+        return this.chemicalUnit.molar * this.atomsCount
     }
 }

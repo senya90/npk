@@ -77,4 +77,15 @@ export const fertilizersMock: Fertilizer[] = [
             }
         ]
     },
+    {
+        id: '5de1961a-da62-4754-bef8-900c88d9668f',
+        name: 'Удобрение 6 Магнийсо4',
+        ingredients: [
+            new FertilizerIngredient(
+                '9MgSO4',
+                11.22,
+                'ede68881-6581-45fd-9ef9-bcbb32ac3784'
+            )
+        ]
+    },
 ]
