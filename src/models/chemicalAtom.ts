@@ -9,4 +9,8 @@ export class ChemicalAtom {
         this.chemical = chemical;
         this.atomsCount = atomsCount;
     }
+
+    getMolarMass = (): number => {
+        return this.chemical.molar * this.atomsCount
+    }
 }

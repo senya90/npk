@@ -2,19 +2,17 @@ import {ChemicalAtom} from "./chemicalAtom";
 
 export class ChemicalAggregate {
     atoms: ChemicalAtom[]
-    private _count = 1
+    multiplier: number
 
-
-    constructor(atoms: ChemicalAtom[], count?: number) {
-        this.atoms = atoms;
+    static clone = (aggregate: ChemicalAggregate) => {
+        return new ChemicalAggregate(
+            [...aggregate.atoms],
+            aggregate.multiplier
+        )
     }
 
-
-    set count(value: number) {
-        if (value < 0) {
-            this._count = 0
-            return
-        }
-        this._count = value;
+    constructor(atoms: ChemicalAtom[], multiplier = 1) {
+        this.atoms = atoms;
+        this.multiplier = multiplier
     }
 }

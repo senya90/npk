@@ -9,7 +9,6 @@ import {TableCell} from "../table/tableCell/TableCell";
 import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalComparisonView';
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
-import {DosageChemicalAdapter} from "../../helpers/adapters/dosageChemicalAdapter/DosageChemicalAdapter";
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
@@ -32,16 +31,19 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     const getMixedValueFromMixture = (): number => {
         const {mixture} = props
         if (mixture && mixture.dosages) {
-            mixture.dosages.map(dosage => {
-                console.log('dosage', dosage)
+            const lol = mixture.dosages.map(dosage => {
                 dosage.fertilizer.ingredients.forEach(ingredient => {
                     const chemicalComplex = getChemicalComplexById(ingredient.chemicalComplexId)
-                    console.log('-----', chemicalComplex)
+
+                    if (chemicalComplex) {
+                        // console.log('chemicalComplex', chemicalComplex.name, chemicalComplex)
+                        chemicalComplex.toChemical()
+                    }
                 })
-                // const adapter = new DosageChemicalAdapter(dosage)
-                // adapter.convertIngredientsToChemicalValue()
+
+                return 1
             })
-            console.log(' ')
+            console.log(lol)
         }
         return 9999
     }

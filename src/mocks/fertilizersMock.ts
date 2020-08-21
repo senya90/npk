@@ -1,4 +1,5 @@
 import {Fertilizer} from "../models/fertilizer";
+import {FertilizerIngredient} from "../models/fertilizerIngredient";
 
 export const fertilizersMock: Fertilizer[] = [
     {
@@ -57,6 +58,22 @@ export const fertilizersMock: Fertilizer[] = [
                 id: '1fb853e0-3914-47db-ad5b-a7037e79ef84',
                 chemicalComplexId: '8Fe',
                 valuePercent: 10
+            }
+        ]
+    },
+    {
+        id: 'a39f8034-e715-4004-929e-4f5b84d3b783',
+        name: 'Удобрение 5',
+        ingredients: [
+            new FertilizerIngredient(
+                '10MgSO47H2O',
+                23.55,
+                '3b2fe6ad-d548-4493-99ad-07f735b40264'
+            ),
+            {
+                id: '1fb853e0-3914-47db-ad5b-a7037e79ef84',
+                chemicalComplexId: '8Fe',
+                valuePercent: 1
             }
         ]
     },
