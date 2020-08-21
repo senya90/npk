@@ -4,7 +4,7 @@ import {Select} from "../../../atom/select/Select";
 import {translate} from "../../../helpers/translate/translate";
 import {InputNumber} from "../../../atom/inputNumber/InputNumber";
 import {SelectOption} from "../../../atom/select/SelectTypes";
-import {AdapterFertilizer} from "../../../helpers/adapterFertilizer/AdapterFertilizer";
+import {AdapterFertilizer} from "../../../helpers/adapters/adapterFertilizer/AdapterFertilizer";
 import {InputTypeValue} from "../../../atom/inputNumber/InputNumberTypes";
 import {FertilizerElementProps} from "./FertilizerElementTypes";
 import {FertilizerIngredient} from "../../../models/fertilizerIngredient";

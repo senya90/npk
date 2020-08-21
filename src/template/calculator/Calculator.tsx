@@ -128,6 +128,7 @@ const Calculator = () => {
                     />
                     <ChemicalComparison
                         activeCrop={activeCrop}
+                        mixture={mixture}
                     />
                     <Crops
                         crops={cropsMock}
