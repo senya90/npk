@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useContext} from 'react';
 import Title from 'atom/title/Title';
 import {translate} from "../../helpers/translate/translate";
 import {ChemicalComparisonProps} from "./ChemicalComparisonTypes";
@@ -10,10 +10,10 @@ import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalCo
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
 import {DosageChemicalAdapter} from "../../helpers/adapters/dosageChemicalAdapter/DosageChemicalAdapter";
+import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
-
-
+    const {getChemicalComplexById} = useContext(CalculatorContext)
 
     const renderChemicalComposition = () => {
         return chemicalUnitsMock.map(chemical => {
@@ -33,10 +33,15 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         const {mixture} = props
         if (mixture && mixture.dosages) {
             mixture.dosages.map(dosage => {
-                // console.log('dosage', dosage)
-                const adapter = new DosageChemicalAdapter(dosage)
-                adapter.convertIngredientsToChemicalValue()
+                console.log('dosage', dosage)
+                dosage.fertilizer.ingredients.forEach(ingredient => {
+                    const chemicalComplex = getChemicalComplexById(ingredient.chemicalComplexId)
+                    console.log('-----', chemicalComplex)
+                })
+                // const adapter = new DosageChemicalAdapter(dosage)
+                // adapter.convertIngredientsToChemicalValue()
             })
+            console.log(' ')
         }
         return 9999
     }

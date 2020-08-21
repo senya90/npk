@@ -2,6 +2,7 @@ import React from "react";
 import {Fertilizer} from "../../models/fertilizer";
 import { Mixture } from "models/mixture";
 import { Crop } from "models/crop";
+import {ChemicalComplex} from "../../models/chemicalComplex";
 
 export type CalculatorContextType = {
     onDeleteFertilizer: (fertilizerId: string) => boolean
@@ -13,6 +14,7 @@ export type CalculatorContextType = {
     onMixtureSave: () => void
 
     getFertilizerById: (fertilizerId: string) => Fertilizer | undefined
+    getChemicalComplexById: (chemicalComplexId: string) => ChemicalComplex | undefined
 
     onCropSelect: (crop: Crop) => void
 }
@@ -39,6 +41,10 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     getFertilizerById(fertilizerId: string): Fertilizer | undefined {
         return undefined;
     },
+    getChemicalComplexById(chemicalComplexId: string): ChemicalComplex | undefined {
+        return undefined;
+    },
+
 
     onCropSelect(crop: Crop): void {
     }

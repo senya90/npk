@@ -14,11 +14,11 @@ export class DosageChemicalAdapter {
         const chemical = new ChemicalUnit()
 
 
-        console.log('Dosage value gram', this.dosage.valueGram)
-        this.dosage.fertilizer.ingredients.map(ingredient => {
-            console.log(`ingredient ${ingredient.chemicalComplexId} ${ingredient.valuePercent}`)
-        })
-        console.log(' ')
+        // console.log('Dosage value gram', this.dosage.valueGram)
+        // this.dosage.fertilizer.ingredients.map(ingredient => {
+        //     console.log(`ingredient ${ingredient.chemicalComplexId} ${ingredient.valuePercent}`)
+        // })
+        // console.log(' ')
         return new ChemicalUnitValue(chemical, 0)
     }
 }
