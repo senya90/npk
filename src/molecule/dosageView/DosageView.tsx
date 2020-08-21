@@ -2,7 +2,6 @@ import React, {FunctionComponent} from 'react';
 import {DosageViewProps} from "./DosageViewTypes";
 
 import style from './dosageView.module.scss'
-import {Input} from 'atom/input/Input';
 import {Icon} from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {commonStyles} from "../../helpers/commonStyle";
@@ -10,12 +9,14 @@ import { colors } from 'helpers/commonStyle/colors';
 import { Dosage } from 'models/dosage';
 import { Utils } from 'helpers/utils';
 import { translate } from 'helpers/translate/translate';
+import { InputNumber } from 'atom/inputNumber/InputNumber';
+import {InputTypeValue} from "../../atom/inputNumber/InputNumberTypes";
 
 
 const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilizerFromMixture, onDosageChanged}) => {
 
-    const inputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onDosageChanged(updateDosageByValue(Number(e.target.value)))
+    const inputValue = (value: InputTypeValue) => {
+        onDosageChanged(updateDosageByValue(Number(value)))
     }
 
     const increaseValue = () => {
@@ -50,9 +51,9 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilize
                 <div className={style.dosagePanel}>
                     <div>
                         <div className={commonStyles.text_c}>{translate('gramLiter')}</div>
-                        <Input
+                        <InputNumber
                             className={style.dosageValue}
-                            value={String(dosage.value)}
+                            value={dosage.value}
                             onChange={inputValue}
                         />
                     </div>
