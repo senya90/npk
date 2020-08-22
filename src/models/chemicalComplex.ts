@@ -16,18 +16,15 @@ export class ChemicalComplex {
     }
 
     toChemical = (): ChemicalUnitValue[] => {
-        console.log('toChemical', this.name)
+        const molarSummAllAggregates = this.chemicalAggregates.reduce((sum, aggregate) => {
+            const sumAllMolarMass = this.calculateMolarMassForAggregate(aggregate) * aggregate.multiplier
+            return sum + sumAllMolarMass
+        }, 0)
 
         this.chemicalAggregates.forEach(aggregate => {
-            const sumAllMolarMass = this.calculateMolarMassForAggregate(aggregate) * aggregate.multiplier
             const allAtoms = this.getAtoms(aggregate)
-
-            const chemicalUnitsWithProportions = this.calculateProportionForEachAtom(sumAllMolarMass, allAtoms)
-
-            console.log('sumAllMolarMass', sumAllMolarMass)
-            console.log('chemicalUnitsWithProportions', chemicalUnitsWithProportions)
+            const chemicalUnitsWithProportions = this.calculateProportionForEachAtom(molarSummAllAggregates, allAtoms)
         })
-        console.log(' ')
         return []
     }
 
