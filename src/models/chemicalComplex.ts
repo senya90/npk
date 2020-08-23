@@ -1,8 +1,7 @@
-import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
-import {ChemicalUnitValue} from "./chemicalUnitValue";
+import { IdGenerator } from "../helpers/idGenerator/IdGenerator";
 import { ChemicalAggregate } from "./chemicalAggregate";
-import {ChemicalAtom} from "./chemicalAtom";
-import {ChemicalUnit} from "./chemicalUnit";
+import { ChemicalAtom } from "./chemicalAtom";
+import { ChemicalAtomProportion } from "./chemicalAtomProportion";
 
 export class ChemicalComplex {
     name: string
@@ -15,17 +14,23 @@ export class ChemicalComplex {
         this.id = id ? id : IdGenerator.generate();
     }
 
-    toChemical = (): ChemicalUnitValue[] => {
-        const molarSummAllAggregates = this.chemicalAggregates.reduce((sum, aggregate) => {
+    toChemicalProportions = (): ChemicalAtomProportion[][] => {
+        const allAggregatesMolarSumm = this.getAllAggregatesMolar()
+        return this.getAtomsProportionsByAggregatesMolar(allAggregatesMolarSumm)
+    }
+
+    private getAllAggregatesMolar = () => {
+        return this.chemicalAggregates.reduce((sum, aggregate) => {
             const sumAllMolarMass = this.calculateMolarMassForAggregate(aggregate) * aggregate.multiplier
             return sum + sumAllMolarMass
         }, 0)
+    }
 
-        this.chemicalAggregates.forEach(aggregate => {
+    private getAtomsProportionsByAggregatesMolar = (allAggregatesMolar: number): ChemicalAtomProportion[][] => {
+        return this.chemicalAggregates.map(aggregate => {
             const allAtoms = this.getAtoms(aggregate)
-            const chemicalUnitsWithProportions = this.calculateProportionForEachAtom(molarSummAllAggregates, allAtoms)
+            return this.calculateProportionForEachAtom(allAggregatesMolar, allAtoms)
         })
-        return []
     }
 
     private calculateMolarMassForAggregate = (calculatedAggregate: ChemicalAggregate): number => {
@@ -40,12 +45,12 @@ export class ChemicalComplex {
         return aggregate.atoms.map(atom => atom)
     }
 
-    private calculateProportionForEachAtom = (aggregateMolarMass: number, atoms: ChemicalAtom[]): {chemicalAtom: ChemicalAtom, proportion: number}[] => {
+    private calculateProportionForEachAtom = (aggregateMolarMass: number, atoms: ChemicalAtom[]): ChemicalAtomProportion[] => {
         return atoms.map(atom => {
-            return {
-                chemicalAtom: atom,
-                proportion: this.calculateAtomProportion(aggregateMolarMass, atom)
-            }
+            return new ChemicalAtomProportion(
+                atom,
+                this.calculateAtomProportion(aggregateMolarMass, atom)
+            )
         })
     }
 

@@ -31,19 +31,27 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     const getMixedValueFromMixture = (): number => {
         const {mixture} = props
         if (mixture && mixture.dosages) {
-            const lol = mixture.dosages.map(dosage => {
+            mixture.dosages.map(dosage => {
+
                 dosage.fertilizer.ingredients.forEach(ingredient => {
                     const chemicalComplex = getChemicalComplexById(ingredient.chemicalComplexId)
 
+                    console.log('ingredient', ingredient);                    
+                    console.log('chemicalComplex', chemicalComplex);
+                    
+
                     if (chemicalComplex) {
                         // console.log('chemicalComplex', chemicalComplex.name, chemicalComplex)
-                        chemicalComplex.toChemical()
+                        
+                        console.log('toChemicalProportions', chemicalComplex.toChemicalProportions());
+                        console.log(' ');
+                        
+                        
                     }
                 })
 
                 return 1
             })
-            console.log(lol)
         }
         return 9999
     }
