@@ -45,8 +45,12 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
                     if (chemicalComplex) {
                         // console.log('chemicalComplex', chemicalComplex.name, chemicalComplex)
                         const chemicalsProportions = chemicalComplex.toChemicalProportions()
+                        const weightByPercent = ingredient.percentToDecimal() * dosage.valueGram
+                        // const weightBy 
                         
                         console.log('chemicalsProportions', chemicalsProportions);
+                        console.log('weightByPercent', weightByPercent);
+                        
                         console.log(' ');
                         
                         
