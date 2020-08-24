@@ -20,7 +20,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
                 <ChemicalComparisonView
                     key={chemical.id}
                     chemical={chemical}
-                    mixed={getMixedValueFromMixture()}
+                    mixed={9999}
                     vegetation={getVegetationValueFromCrop(chemical)}
                     bloom={getBloomValueFromCrop(chemical)}
                 />
@@ -32,6 +32,8 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         const {mixture} = props
         if (mixture && mixture.dosages) {
             mixture.dosages.map(dosage => {
+                console.log('Dosage', dosage.fertilizer.name, dosage);
+                
 
                 dosage.fertilizer.ingredients.forEach(ingredient => {
                     const chemicalComplex = getChemicalComplexById(ingredient.chemicalComplexId)
@@ -42,13 +44,16 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
 
                     if (chemicalComplex) {
                         // console.log('chemicalComplex', chemicalComplex.name, chemicalComplex)
+                        const chemicalsProportions = chemicalComplex.toChemicalProportions()
                         
-                        console.log('toChemicalProportions', chemicalComplex.toChemicalProportions());
+                        console.log('chemicalsProportions', chemicalsProportions);
                         console.log(' ');
                         
                         
                     }
                 })
+                console.log('----------------------------------------------------------------------------------------------------------------------');
+                
 
                 return 1
             })
@@ -78,6 +83,8 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         return 0
     }
 
+    getMixedValueFromMixture()
+    
     return (
         <div>
             <Title>{translate('tableSolutions')}</Title>

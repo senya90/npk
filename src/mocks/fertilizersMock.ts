@@ -29,6 +29,15 @@ export const fertilizersMock: Fertilizer[] = [
             }
         ]
     },
+    new Fertilizer(
+        'Удобрение 2.2',
+        [
+            new FertilizerIngredient('5Mg', 11, '53777362-e20f-4e59-9bbe-d32939827c1a'),
+            new FertilizerIngredient('9MgSO4', 3.2, '261f7838-8408-4220-b468-b7664ff2ddf9'),
+            new FertilizerIngredient('10MgSO47H2O', 4.6, '99b3cc6a-4830-496b-b516-23d8503c1d0d'),
+        ],
+        '55cff78d-5918-4e8c-ad39-a64979a2a394'
+    ),
     {
         id: 'aeb89623-3085-4e82-8927-a8c48ef93f31',
         name: 'Удобрение 3',
