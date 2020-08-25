@@ -12,6 +12,7 @@ import { ChemicalUnit } from 'models/chemicalUnit';
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 import { ChemicalAtomProportion } from 'models/chemicalAtomProportion';
 import { Weight } from 'models/weight';
+import { ProportionCalculator } from 'models/proportionCalculator';
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
     const {getChemicalComplexById} = useContext(CalculatorContext)
@@ -34,8 +35,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         const {mixture} = props
         if (mixture && mixture.dosages) {
             mixture.dosages.map(dosage => {
-                console.log('Dosage', dosage.fertilizer.name, dosage);
-                
+                console.log('Dosage', dosage.fertilizer.name, dosage);                
 
                 dosage.fertilizer.ingredients.forEach(ingredient => {
                     const chemicalComplex = getChemicalComplexById(ingredient.chemicalComplexId)
@@ -46,37 +46,18 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
 
                     if (chemicalComplex) {
                         // console.log('chemicalComplex', chemicalComplex.name, chemicalComplex)
-                        let splittedChemicalsProportions = chemicalComplex.toChemicalProportions()
-                        console.log('chemicalsProportions 1 ', splittedChemicalsProportions);
-
-                        splittedChemicalsProportions = splittedChemicalsProportions.map(chemicalPropotions => {
-                            return chemicalPropotions.map(chemicalAtomProportion => {
-                                return new ChemicalAtomProportion(chemicalAtomProportion.chemicalAtom, chemicalAtomProportion.proportion * ingredient.percentToDecimal())
-                            })
+                        let splittedChemicalsProportions = chemicalComplex.toAtomsProportions()
+                        let proportionCalculator = new ProportionCalculator(splittedChemicalsProportions)
+                        proportionCalculator.chemicalProportions = proportionCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
+                        const atoms: ChemicalAtomProportion[] = proportionCalculator.toAtoms()
+                        const miligrams = Weight.gramToMiligram(dosage.valueGram)
+                        const chemicalsWeights: ChemicalUnitValue[] = atoms.map(atom => {
+                            return atom.toChemicalByMiligrams(miligrams)
                         })
-
-                        const weight: ChemicalUnitValue[] = []
-
-                        splittedChemicalsProportions.forEach(chemicalProportion => {
-                            chemicalProportion.forEach(atom => {
-                                weight.push(
-                                    new ChemicalUnitValue(
-                                        atom.chemicalAtom.chemicalUnit, 
-                                        atom.proportion * Weight.gramToMiligram(dosage.valueGram))
-                                    ) 
-                            })
-                            return weight
-                        })
-                        
-                        // const weightByPercent = ingredient.percentToDecimal() * dosage.valueGram
                         
                         console.log('chemicalsProportions 2 ', splittedChemicalsProportions);
-                        console.log('weight', weight);
-                        // console.log('weightByPercent', weightByPercent);
-                        
+                        console.log('chemicalsWeights',chemicalsWeights);
                         console.log(' ');
-                        
-                        
                     }
                 })
                 console.log('----------------------------------------------------------------------------------------------------------------------');
@@ -87,6 +68,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         }
         return 9999
     }
+    
 
     const getVegetationValueFromCrop = (chemical: ChemicalUnit): number => {
         return _ejectResult(_findByChemicalIn(chemical, props.activeCrop.vegetation))

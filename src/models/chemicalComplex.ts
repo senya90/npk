@@ -14,7 +14,7 @@ export class ChemicalComplex {
         this.id = id ? id : IdGenerator.generate();
     }
 
-    toChemicalProportions = (): ChemicalAtomProportion[][] => {
+    toAtomsProportions = (): ChemicalAtomProportion[][] => {
         const allAggregatesMolarSumm = this.getAllAggregatesMolar()
         return this.getAtomsProportionsByAggregatesMolar(allAggregatesMolarSumm)
     }
