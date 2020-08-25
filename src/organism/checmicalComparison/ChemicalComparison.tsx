@@ -10,6 +10,8 @@ import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalCo
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
+import { ChemicalAtomProportion } from 'models/chemicalAtomProportion';
+import { Weight } from 'models/weight';
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
     const {getChemicalComplexById} = useContext(CalculatorContext)
@@ -44,12 +46,33 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
 
                     if (chemicalComplex) {
                         // console.log('chemicalComplex', chemicalComplex.name, chemicalComplex)
-                        const chemicalsProportions = chemicalComplex.toChemicalProportions()
-                        const weightByPercent = ingredient.percentToDecimal() * dosage.valueGram
-                        // const weightBy 
+                        let splittedChemicalsProportions = chemicalComplex.toChemicalProportions()
+                        console.log('chemicalsProportions 1 ', splittedChemicalsProportions);
+
+                        splittedChemicalsProportions = splittedChemicalsProportions.map(chemicalPropotions => {
+                            return chemicalPropotions.map(chemicalAtomProportion => {
+                                return new ChemicalAtomProportion(chemicalAtomProportion.chemicalAtom, chemicalAtomProportion.proportion * ingredient.percentToDecimal())
+                            })
+                        })
+
+                        const weight: ChemicalUnitValue[] = []
+
+                        splittedChemicalsProportions.forEach(chemicalProportion => {
+                            chemicalProportion.forEach(atom => {
+                                weight.push(
+                                    new ChemicalUnitValue(
+                                        atom.chemicalAtom.chemicalUnit, 
+                                        atom.proportion * Weight.gramToMiligram(dosage.valueGram))
+                                    ) 
+                            })
+                            return weight
+                        })
                         
-                        console.log('chemicalsProportions', chemicalsProportions);
-                        console.log('weightByPercent', weightByPercent);
+                        // const weightByPercent = ingredient.percentToDecimal() * dosage.valueGram
+                        
+                        console.log('chemicalsProportions 2 ', splittedChemicalsProportions);
+                        console.log('weight', weight);
+                        // console.log('weightByPercent', weightByPercent);
                         
                         console.log(' ');
                         
