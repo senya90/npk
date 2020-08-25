@@ -1,45 +1,28 @@
 import { ChemicalAtomProportion } from "./chemicalAtomProportion";
+import { ChemicalUnitValue } from "./chemicalUnitValue";
 
-export class ProportionCalculator {
-    private _chemicalProportions: ChemicalAtomProportion[][]
+export class AtomsProportionCalculator {
+    private _atomsProportions: ChemicalAtomProportion[]
 
-    constructor(chemicalProportions: ChemicalAtomProportion[][]) {
-        this._chemicalProportions = chemicalProportions
+    constructor(chemicalProportions: ChemicalAtomProportion[]) {
+        this._atomsProportions = chemicalProportions
     }
 
-    set chemicalProportions(value: ChemicalAtomProportion[][]) {
-        this._chemicalProportions = value
+    set atomsProportions(value: ChemicalAtomProportion[]) {
+        this._atomsProportions = value
     }
 
-    correctDecimalByAggregate = (chemicalAggragateDecimal: number): ChemicalAtomProportion[][] => {
-        return this._chemicalProportions.map(chemicalBlockPropotions => {
-            return chemicalBlockPropotions.map(chemicalAtomProportion => {
-                return new ChemicalAtomProportion(chemicalAtomProportion.chemicalAtom, chemicalAtomProportion.proportion * chemicalAggragateDecimal)
-            })
+    correctDecimalByAggregate = (chemicalAggragateDecimal: number): ChemicalAtomProportion[] => {
+        const atomsWithCorrectDecimals = this._atomsProportions.map(chemicalAtomProportion => {
+            return new ChemicalAtomProportion(chemicalAtomProportion.chemicalAtom, chemicalAtomProportion.proportion * chemicalAggragateDecimal)
+        })
+        this.atomsProportions = atomsWithCorrectDecimals
+        return atomsWithCorrectDecimals
+    }
+
+    toChemicalValueByMiligrams = (miligrams: number): ChemicalUnitValue[] => {
+        return this._atomsProportions.map(atom => {
+            return atom.toChemicalByMiligrams(miligrams)
         })
     }
-
-    toAtoms = (): ChemicalAtomProportion[] => {
-        const weight: ChemicalAtomProportion[] = []
-        this._chemicalProportions.forEach(chemicalBlockProportion => {
-            chemicalBlockProportion.forEach(atom => {
-                weight.push(
-                    new ChemicalAtomProportion(atom.chemicalAtom, atom.proportion)
-                )
-            })            
-        })
-        return weight
-    }
-
-
-
-
-
-    // splittedChemicalsProportions = splittedChemicalsProportions.map(chemicalPropotions => {
-    //     return chemicalPropotions.map(chemicalAtomProportion => {
-    //         return new ChemicalAtomProportion(chemicalAtomProportion.chemicalAtom, chemicalAtomProportion.proportion * ingredient.percentToDecimal())
-    //     })
-    // })
-
-
 }

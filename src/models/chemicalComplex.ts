@@ -14,7 +14,7 @@ export class ChemicalComplex {
         this.id = id ? id : IdGenerator.generate();
     }
 
-    toAtomsProportions = (): ChemicalAtomProportion[][] => {
+    toAtomsProportions = (): ChemicalAtomProportion[] => {
         const allAggregatesMolarSumm = this.getAllAggregatesMolar()
         return this.getAtomsProportionsByAggregatesMolar(allAggregatesMolarSumm)
     }
@@ -26,11 +26,16 @@ export class ChemicalComplex {
         }, 0)
     }
 
-    private getAtomsProportionsByAggregatesMolar = (allAggregatesMolar: number): ChemicalAtomProportion[][] => {
-        return this.chemicalAggregates.map(aggregate => {
+    private getAtomsProportionsByAggregatesMolar = (allAggregatesMolar: number): ChemicalAtomProportion[] => {
+        const atoms: ChemicalAtomProportion[] = []
+
+        this.chemicalAggregates.forEach(aggregate => {
             const allAtoms = this.getAtoms(aggregate)
-            return this.calculateProportionForEachAtom(allAggregatesMolar, allAtoms)
+            const atomsProportions = this.calculateProportionForEachAtom(allAggregatesMolar, allAtoms)
+            atoms.push(...atomsProportions)
         })
+
+        return atoms;
     }
 
     private calculateMolarMassForAggregate = (calculatedAggregate: ChemicalAggregate): number => {

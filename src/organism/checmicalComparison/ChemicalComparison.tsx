@@ -12,7 +12,7 @@ import { ChemicalUnit } from 'models/chemicalUnit';
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 import { ChemicalAtomProportion } from 'models/chemicalAtomProportion';
 import { Weight } from 'models/weight';
-import { ProportionCalculator } from 'models/proportionCalculator';
+import { AtomsProportionCalculator } from 'models/proportionCalculator';
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
     const {getChemicalComplexById} = useContext(CalculatorContext)
@@ -46,16 +46,14 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
 
                     if (chemicalComplex) {
                         // console.log('chemicalComplex', chemicalComplex.name, chemicalComplex)
-                        let splittedChemicalsProportions = chemicalComplex.toAtomsProportions()
-                        let proportionCalculator = new ProportionCalculator(splittedChemicalsProportions)
-                        proportionCalculator.chemicalProportions = proportionCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
-                        const atoms: ChemicalAtomProportion[] = proportionCalculator.toAtoms()
+                        let atomsProportions = chemicalComplex.toAtomsProportions()
                         const miligrams = Weight.gramToMiligram(dosage.valueGram)
-                        const chemicalsWeights: ChemicalUnitValue[] = atoms.map(atom => {
-                            return atom.toChemicalByMiligrams(miligrams)
-                        })
+
+                        let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
+                        atomsCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
+                        const chemicalsWeights: ChemicalUnitValue[] = atomsCalculator.toChemicalValueByMiligrams(miligrams)
                         
-                        console.log('chemicalsProportions 2 ', splittedChemicalsProportions);
+                        console.log('chemicalsProportions 2 ', atomsProportions);
                         console.log('chemicalsWeights',chemicalsWeights);
                         console.log(' ');
                     }
