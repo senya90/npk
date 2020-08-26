@@ -62,6 +62,21 @@ describe('Chemical unit value', () => {
             ])
         })
 
+        it('one chemical correct grouping', () => {
+            const chemicalUnitsValue: ChemicalUnitValue[] = [ca2]
+            const result = ChemicalUnitValue.groupByChemical(chemicalUnitsValue)
+
+            expect(result).toEqual([
+                [ca2]
+            ])
+        })
+
+        it('empty', () => {
+            const chemicalUnitsValue: ChemicalUnitValue[] = []
+            const result = ChemicalUnitValue.groupByChemical(chemicalUnitsValue)
+
+            expect(result).toEqual([])
+        })
     })
 
 })

@@ -1,5 +1,4 @@
-import {ChemicalUnit} from "../chemicalUnit";
-import {Utils} from 'helpers/utils'
+import { ChemicalUnit } from "../chemicalUnit";
 
 export class ChemicalUnitValue {
     chemicalUnit: ChemicalUnit
@@ -23,16 +22,35 @@ export class ChemicalUnitValue {
             return []
         }
 
-        const groupedObject: ChemicalUnitValue[][] = ChemicalUnitValue.groupByChemical(chemicalUnits)
-        return ChemicalUnitValue.mergeValuesForGroups(groupedObject)
+        const groupedChemicals: ChemicalUnitValue[][] = ChemicalUnitValue.groupByChemical(chemicalUnits)        
+        return ChemicalUnitValue.mergeValuesForGroups(groupedChemicals)
     }
 
-    static groupByChemical = (chemicals: ChemicalUnitValue[]): any => {
-        const groupedObject: any = {}
-        chemicals.forEach(chemical => {
-            groupedObject[chemical.chemicalUnit.id] = [...groupedObject[chemical.chemicalUnit.id] || [], chemical]
-        })
-        return Utils.objectToArray(groupedObject) 
+    static groupByChemical = (groupedChemicals: ChemicalUnitValue[]): ChemicalUnitValue[][] => {
+        const groups: ChemicalUnitValue[][] = []
+        if (!groupedChemicals || groupedChemicals.length === 0) {
+            return groups
+        }
+
+        let chemicals = [...groupedChemicals]
+        let target = chemicals[0]
+
+        while (chemicals.length > 0) {            
+            const group = ChemicalUnitValue.getGroupByTarget(chemicals, target)
+            groups.push(group)
+            chemicals = ChemicalUnitValue.deleteGroupByTarget(chemicals, target)
+            target = chemicals[0]
+        }
+
+        return groups
+    }
+
+    private static getGroupByTarget = (chemicals: ChemicalUnitValue[], target: ChemicalUnitValue): ChemicalUnitValue[] => {
+        return chemicals.filter(chemical => chemical.chemicalUnit.id === target.chemicalUnit.id)
+    }
+
+    private static deleteGroupByTarget = (chemicals: ChemicalUnitValue[], target: ChemicalUnitValue): ChemicalUnitValue[] => {
+        return chemicals.filter(chemical => chemical.chemicalUnit.id !== target.chemicalUnit.id)
     }
 
     static mergeValuesForGroups = (groups: ChemicalUnitValue[][]): ChemicalUnitValue[] => {

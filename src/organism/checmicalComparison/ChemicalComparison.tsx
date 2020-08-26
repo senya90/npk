@@ -52,9 +52,9 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
                         let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
                         atomsCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
                         const chemicalsWeights: ChemicalUnitValue[] = atomsCalculator.toChemicalValueByMiligrams(miligrams)
-
-                        ChemicalUnitValue.merge(chemicalsWeights)
                         
+                        
+                        // const mergedChemicals = ChemicalUnitValue.merge(chemicalsWeights)
                         // console.log('chemicalsProportions 2 ', atomsProportions);
                         // console.log('chemicalsWeights',chemicalsWeights);
                         console.log(' ');
