@@ -1,5 +1,5 @@
 import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
-import { ChemicalUnitValue } from "./chemicalUnitValue";
+import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
 
 export class Crop {
     id: string

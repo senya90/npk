@@ -1,5 +1,5 @@
 import { ChemicalAtom } from "./chemicalAtom"
-import { ChemicalUnitValue } from "./chemicalUnitValue"
+import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue"
 
 export class ChemicalAtomProportion {
     chemicalAtom: ChemicalAtom

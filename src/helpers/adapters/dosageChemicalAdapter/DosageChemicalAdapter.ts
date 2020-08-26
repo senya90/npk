@@ -1,5 +1,5 @@
 import {Dosage} from "../../../models/dosage";
-import {ChemicalUnitValue} from "../../../models/chemicalUnitValue";
+import {ChemicalUnitValue} from "../../../models/chemicalUnitValue/chemicalUnitValue";
 import { ChemicalUnit } from "models/chemicalUnit";
 
 export class DosageChemicalAdapter {

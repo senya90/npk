@@ -1,5 +1,5 @@
 import { ChemicalAtomProportion } from "./chemicalAtomProportion";
-import { ChemicalUnitValue } from "./chemicalUnitValue";
+import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
 
 export class AtomsProportionCalculator {
     private _atomsProportions: ChemicalAtomProportion[]

@@ -7,7 +7,7 @@ import {TableRaw} from "../table/tableRow/TableRaw";
 import {chemicalUnitsMock} from "../../mocks/chemicalMock";
 import {TableCell} from "../table/tableCell/TableCell";
 import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalComparisonView';
-import {ChemicalUnitValue} from "../../models/chemicalUnitValue";
+import {ChemicalUnitValue} from "../../models/chemicalUnitValue/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 import { Weight } from 'models/weight';

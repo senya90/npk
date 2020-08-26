@@ -26,6 +26,7 @@ export const chemicalUnitsMock: ChemicalUnit[] = [
         name: 'Mg',
         molar: 24.305
     },
+
     {
         id: '79afd82d-7eac-4a0f-bda8-17b4279c2681',
         name: 'S',
@@ -51,6 +52,7 @@ export const chemicalUnitsMock: ChemicalUnit[] = [
         name: 'Zn',
         molar: 65.37
     },
+    
     {
         id: 'f3a08276-3d36-431c-91f3-20a8ddf88a71',
         name: 'Cu',

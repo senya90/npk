@@ -1,4 +1,4 @@
-import {ChemicalUnit} from "./chemicalUnit";
+import {ChemicalUnit} from "../chemicalUnit";
 
 export class ChemicalUnitValue {
     chemicalUnit: ChemicalUnit
@@ -7,5 +7,10 @@ export class ChemicalUnitValue {
     constructor(chemicalUnit: ChemicalUnit, value: number) {
         this.chemicalUnit = chemicalUnit;
         this.value = value;
+    }
+
+    static merge = (chemicalUnits: ChemicalUnitValue[]): ChemicalUnitValue[] => {
+        
+        return []
     }
 }
