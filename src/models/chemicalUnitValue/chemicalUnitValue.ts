@@ -23,32 +23,30 @@ export class ChemicalUnitValue {
             return []
         }
 
-        const results: any = {}
+        const groupedObject: ChemicalUnitValue[][] = ChemicalUnitValue.groupByChemical(chemicalUnits)
+        return ChemicalUnitValue.mergeValuesForGroups(groupedObject)
+    }
 
-        chemicalUnits.forEach(chemical => {
-            results[chemical.chemicalUnit.id] = [...results[chemical.chemicalUnit.id] || [], chemical]
+    static groupByChemical = (chemicals: ChemicalUnitValue[]): any => {
+        const groupedObject: any = {}
+        chemicals.forEach(chemical => {
+            groupedObject[chemical.chemicalUnit.id] = [...groupedObject[chemical.chemicalUnit.id] || [], chemical]
         })
+        return Utils.objectToArray(groupedObject) 
+    }
 
-        console.log('results', results);
-        const groupedChemicalValues: ChemicalUnitValue[][] = Utils.objectToArray(results)
+    static mergeValuesForGroups = (groups: ChemicalUnitValue[][]): ChemicalUnitValue[] => {
+        const result: ChemicalUnitValue[] = []
 
-        const resres: ChemicalUnitValue[] = []
+        groups.forEach(group => {
+            const initChemical: ChemicalUnitValue = new ChemicalUnitValue(group[0].chemicalUnit, 0)
 
-        groupedChemicalValues.forEach(group => {
-            const calculatedChemical: ChemicalUnitValue = new ChemicalUnitValue(group[0].chemicalUnit, 0)
-            
-
-            console.log('calculatedChemical 1', calculatedChemical);
             group.forEach(chemical => {
-                
-                calculatedChemical.value += chemical.value
+                initChemical.value += chemical.value
             })
-            console.log('calculatedChemical', calculatedChemical);
-            
-            resres.push(calculatedChemical)
+            result.push(initChemical)
+
         })
-        
-        
-        return resres
+        return result
     }
 }

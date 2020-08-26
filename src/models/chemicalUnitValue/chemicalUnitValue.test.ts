@@ -3,7 +3,7 @@ import { chemicalComplexMock } from "mocks/chemicalComplexMock"
 import { ChemicalUnit } from "models/chemicalUnit"
 import { chemicalUnitsMock } from "mocks/chemicalMock"
 
-describe('Chemical unit value. static merge()', () => {
+describe('Chemical unit value', () => {
     const mg1 = new ChemicalUnitValue(chemicalUnitsMock[4], 12)
     const mg2 = new ChemicalUnitValue(chemicalUnitsMock[4], 10)
     const mg3 = new ChemicalUnitValue(chemicalUnitsMock[4], 2.2)
@@ -14,33 +14,55 @@ describe('Chemical unit value. static merge()', () => {
     const n2 = new ChemicalUnitValue(chemicalUnitsMock[0], 12.12)
     const p = new ChemicalUnitValue(chemicalUnitsMock[1], 50)
 
-    it('return array', () => {
-        const chemicalUnitsValue: ChemicalUnitValue[] = [mg1, mg2, mg3, ca1, ca2, o, n1, n2, p]
-        const result = ChemicalUnitValue.merge(chemicalUnitsValue)
-        
-        expect(Array.isArray(result)).toEqual(true)
+    describe('static merge()', () => {
+
+        it('return array', () => {
+            const chemicalUnitsValue: ChemicalUnitValue[] = [mg1, mg2, mg3, ca1, ca2, o, n1, n2, p]
+            const result = ChemicalUnitValue.merge(chemicalUnitsValue)
+
+            expect(Array.isArray(result)).toEqual(true)
+        })
+
+        it('empty array', () => {
+            const chemicalUnitsValue: ChemicalUnitValue[] = []
+            const result = ChemicalUnitValue.merge(chemicalUnitsValue)
+
+            expect(result).toEqual([])
+        })
+
+        it('correct merge', () => {
+            const chemicalUnitsValue: ChemicalUnitValue[] = [mg1, mg2, mg3, ca1, ca2, o, n1, n2, p]
+            const result = ChemicalUnitValue.merge(chemicalUnitsValue)
+
+            expect(result).toEqual(
+                [
+                    new ChemicalUnitValue(chemicalUnitsMock[4], 24.2),
+                    new ChemicalUnitValue(chemicalUnitsMock[3], 1.6),
+                    new ChemicalUnitValue(chemicalUnitsMock[12], 5),
+                    new ChemicalUnitValue(chemicalUnitsMock[0], 45.12),
+                    new ChemicalUnitValue(chemicalUnitsMock[1], 50),
+                ]
+            )
+        })
     })
 
-    it('empty array', () => {
-        const chemicalUnitsValue: ChemicalUnitValue[] = []
-        const result = ChemicalUnitValue.merge(chemicalUnitsValue)
-        
-        expect(result).toEqual([])
+
+    describe('static groupByChemical()', () => {
+
+        it('correct grouping', () => {
+            const chemicalUnitsValue: ChemicalUnitValue[] = [mg1, mg2, mg3, ca1, ca2, o, n1, n2, p]
+            const result = ChemicalUnitValue.groupByChemical(chemicalUnitsValue)
+
+            expect(result).toEqual([
+                [mg1, mg2, mg3],
+                [ca1, ca2],
+                [o],
+                [n1, n2],
+                [p]
+            ])
+        })
+
     })
 
-    it('correct merge', () => {
-        const chemicalUnitsValue: ChemicalUnitValue[] = [mg1, mg2, mg3, ca1, ca2, o, n1, n2, p]
-        const result = ChemicalUnitValue.merge(chemicalUnitsValue)
-        
-        expect(result).toEqual(
-            [
-                new ChemicalUnitValue(chemicalUnitsMock[4], 24.2),
-                new ChemicalUnitValue(chemicalUnitsMock[3], 1.6),
-                new ChemicalUnitValue(chemicalUnitsMock[12], 5),
-                new ChemicalUnitValue(chemicalUnitsMock[0], 45.12),
-                new ChemicalUnitValue(chemicalUnitsMock[1], 50),
-            ]
-        )
-    })
 })
 
