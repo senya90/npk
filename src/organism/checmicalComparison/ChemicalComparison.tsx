@@ -10,7 +10,6 @@ import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalCo
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
-import { ChemicalAtomProportion } from 'models/chemicalAtomProportion';
 import { Weight } from 'models/weight';
 import { AtomsProportionCalculator } from 'models/proportionCalculator';
 
@@ -34,6 +33,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     const getMixedValueFromMixture = (): number => {
         const {mixture} = props
         if (mixture && mixture.dosages) {
+            const allChemicals: ChemicalUnitValue[] = []
             mixture.dosages.map(dosage => {
                 console.log('Dosage', dosage.fertilizer.name, dosage);                
 
@@ -56,6 +56,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
                         console.log('chemicalsProportions 2 ', atomsProportions);
                         console.log('chemicalsWeights',chemicalsWeights);
                         console.log(' ');
+                        allChemicals.push(...chemicalsWeights)
                     }
                 })
                 console.log('----------------------------------------------------------------------------------------------------------------------');
@@ -63,6 +64,8 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
 
                 return 1
             })
+            console.log('!!!allChemicals', allChemicals);
+            
         }
         return 9999
     }
