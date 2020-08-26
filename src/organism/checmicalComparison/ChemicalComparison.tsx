@@ -40,8 +40,8 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
                 dosage.fertilizer.ingredients.forEach(ingredient => {
                     const chemicalComplex = getChemicalComplexById(ingredient.chemicalComplexId)
 
-                    console.log('ingredient', ingredient);                    
-                    console.log('chemicalComplex', chemicalComplex);
+                    // console.log('ingredient', ingredient);                    
+                    // console.log('chemicalComplex', chemicalComplex);
                     
 
                     if (chemicalComplex) {
@@ -52,9 +52,11 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
                         let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
                         atomsCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
                         const chemicalsWeights: ChemicalUnitValue[] = atomsCalculator.toChemicalValueByMiligrams(miligrams)
+
+                        ChemicalUnitValue.merge(chemicalsWeights)
                         
-                        console.log('chemicalsProportions 2 ', atomsProportions);
-                        console.log('chemicalsWeights',chemicalsWeights);
+                        // console.log('chemicalsProportions 2 ', atomsProportions);
+                        // console.log('chemicalsWeights',chemicalsWeights);
                         console.log(' ');
                         allChemicals.push(...chemicalsWeights)
                     }
