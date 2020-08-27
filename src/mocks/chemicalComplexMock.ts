@@ -9,7 +9,7 @@ export const chemicalComplexMock = {
         'N',
         [
             new ChemicalAggregate(
-                [new ChemicalAtom(chemicalUnitsMock[0])]
+                [new ChemicalAtom(chemicalUnitsMock.N)]
             )
         ],
         '1N'
@@ -18,7 +18,7 @@ export const chemicalComplexMock = {
         'P',
         [
             new ChemicalAggregate(
-                [new ChemicalAtom(chemicalUnitsMock[1])]
+                [new ChemicalAtom(chemicalUnitsMock.P)]
             )
         ],
         '2P'
@@ -27,7 +27,7 @@ export const chemicalComplexMock = {
         'K',
         [
             new ChemicalAggregate(
-                [new ChemicalAtom(chemicalUnitsMock[2])]
+                [new ChemicalAtom(chemicalUnitsMock.K)]
             )
         ],
         '3K'
@@ -36,7 +36,7 @@ export const chemicalComplexMock = {
         'Ca',
         [
             new ChemicalAggregate(
-                [new ChemicalAtom(chemicalUnitsMock[3])]
+                [new ChemicalAtom(chemicalUnitsMock.Ca)]
             )
         ],
         '4Ca'
@@ -45,7 +45,7 @@ export const chemicalComplexMock = {
         'Mg',
         [
             new ChemicalAggregate(
-                [new ChemicalAtom(chemicalUnitsMock[4])]
+                [new ChemicalAtom(chemicalUnitsMock.Mg)]
             )
         ],
         '5Mg'
@@ -54,7 +54,7 @@ export const chemicalComplexMock = {
         'S',
         [
             new ChemicalAggregate(
-                [new ChemicalAtom(chemicalUnitsMock[5])]
+                [new ChemicalAtom(chemicalUnitsMock.S)]
             )
         ],
         '6S'
@@ -63,7 +63,7 @@ export const chemicalComplexMock = {
         'B',
         [
             new ChemicalAggregate(
-                [new ChemicalAtom(chemicalUnitsMock[6])]
+                [new ChemicalAtom(chemicalUnitsMock.B)]
             )
         ],
         '7B'
@@ -72,7 +72,7 @@ export const chemicalComplexMock = {
         'Fe',
         [
             new ChemicalAggregate(
-                [new ChemicalAtom(chemicalUnitsMock[7])]
+                [new ChemicalAtom(chemicalUnitsMock.Fe)]
             )
         ],
         '8Fe'
@@ -82,9 +82,9 @@ export const chemicalComplexMock = {
         [
             new ChemicalAggregate(
                 [
-                    new ChemicalAtom(chemicalUnitsMock[4]),
-                    new ChemicalAtom(chemicalUnitsMock[5]),
-                    new ChemicalAtom(chemicalUnitsMock[12], 4),
+                    new ChemicalAtom(chemicalUnitsMock.Mg),
+                    new ChemicalAtom(chemicalUnitsMock.S),
+                    new ChemicalAtom(chemicalUnitsMock.O, 4),
                 ]
             )
     
@@ -97,15 +97,15 @@ export const chemicalComplexMock = {
         [
             new ChemicalAggregate(
                 [
-                    new ChemicalAtom(chemicalUnitsMock[4]),
-                    new ChemicalAtom(chemicalUnitsMock[5]),
-                    new ChemicalAtom(chemicalUnitsMock[12], 4),
+                    new ChemicalAtom(chemicalUnitsMock.Mg),
+                    new ChemicalAtom(chemicalUnitsMock.S),
+                    new ChemicalAtom(chemicalUnitsMock.O, 4),
                 ]
             ),
             new ChemicalAggregate(
                 [
-                    new ChemicalAtom(chemicalUnitsMock[13], 2),
-                    new ChemicalAtom(chemicalUnitsMock[12])
+                    new ChemicalAtom(chemicalUnitsMock.H, 2),
+                    new ChemicalAtom(chemicalUnitsMock.O)
                 ],
                 7
             )

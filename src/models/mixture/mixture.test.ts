@@ -1,7 +1,7 @@
 import { Mixture } from "./mixture"
 import { mixturesMock } from "mocks/mixturesMock"
 import { ChemicalUnitValue } from "models/chemicalUnitValue/chemicalUnitValue"
-import { chemicalUnitsMock } from "mocks/chemicalMock"
+import { chemicalUnitsMock, chemicalUnitsMockArray } from "mocks/chemicalMock"
 
 describe('Mixture', () => {
 
@@ -16,14 +16,14 @@ describe('Mixture', () => {
         })
 
         it('correct work', () => {
-            // const mixture = mixturesMock[2]
-            // const result = mixture.toChemicals()
-            // console.log(result);
+            const mixture = mixturesMock[2]
+            const result = mixture.toChemicals()
+            console.log(result);
             
 
-            // expect(result).toEqual([
-            //     new ChemicalUnitValue(chemicalUnitsMock)
-            // ])
+            expect(result).toEqual([
+                new ChemicalUnitValue(chemicalUnitsMock.Mg, 0)
+            ])
         })
 
 

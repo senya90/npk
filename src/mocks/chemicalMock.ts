@@ -1,7 +1,7 @@
 import {ChemicalUnit} from "../models/chemicalUnit";
 import { Utils } from "helpers/utils";
 
-export const chemicalUnitsMock: any = {
+export const chemicalUnitsMock = {
     N: new ChemicalUnit('N', 14.0067, '8dfe0460-bb09-4366-89ea-4df513016ae8'),
     P: new ChemicalUnit('P', 30.9738, 'e10f2d2e-33ba-4cf8-8af3-b0ea15368c36'),
     K: new ChemicalUnit('K', 39.102, 'b6b1910c-a401-4554-86df-d0781406ca37'),
@@ -13,7 +13,7 @@ export const chemicalUnitsMock: any = {
     Fe: new ChemicalUnit('Fe', 55.847, '4e0efe6f-8b49-4092-b1a7-3a190d4f2a17'),
     Mn: new ChemicalUnit('Mn', 54.9380, '63c0ffb9-7b4e-4322-98ea-40f0c20df87d'),
     Zn: new ChemicalUnit('Zn', 65.37, '44badaa5-03f4-4ab9-a9bd-6829cf84bda6'),
-    
+
     Cu: new ChemicalUnit('Cu', 63.546, 'f3a08276-3d36-431c-91f3-20a8ddf88a71'),
     Mo: new ChemicalUnit('Mo', 95.94, 'e59cabce-d76f-45f5-a418-7593a3ba26cd'),
     O: new ChemicalUnit('O', 15.9994, '8bb8b15f-411e-4e1c-8033-bf979bec5b07',),
