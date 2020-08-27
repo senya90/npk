@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react';
+import React, {FunctionComponent} from 'react';
 import Title from 'atom/title/Title';
 import {translate} from "../../helpers/translate/translate";
 import {ChemicalComparisonProps} from "./ChemicalComparisonTypes";
@@ -9,14 +9,12 @@ import {TableCell} from "../table/tableCell/TableCell";
 import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalComparisonView';
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
-import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
-    const {getChemicalComplexById} = useContext(CalculatorContext)
 
     const getMixedValueFromMixture = (): ChemicalUnitValue[] => {
         if (props.mixture && props.mixture.dosages) {
-            return props.mixture.toChemicals(getChemicalComplexById)
+            return props.mixture.toChemicals()
         }
         return []
     }

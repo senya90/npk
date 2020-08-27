@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useContext} from 'react';
 import style from "../fertilizerEditor.module.scss";
 import {Select} from "../../../atom/select/Select";
 import {translate} from "../../../helpers/translate/translate";
@@ -8,25 +8,30 @@ import {AdapterFertilizer} from "../../../helpers/adapters/adapterFertilizer/Ada
 import {InputTypeValue} from "../../../atom/inputNumber/InputNumberTypes";
 import {FertilizerElementProps} from "./FertilizerElementTypes";
 import {FertilizerIngredient} from "../../../models/fertilizerIngredient";
+import { CalculatorContext } from 'helpers/contexts/CalculatorContext';
 
 const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => {
+
+    const {getChemicalComplexById} = useContext(CalculatorContext)
+
     const adaptForSelect = (elements: any[]): SelectOption[] => {
         return AdapterFertilizer.toSelect(elements)
     }
 
     const onNameChange = (chemicalComplexId: string) => {
         const {valuePercent, id} = props.chemical
-        const updatedElement = new FertilizerIngredient(chemicalComplexId, valuePercent, id)
+        const chemicalComplex = getChemicalComplexById(chemicalComplexId)
+        const updatedElement = new FertilizerIngredient(chemicalComplex, valuePercent, id)
         props.onChemicalChanged(updatedElement)
     }
 
     const onValueChange = (value: InputTypeValue) => {
-        const {chemicalComplexId, id} = props.chemical
-        const updatedElement = new FertilizerIngredient(chemicalComplexId, Number(value), id )
+        const {chemicalComplex, id} = props.chemical
+        const updatedElement = new FertilizerIngredient(chemicalComplex, Number(value), id )
         props.onChemicalChanged(updatedElement)
     }
 
-    const chemicalComplexId = props.chemical.chemicalComplexId ? props.chemical.chemicalComplexId : undefined
+    const chemicalComplexId = props.chemical.chemicalComplex.id ? props.chemical.chemicalComplex.id : undefined
 
     return (
         <div className={style.elementsBox}>

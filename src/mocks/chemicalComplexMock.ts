@@ -1,10 +1,11 @@
 import { ChemicalComplex } from "models/chemicalComplex";
 import { chemicalUnitsMock } from "./chemicalMock";
 import { ChemicalAtom } from "models/chemicalAtom";
-import {ChemicalAggregate} from "../models/chemicalAggregate";
+import { ChemicalAggregate } from "../models/chemicalAggregate";
+import { Utils } from "helpers/utils";
 
-export const chemicalComplexMock: ChemicalComplex[] = [
-    new ChemicalComplex(
+export const chemicalComplexMock = {
+    N: new ChemicalComplex(
         'N',
         [
             new ChemicalAggregate(
@@ -13,8 +14,7 @@ export const chemicalComplexMock: ChemicalComplex[] = [
         ],
         '1N'
     ),
-
-    new ChemicalComplex(
+    P: new ChemicalComplex(
         'P',
         [
             new ChemicalAggregate(
@@ -23,8 +23,7 @@ export const chemicalComplexMock: ChemicalComplex[] = [
         ],
         '2P'
     ),
-
-    new ChemicalComplex(
+    K: new ChemicalComplex(
         'K',
         [
             new ChemicalAggregate(
@@ -33,8 +32,7 @@ export const chemicalComplexMock: ChemicalComplex[] = [
         ],
         '3K'
     ),
-
-    new ChemicalComplex(
+    Ca: new ChemicalComplex(
         'Ca',
         [
             new ChemicalAggregate(
@@ -43,7 +41,7 @@ export const chemicalComplexMock: ChemicalComplex[] = [
         ],
         '4Ca'
     ),
-    new ChemicalComplex(
+    Mg: new ChemicalComplex(
         'Mg',
         [
             new ChemicalAggregate(
@@ -52,7 +50,7 @@ export const chemicalComplexMock: ChemicalComplex[] = [
         ],
         '5Mg'
     ),
-    new ChemicalComplex(
+    S: new ChemicalComplex(
         'S',
         [
             new ChemicalAggregate(
@@ -61,7 +59,7 @@ export const chemicalComplexMock: ChemicalComplex[] = [
         ],
         '6S'
     ),
-    new ChemicalComplex(
+    B: new ChemicalComplex(
         'B',
         [
             new ChemicalAggregate(
@@ -70,7 +68,7 @@ export const chemicalComplexMock: ChemicalComplex[] = [
         ],
         '7B'
     ),
-    new ChemicalComplex(
+    Fe: new ChemicalComplex(
         'Fe',
         [
             new ChemicalAggregate(
@@ -79,7 +77,7 @@ export const chemicalComplexMock: ChemicalComplex[] = [
         ],
         '8Fe'
     ),
-    new ChemicalComplex(
+    MgSO4:   new ChemicalComplex(
         'MgSO4',
         [
             new ChemicalAggregate(
@@ -89,10 +87,11 @@ export const chemicalComplexMock: ChemicalComplex[] = [
                     new ChemicalAtom(chemicalUnitsMock[12], 4),
                 ]
             )
-
+    
         ],
         '9MgSO4'
     ),
+    MgSO47H2O: 
     new ChemicalComplex(
         'MgSO4 * 7H2O',
         [
@@ -112,5 +111,9 @@ export const chemicalComplexMock: ChemicalComplex[] = [
             )
         ],
         '10MgSO47H2O'
-    ),
-]
+    )
+}
+
+export const chemicalComplexMockArray = (): ChemicalComplex[] => {
+    return Utils.objectToArray(chemicalComplexMock)    
+}

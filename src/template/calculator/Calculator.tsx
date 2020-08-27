@@ -15,7 +15,7 @@ import {cropsMock} from "../../mocks/cropsMock";
 import {ChemicalComparison} from "../../organism/checmicalComparison/ChemicalComparison";
 import {Crop} from "../../models/crop";
 import {ChemicalComplex} from "../../models/chemicalComplex";
-import {chemicalComplexMock} from "../../mocks/chemicalComplexMock";
+import {chemicalComplexMockArray} from "../../mocks/chemicalComplexMock";
 
 
 const Calculator = () => {
@@ -73,7 +73,7 @@ const Calculator = () => {
     }
 
     const getChemicalComplexById = (chemicalComplexId: string): ChemicalComplex | undefined => {
-        return chemicalComplexMock.find(chemicalComplex => chemicalComplex.id === chemicalComplexId)
+        return chemicalComplexMockArray().find(chemicalComplex => chemicalComplex.id === chemicalComplexId)
     }
 
     const onAddFertilizerToMixture = (fertilizerId: string) => {

@@ -2,7 +2,6 @@ import {Dosage} from "./dosage";
 import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
 import { Fertilizer } from "./fertilizer";
 import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
-import { ChemicalComplex } from "./chemicalComplex";
 import { Weight } from "./weight";
 import { AtomsProportionCalculator } from "./proportionCalculator";
 
@@ -47,15 +46,14 @@ export class Mixture {
         return true
     }
 
-    toChemicals = (complexSearcher: (id: string) => ChemicalComplex | undefined): ChemicalUnitValue[] => {
+    toChemicals = (): ChemicalUnitValue[] => {
         const allChemicals: ChemicalUnitValue[] = []
 
         this.dosages.forEach(dosage => {
             dosage.fertilizer.ingredients.forEach(ingredient => {
-                const chemicalComplex = complexSearcher(ingredient.chemicalComplexId)
 
-                if (chemicalComplex) {
-                    let atomsProportions = chemicalComplex.toAtomsProportions()
+                if (ingredient.chemicalComplex) {
+                    let atomsProportions = ingredient.chemicalComplex.toAtomsProportions()
                     const miligrams = Weight.gramToMiligram(dosage.valueGram)
 
                     let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
