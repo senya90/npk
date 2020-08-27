@@ -2,6 +2,7 @@ import React, {FunctionComponent} from 'react';
 import {TableRaw} from "../../organism/table/tableRow/TableRaw";
 import {TableCell} from "../../organism/table/tableCell/TableCell";
 import {ChemicalUnit} from "../../models/chemicalUnit";
+import { Utils } from 'helpers/utils';
 
 interface ChemicalComparisonViewProps {
     chemical: ChemicalUnit
@@ -15,9 +16,9 @@ const ChemicalComparisonView: FunctionComponent<ChemicalComparisonViewProps> = (
     return (
             <TableRaw>
                 <TableCell>{props.chemical.name}</TableCell>
-                <TableCell>{props.mixed}</TableCell>
-                <TableCell>{props.vegetation}</TableCell>
-                <TableCell>{props.bloom}</TableCell>
+                <TableCell>{Utils.round(props.mixed, 1)}</TableCell>
+                <TableCell>{Utils.round(props.vegetation,1)}</TableCell>
+                <TableCell>{Utils.round(props.bloom,1)}</TableCell>
             </TableRaw>
     );
 };

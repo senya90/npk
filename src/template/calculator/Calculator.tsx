@@ -7,7 +7,7 @@ import {MixtureComposition} from "../../organism/mixtureComposition/MixtureCompo
 
 import style from './calculator.module.scss'
 import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
-import {Mixture} from "../../models/mixture";
+import {Mixture} from "../../models/mixture/mixture";
 import { Mixtures } from 'organism/mixtures/Mixtures';
 import {mixturesMock} from "../../mocks/mixturesMock";
 import {Crops} from "../../organism/crops/Crops";

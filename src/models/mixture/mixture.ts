@@ -1,9 +1,9 @@
-import {Dosage} from "./dosage";
-import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
-import { Fertilizer } from "./fertilizer";
-import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
-import { Weight } from "./weight";
-import { AtomsProportionCalculator } from "./proportionCalculator";
+import {Dosage} from "../dosage";
+import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
+import { Fertilizer } from "../fertilizer";
+import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
+import { Weight } from "../weight";
+import { AtomsProportionCalculator } from "../proportionCalculator";
 
 export class Mixture {
     dosages: Dosage[]

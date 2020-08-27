@@ -5,7 +5,7 @@ import Title from "../../atom/title/Title";
 import DosageView from "../../molecule/dosageView/DosageView";
 import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
 import {Fertilizer} from "../../models/fertilizer";
-import {Mixture} from "../../models/mixture";
+import {Mixture} from "../../models/mixture/mixture";
 import {Input} from 'atom/input/Input';
 
 import style from './mixtureComposition.module.scss'

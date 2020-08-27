@@ -1,6 +1,6 @@
 import React from "react";
 import {Fertilizer} from "../../models/fertilizer";
-import { Mixture } from "models/mixture";
+import { Mixture } from "models/mixture/mixture";
 import { Crop } from "models/crop";
 import {ChemicalComplex} from "../../models/chemicalComplex";
 

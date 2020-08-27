@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
-import {Mixture} from 'models/mixture';
+import {Mixture} from 'models/mixture/mixture';
 import {MixtureFertilizers} from "./MixtureFertilizers";
 
 import style from './mixtureDispensing.module.scss'
