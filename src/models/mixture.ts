@@ -1,6 +1,7 @@
 import {Dosage} from "./dosage";
 import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
 import { Fertilizer } from "./fertilizer";
+import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
 
 export class Mixture {
     dosages: Dosage[]
@@ -41,5 +42,10 @@ export class Mixture {
             }
         }
         return true
+    }
+
+    toChemicals = (): ChemicalUnitValue[] => {
+
+        return []
     }
 }

@@ -30,46 +30,31 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         })
     }
 
-    const getMixedValueFromMixture = (): number => {
+    const getMixedValueFromMixture = (): ChemicalUnitValue[] => {
         const {mixture} = props
         if (mixture && mixture.dosages) {
             const allChemicals: ChemicalUnitValue[] = []
-            mixture.dosages.map(dosage => {
-                console.log('Dosage', dosage.fertilizer.name, dosage);                
-
+            mixture.dosages.forEach(dosage => {
                 dosage.fertilizer.ingredients.forEach(ingredient => {
                     const chemicalComplex = getChemicalComplexById(ingredient.chemicalComplexId)
 
-                    // console.log('ingredient', ingredient);                    
-                    // console.log('chemicalComplex', chemicalComplex);
-                    
-
                     if (chemicalComplex) {
-                        // console.log('chemicalComplex', chemicalComplex.name, chemicalComplex)
                         let atomsProportions = chemicalComplex.toAtomsProportions()
                         const miligrams = Weight.gramToMiligram(dosage.valueGram)
 
                         let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
                         atomsCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
                         const chemicalsWeights: ChemicalUnitValue[] = atomsCalculator.toChemicalValueByMiligrams(miligrams)
+                        const mergedChemicals = ChemicalUnitValue.merge(chemicalsWeights)
                         
-                        
-                        // const mergedChemicals = ChemicalUnitValue.merge(chemicalsWeights)
-                        // console.log('chemicalsProportions 2 ', atomsProportions);
-                        // console.log('chemicalsWeights',chemicalsWeights);
-                        console.log(' ');
-                        allChemicals.push(...chemicalsWeights)
+                        allChemicals.push(...mergedChemicals)
                     }
                 })
-                console.log('----------------------------------------------------------------------------------------------------------------------');
-                
-
-                return 1
             })
-            console.log('!!!allChemicals', allChemicals);
+            return ChemicalUnitValue.merge(allChemicals) 
             
         }
-        return 9999
+        return []
     }
     
 
@@ -95,7 +80,8 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         return 0
     }
 
-    getMixedValueFromMixture()
+    console.log('getMixedValueFromMixture()', getMixedValueFromMixture());
+    
     
     return (
         <div>
