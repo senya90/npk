@@ -36,10 +36,10 @@ describe('Chemical unit value', () => {
 
             expect(result).toEqual(
                 [
-                    new ChemicalUnitValue(chemicalUnitsMock.Mg, 24.2),
-                    new ChemicalUnitValue(chemicalUnitsMock.Ca, 1.6),
+                    new ChemicalUnitValue(chemicalUnitsMock.Mg, 24),
+                    new ChemicalUnitValue(chemicalUnitsMock.Ca, 2),
                     new ChemicalUnitValue(chemicalUnitsMock.O, 5),
-                    new ChemicalUnitValue(chemicalUnitsMock.N, 45.12),
+                    new ChemicalUnitValue(chemicalUnitsMock.N, 45),
                     new ChemicalUnitValue(chemicalUnitsMock.P, 50),
                 ]
             )

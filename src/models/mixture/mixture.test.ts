@@ -19,12 +19,12 @@ describe('Mixture', () => {
             const mixture = mixturesMock[3]
             const result = mixture.toChemicals()
 
-            // expect(result).toEqual([
-            //     new ChemicalUnitValue(chemicalUnitsMock.Mg, 62.3039),
-            //     new ChemicalUnitValue(chemicalUnitsMock.S, 82.1934),
-            //     new ChemicalUnitValue(chemicalUnitsMock.O, 164.0527),
+            expect(result).toEqual([
+                new ChemicalUnitValue(chemicalUnitsMock.Mg, 62),
+                new ChemicalUnitValue(chemicalUnitsMock.S, 82),
+                new ChemicalUnitValue(chemicalUnitsMock.O, 164),
 
-            // ])
+            ])
         })
 
         // it('correct work', () => {

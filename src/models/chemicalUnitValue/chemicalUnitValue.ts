@@ -63,7 +63,8 @@ export class ChemicalUnitValue {
             group.forEach(chemical => {
                 initChemical.value += chemical.value
             })
-            initChemical.value = Utils.round(initChemical.value)
+            
+            initChemical.value = Utils.round(initChemical.value, 0)
             result.push(initChemical)
 
         })
