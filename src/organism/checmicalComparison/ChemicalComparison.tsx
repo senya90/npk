@@ -10,8 +10,6 @@ import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalCo
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
-import { Weight } from 'models/weight';
-import { AtomsProportionCalculator } from 'models/proportionCalculator';
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
     const {getChemicalComplexById} = useContext(CalculatorContext)
@@ -33,24 +31,8 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     const getMixedValueFromMixture = (): ChemicalUnitValue[] => {
         const {mixture} = props
         if (mixture && mixture.dosages) {
-            const allChemicals: ChemicalUnitValue[] = []
-            mixture.dosages.forEach(dosage => {
-                dosage.fertilizer.ingredients.forEach(ingredient => {
-                    const chemicalComplex = getChemicalComplexById(ingredient.chemicalComplexId)
-
-                    if (chemicalComplex) {
-                        let atomsProportions = chemicalComplex.toAtomsProportions()
-                        const miligrams = Weight.gramToMiligram(dosage.valueGram)
-
-                        let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
-                        atomsCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
-                        const chemicalsWeights: ChemicalUnitValue[] = atomsCalculator.toChemicalValueByMiligrams(miligrams)
-                        const mergedChemicals = ChemicalUnitValue.merge(chemicalsWeights)
-                        
-                        allChemicals.push(...mergedChemicals)
-                    }
-                })
-            })
+            const allChemicals: ChemicalUnitValue[] = mixture.toChemicals(getChemicalComplexById)
+            
             return ChemicalUnitValue.merge(allChemicals) 
             
         }

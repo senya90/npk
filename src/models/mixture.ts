@@ -2,6 +2,9 @@ import {Dosage} from "./dosage";
 import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
 import { Fertilizer } from "./fertilizer";
 import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
+import { ChemicalComplex } from "./chemicalComplex";
+import { Weight } from "./weight";
+import { AtomsProportionCalculator } from "./proportionCalculator";
 
 export class Mixture {
     dosages: Dosage[]
@@ -44,8 +47,26 @@ export class Mixture {
         return true
     }
 
-    toChemicals = (): ChemicalUnitValue[] => {
+    toChemicals = (complexSearcher: (id: string) => ChemicalComplex | undefined): ChemicalUnitValue[] => {
+        const allChemicals: ChemicalUnitValue[] = []
 
-        return []
+        this.dosages.forEach(dosage => {
+            dosage.fertilizer.ingredients.forEach(ingredient => {
+                const chemicalComplex = complexSearcher(ingredient.chemicalComplexId)
+
+                if (chemicalComplex) {
+                    let atomsProportions = chemicalComplex.toAtomsProportions()
+                    const miligrams = Weight.gramToMiligram(dosage.valueGram)
+
+                    let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
+                    atomsCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
+                    const chemicalsWeights: ChemicalUnitValue[] = atomsCalculator.toChemicalValueByMiligrams(miligrams)
+                    const mergedChemicals = ChemicalUnitValue.merge(chemicalsWeights)
+                    
+                    allChemicals.push(...mergedChemicals)
+                }
+            })
+        })
+        return allChemicals
     }
 }
