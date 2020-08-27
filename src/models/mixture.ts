@@ -67,6 +67,6 @@ export class Mixture {
                 }
             })
         })
-        return allChemicals
+        return ChemicalUnitValue.merge(allChemicals)
     }
 }

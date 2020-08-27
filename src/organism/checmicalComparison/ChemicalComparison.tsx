@@ -14,31 +14,37 @@ import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
     const {getChemicalComplexById} = useContext(CalculatorContext)
 
+    const getMixedValueFromMixture = (): ChemicalUnitValue[] => {
+        if (props.mixture && props.mixture.dosages) {
+            return props.mixture.toChemicals(getChemicalComplexById)
+        }
+        return []
+    }
+    let mixed: ChemicalUnitValue[] = getMixedValueFromMixture();
+
+    const getChemicalFromMix = (chemical: ChemicalUnit): number => {
+        if (mixed) {
+            const found = mixed.find(chemicalUnitValue => chemicalUnitValue.chemicalUnit.id === chemical.id)
+            if (found) {
+                return found.value
+            }
+        }
+        return 0
+    }
+
     const renderChemicalComposition = () => {
         return chemicalUnitsMock.map(chemical => {
             return (
                 <ChemicalComparisonView
                     key={chemical.id}
                     chemical={chemical}
-                    mixed={9999}
+                    mixed={getChemicalFromMix(chemical)}
                     vegetation={getVegetationValueFromCrop(chemical)}
                     bloom={getBloomValueFromCrop(chemical)}
                 />
             )
         })
     }
-
-    const getMixedValueFromMixture = (): ChemicalUnitValue[] => {
-        const {mixture} = props
-        if (mixture && mixture.dosages) {
-            const allChemicals: ChemicalUnitValue[] = mixture.toChemicals(getChemicalComplexById)
-            
-            return ChemicalUnitValue.merge(allChemicals) 
-            
-        }
-        return []
-    }
-    
 
     const getVegetationValueFromCrop = (chemical: ChemicalUnit): number => {
         return _ejectResult(_findByChemicalIn(chemical, props.activeCrop.vegetation))
@@ -61,9 +67,6 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         }
         return 0
     }
-
-    console.log('getMixedValueFromMixture()', getMixedValueFromMixture());
-    
     
     return (
         <div>
