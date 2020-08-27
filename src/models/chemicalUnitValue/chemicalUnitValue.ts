@@ -1,4 +1,5 @@
 import { ChemicalUnit } from "../chemicalUnit";
+import { Utils } from "helpers/utils";
 
 export class ChemicalUnitValue {
     chemicalUnit: ChemicalUnit
@@ -62,6 +63,7 @@ export class ChemicalUnitValue {
             group.forEach(chemical => {
                 initChemical.value += chemical.value
             })
+            initChemical.value = Utils.round(initChemical.value)
             result.push(initChemical)
 
         })
