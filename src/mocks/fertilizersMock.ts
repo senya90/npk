@@ -43,6 +43,7 @@ export const fertilizersMock: Fertilizer[] = [
         ],
         'bc407186-75f3-47d7-b0fc-da50ede7329a'
     ),
+    
     new Fertilizer(
         'Удобрение 5',
         [
