@@ -1,5 +1,6 @@
 import { ChemicalAtom } from "./chemicalAtom"
 import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue"
+import { Utils } from "helpers/utils"
 
 export class ChemicalAtomProportion {
     chemicalAtom: ChemicalAtom
@@ -13,7 +14,7 @@ export class ChemicalAtomProportion {
     toChemicalByMiligrams = (dosageMiligram: number): ChemicalUnitValue => {
         return new ChemicalUnitValue(
             this.chemicalAtom.chemicalUnit, 
-            this.proportion * dosageMiligram
+            Utils.round(this.proportion * dosageMiligram)
         )
     }
 }

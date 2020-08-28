@@ -2,6 +2,7 @@ import { IdGenerator } from "../../helpers/idGenerator/IdGenerator";
 import { ChemicalAggregate } from "../chemicalAggregate";
 import { ChemicalAtom } from "../chemicalAtom";
 import { ChemicalAtomProportion } from "../chemicalAtomProportion";
+import { Utils } from "helpers/utils";
 
 export class ChemicalComplex {
     name: string
@@ -64,6 +65,6 @@ export class ChemicalComplex {
             return 0
         }
 
-        return atom.getMolarMass() / aggregateMolarMass
+        return Utils.round(atom.getMolarMass() / aggregateMolarMass)
     }
 }
