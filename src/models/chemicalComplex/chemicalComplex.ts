@@ -32,7 +32,7 @@ export class ChemicalComplex {
 
         this.chemicalAggregates.forEach(aggregate => {
             const allAtoms = this.getAtoms(aggregate)
-            const atomsProportions = this.calculateProportionForEachAtom(allAggregatesMolar, allAtoms)
+            const atomsProportions = this.calculateProportionForEachAtom(aggregate, allAggregatesMolar, allAtoms)
             atoms.push(...atomsProportions)
         })
 
@@ -47,24 +47,24 @@ export class ChemicalComplex {
         }, 0)
     }
 
-    private getAtoms = (aggregate: ChemicalAggregate) => {
+    private getAtoms = (aggregate: ChemicalAggregate): ChemicalAtom[] => {
         return aggregate.atoms.map(atom => atom)
     }
 
-    private calculateProportionForEachAtom = (aggregateMolarMass: number, atoms: ChemicalAtom[]): ChemicalAtomProportion[] => {
+    private calculateProportionForEachAtom = (aggregate:ChemicalAggregate, aggregateMolarMass: number, atoms: ChemicalAtom[]): ChemicalAtomProportion[] => {
         return atoms.map(atom => {
             return new ChemicalAtomProportion(
                 atom,
-                this.calculateAtomProportion(aggregateMolarMass, atom)
+                this.calculateAtomProportion(aggregate, aggregateMolarMass, atom)
             )
         })
     }
 
-    private calculateAtomProportion = (aggregateMolarMass: number, atom: ChemicalAtom): number => {
+    private calculateAtomProportion = (aggregate: ChemicalAggregate,aggregateMolarMass: number, atom: ChemicalAtom): number => {
         if (aggregateMolarMass === 0) {
             return 0
         }
 
-        return Utils.round(atom.getMolarMass() / aggregateMolarMass)
+        return Utils.round(aggregate.multiplier * atom.getMolarMass() / aggregateMolarMass)
     }
 }
