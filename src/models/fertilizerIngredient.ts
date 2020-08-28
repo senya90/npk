@@ -1,5 +1,5 @@
 import { IdGenerator } from "helpers/idGenerator/IdGenerator";
-import { ChemicalComplex } from "./chemicalComplex";
+import { ChemicalComplex } from "./chemicalComplex/chemicalComplex";
 
 export class FertilizerIngredient {
     id: string;

@@ -3,7 +3,7 @@ import {FertilizerIngredient} from "../../models/fertilizerIngredient";
 import {chemicalComplexMockArray} from "../../mocks/chemicalComplexMock";
 
 import style from './ingredientView.module.scss'
-import {ChemicalComplex} from "../../models/chemicalComplex";
+import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 
 
 interface IngredientsViewProps {

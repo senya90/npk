@@ -1,7 +1,7 @@
-import { IdGenerator } from "../helpers/idGenerator/IdGenerator";
-import { ChemicalAggregate } from "./chemicalAggregate";
-import { ChemicalAtom } from "./chemicalAtom";
-import { ChemicalAtomProportion } from "./chemicalAtomProportion";
+import { IdGenerator } from "../../helpers/idGenerator/IdGenerator";
+import { ChemicalAggregate } from "../chemicalAggregate";
+import { ChemicalAtom } from "../chemicalAtom";
+import { ChemicalAtomProportion } from "../chemicalAtomProportion";
 
 export class ChemicalComplex {
     name: string

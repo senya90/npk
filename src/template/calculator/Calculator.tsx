@@ -14,7 +14,7 @@ import {Crops} from "../../organism/crops/Crops";
 import {cropsMock} from "../../mocks/cropsMock";
 import {ChemicalComparison} from "../../organism/checmicalComparison/ChemicalComparison";
 import {Crop} from "../../models/crop";
-import {ChemicalComplex} from "../../models/chemicalComplex";
+import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 import {chemicalComplexMockArray} from "../../mocks/chemicalComplexMock";
 
 

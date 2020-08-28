@@ -2,7 +2,7 @@ import React from "react";
 import {Fertilizer} from "../../models/fertilizer";
 import { Mixture } from "models/mixture/mixture";
 import { Crop } from "models/crop";
-import {ChemicalComplex} from "../../models/chemicalComplex";
+import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 
 export type CalculatorContextType = {
     onDeleteFertilizer: (fertilizerId: string) => boolean
