@@ -15,7 +15,7 @@ describe('Mixture', () => {
             expect(Array.isArray(result)).toEqual(true)
         })
 
-        it('correct work', () => {
+        it('MgSO4', () => {
             const mixture = mixturesMock[3]
             const result = mixture.toChemicals()
 
@@ -27,22 +27,22 @@ describe('Mixture', () => {
             ])
         })
 
-        // it('correct work', () => {
-        //     const mixture = mixturesMock[2]
-        //     const result = mixture.toChemicals()
+        it('MgSO4, MgSO4*7H2O, PK, MgCaN, Fe', () => {
+            const mixture = mixturesMock[2]
+            const result = mixture.toChemicals()
 
-        //     expect(result).toEqual([
-        //         new ChemicalUnitValue(chemicalUnitsMock.Mg, 0),
-        //         new ChemicalUnitValue(chemicalUnitsMock.S, 0),
-        //         new ChemicalUnitValue(chemicalUnitsMock.O, 0),
-        //         new ChemicalUnitValue(chemicalUnitsMock.H, 0),
-        //         new ChemicalUnitValue(chemicalUnitsMock.P, 0),
-        //         new ChemicalUnitValue(chemicalUnitsMock.K, 0),
-        //         new ChemicalUnitValue(chemicalUnitsMock.Ca, 0),
-        //         new ChemicalUnitValue(chemicalUnitsMock.N, 0),
-        //         new ChemicalUnitValue(chemicalUnitsMock.Fe, 0),
-        //     ])
-        // })
+            expect(result).toEqual([
+                new ChemicalUnitValue(chemicalUnitsMock.Mg, 670),
+                new ChemicalUnitValue(chemicalUnitsMock.S, 155),
+                new ChemicalUnitValue(chemicalUnitsMock.O, 413),
+                new ChemicalUnitValue(chemicalUnitsMock.H, 13),
+                new ChemicalUnitValue(chemicalUnitsMock.P, 630),
+                new ChemicalUnitValue(chemicalUnitsMock.K, 202),
+                new ChemicalUnitValue(chemicalUnitsMock.Ca, 1),
+                new ChemicalUnitValue(chemicalUnitsMock.N, 1),
+                new ChemicalUnitValue(chemicalUnitsMock.Fe, 2),
+            ])
+        })
 
 
 
