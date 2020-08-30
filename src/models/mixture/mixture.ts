@@ -4,6 +4,7 @@ import { Fertilizer } from "../fertilizer";
 import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
 import { Weight } from "../weight";
 import { AtomsProportionCalculator } from "../proportionCalculator";
+import { Utils } from "helpers/utils";
 
 export class Mixture {
     dosages: Dosage[]
@@ -61,11 +62,13 @@ export class Mixture {
                     const chemicalsWeights: ChemicalUnitValue[] = atomsCalculator.toChemicalValueByMiligrams(miligrams)
                     
                     const mergedChemicals = ChemicalUnitValue.merge(chemicalsWeights)
-                    
                     allChemicals.push(...mergedChemicals)
                 }
             })
         })
-        return ChemicalUnitValue.merge(allChemicals)
+
+        const merged = ChemicalUnitValue.merge(allChemicals)
+        const normalized = merged.map(chemicalUnitValue => chemicalUnitValue.normalizeValueForView())
+        return normalized
     }
 }

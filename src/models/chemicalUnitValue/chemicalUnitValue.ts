@@ -24,8 +24,7 @@ export class ChemicalUnitValue {
         }
 
         const groupedChemicals: ChemicalUnitValue[][] = ChemicalUnitValue.groupByChemical(chemicalUnits)        
-        const merged = ChemicalUnitValue.mergeValuesForGroups(groupedChemicals)
-        return merged.map(chemicalUnit => chemicalUnit._normalizeValue())
+        return ChemicalUnitValue.mergeValuesForGroups(groupedChemicals)
     }
 
     static groupByChemical = (groupedChemicals: ChemicalUnitValue[]): ChemicalUnitValue[][] => {
@@ -62,17 +61,16 @@ export class ChemicalUnitValue {
             const initChemical: ChemicalUnitValue = new ChemicalUnitValue(group[0].chemicalUnit, 0)
 
             group.forEach(chemical => {
-                initChemical.value += chemical.value
+                initChemical.value = Utils.round(initChemical.value, 6) + Utils.round(chemical.value, 6)
             })
             
-            initChemical.value = initChemical.value,
             result.push(initChemical)
 
         })
         return result
     }
 
-    private _normalizeValue = (to = 0): ChemicalUnitValue => {
+    public normalizeValueForView = (to = 0): ChemicalUnitValue => {
         return new ChemicalUnitValue(this.chemicalUnit, Utils.round(this.value, to))
     }
 }

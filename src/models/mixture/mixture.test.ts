@@ -17,19 +17,19 @@ describe('Mixture', () => {
 
         it('MgSO4', () => {
             const mixture = mixturesMock[3]
-            const result = mixture.toChemicals()
+            const result = mixture.toChemicals().map(chemical => chemical.value)
 
             expect(result).toEqual([
                 new ChemicalUnitValue(chemicalUnitsMock.Mg, 62),
                 new ChemicalUnitValue(chemicalUnitsMock.S, 82),
                 new ChemicalUnitValue(chemicalUnitsMock.O, 164),
 
-            ])
+            ].map(chemical => chemical.value))
         })
 
         it('MgSO4, MgSO4*7H2O, PK, MgCaN, Fe', () => {
             const mixture = mixturesMock[2]
-            const result = mixture.toChemicals()
+            const result = mixture.toChemicals().map(chemical => chemical.value)
 
 
             expect(result).toEqual([
@@ -42,7 +42,7 @@ describe('Mixture', () => {
                 new ChemicalUnitValue(chemicalUnitsMock.Ca, 1),
                 new ChemicalUnitValue(chemicalUnitsMock.N, 1),
                 new ChemicalUnitValue(chemicalUnitsMock.Fe, 2),
-            ])
+            ].map(chemical => chemical.value))
         })
 
 

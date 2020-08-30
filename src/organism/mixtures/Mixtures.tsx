@@ -13,8 +13,6 @@ const Mixtures: FunctionComponent<MixturesProps> = ({mixtures}) => {
         return mixtures.map(mixture => <MixtureDispensing key={mixture.id} mixture={mixture}/>)
     }
 
-    // console.log('mixtures', mixtures)
-
     return (
         <div>
             <Title>{translate('mixtures')}</Title>

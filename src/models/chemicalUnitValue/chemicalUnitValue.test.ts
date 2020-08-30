@@ -33,15 +33,16 @@ describe('Chemical unit value', () => {
         it('correct merge', () => {
             const chemicalUnitsValue: ChemicalUnitValue[] = [mg1, mg2, mg3, ca1, ca2, o, n1, n2, p]
             const result = ChemicalUnitValue.merge(chemicalUnitsValue)
+                .map(chemicalUnitsValue => chemicalUnitsValue.value)
 
             expect(result).toEqual(
                 [
-                    new ChemicalUnitValue(chemicalUnitsMock.Mg, 24),
-                    new ChemicalUnitValue(chemicalUnitsMock.Ca, 2),
+                    new ChemicalUnitValue(chemicalUnitsMock.Mg, 24.2),
+                    new ChemicalUnitValue(chemicalUnitsMock.Ca, 1.6),
                     new ChemicalUnitValue(chemicalUnitsMock.O, 5),
-                    new ChemicalUnitValue(chemicalUnitsMock.N, 45),
+                    new ChemicalUnitValue(chemicalUnitsMock.N, 45.12),
                     new ChemicalUnitValue(chemicalUnitsMock.P, 50),
-                ]
+                ].map(chemicalUnitsValue => chemicalUnitsValue.value)
             )
         })
     })

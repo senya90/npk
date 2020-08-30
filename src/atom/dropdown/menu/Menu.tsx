@@ -5,7 +5,6 @@ import {Menu as MenuAnt} from 'antd'
 const Menu: FunctionComponent<MenuProps> = (props) => {
 
     const handleMenuClick = () => {
-        console.log('handleMenuClick')
     }
 
     return (
