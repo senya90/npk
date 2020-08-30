@@ -16,7 +16,7 @@ export class ChemicalComplex {
     }
 
     toAtomsProportions = (): ChemicalAtomProportion[] => {
-        const allAggregatesMolarSumm = this.getAllAggregatesMolar()
+        const allAggregatesMolarSumm = Utils.round(this.getAllAggregatesMolar(), 6)
         return this.getAtomsProportionsByAggregatesMolar(allAggregatesMolarSumm)
     }
 
@@ -64,7 +64,6 @@ export class ChemicalComplex {
         if (aggregateMolarMass === 0) {
             return 0
         }
-
-        return Utils.round(aggregate.multiplier * atom.getMolarMass() / aggregateMolarMass)
+        return Utils.round((aggregate.multiplier * atom.getMolarMass()) / aggregateMolarMass, 6)
     }
 }

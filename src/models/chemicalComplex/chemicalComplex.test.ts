@@ -14,15 +14,15 @@ describe('Chemical complex', () => {
             const expected: number[] = [
                 new ChemicalAtomProportion(
                     new ChemicalAtom(chemicalUnitsMock.Mg),
-                    0.2019
+                    0.201925
                 ),
                 new ChemicalAtomProportion(
                     new ChemicalAtom(chemicalUnitsMock.S),
-                    0.2664
+                    0.266386
                 ),
                 new ChemicalAtomProportion(
                     new ChemicalAtom(chemicalUnitsMock.O, 4),
-                    0.5317
+                    0.531689
                 )
             ].map(atom => atom.proportion)
 
@@ -36,23 +36,23 @@ describe('Chemical complex', () => {
             const expected: number[] = [
                 new ChemicalAtomProportion(
                     new ChemicalAtom(chemicalUnitsMock.Mg),
-                    0.0986
+                    0.098611
                 ),
                 new ChemicalAtomProportion(
                     new ChemicalAtom(chemicalUnitsMock.S),
-                    0.1301
+                    0.130091
                 ),
                 new ChemicalAtomProportion(
                     new ChemicalAtom(chemicalUnitsMock.O, 4),
-                    0.2597
+                    0.259653
                 ),
                 new ChemicalAtomProportion(
                     new ChemicalAtom(chemicalUnitsMock.H, 2),
-                    0.0573
+                    0.057254
                 ),
                 new ChemicalAtomProportion(
                     new ChemicalAtom(chemicalUnitsMock.O, 2),
-                    0.4544
+                    0.454392
                 ),
             ].map(atom => atom.proportion)
 

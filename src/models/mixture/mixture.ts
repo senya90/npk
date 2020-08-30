@@ -59,6 +59,7 @@ export class Mixture {
                     let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
                     atomsCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())
                     const chemicalsWeights: ChemicalUnitValue[] = atomsCalculator.toChemicalValueByMiligrams(miligrams)
+                    
                     const mergedChemicals = ChemicalUnitValue.merge(chemicalsWeights)
                     
                     allChemicals.push(...mergedChemicals)

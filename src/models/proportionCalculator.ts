@@ -14,7 +14,10 @@ export class AtomsProportionCalculator {
 
     correctDecimalByAggregate = (chemicalAggragateDecimal: number): ChemicalAtomProportion[] => {
         const atomsWithCorrectDecimals = this._atomsProportions.map(chemicalAtomProportion => {
-            return new ChemicalAtomProportion(chemicalAtomProportion.chemicalAtom, chemicalAtomProportion.proportion * chemicalAggragateDecimal)
+            return new ChemicalAtomProportion(
+                chemicalAtomProportion.chemicalAtom,
+                chemicalAtomProportion.proportion * chemicalAggragateDecimal
+            )
         })
         this.atomsProportions = atomsWithCorrectDecimals
         return atomsWithCorrectDecimals
