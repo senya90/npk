@@ -4,7 +4,6 @@ import { Fertilizer } from "../fertilizer";
 import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
 import { Weight } from "../weight";
 import { AtomsProportionCalculator } from "../proportionCalculator";
-import { Utils } from "helpers/utils";
 
 export class Mixture {
     dosages: Dosage[]
