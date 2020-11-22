@@ -2,7 +2,7 @@ import { IdGenerator } from "../../helpers/idGenerator/IdGenerator";
 import { ChemicalAggregate } from "../chemicalAggregate";
 import { ChemicalAtom } from "../chemicalAtom";
 import { ChemicalAtomProportion } from "../chemicalAtomProportion";
-import { Utils } from "helpers/utils";
+import {isExist, Utils} from "helpers/utils";
 
 export class ChemicalComplex {
     name: string
@@ -18,6 +18,10 @@ export class ChemicalComplex {
     toAtomsProportions = (): ChemicalAtomProportion[] => {
         const allAggregatesMolarSumm = Utils.round(this.getAllAggregatesMolar(), 6)
         return this.getAtomsProportionsByAggregatesMolar(allAggregatesMolarSumm)
+    }
+
+    isValid = () => {
+        return isExist(this.name) && this.name !== '' && isExist(this.id)
     }
 
     private getAllAggregatesMolar = () => {

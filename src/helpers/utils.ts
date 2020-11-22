@@ -17,3 +17,11 @@ export class Utils {
         return arr
     }
 }
+
+export const isExist = (value: any) => {
+    return value !== undefined && value !== null
+}
+
+export const isArray = (value: any) => {
+    return isExist(value) && Array.isArray(value)
+}

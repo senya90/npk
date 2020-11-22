@@ -15,7 +15,7 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
     const {getChemicalComplexById} = useContext(CalculatorContext)
 
     const adaptForSelect = (elements: any[]): SelectOption[] => {
-        return AdapterFertilizer.toSelect(elements)
+        return AdapterFertilizer.complexToSelect(elements)
     }
 
     const onNameChange = (chemicalComplexId: string) => {
@@ -31,7 +31,7 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
         props.onChemicalChanged(updatedElement)
     }
 
-    const chemicalComplexId = props.chemical.chemicalComplex.id ? props.chemical.chemicalComplex.id : undefined
+    let chemicalComplexId = props.chemical.chemicalComplex.isValid() ? props.chemical.chemicalComplex.id : undefined
 
     return (
         <div className={style.elementsBox}>

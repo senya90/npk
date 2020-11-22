@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext, useEffect, useState} from 'react';
 import { Button } from 'atom/button/Button';
 import { BUTTON_TYPE, BUTTON_SHAPE } from 'atom/button/ButtonTypes';
 import { Input } from 'atom/input/Input';
-import { chemicalComplexMock } from 'mocks/chemicalComplexMock';
+import { chemicalComplexMockArray } from 'mocks/chemicalComplexMock';
 
 import style from './fertilizerEditor.module.scss'
 import {commonStyles} from "../../helpers/commonStyle";
@@ -65,7 +65,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
         return elements.map(element => <FertilizerElement
             key={element.id}
             chemical={element}
-            chemicalList={chemicalComplexMock}
+            chemicalList={chemicalComplexMockArray()}
             onChemicalChanged={onElementChanged}
         />)
     }
