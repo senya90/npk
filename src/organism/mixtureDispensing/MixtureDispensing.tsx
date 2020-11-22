@@ -1,9 +1,12 @@
 import React, {FunctionComponent, useState} from 'react';
+import cn from 'classnames'
 import {Mixture} from 'models/mixture/mixture';
 import {MixtureFertilizers} from "./MixtureFertilizers";
 
 import style from './mixtureDispensing.module.scss'
 import { DispensingContext } from 'helpers/contexts/DispensingContext';
+import { Icon } from 'atom/icon/Icon';
+import {ICON_TYPE} from "atom/icon/IconTypes";
 
 
 interface MixtureDispensingProps {
@@ -27,13 +30,19 @@ const MixtureDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture})
         setIsShowControls(!isShowControls)
     }
 
-    const mixtureStyle = isShowControls ? `${style.mixture} ${style._mixtureActive}` : style.mixture
-
     return (
-        <div className={mixtureStyle}>
+        <div className={cn(style.mixture, {[style._mixtureActive] : isShowControls})}>
             {mixture &&
                 <>
-                    <div className={style.mixtureName} onClick={toggleShow}>{mixture.name}</div>
+                    <div className={style.mixtureName} onClick={toggleShow}>
+                        {mixture.name}
+                        <Icon
+                            className={style.open}
+                            type={isShowControls ? ICON_TYPE.DownOutlined : ICON_TYPE.RightOutlined }
+                            size={15}
+                        />
+                    </div>
+
                     {isShowControls &&
                         <DispensingContext.Provider value={{
                             onVolumeChanged: onVolumeChanged,

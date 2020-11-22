@@ -3,6 +3,8 @@ import {ICON_TYPE} from "./IconTypes";
 import {
     RightOutlined,
     EditOutlined,
+    DownOutlined,
+
     DeleteOutlined,
     PlusSquareOutlined,
     MinusSquareOutlined,
@@ -36,6 +38,9 @@ export function IconsProvider(iconType: ICON_TYPE) {
 
         case (ICON_TYPE.Cross):
             return <CloseOutlined />
+
+        case (ICON_TYPE.DownOutlined):
+            return <DownOutlined />
 
         default:
             return <div/>

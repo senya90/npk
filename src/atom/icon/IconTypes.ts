@@ -11,6 +11,7 @@ export interface IconProps {
 export class ICON_TYPE {
     static readonly RightOutlined = 'RightOutlined'
     static readonly LeftOutlined = 'LeftOutlined'
+    static readonly DownOutlined = 'DownOutlined'
     static readonly Edit = 'EditOutlined'
     static readonly Delete = 'DeleteOutlined'
 

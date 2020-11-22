@@ -2,11 +2,11 @@
 @import "src/mixins.module";
 
 .mixture {
+    padding: 5px 10px;
 
     &._mixtureActive {
         background-color: $color_backSecondary;
-        padding: 10px;
-        padding-bottom: 20px;
+        border-bottom: 1px solid $border_light;
     }
 }
 
@@ -54,4 +54,8 @@
     text-align: right;
     margin-left: 20px;
     min-width: 75px;
+}
+
+.open {
+    margin-left: 10px;
 }
