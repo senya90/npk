@@ -4,17 +4,20 @@ import styles from './App.module.css'
 import {Calculator} from "../template/calculator/Calculator";
 import Modal from "../organism/modal/Modal";
 
-function App() {
+const App = () => {
     return (
         <div>
             <div className={styles.container}>
-                <Modal>
+                <Modal
+                    title={"Добавить удобрение"}
+                    onClose={() => {}}
+                >
                     <div>модалка!</div>
                 </Modal>
-                <Calculator />
+                <Calculator/>
             </div>
         </div>
     );
 }
 
-export default App;
+export {App}

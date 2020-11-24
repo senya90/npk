@@ -9,6 +9,7 @@
     left: 0;
     top: 0;
     background-color: $color_background_transparent;
+    font-size: 15px;
 }
 
 .modalWindow {
@@ -21,8 +22,13 @@
 .header {
     min-height: 70px;
     border-bottom: 1px solid $color_description;
-    padding: 10px;
+    padding: 10px 20px;
     position: relative;
+    font-size: 1.5em;
+}
+
+.modalTitle {
+
 }
 
 .closeModal {
@@ -42,5 +48,5 @@
 }
 
 .modalContent {
-    padding: 10px;
+    padding: 10px 20px;
 }
