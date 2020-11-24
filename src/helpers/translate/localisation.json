@@ -70,5 +70,9 @@
     "tableSolutions": {
         "ru": "Таблица смесей",
         "en": "Table of solutions"
+    },
+    "fertilizer": {
+        "ru": "Удобрение",
+        "en": "Fertilizer"
     }
 }

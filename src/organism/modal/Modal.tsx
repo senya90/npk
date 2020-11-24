@@ -7,7 +7,7 @@ import { Icon } from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 
 interface ModalProps {
-    title: string
+    title?: string
     onClose?: (id: string) => void
 }
 
