@@ -1,7 +1,7 @@
-import { Crop } from "models/crop";
+import { Agriculture } from "models/agriculture";
 import {Mixture} from "../../models/mixture/mixture";
 
 export interface ChemicalComparisonProps {
-    activeCrop: Crop
+    activeAgriculture: Agriculture
     mixture?: Mixture
 }

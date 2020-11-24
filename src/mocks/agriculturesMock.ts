@@ -1,9 +1,9 @@
-import {Crop} from "models/crop";
+import {Agriculture} from "models/agriculture";
 import {chemicalUnitsMock} from "./chemicalMock";
 import { ChemicalUnitValue } from "models/chemicalUnitValue/chemicalUnitValue";
 
-export const cropsMock: Crop[] = [
-    new Crop(
+export const agriculturesMock: Agriculture[] = [
+    new Agriculture(
         'Огурцы',
         [
             new ChemicalUnitValue(chemicalUnitsMock.K, 55),
@@ -13,7 +13,7 @@ export const cropsMock: Crop[] = [
         [],
         '62629f03-e79c-43d8-ac47-98343c658653'
     ),
-    new Crop(
+    new Agriculture(
         'Помидоры',
         [
             new ChemicalUnitValue(chemicalUnitsMock.P, 20.5),

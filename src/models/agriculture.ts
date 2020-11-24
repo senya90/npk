@@ -1,7 +1,7 @@
 import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
 import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
 
-export class Crop {
+export class Agriculture {
     id: string
     name: string
     vegetation?: ChemicalUnitValue[]

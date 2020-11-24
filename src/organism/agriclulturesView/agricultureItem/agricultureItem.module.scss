@@ -1,11 +1,13 @@
 @import "src/index";
 
-.crop {
+.agriculture {
 
+    cursor: pointer;
+    padding-left: 10px;
     transition: padding .15s ease-in-out;
 
-    &.activeCrop {
-        padding-left: 10px;
+    &.activeAgriculture {
+        padding-left: 5px;
         background-color: $color_backSecondary;
     }
 }

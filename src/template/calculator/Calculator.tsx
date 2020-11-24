@@ -9,10 +9,10 @@ import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
 import {Mixture} from "../../models/mixture/mixture";
 import { Mixtures } from 'organism/mixtures/Mixtures';
 import {mixturesMock} from "../../mocks/mixturesMock";
-import {Crops} from "../../organism/crops/Crops";
-import {cropsMock} from "../../mocks/cropsMock";
+import {AgriculturesView} from "../../organism/agriclulturesView/AgriculturesView";
+import {agriculturesMock} from "../../mocks/agriculturesMock";
 import {ChemicalComparison} from "../../organism/checmicalComparison/ChemicalComparison";
-import {Crop} from "../../models/crop";
+import {Agriculture} from "../../models/agriculture";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 import {chemicalComplexMockArray} from "../../mocks/chemicalComplexMock";
 
@@ -22,7 +22,7 @@ const Calculator = () => {
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
     const [allMixtures, setAllMixtures] = useState<Mixture[]>(mixturesMock)
     const [mixture, setMixture] = useState<Mixture>()
-    const [activeCrop, setActiveCrop] = useState<Crop>(cropsMock[0])
+    const [activeAgriculture, setActiveAgriculture] = useState<Agriculture>(agriculturesMock[0])
 
 
     const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
@@ -104,8 +104,8 @@ const Calculator = () => {
         setMixture(undefined)
     }
 
-    const onCropSelect = (crop: Crop) => {
-        setActiveCrop(crop)
+    const onSelectAgriculture = (agriculture: Agriculture) => {
+        setActiveAgriculture(agriculture)
     }
 
     return (
@@ -122,7 +122,7 @@ const Calculator = () => {
                 onAddFertilizerToMixture: onAddFertilizerToMixture,
                 onMixtureSave: onMixtureSave,
 
-                onCropSelect: onCropSelect
+                onAgricultureSelect: onSelectAgriculture
             }}
             >
                 <div className={style.box}>
@@ -134,12 +134,12 @@ const Calculator = () => {
                         mixture={mixture}
                     />
                     <ChemicalComparison
-                        activeCrop={activeCrop}
+                        activeAgriculture={activeAgriculture}
                         mixture={mixture}
                     />
-                    <Crops
-                        crops={cropsMock}
-                        activeCrop={activeCrop}
+                    <AgriculturesView
+                        agricultures={agriculturesMock}
+                        activeAgriculture={activeAgriculture}
                     />
                 </div>
                 <div>

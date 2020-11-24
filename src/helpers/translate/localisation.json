@@ -63,9 +63,9 @@
         "ru": "Готовые растворы",
         "en": "Ready-to-use solutions"
     },
-    "crops": {
+    "agriculture": {
         "ru": "Агрокультуры",
-        "en": "Agricultural crops"
+        "en": "Agriculture"
     },
     "tableSolutions": {
         "ru": "Таблица смесей",
@@ -74,5 +74,9 @@
     "fertilizer": {
         "ru": "Удобрение",
         "en": "Fertilizer"
+    },
+    "addAgriculture": {
+        "ru": "Добавить агрокультуру",
+        "en": "Add agriculture"
     }
 }

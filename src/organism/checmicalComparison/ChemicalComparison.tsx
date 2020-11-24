@@ -37,19 +37,19 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
                     key={chemical.id}
                     chemical={chemical}
                     mixed={getChemicalFromMix(chemical)}
-                    vegetation={getVegetationValueFromCrop(chemical)}
-                    bloom={getBloomValueFromCrop(chemical)}
+                    vegetation={getVegetationValueFromAgriculture(chemical)}
+                    bloom={getBloomValueFromAgriculture(chemical)}
                 />
             )
         })
     }
 
-    const getVegetationValueFromCrop = (chemical: ChemicalUnit): number => {
-        return _ejectResult(_findByChemicalIn(chemical, props.activeCrop.vegetation))
+    const getVegetationValueFromAgriculture = (chemical: ChemicalUnit): number => {
+        return _ejectResult(_findByChemicalIn(chemical, props.activeAgriculture.vegetation))
     }
 
-    const getBloomValueFromCrop = (chemical: ChemicalUnit): number => {
-        return _ejectResult(_findByChemicalIn(chemical, props.activeCrop.bloom))
+    const getBloomValueFromAgriculture = (chemical: ChemicalUnit): number => {
+        return _ejectResult(_findByChemicalIn(chemical, props.activeAgriculture.bloom))
     }
 
     const _findByChemicalIn = (targetChemical: ChemicalUnit, source?: ChemicalUnitValue[]): ChemicalUnitValue | undefined => {

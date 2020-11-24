@@ -1,7 +1,7 @@
 import React from "react";
 import {Fertilizer} from "../../models/fertilizer";
 import { Mixture } from "models/mixture/mixture";
-import { Crop } from "models/crop";
+import { Agriculture } from "models/agriculture";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 
 export type CalculatorContextType = {
@@ -16,7 +16,7 @@ export type CalculatorContextType = {
     getFertilizerById: (fertilizerId: string) => Fertilizer | undefined
     getChemicalComplexById: (chemicalComplexId: string) => ChemicalComplex | undefined
 
-    onCropSelect: (crop: Crop) => void
+    onAgricultureSelect: (agriculture: Agriculture) => void
 }
 
 export const CalculatorContext = React.createContext<CalculatorContextType>({
@@ -46,6 +46,6 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     },
 
 
-    onCropSelect(crop: Crop): void {
+    onAgricultureSelect(agriculture: Agriculture): void {
     }
 })
