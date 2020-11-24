@@ -1,4 +1,4 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useContext, useState} from 'react';
 import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {Button} from "../../atom/button/Button";
 import {translate} from "../../helpers/translate/translate";
@@ -7,12 +7,36 @@ import {FertilizersProps} from "./FertilizersTypes";
 import {FertilizerView} from "../../molecule/fertilizerView/FertilizerView";
 
 import style from './fertilizers.module.scss'
+import Modal from 'organism/modal/Modal';
+import {FertilizerEditor} from "../fertilizerEditor/FertilizerEditor";
+import {Fertilizer} from "../../models/fertilizer";
+import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
 
 
-const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers}) => {
+const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer}) => {
+    const {onSaveFertilizer, onEditFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
+    const [isOpenModal, setIsOpenModal] = useState(false)
 
     const renderFertilizers = () => {
-        return fertilizers.map(fertilizer => <FertilizerView key={fertilizer.id} fertilizer={fertilizer}/>)
+        return fertilizers.map(fertilizer => <FertilizerView key={fertilizer.id} fertilizer={fertilizer} editFertilizer={editFertilizer}/>)
+    }
+
+    const addEditFertilizer = () => {
+        setIsOpenModal(true)
+    }
+
+    const editFertilizer = (fertilizer: Fertilizer) => {
+        onEditFertilizer(fertilizer.id)
+        setIsOpenModal(true)
+    }
+
+    const closeModal = () => {
+        setIsOpenModal(false)
+    }
+
+    const onSave = (fertilizer: Fertilizer) => {
+        closeModal()
+        onSaveFertilizer(fertilizer)
     }
 
     return (
@@ -23,9 +47,21 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers}) => {
             </div>
             <Button
                 type={BUTTON_TYPE.PRIMARY}
+                onClick={addEditFertilizer}
             >
                 {translate('addFertilizer')}
             </Button>
+            {isOpenModal &&
+                <Modal
+                    title={translate('fertilizer')}
+                    onClose={closeModal}
+                >
+                    <FertilizerEditor
+                        editableFertilizer={editableFertilizer}
+                        onSave={onSave}
+                    />
+                </Modal>
+            }
 
         </div>
     );

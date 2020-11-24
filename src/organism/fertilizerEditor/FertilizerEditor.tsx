@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useEffect, useState} from 'react';
+import React, {FunctionComponent, useEffect, useState} from 'react';
 import { Button } from 'atom/button/Button';
 import { BUTTON_TYPE, BUTTON_SHAPE } from 'atom/button/ButtonTypes';
 import { Input } from 'atom/input/Input';
@@ -11,12 +11,10 @@ import {FertilizerIngredient} from "../../models/fertilizerIngredient";
 import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
 import {translate} from "../../helpers/translate/translate";
 import {Fertilizer} from "../../models/fertilizer";
-import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
 
-const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFertilizer}) => {
+const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFertilizer, onSave}) => {
     const [name, setName] = useState<string>('')
     const [elements, setElements] = useState<FertilizerIngredient[]>([])
-    const {onSaveFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
 
     useEffect(() => {
         if (editableFertilizer) {
@@ -47,12 +45,12 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
         setName(e.target.value)
     }
 
-    const onSave = () => {
+    const save = () => {
         let fertilizer = new Fertilizer(name, elements)
         if (editableFertilizer) {
             fertilizer = new Fertilizer(name, elements, editableFertilizer.id)
         }
-        onSaveFertilizer(fertilizer)
+        onSave(fertilizer)
         resetState()
     }
 
@@ -93,7 +91,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
             <Button
                 type={BUTTON_TYPE.PRIMARY}
                 containerclass={`${commonStyles.mb_nano}`}
-                onClick={onSave}
+                onClick={save}
             >
                 {translate('save')}
             </Button>

@@ -10,19 +10,20 @@ import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 interface FertilizerViewProps {
     fertilizer: Fertilizer
+    editFertilizer: (fertilizer: Fertilizer) => void
 }
 
-const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) => {
+const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, editFertilizer}) => {
     const [active, setActive] = useState<boolean>(false)
-    const {onDeleteFertilizer, onEditFertilizer, onAddFertilizerToMixture} = useContext(CalculatorContext)
+    const {onDeleteFertilizer, onAddFertilizerToMixture} = useContext(CalculatorContext)
 
     const toggleActive = (e: React.MouseEvent<HTMLDivElement>) => {
         setActive(!active)
     }
 
-    const editFertilizer = (e: React.MouseEvent) => {
+    const edit = (e: React.MouseEvent) => {
         e.stopPropagation()
-        onEditFertilizer(fertilizer.id)
+        editFertilizer(fertilizer)
     }
 
     const deleteFertilizer = (e: React.MouseEvent) => {
@@ -56,7 +57,7 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer}) =>
                         type={ICON_TYPE.Edit}
                         size={20}
                         className={style.icon}
-                        onClick={editFertilizer}
+                        onClick={edit}
                     />
                     <Icon
                         type={ICON_TYPE.Delete}

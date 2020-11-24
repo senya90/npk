@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {FertilizerEditor} from "../../organism/fertilizerEditor/FertilizerEditor";
 import {Fertilizers} from "../../organism/fertilizers/Fertilizers";
 import { Fertilizer } from 'models/fertilizer';
 import {fertilizersMock} from "../../mocks/fertilizersMock";
@@ -129,6 +128,7 @@ const Calculator = () => {
                 <div className={style.box}>
                     <Fertilizers
                         fertilizers={fertilizers}
+                        editableFertilizer={editableFertilizer}
                     />
                     <MixtureComposition
                         mixture={mixture}
@@ -149,9 +149,6 @@ const Calculator = () => {
                 </div>
                 <br/>
                 <br/>
-                <FertilizerEditor
-                    editableFertilizer={editableFertilizer}
-                />
             </CalculatorContext.Provider>
 
         </div>
