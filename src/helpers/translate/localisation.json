@@ -79,8 +79,20 @@
         "ru": "Добавить агрокультуру",
         "en": "Add agriculture"
     },
+    "editAgriculture": {
+        "ru": "Редактировать агрокультуру",
+        "en": "Edit agriculture"
+    },
     "enterAgricultureName": {
         "ru": "Введите название агрокультуры",
         "en": "Enter the name of the agriculture"
+    },
+    "bloom": {
+        "ru": "Цветение",
+        "en": "Bloom"
+    },
+    "vegetation": {
+        "ru": "Вегетация",
+        "en": "Vegetation"
     }
 }

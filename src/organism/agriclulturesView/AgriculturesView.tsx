@@ -40,6 +40,18 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = (props) => {
         return isAddNew || isExist(editableAgriculture)
     }
 
+    const getTitle = (): string => {
+        if (isAddNew) {
+            return translate('addAgriculture')
+        }
+
+        if (editableAgriculture) {
+            return translate('editAgriculture')
+        }
+
+        return ''
+    }
+
     return (
         <div className={style.agricultureWrapper}>
             <Title>{translate('agriculture')}</Title>
@@ -63,6 +75,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = (props) => {
             {isOpenAddEditModal() &&
             <Modal
                 onClose={closeEditor}
+                title={getTitle()}
             >
                 <AgricultureEditor
                     agriculture={editableAgriculture}

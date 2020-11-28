@@ -1,11 +1,14 @@
-import React, {FunctionComponent} from 'react';
-
+import React, {FC} from 'react';
 import style from './tableCell.module.scss'
+import cn from 'classnames'
 
+interface TableCellProps {
+    className?: string
+}
 
-const TableCell: FunctionComponent = (props) => {
+const TableCell: FC<TableCellProps> = (props) => {
     return (
-        <div className={style.tableCell}>
+        <div className={cn(style.tableCell, props.className)}>
             {props.children}
         </div>
     );
