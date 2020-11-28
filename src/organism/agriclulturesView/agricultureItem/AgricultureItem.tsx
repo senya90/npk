@@ -9,6 +9,7 @@ import style from './agricultureItem.module.scss'
 interface AgricultureItemProps {
     agriculture: Agriculture
     isActive?: boolean
+    onEdit?: (agriculture: Agriculture) => void
 }
 
 const AgricultureItem: FunctionComponent<AgricultureItemProps> = (props) => {
@@ -18,9 +19,18 @@ const AgricultureItem: FunctionComponent<AgricultureItemProps> = (props) => {
         onAgricultureSelect(props.agriculture)
     }
 
+    const edit = () => {
+        if (props.onEdit) {
+            props.onEdit(props.agriculture)
+        }
+    }
+
     return (
-        <div onClick={selectAgriculture} className={cn(style.agriculture, {[style.activeAgriculture]: props.isActive})}>
+        <div
+            onClick={selectAgriculture}
+            className={cn(style.agriculture, {[style.activeAgriculture]: props.isActive})}>
             {props.agriculture.name}
+            <div onClick={edit}>редактировать</div>
         </div>
     );
 };

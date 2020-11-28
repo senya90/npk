@@ -78,5 +78,9 @@
     "addAgriculture": {
         "ru": "Добавить агрокультуру",
         "en": "Add agriculture"
+    },
+    "enterAgricultureName": {
+        "ru": "Введите название агрокультуры",
+        "en": "Enter the name of the agriculture"
     }
 }
