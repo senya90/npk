@@ -1,0 +1,8 @@
+                  _aggregate_
+                 |          |
+                 |          |
+                  atom atom
+                    |   |
+    Mg S O 4  *   7 H 2 0
+   |                     |
+   |_______complex_______|
