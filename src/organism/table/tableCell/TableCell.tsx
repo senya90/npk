@@ -5,13 +5,16 @@ import cn from 'classnames'
 interface TableCellProps {
     className?: string
     noPadding?: boolean
+    header?: boolean
 }
 
 const TableCell: FC<TableCellProps> = (props) => {
+    const CellTag = props.header ? 'th' : 'td'
+
     return (
-        <div className={cn(style.tableCell, props.className, {[style.noPadding]: props.noPadding })}>
+        <CellTag className={cn(style.tableCell, props.className, {[style.noPadding]: props.noPadding })}>
             {props.children}
-        </div>
+        </CellTag>
     );
 };
 

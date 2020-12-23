@@ -94,5 +94,13 @@
     "vegetation": {
         "ru": "Вегетация",
         "en": "Vegetation"
+    },
+    "mixed": {
+        "ru": "Замешано",
+        "en": "Mixed"
+    },
+    "element": {
+        "ru": "Элемент",
+        "en": "Element"
     }
 }

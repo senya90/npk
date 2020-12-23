@@ -8,9 +8,9 @@ interface TableRawProps {
 
 const TableRaw: FC<TableRawProps> = (props) => {
     return (
-        <div className={cn(style.tableRaw, props.className)}>
+        <tr className={cn(style.tableRaw, props.className)}>
             {props.children}
-        </div>
+        </tr>
     );
 };
 

@@ -76,7 +76,7 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                 {agriculture && agriculture.vegetation &&
                 <div className={style.editorField}>
                     <div className={cn(style.tableTitle, style.vegetation)}>{translate('vegetation')}</div>
-                    <Table>
+                    <Table full>
                         {renderRows(agriculture.vegetation)}
                     </Table>
                 </div>
@@ -84,7 +84,7 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                 {agriculture && agriculture.bloom &&
                 <div  className={style.editorField}>
                     <div className={cn(style.tableTitle, style.bloom)}>{translate('bloom')}</div>
-                    <Table>
+                    <Table full>
                         {renderRows(agriculture.bloom)}
                     </Table>
                 </div>
