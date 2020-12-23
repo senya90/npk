@@ -7,10 +7,16 @@ export class Agriculture {
     vegetation?: ChemicalUnitValue[]
     bloom?: ChemicalUnitValue[]
 
-    constructor(name = '', composition?: ChemicalUnitValue[], bloom?: ChemicalUnitValue[], id?: string,) {
+    constructor(name = '', vegetation?: ChemicalUnitValue[], bloom?: ChemicalUnitValue[], id?: string,) {
         this.name = name;
-        this.vegetation = composition ? composition : [];
+        this.vegetation = vegetation ? vegetation : [];
         this.bloom = bloom ? bloom : [];
         this.id = id ? id : IdGenerator.generate();
+    }
+
+    clone = () => {
+        const vegetation = this.vegetation ? [...this.vegetation] : []
+        const bloom = this.bloom ? [...this.bloom] : []
+        return new Agriculture(this.name, vegetation, bloom, this.id)
     }
 }

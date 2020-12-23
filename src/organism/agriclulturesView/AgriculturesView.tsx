@@ -13,7 +13,7 @@ import {AgricultureEditor} from 'organism/agricultureEditor/AgricultureEditor';
 import {isExist} from "../../helpers/utils";
 
 
-const AgriculturesView: FunctionComponent<AgriculturesProps> = (props) => {
+const AgriculturesView: FunctionComponent<AgriculturesProps> = ({agricultures, activeAgriculture, onAgriculturesUpdated}) => {
     const [isAddNew, setIsAddNew] = useState(false)
     const [editableAgriculture, setEditableAgriculture] = useState<Agriculture | undefined>(undefined)
 
@@ -21,10 +21,19 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = (props) => {
         (agriculture: Agriculture) => {
             setEditableAgriculture(agriculture)
         }
-        , [])
+        , []
+    )
+
+    const onAgricultureChanged = useCallback(
+        (agriculture: Agriculture) => {
+            setEditableAgriculture(agriculture)
+            onAgriculturesUpdated([agriculture])
+        }
+        , [onAgriculturesUpdated]
+    )
 
     const isActive = (agriculture: Agriculture) => {
-        return agriculture.id === props.activeAgriculture.id
+        return agriculture.id === activeAgriculture.id
     }
 
     const openEditor = () => {
@@ -56,7 +65,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = (props) => {
         <div className={style.agricultureWrapper}>
             <Title>{translate('agriculture')}</Title>
             {
-                props.agricultures.map(agriculture => (
+                agricultures.map(agriculture => (
                     <AgricultureItem
                         agriculture={agriculture}
                         key={agriculture.id}
@@ -79,6 +88,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = (props) => {
             >
                 <AgricultureEditor
                     agriculture={editableAgriculture}
+                    onAgricultureChanged={onAgricultureChanged}
                 />
             </Modal>
             }

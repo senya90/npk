@@ -17,6 +17,7 @@ export type CalculatorContextType = {
     getChemicalComplexById: (chemicalComplexId: string) => ChemicalComplex | undefined
 
     onAgricultureSelect: (agriculture: Agriculture) => void
+    onAgriculturesUpdated: (agricultures: Agriculture[]) => void
 }
 
 export const CalculatorContext = React.createContext<CalculatorContextType>({
@@ -47,5 +48,7 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
 
 
     onAgricultureSelect(agriculture: Agriculture): void {
+    },
+    onAgriculturesUpdated(agricultures: Agriculture[]): void {
     }
 })

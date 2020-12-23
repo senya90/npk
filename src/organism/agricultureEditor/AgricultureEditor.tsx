@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {AgricultureEditorProps} from './AgricultureEditorTypes';
 import {translate} from "../../helpers/translate/translate";
 import {Table} from 'organism/table/Table';
@@ -9,9 +9,18 @@ import {TableCell} from "../table/tableCell/TableCell";
 
 import style from './agricultureEditor.module.scss'
 import cn from 'classnames'
+import {Button} from "../../atom/button/Button";
+import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 
 
-const AgricultureEditor: FC<AgricultureEditorProps> = (props) => {
+const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultureChanged}) => {
+    const [name, setName] = useState<string>("")
+
+    useEffect(() => {
+        if (agriculture) {
+            setName(agriculture.name)
+        }
+    }, [agriculture])
 
     const renderRows = (collection: ChemicalUnitValue[]) => {
         if (collection) {
@@ -26,35 +35,53 @@ const AgricultureEditor: FC<AgricultureEditorProps> = (props) => {
                 )
             })
         }
-
         return null
+    }
+
+    const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value)
+    }
+
+    const save = () => {
+        if (agriculture) {
+            const updatedAgriculture = agriculture.clone()
+            updatedAgriculture.name = name
+            onAgricultureChanged(updatedAgriculture)
+        }
     }
 
     return (
         <div>
             <Input
-                value={props.agriculture ? props.agriculture.name : ''}
-                placeholder={translate('enterAgricultureName')}
                 className={style.name}
+                onChange={changeName}
+                value={name ? name : ''}
+                placeholder={translate('enterAgricultureName')}
             />
             <div className={style.editor}>
-                {props.agriculture && props.agriculture.vegetation &&
+                {agriculture && agriculture.vegetation &&
                 <div className={style.editorField}>
                     <div className={cn(style.tableTitle, style.vegetation)}>{translate('vegetation')}</div>
                     <Table>
-                        {renderRows(props.agriculture.vegetation)}
+                        {renderRows(agriculture.vegetation)}
                     </Table>
                 </div>
                 }
-                {props.agriculture && props.agriculture.bloom &&
+                {agriculture && agriculture.bloom &&
                 <div  className={style.editorField}>
                     <div className={cn(style.tableTitle, style.bloom)}>{translate('bloom')}</div>
                     <Table>
-                        {renderRows(props.agriculture.bloom)}
+                        {renderRows(agriculture.bloom)}
                     </Table>
                 </div>
                 }
             </div>
+            <Button
+                type={BUTTON_TYPE.PRIMARY}
+                onClick={save}
+            >
+                {translate('save')}
+            </Button>
 
         </div>
     );

@@ -23,6 +23,7 @@ const Calculator = () => {
     const [allMixtures, setAllMixtures] = useState<Mixture[]>(mixturesMock)
     const [mixture, setMixture] = useState<Mixture>()
     const [activeAgriculture, setActiveAgriculture] = useState<Agriculture>(agriculturesMock[0])
+    const [agricultures, setAgricultures] = useState<Agriculture[]>(agriculturesMock)
 
 
     const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
@@ -108,6 +109,21 @@ const Calculator = () => {
         setActiveAgriculture(agriculture)
     }
 
+    const onAgriculturesUpdated = (updatedAgricultures: Agriculture[]) => {
+        const withUpdated = agricultures.map(agriculture => {
+            let agricultureForUpdatedList = agriculture
+
+            for (let i = 0; i < updatedAgricultures.length; i++) {
+                if (updatedAgricultures[i].id === agriculture.id) {
+                    agricultureForUpdatedList = updatedAgricultures[i]
+                    break
+                }
+            }
+            return agricultureForUpdatedList
+        })
+        setAgricultures(withUpdated)
+    }
+
     return (
         <div>
             <CalculatorContext.Provider value={{
@@ -122,7 +138,8 @@ const Calculator = () => {
                 onAddFertilizerToMixture: onAddFertilizerToMixture,
                 onMixtureSave: onMixtureSave,
 
-                onAgricultureSelect: onSelectAgriculture
+                onAgricultureSelect: onSelectAgriculture,
+                onAgriculturesUpdated: onAgriculturesUpdated
             }}
             >
                 <div className={style.box}>
@@ -138,8 +155,9 @@ const Calculator = () => {
                         mixture={mixture}
                     />
                     <AgriculturesView
-                        agricultures={agriculturesMock}
+                        agricultures={agricultures}
                         activeAgriculture={activeAgriculture}
+                        onAgriculturesUpdated={onAgriculturesUpdated}
                     />
                 </div>
                 <div>
