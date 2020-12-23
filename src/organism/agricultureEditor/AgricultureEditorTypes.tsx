@@ -6,3 +6,5 @@ export interface AgricultureEditorProps {
     onAgricultureChanged: (agriculture: Agriculture) => void
     chemicals: ChemicalUnit[]
 }
+
+export type AgricultureCollectionType = "vegetation" | "bloom"

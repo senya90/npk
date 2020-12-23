@@ -1,6 +1,7 @@
 import React, {FunctionComponent } from 'react';
 import {InputNumber as InputNumberAnt} from 'antd'
 import {InputNumberProps, InputTypeValue} from "./InputNumberTypes";
+import './inputNumber.scss'
 
 const InputNumber: FunctionComponent<InputNumberProps> = (props) => {
     const onChange = (e: InputTypeValue) => {

@@ -1,5 +1,5 @@
-import React, {FC, useEffect, useState} from 'react';
-import {AgricultureEditorProps} from './AgricultureEditorTypes';
+import React, {FC, useCallback, useEffect, useState} from 'react';
+import {AgricultureCollectionType, AgricultureEditorProps} from './AgricultureEditorTypes';
 import {translate} from "../../helpers/translate/translate";
 import {Table} from 'organism/table/Table';
 import {TableRaw} from 'organism/table/tableRow/TableRaw';
@@ -12,36 +12,82 @@ import cn from 'classnames'
 import {Button} from "../../atom/button/Button";
 import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {isExist} from "../../helpers/utils";
+import {InputNumber} from "../../atom/inputNumber/InputNumber";
+import {InputTypeValue} from "../../atom/inputNumber/InputNumberTypes";
 
 
 const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultureChanged, chemicals}) => {
     const [name, setName] = useState<string>("")
+    const getDefaultChemicals = () => {
+        return chemicals.map(c => new ChemicalUnitValue(c, 0))
+    }
+    const [editableVegetation, setEditableVegetation] = useState<ChemicalUnitValue[]>(getDefaultChemicals())
+    const [editableBloom, setEditableBloom] = useState<ChemicalUnitValue[]>(getDefaultChemicals())
+
+
+    const mergeWithAgricultureChemicals = useCallback(
+        (agricultureChemicals: ChemicalUnitValue[]): ChemicalUnitValue[] => {
+            const chemicalsValues = chemicals.map(chemical => new ChemicalUnitValue(chemical, 0))
+
+            return chemicalsValues.map(chemicalUnitValue => {
+                let editableChemical = chemicalUnitValue
+
+                if (agricultureChemicals) {
+                    const fromAgriculture = agricultureChemicals.find(agricultureChemical => agricultureChemical.chemicalUnit.id === editableChemical.chemicalUnit.id)
+                    if (fromAgriculture) {
+                        editableChemical = fromAgriculture
+                    }
+                }
+                return editableChemical
+            })
+
+        }, [chemicals]
+    )
 
     useEffect(() => {
         if (agriculture) {
             setName(agriculture.name)
+            setEditableVegetation(mergeWithAgricultureChemicals(agriculture.vegetation))
+            setEditableBloom(mergeWithAgricultureChemicals(agriculture.bloom))
         }
-    }, [agriculture])
+    }, [agriculture, mergeWithAgricultureChemicals])
 
-    const renderRows = (collection: ChemicalUnitValue[]) => {
-
-        const chemicalsValues = chemicals.map(chemical => new ChemicalUnitValue(chemical, 0))
-
-        return chemicalsValues.map(chemicalUnitValue => {
-            let renderChemical = chemicalUnitValue
-
-            if (collection) {
-                const fromAgriculture = collection.find(agricultureChemical => agricultureChemical.chemicalUnit.id === renderChemical.chemicalUnit.id)
-                if (fromAgriculture) {
-                    renderChemical = fromAgriculture
+    const changeAgricultureCollection = (value: InputTypeValue, chemical: ChemicalUnitValue, collectionType: AgricultureCollectionType) => {
+        const targetCollection = collectionType === "vegetation" ? editableVegetation : editableBloom
+        if (targetCollection) {
+            const edited = targetCollection.map(chemicalUnitValue => {
+                if (chemicalUnitValue.chemicalUnit.id === chemical.chemicalUnit.id) {
+                    return new ChemicalUnitValue(chemical.chemicalUnit, Number(value))
                 }
-            }
+                return chemicalUnitValue
+            })
+            changeCollection(edited, collectionType)
+        }
+    }
 
+    const changeCollection = (collection: ChemicalUnitValue[], collectionType: AgricultureCollectionType) => {
+        if (collectionType === "vegetation") {
+            setEditableVegetation(collection)
+        }
+
+        if (collectionType === "bloom") {
+            setEditableBloom(collection)
+        }
+    }
+
+    const renderRows = (collection: ChemicalUnitValue[], collectionType: AgricultureCollectionType) => {
+        return collection.map(function(renderChemical) {
             return (
                 <TableRaw key={renderChemical.chemicalUnit.id} className={style.elementLine}>
                     <TableCell noPadding className={style.elementName}>{renderChemical.chemicalUnit.name}</TableCell>
                     <TableCell noPadding>
-                        <Input value={String(renderChemical.value)} className={style.valueInput} />
+                        <InputNumber
+                            value={renderChemical.value}
+                            className={style.valueInput}
+                            onChange={(e) => {
+                                changeAgricultureCollection(e, renderChemical, collectionType)
+                            }}
+                        />
                     </TableCell>
                 </TableRaw>
             )
@@ -56,6 +102,8 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
         if (agriculture) {
             const updatedAgriculture = agriculture.clone()
             updatedAgriculture.name = name
+            updatedAgriculture.vegetation = editableVegetation
+            updatedAgriculture.bloom = editableBloom
             onAgricultureChanged(updatedAgriculture)
         }
     }
@@ -78,7 +126,7 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                     <div className={cn(style.tableTitle, style.vegetation)}>{translate('vegetation')}</div>
                     <Table full>
                         <tbody>
-                            {renderRows(agriculture.vegetation)}
+                            {renderRows(editableVegetation, "vegetation")}
                         </tbody>
                     </Table>
                 </div>
@@ -88,7 +136,7 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                     <div className={cn(style.tableTitle, style.bloom)}>{translate('bloom')}</div>
                     <Table full>
                         <tbody>
-                            {renderRows(agriculture.bloom)}
+                            {renderRows(editableBloom, "bloom")}
                         </tbody>
                     </Table>
                 </div>

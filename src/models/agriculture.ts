@@ -4,8 +4,8 @@ import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
 export class Agriculture {
     id: string
     name: string
-    vegetation?: ChemicalUnitValue[]
-    bloom?: ChemicalUnitValue[]
+    vegetation: ChemicalUnitValue[]
+    bloom: ChemicalUnitValue[]
 
     constructor(name = '', vegetation?: ChemicalUnitValue[], bloom?: ChemicalUnitValue[], id?: string,) {
         this.name = name;
