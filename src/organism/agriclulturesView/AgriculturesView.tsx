@@ -26,7 +26,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = ({agricultures, a
 
     const onAgricultureChanged = useCallback(
         (agriculture: Agriculture) => {
-            setEditableAgriculture(agriculture)
+            setEditableAgriculture(undefined)
             onAgriculturesUpdated([agriculture])
         }
         , [onAgriculturesUpdated]
