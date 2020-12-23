@@ -136,7 +136,14 @@ const Calculator = () => {
             }
             return agricultureForUpdatedList
         })
+
         setAgricultures(withUpdated)
+        
+        const newUpdatedAgriculture = updatedAgricultures.find(agriculture => agriculture.id === activeAgriculture.id)
+        if (newUpdatedAgriculture) {
+            setActiveAgriculture(newUpdatedAgriculture)
+        }
+
     }
 
     return (
