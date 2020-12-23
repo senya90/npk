@@ -11,6 +11,7 @@ import style from './agricultureEditor.module.scss'
 import cn from 'classnames'
 import {Button} from "../../atom/button/Button";
 import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
+import {isExist} from "../../helpers/utils";
 
 
 const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultureChanged}) => {
@@ -50,6 +51,10 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
         }
     }
 
+    const isEditMode = (): boolean => {
+        return isExist!(agriculture)
+    }
+
     return (
         <div>
             <Input
@@ -80,7 +85,7 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                 type={BUTTON_TYPE.PRIMARY}
                 onClick={save}
             >
-                {translate('save')}
+                {isEditMode() ? translate('save') : translate('add')}
             </Button>
 
         </div>
