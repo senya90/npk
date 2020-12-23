@@ -4,7 +4,6 @@ import {translate} from "../../helpers/translate/translate";
 import {ChemicalComparisonProps} from "./ChemicalComparisonTypes";
 import { Table } from 'organism/table/Table';
 import {TableRaw} from "../table/tableRow/TableRaw";
-import {chemicalUnitsMockArray} from "../../mocks/chemicalMock";
 import {TableCell} from "../table/tableCell/TableCell";
 import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalComparisonView';
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue/chemicalUnitValue";
@@ -31,7 +30,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     }
 
     const renderChemicalComposition = () => {
-        return chemicalUnitsMockArray().map(chemical => {
+        return props.chemicals.map(chemical => {
             return (
                 <ChemicalComparisonView
                     key={chemical.id}

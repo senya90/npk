@@ -14,7 +14,7 @@ import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {isExist} from "../../helpers/utils";
 
 
-const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultureChanged}) => {
+const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultureChanged, chemicals}) => {
     const [name, setName] = useState<string>("")
 
     useEffect(() => {
@@ -24,19 +24,28 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
     }, [agriculture])
 
     const renderRows = (collection: ChemicalUnitValue[]) => {
-        if (collection) {
-            return collection.map(chemicalUnitValue => {
-                return (
-                    <TableRaw key={chemicalUnitValue.chemicalUnit.id} className={style.elementLine}>
-                        <TableCell className={style.elementName}>{chemicalUnitValue.chemicalUnit.name}</TableCell>
-                        <TableCell>
-                            <Input value={String(chemicalUnitValue.value)} />
-                        </TableCell>
-                    </TableRaw>
-                )
-            })
-        }
-        return null
+
+        const chemicalsValues = chemicals.map(chemical => new ChemicalUnitValue(chemical, 0))
+
+        return chemicalsValues.map(chemicalUnitValue => {
+            let renderChemical = chemicalUnitValue
+
+            if (collection) {
+                const fromAgriculture = collection.find(agricultureChemical => agricultureChemical.chemicalUnit.id === renderChemical.chemicalUnit.id)
+                if (fromAgriculture) {
+                    renderChemical = fromAgriculture
+                }
+            }
+
+            return (
+                <TableRaw key={renderChemical.chemicalUnit.id} className={style.elementLine}>
+                    <TableCell noPadding className={style.elementName}>{renderChemical.chemicalUnit.name}</TableCell>
+                    <TableCell noPadding>
+                        <Input value={String(renderChemical.value)} />
+                    </TableCell>
+                </TableRaw>
+            )
+        })
     }
 
     const changeName = (event: React.ChangeEvent<HTMLInputElement>) => {

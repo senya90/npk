@@ -13,7 +13,13 @@ import {AgricultureEditor} from 'organism/agricultureEditor/AgricultureEditor';
 import {isExist} from "../../helpers/utils";
 
 
-const AgriculturesView: FunctionComponent<AgriculturesProps> = ({agricultures, activeAgriculture, onAgriculturesUpdated}) => {
+const AgriculturesView: FunctionComponent<AgriculturesProps> =
+    ({
+         agricultures,
+         activeAgriculture,
+         onAgriculturesUpdated,
+         chemicals
+    }) => {
     const [isAddNew, setIsAddNew] = useState(false)
     const [editableAgriculture, setEditableAgriculture] = useState<Agriculture | undefined>(undefined)
 
@@ -87,6 +93,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = ({agricultures, a
                 title={getTitle()}
             >
                 <AgricultureEditor
+                    chemicals={chemicals}
                     agriculture={editableAgriculture}
                     onAgricultureChanged={onAgricultureChanged}
                 />
