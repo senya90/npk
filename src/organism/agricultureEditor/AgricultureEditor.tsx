@@ -41,7 +41,7 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                 <TableRaw key={renderChemical.chemicalUnit.id} className={style.elementLine}>
                     <TableCell noPadding className={style.elementName}>{renderChemical.chemicalUnit.name}</TableCell>
                     <TableCell noPadding>
-                        <Input value={String(renderChemical.value)} />
+                        <Input value={String(renderChemical.value)} className={style.valueInput} />
                     </TableCell>
                 </TableRaw>
             )
@@ -90,12 +90,14 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                 </div>
                 }
             </div>
-            <Button
-                type={BUTTON_TYPE.PRIMARY}
-                onClick={save}
-            >
-                {isEditMode() ? translate('save') : translate('add')}
-            </Button>
+            <div className={style.editorFooter}>
+                <Button
+                    type={BUTTON_TYPE.PRIMARY}
+                    onClick={save}
+                >
+                    {isEditMode() ? translate('save') : translate('add')}
+                </Button>
+            </div>
 
         </div>
     );
