@@ -4,6 +4,8 @@ import {CalculatorContext} from "../../../helpers/contexts/CalculatorContext";
 import cn from 'classnames'
 
 import style from './agricultureItem.module.scss'
+import { Icon } from 'atom/icon/Icon';
+import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 
 
 interface AgricultureItemProps {
@@ -30,7 +32,20 @@ const AgricultureItem: FunctionComponent<AgricultureItemProps> = (props) => {
             onClick={selectAgriculture}
             className={cn(style.agriculture, {[style.activeAgriculture]: props.isActive})}>
             {props.agriculture.name}
-            <div onClick={edit}>редактировать</div>
+            <div className={style.controls}>
+                <Icon
+                    onClick={edit}
+                    type={ICON_TYPE.Edit}
+                    className={style.controlsIcon}
+                    size={18}
+                />
+                <Icon
+                    type={ICON_TYPE.Delete}
+                    className={style.controlsIcon}
+                    size={18}
+                />
+            </div>
+
         </div>
     );
 };
