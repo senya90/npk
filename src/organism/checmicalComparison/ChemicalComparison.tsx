@@ -69,13 +69,17 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         <div>
             <Title>{translate('tableSolutions')}</Title>
             <Table full>
-                <TableRaw>
-                    <TableCell header>{translate('element')}</TableCell>
-                    <TableCell header>{translate('mixed')}</TableCell>
-                    <TableCell header>{translate('vegetation')}</TableCell>
-                    <TableCell header>{translate('bloom')}</TableCell>
-                </TableRaw>
-                {renderChemicalComposition()}
+                <thead>
+                    <TableRaw>
+                        <TableCell header>{translate('element')}</TableCell>
+                        <TableCell header>{translate('mixed')}</TableCell>
+                        <TableCell header>{translate('vegetation')}</TableCell>
+                        <TableCell header>{translate('bloom')}</TableCell>
+                    </TableRaw>
+                </thead>
+                <tbody>
+                    {renderChemicalComposition()}
+                </tbody>
             </Table>
         </div>
     );
