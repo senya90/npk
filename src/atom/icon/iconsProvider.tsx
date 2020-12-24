@@ -10,7 +10,9 @@ import {
     MinusSquareOutlined,
     PlusCircleOutlined,
     MinusCircleOutlined,
-    CloseOutlined
+    CloseOutlined,
+    CaretRightOutlined,
+    DoubleRightOutlined,
 } from '@ant-design/icons';
 
 export function IconsProvider(iconType: ICON_TYPE) {
@@ -41,6 +43,12 @@ export function IconsProvider(iconType: ICON_TYPE) {
 
         case (ICON_TYPE.DownOutlined):
             return <DownOutlined />
+
+        case (ICON_TYPE.CaretRightOutlined):
+            return <CaretRightOutlined />
+
+        case (ICON_TYPE.DoubleRightOutlined):
+            return <DoubleRightOutlined />
 
         default:
             return <div/>

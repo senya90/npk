@@ -43,8 +43,9 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, edi
             <div className={style.name}>{fertilizer.name}</div>
             <Icon
                 className={style.addToMixture}
-                type={ICON_TYPE.RightOutlined}
+                type={ICON_TYPE.DoubleRightOutlined}
                 onClick={addToMixture}
+                size={15}
             />
             <div className={footerStyle}>
                 <IngredientsView

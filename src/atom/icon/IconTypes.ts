@@ -19,6 +19,8 @@ export class ICON_TYPE {
     static readonly MinusSquare = 'MinusSquareOutlined'
     static readonly PlusCircle = 'PlusCircleOutlined'
     static readonly MinusCircle = 'MinusCircleOutlined'
+    static readonly CaretRightOutlined = 'CaretRightOutlined'
+    static readonly DoubleRightOutlined = 'DoubleRightOutlined'
 
     static readonly Cross = 'CloseOutlined'
 }
