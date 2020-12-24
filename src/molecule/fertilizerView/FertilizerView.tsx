@@ -11,9 +11,10 @@ import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 interface FertilizerViewProps {
     fertilizer: Fertilizer
     editFertilizer: (fertilizer: Fertilizer) => void
+    isShowAdd: boolean
 }
 
-const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, editFertilizer}) => {
+const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, editFertilizer, isShowAdd}) => {
     const [active, setActive] = useState<boolean>(false)
     const {onDeleteFertilizer, onAddFertilizerToMixture} = useContext(CalculatorContext)
 
@@ -41,12 +42,14 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, edi
     return (
         <div className={style.fertilizer} onClick={toggleActive}>
             <div className={style.name}>{fertilizer.name}</div>
-            <Icon
-                className={style.addToMixture}
-                type={ICON_TYPE.DoubleRightOutlined}
-                onClick={addToMixture}
-                size={15}
-            />
+            {isShowAdd &&
+                <Icon
+                    className={style.addToMixture}
+                    type={ICON_TYPE.DoubleRightOutlined}
+                    onClick={addToMixture}
+                    size={15}
+                />
+            }
             <div className={footerStyle}>
                 <IngredientsView
                     ingredients={fertilizer.ingredients}

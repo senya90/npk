@@ -171,6 +171,7 @@ const Calculator = () => {
                     <Fertilizers
                         fertilizers={fertilizers}
                         editableFertilizer={editableFertilizer}
+                        mixture={mixture}
                     />
                     <MixtureComposition
                         mixture={mixture}

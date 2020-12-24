@@ -11,14 +11,22 @@ import Modal from 'organism/modal/Modal';
 import {FertilizerEditor} from "../fertilizerEditor/FertilizerEditor";
 import {Fertilizer} from "../../models/fertilizer";
 import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
+import { Dosage } from 'models/dosage';
 
 
-const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer}) => {
+const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture}) => {
     const {onSaveFertilizer, onEditFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
     const [isOpenModal, setIsOpenModal] = useState(false)
 
     const renderFertilizers = () => {
-        return fertilizers.map(fertilizer => <FertilizerView key={fertilizer.id} fertilizer={fertilizer} editFertilizer={editFertilizer}/>)
+        return fertilizers.map(fertilizer => {
+            let fertilizerUsedNow: Dosage | undefined = undefined
+            if (mixture) {
+                fertilizerUsedNow = mixture.dosages.find(dosage => dosage.fertilizer.id === fertilizer.id)
+            }
+
+            return <FertilizerView key={fertilizer.id} fertilizer={fertilizer} editFertilizer={editFertilizer} isShowAdd={!fertilizerUsedNow}/>
+        })
     }
 
     const addEditFertilizer = () => {
