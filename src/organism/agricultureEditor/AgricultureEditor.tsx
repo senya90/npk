@@ -102,8 +102,8 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
         if (agriculture) {
             const updatedAgriculture = agriculture.clone()
             updatedAgriculture.name = name
-            updatedAgriculture.vegetation = editableVegetation
-            updatedAgriculture.bloom = editableBloom
+            updatedAgriculture.vegetation = editableVegetation.filter(chemical => chemical.value !== 0)
+            updatedAgriculture.bloom = editableBloom.filter(chemical => chemical.value !== 0)
             onAgricultureChanged(updatedAgriculture)
         }
     }

@@ -143,7 +143,6 @@ const Calculator = () => {
         if (newUpdatedAgriculture) {
             setActiveAgriculture(newUpdatedAgriculture)
         }
-
     }
 
     return (
