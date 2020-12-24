@@ -4,6 +4,7 @@ import {ChemicalUnit} from "../../models/chemicalUnit";
 export interface AgricultureEditorProps {
     agriculture?: Agriculture
     onAgricultureChanged: (agriculture: Agriculture) => void
+    onAgricultureAdd: (agriculture: Agriculture) => void
     chemicals: ChemicalUnit[]
 }
 

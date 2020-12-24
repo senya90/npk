@@ -18,6 +18,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
          agricultures,
          activeAgriculture,
          onAgriculturesUpdated,
+         onAgriculturesAdd,
          chemicals
     }) => {
     const [isAddNew, setIsAddNew] = useState(false)
@@ -36,6 +37,13 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
             onAgriculturesUpdated([agriculture])
         }
         , [onAgriculturesUpdated]
+    )
+
+    const onAgricultureAdd = useCallback(
+        (agriculture: Agriculture) => {
+            setIsAddNew(false)
+            onAgriculturesAdd([agriculture])
+        }, [onAgriculturesAdd]
     )
 
     const isActive = (agriculture: Agriculture) => {
@@ -96,6 +104,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
                     chemicals={chemicals}
                     agriculture={editableAgriculture}
                     onAgricultureChanged={onAgricultureChanged}
+                    onAgricultureAdd={onAgricultureAdd}
                 />
             </Modal>
             }

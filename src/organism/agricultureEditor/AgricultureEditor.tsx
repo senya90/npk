@@ -14,9 +14,16 @@ import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {isExist} from "../../helpers/utils";
 import {InputNumber} from "../../atom/inputNumber/InputNumber";
 import {InputTypeValue} from "../../atom/inputNumber/InputNumberTypes";
+import {Agriculture} from "../../models/agriculture";
 
 
-const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultureChanged, chemicals}) => {
+const AgricultureEditor: FC<AgricultureEditorProps> =
+    ({
+         agriculture,
+         onAgricultureChanged,
+         onAgricultureAdd,
+         chemicals
+    }) => {
     const [name, setName] = useState<string>("")
     const getDefaultChemicals = () => {
         return chemicals.map(c => new ChemicalUnitValue(c, 0))
@@ -100,12 +107,27 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
 
     const save = () => {
         if (agriculture) {
-            const updatedAgriculture = agriculture.clone()
+            let updatedAgriculture = agriculture.clone()
             updatedAgriculture.name = name
-            updatedAgriculture.vegetation = editableVegetation.filter(chemical => chemical.value !== 0)
-            updatedAgriculture.bloom = editableBloom.filter(chemical => chemical.value !== 0)
+            updatedAgriculture.vegetation = editableVegetation
+            updatedAgriculture.bloom = editableBloom
+            updatedAgriculture = _filterAgricultureCollections(updatedAgriculture)
             onAgricultureChanged(updatedAgriculture)
+            return
         }
+    }
+
+    const add = () => {
+        let newAgriculture = new Agriculture(name, editableVegetation, editableBloom)
+        newAgriculture = _filterAgricultureCollections(newAgriculture)
+        onAgricultureAdd(newAgriculture)
+    }
+
+    const _filterAgricultureCollections = (agriculture: Agriculture) => {
+        const updated = agriculture.clone()
+        updated.vegetation = updated.vegetation.filter(chemical => chemical.value !== 0)
+        updated.bloom = updated.bloom.filter(chemical => chemical.value !== 0)
+        return updated
     }
 
     const isEditMode = (): boolean => {
@@ -121,7 +143,6 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                 placeholder={translate('enterAgricultureName')}
             />
             <div className={style.editor}>
-                {agriculture && agriculture.vegetation &&
                 <div className={style.editorField}>
                     <div className={cn(style.tableTitle, style.vegetation)}>{translate('vegetation')}</div>
                     <Table full>
@@ -130,8 +151,6 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                         </tbody>
                     </Table>
                 </div>
-                }
-                {agriculture && agriculture.bloom &&
                 <div  className={style.editorField}>
                     <div className={cn(style.tableTitle, style.bloom)}>{translate('bloom')}</div>
                     <Table full>
@@ -140,12 +159,11 @@ const AgricultureEditor: FC<AgricultureEditorProps> = ({agriculture, onAgricultu
                         </tbody>
                     </Table>
                 </div>
-                }
             </div>
             <div className={style.editorFooter}>
                 <Button
                     type={BUTTON_TYPE.PRIMARY}
-                    onClick={save}
+                    onClick={isEditMode() ? save : add}
                 >
                     {isEditMode() ? translate('save') : translate('add')}
                 </Button>

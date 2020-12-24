@@ -145,6 +145,10 @@ const Calculator = () => {
         }
     }
 
+    const onAgriculturesAdd = (addedAgricultures: Agriculture[]) => {
+        setAgricultures([...agricultures, ...addedAgricultures])
+    }
+
     return (
         <div>
             <CalculatorContext.Provider value={{
@@ -181,6 +185,7 @@ const Calculator = () => {
                         agricultures={agricultures}
                         activeAgriculture={activeAgriculture}
                         onAgriculturesUpdated={onAgriculturesUpdated}
+                        onAgriculturesAdd={onAgriculturesAdd}
                     />
                 </div>
                 <div>
