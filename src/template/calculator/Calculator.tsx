@@ -16,7 +16,7 @@ import {Agriculture} from "../../models/agriculture";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 import {chemicalComplexMockArray} from "../../mocks/chemicalComplexMock";
 import {ChemicalUnit} from "../../models/chemicalUnit";
-import {chemicalUnitsMockArray} from "../../mocks/chemicalMock";
+import {isExist} from "../../helpers/utils";
 
 
 const Calculator = () => {
@@ -34,10 +34,15 @@ const Calculator = () => {
             .then(result => setChemicals(result))
     }, [])
 
-    const getChemicalsApi = (): Promise<any> => {
-        return new Promise<any>((resolve, reject) => {
-            resolve(chemicalUnitsMockArray())
-        })
+    const getChemicalsApi = async (): Promise<ChemicalUnit[]> => {
+        // TODO: create API class/function
+        const chemicals = await fetch('/chemicals').then(res => res.json())
+
+        if (!isExist(chemicals)) {
+            return []
+        }
+
+        return chemicals.map((chemical: any) => (new ChemicalUnit(chemical.name, chemical.molar, chemical.id)))
     }
 
 
