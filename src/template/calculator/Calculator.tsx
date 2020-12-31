@@ -17,6 +17,8 @@ import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 import {chemicalComplexMockArray} from "../../mocks/chemicalComplexMock";
 import {ChemicalUnit} from "../../models/chemicalUnit";
 import {isExist} from "../../helpers/utils";
+import {API} from "core/api";
+import {ApiURL} from "core/api/ApiURL";
 
 
 const Calculator = () => {
@@ -35,7 +37,8 @@ const Calculator = () => {
     }, [])
 
     const getChemicalsApi = async (): Promise<ChemicalUnit[]> => {
-        // TODO: create API class/function
+        const result = await API.get(ApiURL.getChemicals, {param1: 1})
+        console.log('result', result)
         const chemicals = await fetch('/chemicals').then(res => res.json())
 
         if (!isExist(chemicals)) {
