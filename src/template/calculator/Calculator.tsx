@@ -56,7 +56,7 @@ const Calculator = () => {
 
     const getFertilizersApi = (): Promise<Fertilizer[]> => {
         return new Promise<Fertilizer[]>(resolve => {
-            resolve()
+            resolve([])
         })
     }
 
