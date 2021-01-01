@@ -6,11 +6,16 @@ interface IAPI {
 }
 
 export const API: IAPI = {
-    get: function(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+    get: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         return request.get(apiURL, apiParams, headers)
+            .catch(err => {
+                console.error(`API GET request error: `, err)
+                console.error(`url:${apiURL} params: ${apiParams}, headers: ${headers}`
+                )
+            })
     },
 
-    post: function(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+    post: function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         return new Promise(resolve => {
             resolve('Not implemented')
         })
