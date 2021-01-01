@@ -37,15 +37,18 @@ const Calculator = () => {
     }, [])
 
     const getChemicalsApi = async (): Promise<ChemicalUnit[]> => {
-        const result = await API.get(ApiURL.getChemicals, {param1: 1})
-        console.log('result', result)
-        const chemicals = await fetch('/chemicals').then(res => res.json())
+        try {
+            const result = await API.get(ApiURL.getChemicals)
+            const chemicals = result.data
 
-        if (!isExist(chemicals)) {
+            if (!isExist(chemicals)) {
+                return []
+            }
+
+            return chemicals.map((chemical: any) => (new ChemicalUnit(chemical.name, chemical.molar, chemical.id)))
+        } catch (e) {
             return []
         }
-
-        return chemicals.map((chemical: any) => (new ChemicalUnit(chemical.name, chemical.molar, chemical.id)))
     }
 
 

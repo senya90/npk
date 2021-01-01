@@ -1,10 +1,18 @@
 import {request} from "./request";
 
-
-export const API = {
-    get: async function(apiURL: string, apiParams?: any, headers?: any, ...args: any[]): Promise<any> {
-        return request.get(apiURL, apiParams, headers, ...args)
-    }
+interface IAPI {
+    get: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+    post: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
 }
 
+export const API: IAPI = {
+    get: function(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+        return request.get(apiURL, apiParams, headers)
+    },
 
+    post: function(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+        return new Promise(resolve => {
+            resolve('Not implemented')
+        })
+    }
+}
