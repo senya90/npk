@@ -34,6 +34,9 @@ const Calculator = () => {
     useEffect(() => {
         getChemicalsApi()
             .then(result => setChemicals(result))
+
+        getFertilizersApi()
+            .then(result => setFertilizers(result))
     }, [])
 
     const getChemicalsApi = async (): Promise<ChemicalUnit[]> => {
@@ -50,6 +53,13 @@ const Calculator = () => {
             return []
         }
     }
+
+    const getFertilizersApi = (): Promise<Fertilizer[]> => {
+        return new Promise<Fertilizer[]>(resolve => {
+            resolve()
+        })
+    }
+
 
 
     const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
