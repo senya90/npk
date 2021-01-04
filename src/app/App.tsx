@@ -1,13 +1,21 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
 import styles from './App.module.css'
-import {Calculator} from "../template/calculator/Calculator";
+import {Calculator} from "template/calculator/Calculator";
+import { Home } from 'template/home/Home';
+import {Login} from "template/login/Login";
 
 const App = () => {
     return (
         <div>
             <div className={styles.container}>
-                <Calculator/>
+                <Switch>
+                    <Route exact component={Home} path={'/'}/>
+                    <Route component={Login} path={'/login'}/>
+                    <Route component={Calculator} path={'/calculator'}/>
+                </Switch>
+
             </div>
         </div>
     );
