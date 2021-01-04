@@ -4,9 +4,12 @@ import './index.scss';
 import 'antd/dist/antd.css';
 import {App} from './app/App';
 import * as serviceWorker from './serviceWorker';
+import {BrowserRouter} from 'react-router-dom'
 
 ReactDOM.render(
-    <App />,
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>,
     document.getElementById('root')
 );
 
