@@ -67,7 +67,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     
     return (
         <div>
-            <Title>{translate('tableSolutions')}</Title>
+            <Title border>{translate('tableSolutions')}</Title>
             <Table full>
                 <thead>
                     <TableRaw>

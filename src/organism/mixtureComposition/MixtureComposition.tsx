@@ -65,7 +65,7 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
 
     return (
         <div>
-            <Title>{translate('mixtureComposition')}</Title>
+            <Title border>{translate('mixtureComposition')}</Title>
             {mixture &&
                 renderMixture()
             }

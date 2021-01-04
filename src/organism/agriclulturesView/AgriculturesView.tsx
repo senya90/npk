@@ -77,7 +77,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
 
     return (
         <div className={style.agricultureWrapper}>
-            <Title>{translate('agriculture')}</Title>
+            <Title border>{translate('agriculture')}</Title>
             {
                 agricultures.map(agriculture => (
                     <AgricultureItem

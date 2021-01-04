@@ -3,9 +3,19 @@ import {Input as InputAnt} from 'antd'
 import { InputProps } from './InputTypes';
 
 const Input: FunctionComponent<InputProps> = (props) => {
+    const InputTag = props.password ? InputAnt.Password : InputAnt
+
+    const clearProps = (props: InputProps) => {
+        const newProps = {...props}
+        delete newProps.password
+        return newProps
+    }
+
+    const clearedProps = clearProps(props)
+
     return (
-        <InputAnt
-            {...props}
+        <InputTag
+            {...clearedProps}
             placeholder={props.placeholder}
         />
     );

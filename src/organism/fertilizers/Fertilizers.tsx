@@ -49,7 +49,7 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
 
     return (
         <div className={style.fertilizers_wrapper}>
-            <Title>{translate('fertilizers')}</Title>
+            <Title border>{translate('fertilizers')}</Title>
             <div className={style.fertilizersBox}>
                 {renderFertilizers()}
             </div>

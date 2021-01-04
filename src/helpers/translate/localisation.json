@@ -114,5 +114,13 @@
     "login": {
         "ru": "Войти",
         "en": "Login"
+    },
+    "loginName": {
+        "ru": "Логин/почта",
+        "en": "Login/email"
+    },
+    "password": {
+        "ru": "Пароль",
+        "en": "Password"
     }
 }
