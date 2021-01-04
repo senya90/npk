@@ -110,5 +110,9 @@
     "mainPage": {
         "ru": "Главная",
         "en": "Home"
+    },
+    "login": {
+        "ru": "Войти",
+        "en": "Login"
     }
 }
