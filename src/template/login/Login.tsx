@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import Title from 'atom/title/Title';
 import {translate} from "helpers/translate/translate";
 import {Input} from "atom/input/Input";
@@ -10,21 +10,22 @@ const Login = () => {
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
-    const changeLogin = useCallback(
-        (event) => {
-            if (isExist(event)) {
-                setLogin(event.target.target)
-            }
-        }, []
-    )
+    const changeLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (isExist(event)) {
+            setLogin(event.target.value)
+        }
+    }
 
-    const changePassword = useCallback(
-        (event) => {
-            if (isExist(event)) {
-                setPassword(event.target.target)
-            }
-        }, []
-    )
+    const changePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (isExist(event)) {
+            setPassword(event.target.value)
+        }
+    }
+
+    const onSubmit = () => {
+        console.log(`login: ${login}`)
+        console.log(`password: ${password}`)
+    }
 
     return (
         <div>
@@ -46,6 +47,7 @@ const Login = () => {
                 <Button
                     containerclass={style.formButton}
                     type={"primary"}
+                    onClick={onSubmit}
                 >
                     {translate('login')}
                 </Button>
