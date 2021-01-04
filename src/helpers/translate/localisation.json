@@ -102,5 +102,13 @@
     "element": {
         "ru": "Элемент",
         "en": "Element"
+    },
+    "calculatorPage": {
+        "ru": "Калькулятор",
+        "en": "Calculator"
+    },
+    "mainPage": {
+        "ru": "Главная",
+        "en": "Home"
     }
 }
