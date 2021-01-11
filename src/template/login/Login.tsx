@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import Title from 'atom/title/Title';
 import {translate} from "helpers/translate/translate";
 import {Input} from "atom/input/Input";
-import {isExist} from "helpers/utils";
+import {isExist, notEmptyString} from "helpers/utils";
 import style from './login.module.scss'
 import { Button } from 'atom/button/Button';
+import {API} from "../../core/api";
+import {ApiURL} from "../../core/api/ApiURL";
 
 const Login = () => {
     const [login, setLogin] = useState<string>('')
@@ -22,10 +24,29 @@ const Login = () => {
         }
     }
 
-    const onSubmit = () => {
-        console.log(`login: ${login}`)
-        console.log(`password: ${password}`)
+    const onSubmit = async () => {
+        if (notEmptyString(login) && notEmptyString(password)) {
+            try {
+                const response = await loginApi(login, password)
+                const tokens = response.data.data
+                console.log('response', response)
+                console.log('tokens', tokens)
+            } catch (e) {
+                console.error(':(')
+            }
+        }
     }
+
+    const loginApi = async (login: string, password: string): Promise<any> => {
+        try {
+            return await API.post(ApiURL.login, {login, password})
+        } catch (e) {
+            console.log('e', e)
+            // TODO: handle error
+            return {}
+        }
+    }
+
 
     return (
         <div>

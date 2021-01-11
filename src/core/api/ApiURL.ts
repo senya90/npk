@@ -1,4 +1,5 @@
 export const ApiURL = {
     getChemicals: 'chemicals',
-    getUser: 'user'
+    getUser: 'user',
+    login: 'user/login'
 }

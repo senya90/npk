@@ -16,8 +16,10 @@ export const API: IAPI = {
     },
 
     post: function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
-        return new Promise(resolve => {
-            resolve('Not implemented')
-        })
+        return request.post(apiURL, apiParams, headers)
+            .catch(err => {
+                console.error(`API POST request error: `, err)
+                console.error(`url:${apiURL} params: ${apiParams}, headers: ${headers}`)
+            })
     }
 }
