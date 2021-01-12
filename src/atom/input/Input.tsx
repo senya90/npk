@@ -15,16 +15,12 @@ const Input: FunctionComponent<InputProps> = (props) => {
     }
 
     const clearedProps = clearProps(props)
-
-    const classname = cn(props.className, {[styles[`input_${props.mode}`]]: props.mode})
-
-    console.log('classname',classname)
-
+    const className = cn(props.className, {[styles[`input_${props.mode}`]]: props.mode})
 
     return (
         <InputTag
             {...clearedProps}
-            className={classname}
+            className={className}
             placeholder={props.placeholder}
         />
     );

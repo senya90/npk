@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {SignInProps} from "./SignInTypes";
 import { Tabs, TabPane } from 'molecule/tabs/Tabs';
 import {Login} from "template/login/Login";
-import {Registration} from "organism/registration/Registration";
+import {Registration} from "template/registration/Registration";
 import {translate} from "helpers/translate/translate";
 import style from './signIn.module.scss'
 
