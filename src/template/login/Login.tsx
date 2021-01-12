@@ -46,10 +46,9 @@ const Login = () => {
         return await API.post(ApiURL.login, {login, password})
     }
 
-
     return (
         <div>
-            <Title className={style.title}>{translate('login')}</Title>
+            <Title bottomMargin={"little"}>{translate('login')}</Title>
             <form className={style.form}>
                 <Input
                     value={login}

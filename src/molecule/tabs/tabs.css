@@ -1,0 +1,12 @@
+.ant-tabs-nav-list {
+    width: 100%;
+}
+
+.ant-tabs-tab {
+    flex: 1 0 auto;
+    margin-right: 0;
+}
+
+.ant-tabs-tab-btn {
+    margin: 0 auto;
+}

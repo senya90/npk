@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext, useState} from 'react';
 import {Fertilizer} from "../../models/fertilizer";
-import {IngredientsView} from "../ingredientsView/IngredientsView";
+import {IngredientsView} from "../../molecule/ingredientsView/IngredientsView";
 
 import style from './fertilizerView.module.scss'
 import {Icon} from 'atom/icon/Icon';

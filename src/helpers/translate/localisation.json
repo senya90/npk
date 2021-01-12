@@ -115,6 +115,10 @@
         "ru": "Войти",
         "en": "Login"
     },
+    "registration": {
+        "ru": "Регистрация",
+        "en": "Registration"
+    },
     "loginName": {
         "ru": "Логин/почта",
         "en": "Login/email"

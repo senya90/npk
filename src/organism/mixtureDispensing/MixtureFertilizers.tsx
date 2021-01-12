@@ -3,8 +3,8 @@ import {Dosage} from "../../models/dosage";
 import {translate} from "../../helpers/translate/translate";
 
 import style from './mixtureDispensing.module.scss'
-import {MixtureDistributor} from "../../molecule/mixtureDistributor/MixtureDistributor";
-import {MixtureDistributorVolume} from "../../molecule/mixtureDistributor/MixtureDistributorVolume";
+import {MixtureDistributor} from "../mixtureDistributor/MixtureDistributor";
+import {MixtureDistributorVolume} from "../mixtureDistributor/MixtureDistributorVolume";
 
 
 interface MixtureFertilizersProps {

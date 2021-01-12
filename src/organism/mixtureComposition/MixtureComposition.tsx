@@ -2,7 +2,7 @@ import React, {FunctionComponent, useContext} from 'react';
 import {MixtureCompositionProps} from "./MixtureCompositionTypes";
 import {translate} from "../../helpers/translate/translate";
 import Title from "../../atom/title/Title";
-import DosageView from "../../molecule/dosageView/DosageView";
+import DosageView from "../dosageView/DosageView";
 import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
 import {Fertilizer} from "../../models/fertilizer";
 import {Mixture} from "../../models/mixture/mixture";

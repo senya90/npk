@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import style from "../../organism/mixtureDispensing/mixtureDispensing.module.scss";
+import style from "../mixtureDispensing/mixtureDispensing.module.scss";
 import {translate} from "../../helpers/translate/translate";
 import { Dosage } from 'models/dosage';
 import { Utils } from 'helpers/utils';
