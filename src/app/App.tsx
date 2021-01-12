@@ -7,6 +7,7 @@ import { Home } from 'template/home/Home';
 import { Header } from 'organism/header/Header';
 import {ROUTES} from "core/routes/routes";
 import { SignIn } from 'pages/signIn/SignIn';
+import {Notification} from "../organism/notification/Notification";
 
 const App = () => {
     return (
@@ -19,8 +20,9 @@ const App = () => {
                     <Route component={SignIn} path={ROUTES.REGISTRATION}/>
                     <Route component={Calculator} path={ROUTES.CALCULATOR}/>
                 </Switch>
-
             </div>
+            <Notification
+            />
         </div>
     );
 }

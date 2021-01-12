@@ -58,7 +58,7 @@ const Registration = () => {
                     type={"primary"}
                     onClick={onSubmit}
                 >
-                    {translate('login')}
+                    {translate('registration')}
                 </Button>
             </form>
         </div>

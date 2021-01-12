@@ -1,0 +1,36 @@
+@import "src/index";
+
+.notification {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 60px;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    font-size: 1.2em;
+    background-color: $back_notification_info;
+
+    color: #fff;
+}
+
+.notification_error {
+    background-color: $back_notification_error;
+}
+
+.notification_success {
+    background-color: $back_notification_success;
+}
+
+.notification_warning {
+    background-color: $back_notification_warning;
+}
+
+.content {
+    max-width: 1250px;
+    text-align: center;
+}
