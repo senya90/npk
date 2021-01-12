@@ -12,10 +12,14 @@ const SignIn: FC<SignInProps> = (props) => {
         <div className={style.signInWrapper}>
             <Tabs defaultActiveKey="login" centered>
                 <TabPane tab={translate('login')} key="login">
-                    <Login/>
+                    <div className={style.tab}>
+                        <Login/>
+                    </div>
                 </TabPane>
-                <TabPane  tab={translate('registration')} key="registration">
-                    <Registration/>
+                <TabPane tab={translate('registration')} key="registration">
+                    <div className={style.tab}>
+                        <Registration/>
+                    </div>
                 </TabPane>
             </Tabs>
         </div>
