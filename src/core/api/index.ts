@@ -10,8 +10,8 @@ export const API: IAPI = {
         return request.get(apiURL, apiParams, headers)
             .catch(err => {
                 console.error(`API GET request error: `, err)
-                console.error(`url:${apiURL} params: ${apiParams}, headers: ${headers}`
-                )
+                console.error(`url:${apiURL} params: ${JSON.stringify(apiParams)}, headers: ${JSON.stringify(headers)}`)
+                throw err
             })
     },
 
@@ -19,7 +19,8 @@ export const API: IAPI = {
         return request.post(apiURL, apiParams, headers)
             .catch(err => {
                 console.error(`API POST request error: `, err)
-                console.error(`url:${apiURL} params: ${apiParams}, headers: ${headers}`)
+                console.error(`url:${apiURL} params: ${JSON.stringify(apiParams)}, headers: ${JSON.stringify(headers)}`)
+                throw err
             })
     }
 }

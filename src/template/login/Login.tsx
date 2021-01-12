@@ -28,23 +28,22 @@ const Login = () => {
         if (notEmptyString(login) && notEmptyString(password)) {
             try {
                 const response = await loginApi(login, password)
-                const tokens = response.data.data
+                if (response.data.error) {
+                    console.log(response.data.error)
+                    console.log(response.data.error.message)
+                    return
+                }
+
                 console.log('response', response)
-                console.log('tokens', tokens)
             } catch (e) {
-                console.error(':(')
+                console.log('err', e)
+                console.log(e.data)
             }
         }
     }
 
     const loginApi = async (login: string, password: string): Promise<any> => {
-        try {
-            return await API.post(ApiURL.login, {login, password})
-        } catch (e) {
-            console.log('e', e)
-            // TODO: handle error
-            return {}
-        }
+        return await API.post(ApiURL.login, {login, password})
     }
 
 
