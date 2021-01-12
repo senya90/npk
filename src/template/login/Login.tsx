@@ -55,6 +55,7 @@ const Login = () => {
                     onChange={changeLogin}
                     className={style.input}
                     placeholder={translate('loginName')}
+                    mode={"borderBottom"}
                 />
                 <Input
                     value={password}
@@ -62,6 +63,7 @@ const Login = () => {
                     className={style.input}
                     placeholder={translate('password')}
                     password
+                    mode={"borderBottom"}
                 />
                 <Button
                     containerclass={style.formButton}
