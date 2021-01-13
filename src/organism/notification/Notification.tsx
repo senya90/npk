@@ -9,7 +9,7 @@ interface NotificationProps {
 }
 
 const Notification: FC<NotificationProps> = ({mode, children}) => {
-    const [isHide, setIsHide] = useState<boolean>(true)
+    const [isHide] = useState<boolean>(true)
 
     const className = cn(
         style.notification,

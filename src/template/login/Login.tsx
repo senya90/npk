@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Title from 'atom/title/Title';
 import {translate} from "helpers/translate/translate";
 import {Input} from "atom/input/Input";
@@ -7,8 +7,10 @@ import style from './login.module.scss'
 import { Button } from 'atom/button/Button';
 import {API} from "../../core/api";
 import {ApiURL} from "../../core/api/ApiURL";
+import {AppContext} from "../../helpers/contexts/AppContext";
 
 const Login = () => {
+    const {localStorageProvider} = useContext(AppContext)
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
@@ -31,13 +33,17 @@ const Login = () => {
                 if (response.data.error) {
                     console.log(response.data.error)
                     console.log(response.data.error.message)
+                    localStorageProvider.clearTokens()
                     return
                 }
 
-                console.log('response', response)
+                if (response.data && response.data.data) {
+                    localStorageProvider.saveTokens(response.data.data)
+                }
             } catch (e) {
                 console.log('err', e)
                 console.log(e.data)
+                localStorageProvider.clearTokens()
             }
         }
     }

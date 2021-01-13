@@ -27,4 +27,12 @@ export class LocalStorageProvider implements ILocalStorageProvider {
             return false
         }
     }
+
+    clearTokens(): void {
+        try {
+            localStorage.removeItem(this.LS_KEYS.userTokens)
+        } catch (e) {
+            console.log(e)
+        }
+    }
 }
