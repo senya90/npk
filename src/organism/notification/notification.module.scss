@@ -16,6 +16,13 @@
     background-color: $back_notification_info;
 
     color: #fff;
+
+    transform: translateY(0);
+    transition: transform .15s linear;
+}
+
+.hide {
+    transform: translateY(100%);
 }
 
 .notification_error {

@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, useState} from 'react'
 import cn from 'classnames'
 import style from './notification.module.scss'
 
@@ -9,10 +9,12 @@ interface NotificationProps {
 }
 
 const Notification: FC<NotificationProps> = ({mode, children}) => {
+    const [isHide, setIsHide] = useState<boolean>(true)
 
     const className = cn(
         style.notification,
-        {[style[`notification_${mode}`]]: mode}
+        {[style[`notification_${mode}`]]: mode},
+        {[style.hide]: isHide}
         )
 
     return (
