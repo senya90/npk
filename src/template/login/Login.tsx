@@ -7,7 +7,6 @@ import style from './login.module.scss'
 import { Button } from 'atom/button/Button';
 import {API} from "../../core/api";
 import {ApiURL} from "../../core/api/ApiURL";
-import {AppEvents} from "../../app/AppEvents/AppEvents";
 
 const Login = () => {
     const [login, setLogin] = useState<string>('')

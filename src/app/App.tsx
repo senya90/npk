@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import styles from './App.module.css'
@@ -8,8 +8,11 @@ import { Header } from 'organism/header/Header';
 import {ROUTES} from "core/routes/routes";
 import { SignIn } from 'pages/signIn/SignIn';
 import {Notification} from "../organism/notification/Notification";
+import {LocalStorageProvider} from "../core/localStorageProvider/LocalStorageProvider";
 
 const App = () => {
+    const localStorageProvider = new LocalStorageProvider()
+
     return (
         <div>
             <Header/>
