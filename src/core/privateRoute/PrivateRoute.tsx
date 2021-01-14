@@ -1,19 +1,29 @@
-import React, {FC, Component, useContext} from 'react'
+import React, {FC} from 'react'
 import {Route, Redirect} from 'react-router-dom'
-import {AppContext} from "helpers/contexts/AppContext";
 
 interface PrivateRouteProps {
-    component: Component | FC
-    path: string
+    component: any
+    path: string,
+    auth: boolean
 }
 
-const PrivateRoute: FC<PrivateRouteProps> = ({component: any, ...rest}) => {
-    const {localStorageProvider} = useContext(AppContext)
+const PrivateRoute: FC<PrivateRouteProps> = ({
+     component,
+     auth,
+     ...rest
+}) => {
 
     return (
         <Route
             {...rest}
-            render={props => (true ? <Redirect to="/login"/> : <Component {...props} />)}
+            render={props => {
+                console.log('auth', auth)
+                if (auth) {
+                    const Component = component
+                    return <Component {...props}/>
+                }
+                return <Redirect to="/login"/>
+            }}
         />
     )
 }

@@ -7,5 +7,5 @@ export type AppContextType = {
 }
 
 export const AppContext = React.createContext<AppContextType>({
-    localStorageProvider: new LocalStorageProvider()
+    localStorageProvider: new LocalStorageProvider(),
 })
