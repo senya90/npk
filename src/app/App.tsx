@@ -12,8 +12,7 @@ import { AppContext } from 'helpers/contexts/AppContext';
 import {TokensPair} from "../models/tokensPair";
 import styles from './App.module.css'
 import {TokenHelper} from "../helpers/tokens";
-import {API} from "../core/api";
-import {ApiURL} from "../core/api/ApiURL";
+import {PrivateRoute} from "../core/privateRoute/PrivateRoute";
 
 
 const App = () => {
@@ -26,19 +25,23 @@ const App = () => {
         const tokens = localStorageProvider.getTokens()
 
         if (tokens) {
+            // const refreshIsActive = TokenHelper.isActive(tokens.refreshToken)
             const accessIsActive = TokenHelper.isActive(tokens.accessToken)
-            // TODO: check refreshToken -> logout
 
             if (!accessIsActive) {
-                API.post(ApiURL.updateToken, null, {'Authorization': `Bearer ${tokens.refreshToken}`})
-                    .then((response: any) => {
-                        if (response.data && response.data.data) {
-                            setAuth(response.data.data)
+                TokenHelper.updateTokens(tokens.refreshToken)
+                    .then(tokens => {
+                        if (tokens) {
+                            return setAuth(tokens)
                         }
+
+                        setAuth(undefined)
                     })
                     .catch(() => {
                         setAuth(undefined)
                     })
+
+
             }
         }
 
@@ -56,7 +59,7 @@ const App = () => {
                         <Route exact component={Home} path={ROUTES.MAIN_PAGE}/>
                         <Route component={SignIn} path={ROUTES.LOGIN}/>
                         <Route component={SignIn} path={ROUTES.REGISTRATION}/>
-                        <Route component={Calculator} path={ROUTES.CALCULATOR}/>
+                        <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                     </Switch>
                 </div>
                 <Notification
