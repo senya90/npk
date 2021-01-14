@@ -1,7 +1,7 @@
-import {TokenPair} from "../../models/tokenPair";
+import {TokensPair} from "../../models/tokensPair";
 
 export interface ILocalStorageProvider {
-    saveTokens: (tokens: TokenPair) => boolean
-    getTokens: () => TokenPair | undefined
+    saveTokens: (tokens: TokensPair) => boolean
+    getTokens: () => TokensPair | undefined
     clearTokens: () => void
 }

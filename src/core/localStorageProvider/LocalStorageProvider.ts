@@ -1,12 +1,12 @@
 import {ILocalStorageProvider} from "./LocalStorageProviderTypes";
-import { TokenPair } from "models/tokenPair";
+import { TokensPair } from "models/tokensPair";
 
 export class LocalStorageProvider implements ILocalStorageProvider {
     private readonly LS_KEYS = {
         userTokens: 'userTokens'
     }
 
-    getTokens(): TokenPair | undefined {
+    getTokens(): TokensPair | undefined {
         try {
             const tokens = localStorage.getItem(this.LS_KEYS.userTokens)
             if (tokens) {
@@ -19,7 +19,7 @@ export class LocalStorageProvider implements ILocalStorageProvider {
         }
     }
 
-    saveTokens(tokens: TokenPair): boolean {
+    saveTokens(tokens: TokensPair): boolean {
         try {
             localStorage.setItem(this.LS_KEYS.userTokens, JSON.stringify(tokens))
             return true

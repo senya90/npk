@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import styles from './App.module.css'
 import {Calculator} from "template/calculator/Calculator";
 import { Home } from 'template/home/Home';
 import { Header } from 'organism/header/Header';
@@ -10,9 +9,38 @@ import { SignIn } from 'pages/signIn/SignIn';
 import {Notification} from "../organism/notification/Notification";
 import {LocalStorageProvider} from "../core/localStorageProvider/LocalStorageProvider";
 import { AppContext } from 'helpers/contexts/AppContext';
+import {TokensPair} from "../models/tokensPair";
+import styles from './App.module.css'
+import {TokenHelper} from "../helpers/tokens";
+import {API} from "../core/api";
+import {ApiURL} from "../core/api/ApiURL";
+
 
 const App = () => {
+    const [auth, setAuth] = useState<TokensPair | undefined>()
     const localStorageProvider = new LocalStorageProvider()
+
+    useEffect(() => {
+        const tokens = localStorageProvider.getTokens()
+
+        if (tokens) {
+            const accessIsActive = TokenHelper.isActive(tokens.accessToken)
+            // TODO: check refreshToken -> logout
+
+            if (!accessIsActive) {
+                API.post(ApiURL.updateToken, null, {'Authorization': `Bearer ${tokens.refreshToken}`})
+                    .then((response: any) => {
+                        if (response.data && response.data.data) {
+                            setAuth(response.data.data)
+                        }
+                    })
+                    .catch(() => {
+                        setAuth(undefined)
+                    })
+            }
+        }
+
+    }, [localStorageProvider])
 
     return (
         <div>
@@ -20,6 +48,7 @@ const App = () => {
                 localStorageProvider: localStorageProvider
             }}>
                 <Header/>
+                {auth && <div>hi</div>}
                 <div className={styles.container}>
                     <Switch>
                         <Route exact component={Home} path={ROUTES.MAIN_PAGE}/>

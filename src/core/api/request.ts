@@ -2,17 +2,25 @@ import axios from "axios";
 
 export const request: IRequest =  {
     get: function(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
-        return axios.get(apiURL, {
-            params: apiParams,
-            headers: headers? [...headers] : undefined
-        })
+        return axios.get(
+            apiURL,
+            {
+                params: apiParams,
+                headers: headers? {...headers} : undefined
+            },
+        )
     },
 
     post: function(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
-        return axios.post(apiURL, {
+        return axios.post(
+            apiURL,
+            {
             ...apiParams,
-            headers: headers? [...headers] : undefined
-        })
+            },
+            {
+                headers: headers? {...headers} : undefined
+            }
+        )
     }
 }
 
