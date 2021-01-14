@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {Calculator} from "template/calculator/Calculator";
@@ -18,7 +18,9 @@ import {ApiURL} from "../core/api/ApiURL";
 
 const App = () => {
     const [auth, setAuth] = useState<TokensPair | undefined>()
-    const localStorageProvider = new LocalStorageProvider()
+    const localStorageProvider = useMemo(() => {
+        return new LocalStorageProvider()
+    }, [])
 
     useEffect(() => {
         const tokens = localStorageProvider.getTokens()
