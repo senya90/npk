@@ -19,23 +19,26 @@ const App = () => {
     }, [])
 
     return (
-        <div>
-            <AppContext.Provider value={{
-                localStorageProvider: localStorageProvider,
-            }}>
-                <Header/>
-                <div className={styles.container}>
-                    <Switch>
-                        <Route exact component={Home} path={ROUTES.MAIN_PAGE}/>
-                        <Route component={SignIn} path={ROUTES.LOGIN}/>
-                        <Route component={SignIn} path={ROUTES.REGISTRATION}/>
-                        <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR} auth={true}/>
-                    </Switch>
-                </div>
-                <Notification
-                />
-            </AppContext.Provider>
-        </div>
+
+            <div>
+                <AppContext.Provider value={{
+                    localStorageProvider: localStorageProvider,
+                }}>
+                    <Header/>
+                    <div className={styles.container}>
+                        <Switch>
+                            <Route exact component={Home} path={ROUTES.MAIN_PAGE}/>
+                            <Route component={SignIn} path={ROUTES.LOGIN}/>
+                            <Route component={SignIn} path={ROUTES.REGISTRATION}/>
+                            <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR} auth={true}/>
+                        </Switch>
+                    </div>
+                    <Notification
+                    />
+                </AppContext.Provider>
+            </div>
+
+
     );
 }
 

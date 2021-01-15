@@ -8,8 +8,10 @@ import { Button } from 'atom/button/Button';
 import {API} from "../../core/api";
 import {ApiURL} from "../../core/api/ApiURL";
 import {AppContext} from "../../helpers/contexts/AppContext";
+import { connect } from 'react-redux';
 
-const Login = () => {
+const LoginComponent = (props: any) => {
+    console.log('props', props)
     const {localStorageProvider} = useContext(AppContext)
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -82,5 +84,13 @@ const Login = () => {
         </div>
     );
 };
+
+const mapStateToProps = (state: any) => {
+    return {
+        user: state.user
+    }
+}
+
+const Login = connect(mapStateToProps)(LoginComponent)
 
 export {Login}
