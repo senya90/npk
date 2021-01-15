@@ -8,10 +8,11 @@ import { Button } from 'atom/button/Button';
 import {API} from "../../core/api";
 import {ApiURL} from "../../core/api/ApiURL";
 import {AppContext} from "../../helpers/contexts/AppContext";
-import { connect } from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
+import { setTokens } from 'core/redux/userSlice';
 
 const LoginComponent = (props: any) => {
-    console.log('props', props)
+    const dispatch = useDispatch()
     const {localStorageProvider} = useContext(AppContext)
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -40,6 +41,7 @@ const LoginComponent = (props: any) => {
                 }
 
                 if (response.data && response.data.data) {
+                    dispatch(setTokens(response.data.data))
                     localStorageProvider.saveTokens(response.data.data)
                 }
             } catch (e) {
@@ -53,6 +55,8 @@ const LoginComponent = (props: any) => {
     const loginApi = async (login: string, password: string): Promise<any> => {
         return await API.post(ApiURL.login, {login, password})
     }
+
+    console.log('props', props)
 
     return (
         <div>
