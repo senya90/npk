@@ -56,8 +56,6 @@ const LoginComponent = (props: any) => {
         return await API.post(ApiURL.login, {login, password})
     }
 
-    console.log('props', props)
-
     return (
         <div>
             <Title bottomMargin={"little"}>{translate('login')}</Title>

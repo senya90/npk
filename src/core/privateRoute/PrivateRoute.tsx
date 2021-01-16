@@ -1,23 +1,29 @@
 import React, {FC} from 'react'
 import {Route, Redirect} from 'react-router-dom'
+import {connect} from "react-redux";
+import {TokensPair} from "../../models/tokensPair";
+import {TokenHelper} from "../../helpers/tokens";
 
 interface PrivateRouteProps {
     component: any
     path: string,
-    auth: boolean
+    tokens?: TokensPair
 }
 
-const PrivateRoute: FC<PrivateRouteProps> = ({
+const PrivateRouteComponent: FC<PrivateRouteProps> = ({
      component,
-     auth,
      ...rest
 }) => {
+    let auth = false
+
+    if (rest.tokens) {
+        auth = TokenHelper.isActive(rest.tokens.accessToken)
+    }
 
     return (
         <Route
             {...rest}
             render={props => {
-                console.log('auth', auth)
                 if (auth) {
                     const Component = component
                     return <Component {...props}/>
@@ -27,5 +33,12 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
         />
     )
 }
+
+const PrivateRoute = connect(
+    (state: any) => ({
+        tokens: state.user.tokens
+    })
+)
+(PrivateRouteComponent)
 
 export {PrivateRoute}

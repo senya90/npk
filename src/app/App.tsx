@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {Calculator} from "template/calculator/Calculator";
@@ -11,12 +11,23 @@ import {LocalStorageProvider} from "../core/localStorageProvider/LocalStoragePro
 import { AppContext } from 'helpers/contexts/AppContext';
 import styles from './App.module.css'
 import {PrivateRoute} from "../core/privateRoute/PrivateRoute";
+import {connect, useDispatch} from "react-redux";
+import { setTokens } from 'core/redux/userSlice';
 
 
-const App = () => {
+const AppComponent = () => {
+    const dispatch = useDispatch()
     const localStorageProvider = useMemo(() => {
         return new LocalStorageProvider()
     }, [])
+
+
+    useEffect(() => {
+        const tokens = localStorageProvider.getTokens()
+        if (tokens) {
+            dispatch(setTokens(tokens))
+        }
+    }, [localStorageProvider, dispatch])
 
     return (
 
@@ -30,7 +41,7 @@ const App = () => {
                             <Route exact component={Home} path={ROUTES.MAIN_PAGE}/>
                             <Route component={SignIn} path={ROUTES.LOGIN}/>
                             <Route component={SignIn} path={ROUTES.REGISTRATION}/>
-                            <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR} auth={true}/>
+                            <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                         </Switch>
                     </div>
                     <Notification
@@ -41,5 +52,7 @@ const App = () => {
 
     );
 }
+
+const App = connect()(AppComponent)
 
 export {App}
