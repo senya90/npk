@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {Calculator} from "template/calculator/Calculator";
@@ -11,29 +11,30 @@ import {LocalStorageProvider} from "../core/localStorageProvider/LocalStoragePro
 import { AppContext } from 'helpers/contexts/AppContext';
 import styles from './App.module.css'
 import {PrivateRoute} from "../core/privateRoute/PrivateRoute";
-import {connect, useDispatch} from "react-redux";
-import { setTokens } from 'core/redux/userSlice';
+import {TokensPair} from "../models/tokensPair";
 
 
-const AppComponent = () => {
-    const dispatch = useDispatch()
+const App = () => {
+    const [tokens, setTokens] = useState<TokensPair>()
     const localStorageProvider = useMemo(() => {
         return new LocalStorageProvider()
     }, [])
 
 
     useEffect(() => {
-        const tokens = localStorageProvider.getTokens()
-        if (tokens) {
-            dispatch(setTokens(tokens))
+        const tokensLS = localStorageProvider.getTokens()
+        if (tokensLS) {
+            setTokens(tokensLS)
+            // setTokens
         }
-    }, [localStorageProvider, dispatch])
+    }, [localStorageProvider])
 
     return (
 
             <div>
                 <AppContext.Provider value={{
                     localStorageProvider: localStorageProvider,
+                    tokens: tokens
                 }}>
                     <Header/>
                     <div className={styles.container}>
@@ -52,7 +53,5 @@ const AppComponent = () => {
 
     );
 }
-
-const App = connect()(AppComponent)
 
 export {App}

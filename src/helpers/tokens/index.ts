@@ -30,7 +30,7 @@ export const TokenHelper = {
 
             return undefined
         } catch (e) {
-            return undefined
+            throw e
         }
     }
 }
