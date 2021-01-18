@@ -11,7 +11,7 @@ import {AppContext} from "../../helpers/contexts/AppContext";
 import {connect, useDispatch} from 'react-redux';
 import { setTokens } from 'core/redux/userSlice';
 
-const LoginComponent = (props: any) => {
+const LoginComponent = () => {
     const dispatch = useDispatch()
     const {localStorageProvider} = useContext(AppContext)
     const [login, setLogin] = useState<string>('')

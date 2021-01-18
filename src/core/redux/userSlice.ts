@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {TokensPair} from "../../models/tokensPair";
+import { TokensPair } from "models/tokensPair";
 
 type UserSliceState = {
     tokens: TokensPair | undefined

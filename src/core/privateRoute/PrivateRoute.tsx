@@ -1,8 +1,9 @@
-import React, {FC, useContext, useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import {Route, Redirect} from 'react-router-dom'
 import {TokensPair} from "../../models/tokensPair";
 import {TokenHelper} from "../../helpers/tokens";
-import {AppContext} from "../../helpers/contexts/AppContext";
+import {useDispatch, useSelector} from "react-redux";
+import { setTokens } from 'core/redux/userSlice';
 
 interface PrivateRouteProps {
     component: any
@@ -14,50 +15,76 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
      component,
      ...rest
 }) => {
-    const {tokens} = useContext(AppContext)
+    const dispatch = useDispatch()
+    const tokens = useSelector((state: any) => state.user.tokens)
     const [auth, setAuth] = useState<boolean>(false)
-    const [isUpdate, setIsUpdate] = useState<boolean>(true)
+    const [isUpdating, setIsUpdating] = useState<boolean>(true)
 
-    useEffect(() => {
-        console.log('useEffect')
-        if (tokens) {
-            const accessIsActive = TokenHelper.isActive(tokens.accessToken)
-
-            if (!accessIsActive) {
-                setIsUpdate(true)
-                TokenHelper.updateTokens(tokens.refreshToken)
-                    .then(response => {
-                        console.log('response', response)
-
-                        if (response) {
-                            const isActive = TokenHelper.isActive(response.accessToken)
-                            setAuth(isActive)
-                        }
-                        setIsUpdate(false)
-
-                    })
-                    .catch(err => {
-                        setIsUpdate(false)
-                        console.log(err)
-                    })
+    const updateTokens = async (tokens: TokensPair) => {
+        try {
+            setIsUpdating(true)
+            const updatedTokens = await TokenHelper.updateTokens(tokens.refreshToken)
+            if (updatedTokens) {
+                const isActive = TokenHelper.isActive(updatedTokens.accessToken)
+                dispatch(setTokens(updatedTokens))
+                setAuth(isActive)
             }
+            setIsUpdating(false)
+        } catch (err) {
+            setIsUpdating(false)
+            console.error(err)
         }
-    }, [tokens])
-
-    console.log('render tokens', tokens)
-    console.log('render auth', auth)
-    console.log('render isUpdate', isUpdate)
-
-    console.log('1')
-    if (isUpdate) {
-        console.log('2')
-        console.log(' ')
-        return <div></div>
     }
 
-    console.log('3')
-    console.log(' ')
+    const setStateForRedirect = () => {
+        console.log('setStateForRedirect')
+        setIsUpdating(false)
+        setAuth(false)
+    }
 
+    const setStateForPrivate = () => {
+        console.log('setStateForPrivate')
+        setIsUpdating(false)
+        setAuth(true)
+    }
+
+    useEffect(() => {
+        if (tokens) {
+            const accessIsActive = TokenHelper.isActive(tokens.accessToken)
+            const refreshIsActive = TokenHelper.isActive(tokens.refreshToken)
+
+            if (!refreshIsActive) {
+                setStateForRedirect()
+                return
+            }
+
+            if (!accessIsActive) {
+                updateTokens(tokens)
+            }
+
+            setStateForPrivate()
+            return
+        }
+
+        setIsUpdating(false)
+        setAuth(false)
+
+
+    }, [tokens, updateTokens])
+
+    console.log('render auth', auth)
+    console.log('render isUpdating', isUpdating)
+    console.log('render tokens', tokens)
+
+
+    if (isUpdating ) {
+        console.log('1')
+        console.log(' ')
+        return <div className="loading"/>
+    }
+
+    console.log('2')
+    console.log(' ')
 
     return (
         <Route
