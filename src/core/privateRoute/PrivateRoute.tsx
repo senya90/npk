@@ -78,7 +78,9 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
                     const Component = component
                     return <Component {...props}/>
                 }
-                return <Redirect to="/login"/>
+
+                const target = encodeURI(rest.path)
+                return <Redirect to={`/login?targetPath=${target}`}/>
             }}
         />
     )

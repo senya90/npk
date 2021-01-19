@@ -6,14 +6,13 @@ import {Registration} from "template/registration/Registration";
 import {translate} from "helpers/translate/translate";
 import style from './signIn.module.scss'
 
-const SignIn: FC<SignInProps> = (props) => {
-
+const SignIn: FC<SignInProps> = ({...rest}) => {
     return (
         <div className={style.signInWrapper}>
             <Tabs defaultActiveKey="login" centered>
                 <TabPane tab={translate('login')} key="login">
                     <div className={style.tab}>
-                        <Login/>
+                        <Login {...rest}/>
                     </div>
                 </TabPane>
                 <TabPane tab={translate('registration')} key="registration">

@@ -1,19 +1,21 @@
-import React, {useContext, useState} from 'react';
+import React, {FC, useContext, useState} from 'react';
+import {connect} from 'react-redux';
+import qs from 'qs'
+
 import Title from 'atom/title/Title';
 import {translate} from "helpers/translate/translate";
 import {Input} from "atom/input/Input";
 import {isExist, notEmptyString} from "helpers/utils";
 import style from './login.module.scss'
 import { Button } from 'atom/button/Button';
-import {API} from "../../core/api";
-import {ApiURL} from "../../core/api/ApiURL";
-import {AppContext} from "../../helpers/contexts/AppContext";
-import {connect, useDispatch} from 'react-redux';
-import { setTokens } from 'core/redux/userSlice';
+import {API} from "core/api";
+import {ApiURL} from "core/api/ApiURL";
+import {AppContext} from "helpers/contexts/AppContext";
+import {LoginProps} from "./LoginTypes";
 
-const LoginComponent = () => {
-    const dispatch = useDispatch()
-    const {localStorageProvider} = useContext(AppContext)
+
+const LoginComponent: FC<LoginProps> = (props) => {
+    const {localStorageProvider, updateTokensApp} = useContext(AppContext)
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
@@ -41,8 +43,8 @@ const LoginComponent = () => {
                 }
 
                 if (response.data && response.data.data) {
-                    dispatch(setTokens(response.data.data))
-                    localStorageProvider.saveTokens(response.data.data)
+                    updateTokensApp(response.data.data)
+                    props.history.push(getPathForRedirect())
                 }
             } catch (e) {
                 console.log('err', e)
@@ -50,6 +52,22 @@ const LoginComponent = () => {
                 localStorageProvider.clearTokens()
             }
         }
+    }
+
+    const getPathForRedirect = (): string => {
+        if (props.location.search) {
+            let decode = decodeURI(props.location.search)
+            if (decode.indexOf('?') === 0) {
+                decode = decode.slice(1)
+            }
+            const parsed = qs.parse(decode)
+            if (parsed.targetPath) {
+                return String(parsed.targetPath)
+            }
+            return '/'
+        }
+
+        return '/'
     }
 
     const loginApi = async (login: string, password: string): Promise<any> => {
