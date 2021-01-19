@@ -5,18 +5,25 @@ import './tabs.css'
 interface TabsProps {
     defaultActiveKey?: string | undefined
     centered?: boolean | undefined
+    onChange?: (activeKey: string) => void
     className?: string
 }
 
 const Tabs: FC<TabsProps> = ({
-     defaultActiveKey,
-     centered,
+    defaultActiveKey,
+    centered,
     className,
-     children
+    children,
+    onChange
 }) => {
 
     return (
-        <TabsAnt className={className} centered={centered} defaultActiveKey={defaultActiveKey}>
+        <TabsAnt
+            className={className}
+            centered={centered}
+            defaultActiveKey={defaultActiveKey}
+            onChange={onChange}
+        >
             {children}
         </TabsAnt>
     );
