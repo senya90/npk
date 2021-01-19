@@ -13,6 +13,7 @@ import styles from './App.module.css'
 import {PrivateRoute} from "../core/privateRoute/PrivateRoute";
 import {useDispatch} from 'react-redux';
 import { setTokens } from 'core/redux/userSlice';
+import {TokensPair} from "../models/tokensPair";
 
 
 const App = () => {
@@ -21,6 +22,13 @@ const App = () => {
         return new LocalStorageProvider()
     }, [])
 
+
+    const updateTokensApp = (tokens: TokensPair) => {
+        if (tokens) {
+            localStorageProvider.saveTokens(tokens)
+            dispatch(setTokens(tokens))
+        }
+    }
 
     useEffect(() => {
         const tokens = localStorageProvider.getTokens()
@@ -34,6 +42,7 @@ const App = () => {
             <div>
                 <AppContext.Provider value={{
                     localStorageProvider: localStorageProvider,
+                    updateTokensApp: updateTokensApp
                 }}>
                     <Header/>
                     <div className={styles.container}>
