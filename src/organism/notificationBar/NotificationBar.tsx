@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react'
+import React, {FC, useCallback, useEffect, useState} from 'react'
 import cn from 'classnames'
 import style from './notificationBar.module.scss'
 import {useSelector} from "react-redux";
@@ -9,21 +9,32 @@ type NotificationMode = 'error' | 'success' | 'warning'
 
 interface NotificationProps {
     mode?: NotificationMode
+    onNotificationHide: () => void
 }
 
-const NotificationBar: FC<NotificationProps> = ({mode, children}) => {
+const NotificationBar: FC<NotificationProps> = ({mode, onNotificationHide, children}) => {
     const SHOWING_TIMEOUT = 5000
     const notification: TNotification = useSelector((store: any) => store.notification)
-    const availableShow = (): boolean => {
+
+    const availableShow = useCallback((): boolean => {
         return notEmptyString(notification.message)
-    }
+    }, [notification])
 
     const [isHide, setIsHide] = useState<boolean>(!availableShow())
 
     useEffect(() => {
-        const showingTimeout = setTimeout(() => {
-            setIsHide(true)
-        }, SHOWING_TIMEOUT)
+        setIsHide(!availableShow())
+    }, [notification, availableShow])
+
+    useEffect(() => {
+        let showingTimeout: any;
+
+        if (!isHide) {
+            showingTimeout = setTimeout(() => {
+                setIsHide(true)
+                onNotificationHide()
+            }, SHOWING_TIMEOUT)
+        }
 
         return () => {
             clearTimeout(showingTimeout)
@@ -39,7 +50,7 @@ const NotificationBar: FC<NotificationProps> = ({mode, children}) => {
     return (
         <div className={className}>
             <div className={style.content}>
-                Уведомление о Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores culpa ducimus eaque excepturi fugiat illo maxime nesciunt officia repellendus? Alias asperiores delectus dolores eveniet, ipsa natus nesciunt officiis voluptatem!
+                {notification.message}
             </div>
         </div>
     )

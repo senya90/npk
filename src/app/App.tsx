@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {Calculator} from "template/calculator/Calculator";
@@ -14,6 +14,7 @@ import {PrivateRoute} from "../core/privateRoute/PrivateRoute";
 import {useDispatch} from 'react-redux';
 import { setTokens } from 'core/redux/userSlice';
 import {TokensPair} from "../models/tokensPair";
+import { clearNotification } from 'core/redux/notificationsSlice';
 
 
 const App = () => {
@@ -37,6 +38,10 @@ const App = () => {
         }
     }, [dispatch, localStorageProvider])
 
+    const onNotificationHide = useCallback(() => {
+        dispatch(clearNotification())
+    }, [dispatch])
+
     return (
 
             <div>
@@ -54,6 +59,7 @@ const App = () => {
                         </Switch>
                     </div>
                     <NotificationBar
+                        onNotificationHide={onNotificationHide}
                     />
                 </AppContext.Provider>
             </div>

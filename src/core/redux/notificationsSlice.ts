@@ -11,9 +11,16 @@ const notificationSlice = createSlice({
     name: 'notification',
     initialState: getInitialState(),
     reducers: {
-        setMessage(state, action) {
-            state.message = action.payload
+        setNotification(state, action) {
+            if (action.payload) {
+                state.message = action.payload.message
+                state.type = action.payload.type
+            }
         },
+        clearNotification(state: TNotification) {
+            state.message = ''
+            state.type = "INFO"
+        }
     }
 })
 
@@ -25,5 +32,5 @@ export type TNotification = {
     type: NotificationType
 }
 
-export const {setMessage} = notificationSlice.actions
+export const {setNotification, clearNotification} = notificationSlice.actions
 export default notificationSlice.reducer

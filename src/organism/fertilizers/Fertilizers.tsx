@@ -1,17 +1,18 @@
 import React, {FunctionComponent, useContext, useState} from 'react';
-import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
-import {Button} from "../../atom/button/Button";
-import {translate} from "../../helpers/translate/translate";
+
+import {BUTTON_TYPE} from "atom/button/ButtonTypes";
+import {Button} from "atom/button/Button";
+import {translate} from "helpers/translate/translate";
 import Title from 'atom/title/Title';
 import {FertilizersProps} from "./FertilizersTypes";
 import {FertilizerView} from "../fertilizerView/FertilizerView";
-
-import style from './fertilizers.module.scss'
 import Modal from 'organism/modal/Modal';
 import {FertilizerEditor} from "../fertilizerEditor/FertilizerEditor";
-import {Fertilizer} from "../../models/fertilizer";
-import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
+import {Fertilizer} from "models/fertilizer";
+import {CalculatorContext, CalculatorContextType} from "helpers/contexts/CalculatorContext";
 import { Dosage } from 'models/dosage';
+
+import style from './fertilizers.module.scss'
 
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture}) => {
