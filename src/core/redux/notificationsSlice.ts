@@ -1,14 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type NotificationSliceState = {
-    error: any
-    message: any
-}
-
-const getInitialState = (): NotificationSliceState => {
+const getInitialState = (): TNotification => {
     return {
-        error: undefined,
-        message: undefined
+        message: '',
+        type: "INFO"
     }
 }
 
@@ -19,12 +14,16 @@ const notificationSlice = createSlice({
         setMessage(state, action) {
             state.message = action.payload
         },
-        setError(state, action) {
-            state.error = action.payload
-        }
     }
 })
 
 
-export const {setMessage, setError} = notificationSlice.actions
+export type NotificationType = "INFO" | "WARNING" | "ERROR"
+
+export type TNotification = {
+    message: string
+    type: NotificationType
+}
+
+export const {setMessage} = notificationSlice.actions
 export default notificationSlice.reducer

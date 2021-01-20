@@ -6,7 +6,7 @@ import { Home } from 'template/home/Home';
 import { Header } from 'organism/header/Header';
 import {ROUTES} from "core/routes/routes";
 import { SignIn } from 'pages/signIn/SignIn';
-import {Notification} from "../organism/notification/Notification";
+import {NotificationBar} from "../organism/notificationBar/NotificationBar";
 import {LocalStorageProvider} from "../core/localStorageProvider/LocalStorageProvider";
 import { AppContext } from 'helpers/contexts/AppContext';
 import styles from './App.module.css'
@@ -53,7 +53,7 @@ const App = () => {
                             <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                         </Switch>
                     </div>
-                    <Notification
+                    <NotificationBar
                     />
                 </AppContext.Provider>
             </div>
