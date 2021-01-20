@@ -130,5 +130,9 @@
     "confirmPassword": {
         "ru": "Повторите пароль",
         "en": "Confirm password"
+    },
+    "haveBeenRegistered": {
+        "ru": "Вы были зарегистрированы",
+        "en": "You have been registered"
     }
 }

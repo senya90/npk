@@ -3,6 +3,7 @@ import { Tabs as TabsAnt } from 'antd';
 import './tabs.css'
 
 interface TabsProps {
+    activeKey?: string | undefined
     defaultActiveKey?: string | undefined
     centered?: boolean | undefined
     onChange?: (activeKey: string) => void
@@ -11,6 +12,7 @@ interface TabsProps {
 
 const Tabs: FC<TabsProps> = ({
     defaultActiveKey,
+    activeKey,
     centered,
     className,
     children,
@@ -19,6 +21,7 @@ const Tabs: FC<TabsProps> = ({
 
     return (
         <TabsAnt
+            activeKey={activeKey}
             className={className}
             centered={centered}
             defaultActiveKey={defaultActiveKey}
