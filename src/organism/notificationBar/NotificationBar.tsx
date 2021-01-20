@@ -39,7 +39,7 @@ const NotificationBar: FC<NotificationProps> = ({mode, onNotificationHide, child
         return () => {
             clearTimeout(showingTimeout)
         }
-    })
+    }, [isHide, onNotificationHide])
 
     const className = cn(
         style.notification,
