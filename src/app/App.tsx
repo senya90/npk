@@ -7,14 +7,14 @@ import { Header } from 'organism/header/Header';
 import {ROUTES} from "core/routes/routes";
 import { SignIn } from 'pages/signIn/SignIn';
 import {NotificationBar} from "../organism/notificationBar/NotificationBar";
-import {LocalStorageProvider} from "../core/localStorageProvider/LocalStorageProvider";
+import {LocalStorageProvider} from "core/localStorageProvider/LocalStorageProvider";
 import { AppContext } from 'helpers/contexts/AppContext';
 import styles from './App.module.css'
-import {PrivateRoute} from "../core/privateRoute/PrivateRoute";
+import {PrivateRoute} from "core/privateRoute/PrivateRoute";
 import {useDispatch} from 'react-redux';
 import { setTokens } from 'core/redux/userSlice';
-import {TokensPair} from "../models/tokensPair";
-import { clearNotification } from 'core/redux/notificationsSlice';
+import {TokensPair} from "models/tokensPair";
+import {NotificationService} from "core/notificationService/NotificationService";
 
 
 const App = () => {
@@ -22,6 +22,9 @@ const App = () => {
     const localStorageProvider = useMemo(() => {
         return new LocalStorageProvider()
     }, [])
+    const notificationService = useMemo(() => {
+        return new NotificationService(dispatch)
+    }, [dispatch])
 
 
     const updateTokensApp = (tokens: TokensPair) => {
@@ -39,15 +42,16 @@ const App = () => {
     }, [dispatch, localStorageProvider])
 
     const onNotificationHide = useCallback(() => {
-        dispatch(clearNotification())
-    }, [dispatch])
+        notificationService.clearNotification()
+    }, [notificationService])
 
     return (
 
             <div>
                 <AppContext.Provider value={{
                     localStorageProvider: localStorageProvider,
-                    updateTokensApp: updateTokensApp
+                    updateTokensApp: updateTokensApp,
+                    notificationService: notificationService
                 }}>
                     <Header/>
                     <div className={styles.container}>
