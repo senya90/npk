@@ -1,18 +1,17 @@
 import React, {FC, useCallback, useEffect, useState} from 'react'
-import cn from 'classnames'
-import style from './notificationBar.module.scss'
 import {useSelector} from "react-redux";
-import { TNotification } from 'core/redux/notificationsSlice';
+import cn from 'classnames'
+
+import {TNotification} from 'core/redux/notificationsSlice';
 import {notEmptyString} from "../../helpers/utils";
 
-type NotificationMode = 'error' | 'success' | 'warning'
+import style from './notificationBar.module.scss'
 
 interface NotificationProps {
-    mode?: NotificationMode
     onNotificationHide: () => void
 }
 
-const NotificationBar: FC<NotificationProps> = ({mode, onNotificationHide, children}) => {
+const NotificationBar: FC<NotificationProps> = ({onNotificationHide, children}) => {
     const SHOWING_TIMEOUT = 5000
     const notification: TNotification = useSelector((store: any) => store.notification)
 
@@ -43,7 +42,7 @@ const NotificationBar: FC<NotificationProps> = ({mode, onNotificationHide, child
 
     const className = cn(
         style.notification,
-        {[style[`notification_${mode}`]]: mode},
+        {[style[`notification_${notification.type}`]]: notification.type},
         {[style.hide]: isHide}
         )
 

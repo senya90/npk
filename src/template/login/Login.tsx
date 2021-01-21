@@ -12,7 +12,7 @@ import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import {AppContext} from "helpers/contexts/AppContext";
 import {LoginProps} from "./LoginTypes";
-import {TNotification} from "../../core/redux/notificationsSlice";
+import {NotificationHelper} from "../../helpers/notifications/notificationHelper";
 
 
 const LoginComponent: FC<LoginProps> = (props) => {
@@ -44,11 +44,7 @@ const LoginComponent: FC<LoginProps> = (props) => {
                     console.log(response.data.error)
                     console.log(response.data.error.message)
                     localStorageProvider.clearTokens()
-                    const errorNotification: TNotification = {
-                        type: "ERROR",
-                        message: 'login error' // TODO: use code for translate
-                    }
-                    notificationService.notify(errorNotification)
+                    notificationService.notify(NotificationHelper.getError('login error'))
 
                     return
                 }

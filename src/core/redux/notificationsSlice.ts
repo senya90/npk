@@ -25,7 +25,7 @@ const notificationSlice = createSlice({
 })
 
 
-export type NotificationType = "INFO" | "WARNING" | "ERROR"
+export type NotificationType = "INFO" | "WARNING" | "ERROR" | "SUCCESS"
 
 export type TNotification = {
     message: string
