@@ -1,4 +1,21 @@
 {
+    "1": {
+        "ru": "Пользователь не найден",
+        "en": "User is not found"
+    },
+    "2": {
+        "ru": "Неправильный логин или пароль",
+        "en": "Incorrect login or password"
+    },
+    "3": {
+        "ru": "Ошибка сервера",
+        "en": "Internal server error"
+    },
+    "4": {
+        "ru": "Ошибка сервера",
+        "en": "Internal server error"
+    },
+
     "add": {
         "ru": "Добавить",
         "en": "Add"

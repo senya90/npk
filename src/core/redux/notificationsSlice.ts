@@ -19,7 +19,6 @@ const notificationSlice = createSlice({
         },
         clearNotification(state: TNotification) {
             state.message = ''
-            state.type = "INFO"
         }
     }
 })

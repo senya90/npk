@@ -44,7 +44,7 @@ const LoginComponent: FC<LoginProps> = (props) => {
                     console.log(response.data.error)
                     console.log(response.data.error.message)
                     localStorageProvider.clearTokens()
-                    notificationService.notify(NotificationHelper.getError('login error'))
+                    notificationService.notify(NotificationHelper.getError(response.data.error))
 
                     return
                 }

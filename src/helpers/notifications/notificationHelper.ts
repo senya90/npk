@@ -1,16 +1,17 @@
 import {TNotification} from "../../core/redux/notificationsSlice";
 import {TError} from "../../models/error";
+import {translate} from "../translate/translate";
 
 export const NotificationHelper = {
-    getError(message: string | TError): TNotification {
-        if (typeof message === "string") {
+    getError(error: string | TError): TNotification {
+        if (typeof error === "string") {
             return {
-                message,
+                message: error,
                 type: "ERROR"
             }
         }
 
-        const errorTextByCode: string = String(message.code)
+        const errorTextByCode: string = getErrorTextByCode(error)
 
         return {
             message: errorTextByCode,
@@ -32,19 +33,27 @@ export const NotificationHelper = {
         }
     },
 
-    getWarning(message: string | TError): TNotification {
-        if (typeof message === "string") {
+    getWarning(error: string | TError): TNotification {
+        if (typeof error === "string") {
             return {
-                message,
+                message: error,
                 type: "WARNING"
             }
         }
 
-        const warningText: string = String(message.code)
+        const warningText: string = getErrorTextByCode(error)
 
         return {
             message: warningText,
             type: "WARNING"
         }
     }
+}
+
+function getErrorTextByCode(error: TError): string {
+    if (!error || !error.code) {
+        return error.text
+    }
+
+    return translate(String(error.code))
 }
