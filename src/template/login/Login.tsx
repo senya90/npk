@@ -12,7 +12,6 @@ import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import {AppContext} from "helpers/contexts/AppContext";
 import {LoginProps} from "./LoginTypes";
-import {NotificationHelper} from "../../helpers/notifications/notificationHelper";
 
 
 const LoginComponent: FC<LoginProps> = (props) => {
@@ -41,11 +40,7 @@ const LoginComponent: FC<LoginProps> = (props) => {
             try {
                 const response = await loginApi(login, password)
                 if (response.data.error) {
-                    console.log(response.data.error)
-                    console.log(response.data.error.message)
                     localStorageProvider.clearTokens()
-                    notificationService.notify(NotificationHelper.getError(response.data.error))
-
                     return
                 }
 
@@ -53,9 +48,8 @@ const LoginComponent: FC<LoginProps> = (props) => {
                     updateTokensApp(response.data.data)
                     props.history.push(getPathForRedirect())
                 }
-            } catch (e) {
-                console.log('err', e)
-                console.log(e.data)
+            } catch (err) {
+                notificationService.notifySomethingWrong(err)
                 localStorageProvider.clearTokens()
             }
         }
