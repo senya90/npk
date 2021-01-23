@@ -155,5 +155,9 @@
     "somethingWrong": {
         "ru": "Что-то пошло не так. Попробуйте повторить позже или обратитесь к администратору",
         "en": "Something wrong. Please try again later or contact your administrator"
+    },
+    "addYourFertilizers": {
+        "ru": "Добавьте свои удобрения",
+        "en": "Add your fertilizers"
     }
 }

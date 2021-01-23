@@ -13,6 +13,8 @@ import {CalculatorContext, CalculatorContextType} from "helpers/contexts/Calcula
 import { Dosage } from 'models/dosage';
 
 import style from './fertilizers.module.scss'
+import {notEmptyArray} from "../../helpers/utils";
+import { Gag } from 'molecule/gag/Gag';
 
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture}) => {
@@ -51,15 +53,23 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
     return (
         <div className={style.fertilizers_wrapper}>
             <Title border>{translate('fertilizers')}</Title>
-            <div className={style.fertilizersBox}>
-                {renderFertilizers()}
-            </div>
+            {notEmptyArray(fertilizers) ?
+                <div className={style.fertilizersBox}>
+                    {renderFertilizers()}
+                </div>
+                :
+                <Gag>
+                    {translate('addYourFertilizers')}
+                </Gag>
+            }
+
             <Button
                 type={BUTTON_TYPE.PRIMARY}
                 onClick={addEditFertilizer}
             >
                 {translate('addFertilizer')}
             </Button>
+
             {isOpenModal &&
                 <Modal
                     title={translate('fertilizer')}
@@ -73,7 +83,7 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
             }
 
         </div>
-    );
-};
+    )
+}
 
 export {Fertilizers}

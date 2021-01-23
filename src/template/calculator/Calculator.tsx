@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Fertilizers} from "../../organism/fertilizers/Fertilizers";
 import { Fertilizer } from 'models/fertilizer';
-import {fertilizersMock} from "../../mocks/fertilizersMock";
 import {MixtureComposition} from "../../organism/mixtureComposition/MixtureComposition";
 
 import style from './calculator.module.scss'
@@ -23,7 +22,7 @@ import {ApiURL} from "core/api/ApiURL";
 
 const Calculator = () => {
     const [chemicals, setChemicals] = useState<ChemicalUnit[]>([])
-    const [fertilizers, setFertilizers] = useState<Fertilizer[]>(fertilizersMock)
+    const [fertilizers, setFertilizers] = useState<Fertilizer[]>([])
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
     const [allMixtures, setAllMixtures] = useState<Mixture[]>(mixturesMock)
     const [mixture, setMixture] = useState<Mixture>()

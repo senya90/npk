@@ -26,6 +26,10 @@ export const isArray = (value: any) => {
     return isExist(value) && Array.isArray(value)
 }
 
+export const notEmptyArray = (value: any) => {
+    return isArray(value) && value.length > 0
+}
+
 export const notEmptyString = (value: any) => {
     return typeof value === 'string' && value.length > 0
 }

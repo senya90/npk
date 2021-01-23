@@ -1,0 +1,12 @@
+@import "src/index";
+
+.gag {
+    opacity: 0.7;
+    text-align: center;
+}
+
+.text {
+    font-size: 2em;
+    color: $gag_text;
+    font-weight: bold;
+}
