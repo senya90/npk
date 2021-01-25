@@ -7,6 +7,7 @@ import style from './gag.module.scss'
 const Gag: FC<GagProps> = ({icon, children}) => {
     return (
         <div className={style.gag}>
+            {icon}
             <div className={style.text}>{children}</div>
         </div>
     );

@@ -3,6 +3,7 @@ import React from "react";
 export interface IconProps {
     type: ICON_TYPE
     size?: number
+    color?: string
     className?: string
     onClick?: (e: React.MouseEvent) => void
 }
@@ -23,4 +24,9 @@ export class ICON_TYPE {
     static readonly DoubleRightOutlined = 'DoubleRightOutlined'
 
     static readonly Cross = 'CloseOutlined'
+
+
+    // CUSTOM ICONS
+    static readonly Fertilizer = 'Fertilizer'
+    static readonly Flasks = 'Flasks'
 }

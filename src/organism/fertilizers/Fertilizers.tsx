@@ -15,6 +15,8 @@ import { Dosage } from 'models/dosage';
 import style from './fertilizers.module.scss'
 import {notEmptyArray} from "../../helpers/utils";
 import { Gag } from 'molecule/gag/Gag';
+import { ICON_TYPE } from 'atom/icon/IconTypes';
+import { Icon } from 'atom/icon/Icon';
 
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture}) => {
@@ -58,9 +60,15 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
                     {renderFertilizers()}
                 </div>
                 :
-                <Gag>
-                    {translate('addYourFertilizers')}
-                </Gag>
+                <div className={style.emptyWrapper}>
+                    <Gag
+                        icon={
+                            <Icon type={ICON_TYPE.Fertilizer} size={100}/>
+                        }
+                    >
+                        {translate('addYourFertilizers')}
+                    </Gag>
+                </div>
             }
 
             <Button

@@ -10,13 +10,17 @@ const Icon:FunctionComponent<IconProps> = (props) => {
         style.fontSize = props.size
     }
 
+    if (props.color) {
+        style.fill = props.color
+    }
+
     return (
         <i
             className={props.className}
             onClick={props.onClick}
             style={style}
         >
-            {IconsProvider(props.type)}
+            {IconsProvider(props.type, props.size, props.color)}
         </i>
     );
 };

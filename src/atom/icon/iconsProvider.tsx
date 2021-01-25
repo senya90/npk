@@ -14,8 +14,9 @@ import {
     CaretRightOutlined,
     DoubleRightOutlined,
 } from '@ant-design/icons';
+import { CustomIcon } from 'atom/customIcon/CustomIcon';
 
-export function IconsProvider(iconType: ICON_TYPE) {
+export function IconsProvider(iconType: ICON_TYPE, size = 30, color = '#000000') {
     switch (iconType) {
         case (ICON_TYPE.RightOutlined):
             return <RightOutlined/>
@@ -49,6 +50,9 @@ export function IconsProvider(iconType: ICON_TYPE) {
 
         case (ICON_TYPE.DoubleRightOutlined):
             return <DoubleRightOutlined />
+
+        case (ICON_TYPE.Fertilizer):
+            return <CustomIcon iconType={ICON_TYPE.Fertilizer} size={size} color={color}/>
 
         default:
             return <div/>
