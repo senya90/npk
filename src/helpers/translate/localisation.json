@@ -159,5 +159,9 @@
     "addYourFertilizers": {
         "ru": "Добавьте свои удобрения",
         "en": "Add your fertilizers"
+    },
+    "addFertilizerFromList": {
+        "ru": "Добавьте удобрения из вашего списка",
+        "en": "Add fertilizers from your list"
     }
 }

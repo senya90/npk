@@ -12,6 +12,9 @@ import style from './mixtureComposition.module.scss'
 import {Dosage} from "../../models/dosage";
 import { Button } from 'atom/button/Button';
 import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
+import { Gag } from 'molecule/gag/Gag';
+import { Icon } from 'atom/icon/Icon';
+import { ICON_TYPE } from 'atom/icon/IconTypes';
 
 const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture}) => {
     const {onMixtureUpdated, onMixtureSave} = useContext<CalculatorContextType>(CalculatorContext)
@@ -66,6 +69,18 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
     return (
         <div>
             <Title border>{translate('mixtureComposition')}</Title>
+            {!mixture &&
+                <div className={style.gagWrapper}>
+                    <Gag
+                        icon={
+                            <Icon type={ICON_TYPE.Flasks} size={100}/>
+                        }
+                    >
+                        {translate('addFertilizerFromList')}
+                    </Gag>
+                </div>
+
+            }
             {mixture &&
                 renderMixture()
             }
