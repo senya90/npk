@@ -10,7 +10,10 @@ import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {Button} from "../../atom/button/Button";
 import Modal from 'organism/modal/Modal';
 import {AgricultureEditor} from 'organism/agricultureEditor/AgricultureEditor';
-import {isExist} from "../../helpers/utils";
+import {isExist, notEmptyArray} from "../../helpers/utils";
+import { Gag } from 'molecule/gag/Gag';
+import { Icon } from 'atom/icon/Icon';
+import {ICON_TYPE} from "../../atom/icon/IconTypes";
 
 
 const AgriculturesView: FunctionComponent<AgriculturesProps> =
@@ -75,9 +78,24 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
         return ''
     }
 
+    const isEmptyAgricultureList = () => {
+        return !agricultures || !notEmptyArray(agricultures)
+    }
+
     return (
         <div className={style.agricultureWrapper}>
             <Title border>{translate('agriculture')}</Title>
+            {isEmptyAgricultureList() &&
+                <div className={style.gagWrapper}>
+                    <Gag
+                        icon={
+                            <Icon type={ICON_TYPE.Agriculture} size={100}/>
+                        }
+                    >
+                        {translate('addYourAgriculture')}
+                    </Gag>
+                </div>
+            }
             {
                 agricultures.map(agriculture => (
                     <AgricultureItem

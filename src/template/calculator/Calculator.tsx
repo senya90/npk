@@ -27,7 +27,7 @@ const Calculator = () => {
     const [allMixtures, setAllMixtures] = useState<Mixture[]>(mixturesMock)
     const [mixture, setMixture] = useState<Mixture>()
     const [activeAgriculture, setActiveAgriculture] = useState<Agriculture>(agriculturesMock[0])
-    const [agricultures, setAgricultures] = useState<Agriculture[]>(agriculturesMock)
+    const [agricultures, setAgricultures] = useState<Agriculture[]>([])
 
 
     useEffect(() => {

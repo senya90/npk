@@ -163,5 +163,9 @@
     "addFertilizerFromList": {
         "ru": "Добавьте удобрения из вашего списка",
         "en": "Add fertilizers from your list"
+    },
+    "addYourAgriculture": {
+        "ru": "Добавьте агрокультуру",
+        "en": "Add agriculture"
     }
 }

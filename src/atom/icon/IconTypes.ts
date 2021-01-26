@@ -29,4 +29,5 @@ export class ICON_TYPE {
     // CUSTOM ICONS
     static readonly Fertilizer = 'Fertilizer'
     static readonly Flasks = 'Flasks'
+    static readonly Agriculture = 'Agriculture'
 }

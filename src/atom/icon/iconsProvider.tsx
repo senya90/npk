@@ -57,6 +57,9 @@ export function IconsProvider(iconType: ICON_TYPE, size = 30, color = '#000000')
         case (ICON_TYPE.Flasks):
             return <CustomIcon iconType={ICON_TYPE.Flasks} size={size} color={color}/>
 
+        case (ICON_TYPE.Agriculture):
+            return <CustomIcon iconType={ICON_TYPE.Agriculture} size={size} color={color}/>
+
         default:
             return <div/>
     }
