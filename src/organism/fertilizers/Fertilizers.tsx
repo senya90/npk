@@ -74,6 +74,7 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
             <Button
                 type={BUTTON_TYPE.PRIMARY}
                 onClick={addEditFertilizer}
+                containerclass={style.addButton}
             >
                 {translate('addFertilizer')}
             </Button>
