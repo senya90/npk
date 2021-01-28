@@ -3,8 +3,10 @@ import {Fertilizer} from "../../models/fertilizer";
 import { Mixture } from "models/mixture/mixture";
 import { Agriculture } from "models/agriculture";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
+import {ChemicalUnit} from "../../models/chemicalUnit";
 
 export type CalculatorContextType = {
+    chemicals: ChemicalUnit[],
     onDeleteFertilizer: (fertilizerId: string) => boolean
     onSaveFertilizer: (fertilizer: Fertilizer) => Fertilizer
     onEditFertilizer: (fertilizerId: string) => Fertilizer
@@ -21,6 +23,7 @@ export type CalculatorContextType = {
 }
 
 export const CalculatorContext = React.createContext<CalculatorContextType>({
+    chemicals: [],
     onDeleteFertilizer(fertilizerId: string): boolean {
         return false;
     },

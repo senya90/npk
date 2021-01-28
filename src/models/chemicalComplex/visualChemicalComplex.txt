@@ -3,6 +3,6 @@
                  |          |
                   atom atom
                     |   |
-    Mg S O 4  *   7 H 2 0
+    Mg S O 4  *   7 H 2 O
    |                     |
    |_______complex_______|

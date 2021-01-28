@@ -41,7 +41,7 @@ const Calculator = () => {
     const getChemicalsApi = async (): Promise<ChemicalUnit[]> => {
         try {
             const result = await API.get(ApiURL.getChemicals)
-            const chemicals = result.data
+            const chemicals = result.data.data
 
             if (!isExist(chemicals)) {
                 return []
@@ -172,6 +172,7 @@ const Calculator = () => {
     return (
         <div>
             <CalculatorContext.Provider value={{
+                chemicals: chemicals,
                 onDeleteFertilizer: onFertilizerDelete,
                 onSaveFertilizer: onSaveFertilizer,
                 onEditFertilizer: onFertilizerEdit,

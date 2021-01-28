@@ -8,5 +8,7 @@ export interface InputProps {
     className?: string
     password?: boolean
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onKeyUp?: any
+    onKeyDown?: any
     mode?: InputMode
 }

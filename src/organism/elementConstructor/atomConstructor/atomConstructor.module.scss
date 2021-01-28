@@ -1,0 +1,18 @@
+@import "src/index";
+
+.atom {
+    padding: 10px;
+    background-color: $back_constructor_atom;
+}
+
+.atomSelect {
+    min-width: 100px;
+}
+
+.atomCount {
+    max-width: 36px;
+    margin-top: 20px;
+    border-radius: 13px;
+    text-align: center;
+    font-size: 0.9em;
+}

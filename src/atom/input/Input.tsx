@@ -22,6 +22,8 @@ const Input: FunctionComponent<InputProps> = (props) => {
             {...clearedProps}
             className={className}
             placeholder={props.placeholder}
+            onKeyUp={props.onKeyUp}
+            onKeyDown={props.onKeyDown}
         />
     );
 };

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
 import { BUTTON_TYPE } from 'atom/button/ButtonTypes';
@@ -7,20 +7,29 @@ import {AggregationConstructor} from "./aggregationConstructor/AggregationConstr
 
 import style from './elementConstructor.module.scss'
 import { ChemicalAtom } from 'models/chemicalAtom';
-import { ChemicalUnit } from 'models/chemicalUnit';
+import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 const ElementConstructor = () => {
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
+    const {chemicals} = useContext(CalculatorContext)
+
+    const getDefaultChemicalUnit = () => {
+        return chemicals.find(chemical => chemical.name === 'N')
+    }
 
     const addAggregation = () => {
-        setAggregation([
-            ...aggregations,
-            new ChemicalAggregate([
-                new ChemicalAtom(
-                    new ChemicalUnit()
-                )
+        const defaultChemical = getDefaultChemicalUnit()
+
+        if (defaultChemical) {
+            setAggregation([
+                ...aggregations,
+                new ChemicalAggregate([
+                    new ChemicalAtom(
+                        defaultChemical
+                    )
+                ])
             ])
-        ])
+        }
     }
 
     const renderAggregations = () => {
