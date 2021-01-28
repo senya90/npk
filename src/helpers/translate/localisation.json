@@ -167,5 +167,13 @@
     "addYourAgriculture": {
         "ru": "Добавьте агрокультуру",
         "en": "Add agriculture"
+    },
+    "elementConstructor": {
+        "ru": "Конструктор химических элементов",
+        "en": "Chemical elements constructor"
+    },
+    "addCompound": {
+        "ru": "Добавить соединение",
+        "en": "Add compound"
     }
 }

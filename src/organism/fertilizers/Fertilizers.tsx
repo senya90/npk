@@ -17,6 +17,7 @@ import {notEmptyArray} from "../../helpers/utils";
 import { Gag } from 'molecule/gag/Gag';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
 import { Icon } from 'atom/icon/Icon';
+import { ElementConstructor } from 'organism/elementConstructor/ElementConstructor';
 
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture}) => {
@@ -103,10 +104,10 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
 
             {isShowElementConstructor &&
             <Modal
-                title={translate('element constructor')}
+                title={translate('elementConstructor')}
                 onClose={closeElementConstructor}
             >
-                element constructor
+                <ElementConstructor/>
             </Modal>
             }
 
