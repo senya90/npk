@@ -12,7 +12,7 @@ import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
 import {translate} from "../../helpers/translate/translate";
 import {Fertilizer} from "../../models/fertilizer";
 
-const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFertilizer, onSave}) => {
+const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFertilizer, onSave, addElement}) => {
     const [name, setName] = useState<string>('')
     const [elements, setElements] = useState<FertilizerIngredient[]>([])
 
@@ -88,14 +88,22 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
             >
                 +
             </Button>
-            <Button
-                type={BUTTON_TYPE.PRIMARY}
-                containerclass={`${commonStyles.mb_nano}`}
-                onClick={save}
-            >
-                {translate('save')}
-            </Button>
+            <div className={style.footer}>
+                <Button
+                    type={BUTTON_TYPE.PRIMARY}
+                    containerclass={`${commonStyles.mb_nano}`}
+                    onClick={save}
+                >
+                    {translate('save')}
+                </Button>
 
+                <Button
+                    containerclass={`${commonStyles.mb_nano}`}
+                    onClick={addElement}
+                >
+                    {translate('addElement')}
+                </Button>
+            </div>
         </form>
     );
 };

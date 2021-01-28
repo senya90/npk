@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useState} from 'react';
+import React, {FunctionComponent, useCallback, useContext, useState} from 'react';
 
 import {BUTTON_TYPE} from "atom/button/ButtonTypes";
 import {Button} from "atom/button/Button";
@@ -21,7 +21,8 @@ import { Icon } from 'atom/icon/Icon';
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture}) => {
     const {onSaveFertilizer, onEditFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
-    const [isOpenModal, setIsOpenModal] = useState(false)
+    const [isShowFertilizerEditor, setIsShowFertilizerEditor] = useState(false)
+    const [isShowElementConstructor, setIsShowElementConstructor] = useState(false)
 
     const renderFertilizers = () => {
         return fertilizers.map(fertilizer => {
@@ -35,20 +36,28 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
     }
 
     const addEditFertilizer = () => {
-        setIsOpenModal(true)
+        setIsShowFertilizerEditor(true)
     }
+
+    const addElement = useCallback(() => {
+        setIsShowElementConstructor(true)
+    }, [])
 
     const editFertilizer = (fertilizer: Fertilizer) => {
         onEditFertilizer(fertilizer.id)
-        setIsOpenModal(true)
+        setIsShowFertilizerEditor(true)
     }
 
-    const closeModal = () => {
-        setIsOpenModal(false)
+    const closeFertilizerEditor = () => {
+        setIsShowFertilizerEditor(false)
+    }
+
+    const closeElementConstructor = () => {
+        setIsShowElementConstructor(false)
     }
 
     const onSave = (fertilizer: Fertilizer) => {
-        closeModal()
+        closeFertilizerEditor()
         onSaveFertilizer(fertilizer)
     }
 
@@ -79,16 +88,26 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
                 {translate('addFertilizer')}
             </Button>
 
-            {isOpenModal &&
+            {isShowFertilizerEditor &&
                 <Modal
                     title={translate('fertilizer')}
-                    onClose={closeModal}
+                    onClose={closeFertilizerEditor}
                 >
                     <FertilizerEditor
                         editableFertilizer={editableFertilizer}
                         onSave={onSave}
+                        addElement={addElement}
                     />
                 </Modal>
+            }
+
+            {isShowElementConstructor &&
+            <Modal
+                title={translate('element constructor')}
+                onClose={closeElementConstructor}
+            >
+                element constructor
+            </Modal>
             }
 
         </div>
