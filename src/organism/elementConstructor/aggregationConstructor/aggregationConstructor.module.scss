@@ -3,6 +3,7 @@
 .aggregate {
     padding: 10px;
     display: flex;
+    position: relative;
     margin-bottom: 10px;
     border: 1px solid $color_backPrimary;
     background-color: $back_constructor_aggregation;
@@ -13,4 +14,11 @@
     padding: 3px;
     text-align: center;
     margin-right: 10px;
+    border-radius: 13px;
+}
+
+.addAtomButton {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
