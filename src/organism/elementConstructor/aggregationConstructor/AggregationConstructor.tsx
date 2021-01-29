@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {ChemicalAggregate} from "../../../models/chemicalAggregate";
 
 import style from './aggregationConstructor.module.scss'
@@ -10,17 +10,25 @@ import { BUTTON_TYPE } from 'atom/button/ButtonTypes';
 
 interface AggregationConstructorProps {
     aggregation: ChemicalAggregate
+    onChangeAggregationMultiplier: (updatedAggregation: ChemicalAggregate, multiplier: number) => void
+    onAddAtom: (aggregation: ChemicalAggregate) => void
 }
 
-const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) => {
-    const [multiplier, setMultiplier] = useState<number>(aggregation.multiplier)
+const MIN_MULTIPLIER = 1
 
+const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, onChangeAggregationMultiplier, onAddAtom}) => {
 
     const changeMultiplier = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (isNaN( Number(e.target.value) )) {
+        const value = Number(e.target.value)
+        if (isNaN(value)) {
             return
         }
-        setMultiplier(Number(e.target.value))
+
+        if (value === 0) {
+            onChangeAggregationMultiplier(aggregation, MIN_MULTIPLIER)
+            return
+        }
+        onChangeAggregationMultiplier(aggregation, value)
     }
 
     const renderAtoms = () => {
@@ -28,8 +36,7 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
     }
 
     const addAtom = () => {
-        console.log('addAtom')
-
+        onAddAtom(aggregation)
     }
 
     return (
@@ -37,7 +44,7 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
             <Input
                 className={style.multiplier}
                 onChange={changeMultiplier}
-                value={String(multiplier)}
+                value={String(aggregation.multiplier)}
             />
 
             {renderAtoms()}

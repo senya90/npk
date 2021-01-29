@@ -1,6 +1,8 @@
 import {ChemicalAtom} from "./chemicalAtom";
+import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
 
 export class ChemicalAggregate {
+    id: string
     atoms: ChemicalAtom[]
     multiplier: number
 
@@ -11,8 +13,9 @@ export class ChemicalAggregate {
         )
     }
 
-    constructor(atoms: ChemicalAtom[], multiplier = 1) {
+    constructor(atoms: ChemicalAtom[], multiplier = 1, id?: string) {
         this.atoms = atoms;
         this.multiplier = multiplier
+        this.id = id ? id : IdGenerator.generate()
     }
 }
