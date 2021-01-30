@@ -2,13 +2,16 @@
 
 .atom {
     display: inline-block;
+    position: relative;
     padding: 10px;
     background-color: $back_constructor_atom;
     margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 .atomSelect {
     min-width: 100px;
+    margin-right: 5px;
 }
 
 .atomCount {
@@ -17,4 +20,21 @@
     border-radius: 13px;
     text-align: center;
     font-size: 0.9em;
+}
+
+.atomsCountButtons {
+    position: absolute;
+    right: 5px;
+    bottom: -11px;
+    font-size: 1em;
+    font-family: $font_family_secondary;
+}
+
+.addAtomButton {
+    min-width: 17px!important;
+    height: 17px;
+    padding: 0;
+
+    line-height: 1;
+    border: none;
 }

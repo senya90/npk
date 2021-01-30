@@ -7,6 +7,8 @@ import {Select} from "../../../atom/select/Select";
 import style from './atomConstructor.module.scss'
 import {isExist} from "../../../helpers/utils";
 import { Input } from 'atom/input/Input';
+import { Button } from 'atom/button/Button';
+import { BUTTON_SHAPE, BUTTON_TYPE } from 'atom/button/ButtonTypes';
 
 interface AtomConstructorProps {
     atom: ChemicalAtom
@@ -34,6 +36,14 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom}) => {
         setAtomCount(Number(value))
     }
 
+    const addAtom = () => {
+        setAtomCount(atomCount + 1)
+    }
+
+    const isShowAtomsCountInput = (): boolean => {
+        return atom.atomsCount > 1
+    }
+
     return (
         <div className={style.atom}>
             <Select
@@ -46,11 +56,26 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom}) => {
                 containerclass={style.atomSelect}
                 onChange={changeChemical}
             />
-            <Input
-                value={String(atomCount)}
-                className={style.atomCount}
-                onKeyDown={changeAtomCount}
-            />
+            {isShowAtomsCountInput() ?
+                <Input
+                    value={String(atomCount)}
+                    className={style.atomCount}
+                    onKeyDown={changeAtomCount}
+                />
+                :
+                <div className={style.atomsCountButtons}>
+                    <Button
+                        containerclass={style.addAtomButton}
+                        type={BUTTON_TYPE.PRIMARY}
+                        shape={BUTTON_SHAPE.CIRCLE}
+                        onClick={addAtom}
+                    >
+                        +
+                    </Button>
+                </div>
+
+            }
+
         </div>
     );
 };

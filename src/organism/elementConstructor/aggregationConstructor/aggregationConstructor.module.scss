@@ -2,7 +2,9 @@
 
 .aggregate {
     padding: 10px;
+    padding-bottom: 0;
     display: flex;
+    flex-wrap: wrap;
     position: relative;
     margin-bottom: 10px;
     border: 1px solid $color_backPrimary;
@@ -15,6 +17,7 @@
     text-align: center;
     margin-right: 10px;
     border-radius: 13px;
+    margin-bottom: 10px;
 }
 
 .addAtomButton {
