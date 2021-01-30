@@ -1,4 +1,5 @@
 import React, {FC, useContext, useState} from 'react';
+import cn from 'classnames'
 import {ChemicalAtom} from "../../../models/chemicalAtom";
 import {CalculatorContext} from "../../../helpers/contexts/CalculatorContext";
 import {translate} from "../../../helpers/translate/translate";
@@ -12,18 +13,18 @@ import { BUTTON_SHAPE, BUTTON_TYPE } from 'atom/button/ButtonTypes';
 
 interface AtomConstructorProps {
     atom: ChemicalAtom
+    changeAtomCount: (atom: ChemicalAtom, count: number) => void
 }
 
-const AtomConstructor: FC<AtomConstructorProps> = ({atom}) => {
+const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtomCount}) => {
     const {chemicals} = useContext(CalculatorContext)
     const [currentChemicalId, setCurrentChemicalId] = useState<string>(atom.chemicalUnit.id)
-    const [atomCount, setAtomCount] = useState<number>(atom.atomsCount)
 
     const changeChemical = (value: string) => {
         setCurrentChemicalId(value)
     }
 
-    const changeAtomCount = (e: any) => {
+    const changeCount = (e: any) => {
         const value = e.key
         if (isNaN(value)) {
             return
@@ -37,7 +38,20 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom}) => {
     }
 
     const addAtom = () => {
-        setAtomCount(atomCount + 1)
+        setAtomCount(atom.atomsCount + 1)
+    }
+
+    const removeAtom = () => {
+        let value = atom.atomsCount - 1
+        if (value <= 0) {
+           value = 1
+        }
+
+        setAtomCount(value)
+    }
+
+    const setAtomCount = (count: number) => {
+        changeAtomCount(atom, count)
     }
 
     const isShowAtomsCountInput = (): boolean => {
@@ -56,25 +70,31 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom}) => {
                 containerclass={style.atomSelect}
                 onChange={changeChemical}
             />
-            {isShowAtomsCountInput() ?
+            {isShowAtomsCountInput() &&
                 <Input
-                    value={String(atomCount)}
+                    value={String(atom.atomsCount)}
                     className={style.atomCount}
-                    onKeyDown={changeAtomCount}
+                    onKeyDown={changeCount}
                 />
-                :
-                <div className={style.atomsCountButtons}>
-                    <Button
-                        containerclass={style.addAtomButton}
-                        type={BUTTON_TYPE.PRIMARY}
-                        shape={BUTTON_SHAPE.CIRCLE}
-                        onClick={addAtom}
-                    >
-                        +
-                    </Button>
-                </div>
-
             }
+
+            <div className={style.atomsCountButtons}>
+                <Button
+                    containerclass={cn(style.atomButton, style.removeAtomButton)}
+                    shape={BUTTON_SHAPE.CIRCLE}
+                    onClick={removeAtom}
+                >
+                    -
+                </Button>
+                <Button
+                    containerclass={style.atomButton}
+                    type={BUTTON_TYPE.PRIMARY}
+                    shape={BUTTON_SHAPE.CIRCLE}
+                    onClick={addAtom}
+                >
+                    +
+                </Button>
+            </div>
 
         </div>
     );

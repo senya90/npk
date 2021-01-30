@@ -30,11 +30,15 @@
     font-family: $font_family_secondary;
 }
 
-.addAtomButton {
+.atomButton {
     min-width: 17px!important;
     height: 17px;
     padding: 0;
 
     line-height: 1;
     border: none;
+}
+
+.removeAtomButton {
+    margin-right: 5px;
 }

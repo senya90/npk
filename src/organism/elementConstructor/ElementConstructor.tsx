@@ -59,6 +59,22 @@ const ElementConstructor = () => {
         setAggregation(updatedAggregations)
     }
 
+    const onChangeAtomCount = (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, updatedCount: number) => {
+        const updatedWithNewAtomValue = aggregations.map(aggregation => {
+            const updatedAtoms =  aggregation.atoms.map(atom => {
+                if (atom.id === updatedAtom.id) {
+                    return new ChemicalAtom(updatedAtom.chemicalUnit, updatedCount, updatedAtom.id)
+                }
+
+                return atom
+            })
+
+            return new ChemicalAggregate(updatedAtoms, aggregation.multiplier, aggregation.id)
+        })
+
+        setAggregation(updatedWithNewAtomValue)
+    }
+
 
     const renderAggregations = () => {
         return aggregations.map((aggregation, index) => {
@@ -68,6 +84,7 @@ const ElementConstructor = () => {
                     key={index}
                     onChangeAggregationMultiplier={onChangeAggregationMultiplier}
                     onAddAtom={onAddAtom}
+                    onChangeAtomCount={onChangeAtomCount}
                 />
             )
         })
