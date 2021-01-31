@@ -16,13 +16,15 @@ import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 interface AtomConstructorProps {
     atom: ChemicalAtom
     changeAtomCount: (atom: ChemicalAtom, count: number) => void
+    removeAtom: (removedAtom: ChemicalAtom) => void
 }
 
-const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtomCount}) => {
+const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtomCount, removeAtom}) => {
     const {chemicals} = useContext(CalculatorContext)
     const [currentChemicalId, setCurrentChemicalId] = useState<string>(atom.chemicalUnit.id)
 
     const changeChemical = (value: string) => {
+        // TODO: handle in Elementconstructor
         setCurrentChemicalId(value)
     }
 
@@ -43,13 +45,17 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtomCount}) => {
         setAtomCount(atom.atomsCount + 1)
     }
 
-    const removeAtom = () => {
+    const decreaseAtom = () => {
         let value = atom.atomsCount - 1
         if (value <= 0) {
            value = 1
         }
 
         setAtomCount(value)
+    }
+
+    const remove = () => {
+        removeAtom(atom)
     }
 
     const setAtomCount = (count: number) => {
@@ -82,6 +88,7 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtomCount}) => {
             <Button
                 containerclass={style.removeButton}
                 shape={BUTTON_SHAPE.CIRCLE}
+                onClick={remove}
             >
                 <Icon type={ICON_TYPE.Cross} size={8}/>
             </Button>
@@ -89,7 +96,7 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtomCount}) => {
                 <Button
                     containerclass={cn(style.atomButton, style.removeAtomButton)}
                     shape={BUTTON_SHAPE.CIRCLE}
-                    onClick={removeAtom}
+                    onClick={decreaseAtom}
                 >
                     -
                 </Button>

@@ -8,6 +8,7 @@ import {AggregationConstructor} from "./aggregationConstructor/AggregationConstr
 import style from './elementConstructor.module.scss'
 import { ChemicalAtom } from 'models/chemicalAtom';
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
+import { ElementConstructorContext } from 'helpers/contexts/ElementConstructorContext';
 
 const ElementConstructor = () => {
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
@@ -59,6 +60,10 @@ const ElementConstructor = () => {
         setAggregation(updatedAggregations)
     }
 
+    const onChangeAtom = () => {
+
+    }
+
     const onChangeAtomCount = (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, updatedCount: number) => {
         const updatedWithNewAtomValue = aggregations.map(aggregation => {
             const updatedAtoms =  aggregation.atoms.map(atom => {
@@ -75,6 +80,14 @@ const ElementConstructor = () => {
         setAggregation(updatedWithNewAtomValue)
     }
 
+    const onRemoveAtom = (aggregation: ChemicalAggregate, removedAtom: ChemicalAtom) => {
+        const aggregationsWithoutAtom = aggregations.map(aggregation => {
+            const updatedAtoms = aggregation.atoms.filter(atom => atom.id !== removedAtom.id)
+            return new ChemicalAggregate(updatedAtoms, aggregation.multiplier, aggregation.id)
+        })
+        setAggregation(aggregationsWithoutAtom)
+    }
+
 
     const renderAggregations = () => {
         return aggregations.map((aggregation, index) => {
@@ -83,6 +96,7 @@ const ElementConstructor = () => {
                     aggregation={aggregation}
                     key={index}
                     onChangeAggregationMultiplier={onChangeAggregationMultiplier}
+                    onRemoveAtom={onRemoveAtom}
                     onAddAtom={onAddAtom}
                     onChangeAtomCount={onChangeAtomCount}
                 />
@@ -90,16 +104,26 @@ const ElementConstructor = () => {
         })
     }
 
+    console.log(aggregations)
+
     return (
         <div>
-            <Button
-                containerclass={style.addAggregationButton}
-                type={BUTTON_TYPE.PRIMARY}
-                onClick={addAggregation}
-            >
-                {translate('addCompound')}
-            </Button>
-            {renderAggregations()}
+            <ElementConstructorContext.Provider value={{
+                onAddAtom: onAddAtom,
+                onChangeAggregationMultiplier: onChangeAggregationMultiplier,
+                onChangeAtom: onChangeAtom,
+                onChangeAtomCount: onChangeAtomCount,
+                onRemoveAtom: onRemoveAtom
+            }}>
+                <Button
+                    containerclass={style.addAggregationButton}
+                    type={BUTTON_TYPE.PRIMARY}
+                    onClick={addAggregation}
+                >
+                    {translate('addCompound')}
+                </Button>
+                {renderAggregations()}
+            </ElementConstructorContext.Provider>
         </div>
     );
 };
