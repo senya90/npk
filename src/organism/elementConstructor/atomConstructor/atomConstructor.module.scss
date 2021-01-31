@@ -13,6 +13,10 @@
         .atomsCountButtons {
             display: block;
         }
+
+        .removeButton {
+            display: flex;
+        }
     }
 }
 
@@ -27,6 +31,20 @@
     border-radius: 13px;
     text-align: center;
     font-size: 0.9em;
+}
+
+.removeButton {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 17px!important;
+    height: 17px;
+    padding: 0;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    line-height: 1;
 }
 
 .atomsCountButtons {

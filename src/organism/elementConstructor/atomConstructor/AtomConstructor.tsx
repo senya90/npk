@@ -10,6 +10,8 @@ import {isExist} from "../../../helpers/utils";
 import { Input } from 'atom/input/Input';
 import { Button } from 'atom/button/Button';
 import { BUTTON_SHAPE, BUTTON_TYPE } from 'atom/button/ButtonTypes';
+import { Icon } from 'atom/icon/Icon';
+import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 
 interface AtomConstructorProps {
     atom: ChemicalAtom
@@ -77,7 +79,12 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtomCount}) => {
                     onKeyDown={changeCount}
                 />
             }
-
+            <Button
+                containerclass={style.removeButton}
+                shape={BUTTON_SHAPE.CIRCLE}
+            >
+                <Icon type={ICON_TYPE.Cross} size={8}/>
+            </Button>
             <div className={style.atomsCountButtons}>
                 <Button
                     containerclass={cn(style.atomButton, style.removeAtomButton)}
