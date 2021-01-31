@@ -1,4 +1,4 @@
-import React, {FC, useContext, useState} from 'react';
+import React, {FC, useContext} from 'react';
 import cn from 'classnames'
 import {ChemicalAtom} from "../../../models/chemicalAtom";
 import {CalculatorContext} from "../../../helpers/contexts/CalculatorContext";
@@ -16,18 +16,15 @@ import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 interface AtomConstructorProps {
     atom: ChemicalAtom
     changeAtomCount: (atom: ChemicalAtom, count: number) => void
-    changeAtom: (chemicalId: string) => void
+    changeAtom: (updatedAtom: ChemicalAtom, chemicalId: string) => void
     removeAtom: (removedAtom: ChemicalAtom) => void
 }
 
 const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtomCount, removeAtom}) => {
     const {chemicals} = useContext(CalculatorContext)
-    const [currentChemicalId, setCurrentChemicalId] = useState<string>(atom.chemicalUnit.id)
 
     const changeChemical = (chemicalId: string) => {
-        // TODO: handle in Elementconstructor
-        setCurrentChemicalId(chemicalId)
-        changeAtom(chemicalId)
+        changeAtom(atom, chemicalId)
     }
 
     const changeCount = (e: any) => {
@@ -72,7 +69,7 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
         <div className={style.atom}>
             <Select
                 default={translate('selectElement')}
-                value={currentChemicalId}
+                value={atom.chemicalUnit.id}
                 options={chemicals.map(chemical => ({
                     label: chemical.name,
                     value: chemical.id

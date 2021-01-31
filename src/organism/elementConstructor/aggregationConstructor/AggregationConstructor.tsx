@@ -56,8 +56,8 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
         onRemoveAtom(aggregation, removedAtom)
     }
 
-    const changeAtom = (chemicalId: string) => {
-        onChangeAtom(aggregation, chemicalId)
+    const changeAtom = (updatedAtom: ChemicalAtom, chemicalId: string) => {
+        onChangeAtom(aggregation, updatedAtom, chemicalId)
     }
 
     const renderAtoms = () => {

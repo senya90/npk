@@ -60,9 +60,25 @@ const ElementConstructor = () => {
         setAggregation(updatedAggregations)
     }
 
-    const onChangeAtom = (aggregation: ChemicalAggregate, chemicalId: string) => {
-        let targetChemical = chemicals.find(chemical => chemical.id === chemicalId)
-        console.log('targetChemical', targetChemical)
+    const onChangeAtom = (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, chemicalId: string) => {
+        const updatedAggregations = aggregations.map(aggregation => {
+            const updatedAtoms = aggregation.atoms
+                .map(atom => {
+                    if (atom.id === updatedAtom.id) {
+                        let targetChemical = chemicals.find(chemical => chemical.id === chemicalId)
+                        if (targetChemical) {
+                            return new ChemicalAtom(targetChemical, updatedAtom.atomsCount, updatedAtom.id)
+                        }
+                    }
+
+                    return atom
+                })
+                .filter(atom => atom)
+
+            return new ChemicalAggregate(updatedAtoms, aggregation.multiplier, aggregation.id)
+        })
+
+        setAggregation(updatedAggregations)
     }
 
     const onChangeAtomCount = (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, updatedCount: number) => {
@@ -101,7 +117,7 @@ const ElementConstructor = () => {
         })
     }
 
-    console.log(aggregations)
+    console.log('aggregations', aggregations)
 
     return (
         <div>
