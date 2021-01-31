@@ -11,17 +11,57 @@
     background-color: $back_constructor_aggregation;
 }
 
+.multiplierWrapper {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    z-index: 100;
+
+    &:hover {
+        .multiplierButtons {
+            display: block;
+        }
+    }
+}
+
 .multiplier {
     max-width: 50px;
+    height: 100%;
     padding: 3px;
     text-align: center;
-    margin-right: 10px;
     border-radius: 13px;
-    margin-bottom: 10px;
+}
+
+.multiplierButtons {
+    display: none;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+
+    text-align: center;
+    transform: translate(-50%, 0);
 }
 
 .addAtomButton {
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+.addMultiplierButton {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.smallButton {
+    min-width: 17px!important;
+    height: 17px;
+    padding: 0;
+
+    line-height: 1;
+}
+
+.smallButtonRemove {
+    margin-right: 5px;
 }
