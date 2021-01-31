@@ -20,7 +20,7 @@ interface AggregationConstructorProps {
 const MIN_MULTIPLIER = 1
 
 const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) => {
-    const {onChangeAggregationMultiplier, onChangeAtomCount, onRemoveAtom, onAddAtom} = useContext(ElementConstructorContext)
+    const {onChangeAggregationMultiplier, onChangeAtom, onChangeAtomCount, onRemoveAtom, onAddAtom} = useContext(ElementConstructorContext)
 
     const changeMultiplier = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value)
@@ -56,10 +56,14 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
         onRemoveAtom(aggregation, removedAtom)
     }
 
+    const changeAtom = (chemicalId: string) => {
+        onChangeAtom(aggregation, chemicalId)
+    }
+
     const renderAtoms = () => {
         return aggregation.atoms.map((atom, index) => {
             return (
-                <AtomConstructor atom={atom} key={index} changeAtomCount={changeAtomCount} removeAtom={removeAtom}/>
+                <AtomConstructor atom={atom} key={index} changeAtomCount={changeAtomCount} removeAtom={removeAtom} changeAtom={changeAtom}/>
             )
         })
     }

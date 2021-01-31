@@ -60,8 +60,9 @@ const ElementConstructor = () => {
         setAggregation(updatedAggregations)
     }
 
-    const onChangeAtom = () => {
-
+    const onChangeAtom = (aggregation: ChemicalAggregate, chemicalId: string) => {
+        let targetChemical = chemicals.find(chemical => chemical.id === chemicalId)
+        console.log('targetChemical', targetChemical)
     }
 
     const onChangeAtomCount = (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, updatedCount: number) => {

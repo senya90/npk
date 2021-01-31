@@ -16,16 +16,18 @@ import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 interface AtomConstructorProps {
     atom: ChemicalAtom
     changeAtomCount: (atom: ChemicalAtom, count: number) => void
+    changeAtom: (chemicalId: string) => void
     removeAtom: (removedAtom: ChemicalAtom) => void
 }
 
-const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtomCount, removeAtom}) => {
+const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtomCount, removeAtom}) => {
     const {chemicals} = useContext(CalculatorContext)
     const [currentChemicalId, setCurrentChemicalId] = useState<string>(atom.chemicalUnit.id)
 
-    const changeChemical = (value: string) => {
+    const changeChemical = (chemicalId: string) => {
         // TODO: handle in Elementconstructor
-        setCurrentChemicalId(value)
+        setCurrentChemicalId(chemicalId)
+        changeAtom(chemicalId)
     }
 
     const changeCount = (e: any) => {
