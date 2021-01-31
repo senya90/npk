@@ -7,6 +7,7 @@
     background-color: $back_constructor_atom;
     margin-right: 10px;
     margin-bottom: 10px;
+    border-radius: 7px;
 
     &:hover {
         .atomsCountButtons {
@@ -43,7 +44,6 @@
     padding: 0;
 
     line-height: 1;
-    border: none;
 }
 
 .removeAtomButton {
