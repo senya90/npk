@@ -7,6 +7,12 @@
     background-color: $back_constructor_atom;
     margin-right: 10px;
     margin-bottom: 10px;
+
+    &:hover {
+        .atomsCountButtons {
+            display: block;
+        }
+    }
 }
 
 .atomSelect {
@@ -23,8 +29,9 @@
 }
 
 .atomsCountButtons {
+    display: none;
     position: absolute;
-    right: 5px;
+    left: 5px;
     bottom: -11px;
     font-size: 1em;
     font-family: $font_family_secondary;
