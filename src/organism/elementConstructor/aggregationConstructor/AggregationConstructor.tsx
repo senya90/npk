@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useContext} from 'react';
 import cn from "classnames";
 
 import {ChemicalAggregate} from "models/chemicalAggregate";
@@ -10,19 +10,17 @@ import {BUTTON_SHAPE, BUTTON_TYPE} from 'atom/button/ButtonTypes';
 import {ChemicalAtom} from "models/chemicalAtom";
 
 import style from './aggregationConstructor.module.scss'
+import {ElementConstructorContext} from "../../../helpers/contexts/ElementConstructorContext";
 
 
 interface AggregationConstructorProps {
     aggregation: ChemicalAggregate
-    onChangeAggregationMultiplier: (updatedAggregation: ChemicalAggregate, multiplier: number) => void
-    onAddAtom: (aggregation: ChemicalAggregate) => void
-    onChangeAtomCount: (aggregation: ChemicalAggregate, atom: ChemicalAtom, count: number) => void
-    onRemoveAtom: (aggregation: ChemicalAggregate, atom: ChemicalAtom) => void
 }
 
 const MIN_MULTIPLIER = 1
 
-const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, onChangeAggregationMultiplier, onAddAtom, onChangeAtomCount, onRemoveAtom}) => {
+const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) => {
+    const {onChangeAggregationMultiplier, onChangeAtomCount, onRemoveAtom, onAddAtom} = useContext(ElementConstructorContext)
 
     const changeMultiplier = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value)
@@ -59,7 +57,11 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, o
     }
 
     const renderAtoms = () => {
-        return aggregation.atoms.map((atom, index) => <AtomConstructor atom={atom} key={index} changeAtomCount={changeAtomCount} removeAtom={removeAtom}/>)
+        return aggregation.atoms.map((atom, index) => {
+            return (
+                <AtomConstructor atom={atom} key={index} changeAtomCount={changeAtomCount} removeAtom={removeAtom}/>
+            )
+        })
     }
 
     const addAtom = () => {

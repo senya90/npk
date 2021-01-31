@@ -95,10 +95,6 @@ const ElementConstructor = () => {
                 <AggregationConstructor
                     aggregation={aggregation}
                     key={index}
-                    onChangeAggregationMultiplier={onChangeAggregationMultiplier}
-                    onRemoveAtom={onRemoveAtom}
-                    onAddAtom={onAddAtom}
-                    onChangeAtomCount={onChangeAtomCount}
                 />
             )
         })
