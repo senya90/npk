@@ -118,10 +118,7 @@ const ElementConstructor = () => {
     }
 
     const aggregationsToString = () => {
-        return aggregations.map(aggregation => {
-            return aggregation.toString()
-        })
-            .join(' * ')
+        return ChemicalAggregate.allToString(aggregations)
     }
 
     return (

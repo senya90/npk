@@ -19,6 +19,12 @@ export class ChemicalAggregate {
         this.id = id ? id : IdGenerator.generate()
     }
 
+    static allToString = (aggregations: ChemicalAggregate[], separator = '*') => {
+        return aggregations
+            .map(aggregation => aggregation.toString())
+            .join(` ${separator} `)
+    }
+
     toString = (): string => {
         const atomsString = this._atomsToString()
 
