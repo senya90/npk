@@ -9,6 +9,8 @@ import style from './elementConstructor.module.scss'
 import { ChemicalAtom } from 'models/chemicalAtom';
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 import { ElementConstructorContext } from 'helpers/contexts/ElementConstructorContext';
+import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
+import { notEmptyArray } from 'helpers/utils';
 
 const ElementConstructor = () => {
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
@@ -31,6 +33,19 @@ const ElementConstructor = () => {
                 ])
             ])
         }
+    }
+
+    const saveComplex = () => {
+        const complexName = ChemicalAggregate.allToString(aggregations)
+        const chemicalComplex = new ChemicalComplex(complexName, aggregations)
+
+        console.log('chemicalComplex', chemicalComplex)
+
+        saveComplexApi(chemicalComplex)
+    }
+
+    const saveComplexApi = (complex: ChemicalComplex) => {
+        // API.post()
     }
 
     const onChangeAggregationMultiplier = useCallback((updatedAggregation: ChemicalAggregate, multiplier) => {
@@ -139,6 +154,17 @@ const ElementConstructor = () => {
                 </Button>
                 {renderAggregations()}
                 {aggregationsToString()}
+                {notEmptyArray(aggregations) &&
+                    <div className={style.saveButtonWrapper}>
+                        <Button
+                            type={BUTTON_TYPE.PRIMARY}
+                            onClick={saveComplex}
+                        >
+                            {translate('save')}
+                        </Button>
+                    </div>
+                }
+
             </ElementConstructorContext.Provider>
         </div>
     );
