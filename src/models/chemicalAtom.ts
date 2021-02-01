@@ -16,4 +16,13 @@ export class ChemicalAtom {
     getMolarMass = (): number => {
         return this.chemicalUnit.molar * this.atomsCount
     }
+
+    toString = (): string => {
+        let count = String(this.atomsCount)
+        if (this.atomsCount <= 1) {
+            count = ''
+        }
+
+        return `${this.chemicalUnit.name}${count}`
+    }
 }

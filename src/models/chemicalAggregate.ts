@@ -18,4 +18,21 @@ export class ChemicalAggregate {
         this.multiplier = multiplier
         this.id = id ? id : IdGenerator.generate()
     }
+
+    toString = (): string => {
+        const atomsString = this._atomsToString()
+
+        let multiplierString = String(this.multiplier)
+        if (this.multiplier <= 1) {
+            multiplierString = ''
+        }
+
+        return `${multiplierString}${atomsString}`
+    }
+
+    private _atomsToString = (): string => {
+        return this.atoms
+            .map(atom => atom.toString())
+            .join('')
+    }
 }

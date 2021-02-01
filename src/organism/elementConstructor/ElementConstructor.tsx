@@ -117,7 +117,12 @@ const ElementConstructor = () => {
         })
     }
 
-    console.log('aggregations', aggregations)
+    const aggregationsToString = () => {
+        return aggregations.map(aggregation => {
+            return aggregation.toString()
+        })
+            .join(' * ')
+    }
 
     return (
         <div>
@@ -136,6 +141,7 @@ const ElementConstructor = () => {
                     {translate('addCompound')}
                 </Button>
                 {renderAggregations()}
+                {aggregationsToString()}
             </ElementConstructorContext.Provider>
         </div>
     );
