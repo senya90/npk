@@ -16,55 +16,55 @@ export class ChemicalComplex {
     }
 
     toAtomsProportions = (): ChemicalAtomProportion[] => {
-        const allAggregatesMolarSumm = Utils.round(this.getAllAggregatesMolar(), 6)
-        return this.getAtomsProportionsByAggregatesMolar(allAggregatesMolarSumm)
+        const allAggregatesMolarSum = Utils.round(this._getAllAggregatesMolar(), 6)
+        return this._getAtomsProportionsByAggregatesMolar(allAggregatesMolarSum)
     }
 
     isValid = () => {
         return isExist(this.name) && this.name !== '' && isExist(this.id)
     }
 
-    private getAllAggregatesMolar = () => {
+    private _getAllAggregatesMolar = () => {
         return this.chemicalAggregates.reduce((sum, aggregate) => {
-            const sumAllMolarMass = this.calculateMolarMassForAggregate(aggregate) * aggregate.multiplier
+            const sumAllMolarMass = this._calculateMolarMassForAggregate(aggregate) * aggregate.multiplier
             return sum + sumAllMolarMass
         }, 0)
     }
 
-    private getAtomsProportionsByAggregatesMolar = (allAggregatesMolar: number): ChemicalAtomProportion[] => {
+    private _getAtomsProportionsByAggregatesMolar = (allAggregatesMolar: number): ChemicalAtomProportion[] => {
         const atoms: ChemicalAtomProportion[] = []
 
         this.chemicalAggregates.forEach(aggregate => {
-            const allAtoms = this.getAtoms(aggregate)
-            const atomsProportions = this.calculateProportionForEachAtom(aggregate, allAggregatesMolar, allAtoms)
+            const allAtoms = this._getAtoms(aggregate)
+            const atomsProportions = this._calculateProportionForEachAtom(aggregate, allAggregatesMolar, allAtoms)
             atoms.push(...atomsProportions)
         })
 
         return atoms;
     }
 
-    private calculateMolarMassForAggregate = (calculatedAggregate: ChemicalAggregate): number => {
+    private _calculateMolarMassForAggregate = (calculatedAggregate: ChemicalAggregate): number => {
         const aggregate = ChemicalAggregate.clone(calculatedAggregate)
-        const atoms = this.getAtoms(aggregate)
+        const atoms = this._getAtoms(aggregate)
         return atoms.reduce((sum, atom) => {
             return sum + atom.getMolarMass()
         }, 0)
     }
 
-    private getAtoms = (aggregate: ChemicalAggregate): ChemicalAtom[] => {
+    private _getAtoms = (aggregate: ChemicalAggregate): ChemicalAtom[] => {
         return aggregate.atoms.map(atom => atom)
     }
 
-    private calculateProportionForEachAtom = (aggregate:ChemicalAggregate, aggregateMolarMass: number, atoms: ChemicalAtom[]): ChemicalAtomProportion[] => {
+    private _calculateProportionForEachAtom = (aggregate:ChemicalAggregate, aggregateMolarMass: number, atoms: ChemicalAtom[]): ChemicalAtomProportion[] => {
         return atoms.map(atom => {
             return new ChemicalAtomProportion(
                 atom,
-                this.calculateAtomProportion(aggregate, aggregateMolarMass, atom)
+                this._calculateAtomProportion(aggregate, aggregateMolarMass, atom)
             )
         })
     }
 
-    private calculateAtomProportion = (aggregate: ChemicalAggregate,aggregateMolarMass: number, atom: ChemicalAtom): number => {
+    private _calculateAtomProportion = (aggregate: ChemicalAggregate,aggregateMolarMass: number, atom: ChemicalAtom): number => {
         if (aggregateMolarMass === 0) {
             return 0
         }
