@@ -11,6 +11,8 @@ import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 import { ElementConstructorContext } from 'helpers/contexts/ElementConstructorContext';
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 import { notEmptyArray } from 'helpers/utils';
+import {ApiURL} from "../../core/api/ApiURL";
+import { API } from 'core/api';
 
 const ElementConstructor = () => {
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
@@ -44,8 +46,8 @@ const ElementConstructor = () => {
         saveComplexApi(chemicalComplex)
     }
 
-    const saveComplexApi = (complex: ChemicalComplex) => {
-        // API.post()
+    const saveComplexApi = async (complex: ChemicalComplex) => {
+        return await API.post(ApiURL.addChemicalComplex, {complex})
     }
 
     const onChangeAggregationMultiplier = useCallback((updatedAggregation: ChemicalAggregate, multiplier) => {
