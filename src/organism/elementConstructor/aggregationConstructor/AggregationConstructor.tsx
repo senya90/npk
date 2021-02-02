@@ -11,6 +11,8 @@ import {ChemicalAtom} from "models/chemicalAtom";
 
 import style from './aggregationConstructor.module.scss'
 import {ElementConstructorContext} from "../../../helpers/contexts/ElementConstructorContext";
+import { Icon } from 'atom/icon/Icon';
+import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 
 
 interface AggregationConstructorProps {
@@ -20,7 +22,7 @@ interface AggregationConstructorProps {
 const MIN_MULTIPLIER = 1
 
 const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) => {
-    const {onChangeAggregationMultiplier, onChangeAtom, onChangeAtomCount, onRemoveAtom, onAddAtom} = useContext(ElementConstructorContext)
+    const {onChangeAggregationMultiplier, onChangeAtom, onChangeAtomCount, onRemoveAtom, onAddAtom, onRemoveAggregation} = useContext(ElementConstructorContext)
 
     const changeMultiplier = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value)
@@ -76,6 +78,10 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
         return aggregation.multiplier > 1
     }
 
+    const removeAggregation = () => {
+        onRemoveAggregation(aggregation)
+    }
+
     return (
         <div className={style.aggregate}>
             {isShowMultiplier() ?
@@ -121,6 +127,12 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
                 type={BUTTON_TYPE.PRIMARY}
             >
                 + {translate('addAtom')}
+            </Button>
+            <Button
+                containerclass={style.removeAggregation}
+                onClick={removeAggregation}
+            >
+                <Icon type={ICON_TYPE.Cross} size={10}/>
             </Button>
         </div>
     );

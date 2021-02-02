@@ -120,6 +120,11 @@ const ElementConstructor = () => {
         setAggregation(aggregationsWithoutAtom)
     }
 
+    const onRemoveAggregation = (removedAggregation: ChemicalAggregate) => {
+        const updated = aggregations.filter(aggregation => aggregation.id !== removedAggregation.id)
+        setAggregation(updated)
+    }
+
 
     const renderAggregations = () => {
         return aggregations.map((aggregation, index) => {
@@ -143,7 +148,8 @@ const ElementConstructor = () => {
                 onChangeAggregationMultiplier: onChangeAggregationMultiplier,
                 onChangeAtom: onChangeAtom,
                 onChangeAtomCount: onChangeAtomCount,
-                onRemoveAtom: onRemoveAtom
+                onRemoveAtom: onRemoveAtom,
+                onRemoveAggregation: onRemoveAggregation
             }}>
                 <Button
                     containerclass={style.addAggregationButton}

@@ -47,7 +47,7 @@
 .addAtomButton {
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: 22px;
 }
 
 .addMultiplierButton {
@@ -66,4 +66,16 @@
 
 .smallButtonRemove {
     margin-right: 5px;
+}
+
+.removeAggregation {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 7px;
+    border: none;
+    padding: 3px 7px;
+
+    line-height: .5;
+    height: 20px;
 }

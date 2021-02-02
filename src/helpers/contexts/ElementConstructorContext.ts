@@ -9,6 +9,7 @@ export type ElementConstructorContextType = {
     onChangeAtom: (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, chemicalId: string) => void
     onChangeAtomCount: (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, updatedCount: number) => void
     onRemoveAtom: (aggregation: ChemicalAggregate, removedAtom: ChemicalAtom) => void
+    onRemoveAggregation: (aggregation: ChemicalAggregate) => void
 }
 
 export const ElementConstructorContext = React.createContext<ElementConstructorContextType>({
@@ -17,6 +18,7 @@ export const ElementConstructorContext = React.createContext<ElementConstructorC
     }, onChangeAtom(aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, chemicalId: string): void {
     }, onChangeAtomCount(aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, updatedCount: number): void {
     }, onRemoveAtom(aggregation: ChemicalAggregate, removedAtom: ChemicalAtom): void {
+    }, onRemoveAggregation(aggregation: ChemicalAggregate): void {
     }
 
 })
