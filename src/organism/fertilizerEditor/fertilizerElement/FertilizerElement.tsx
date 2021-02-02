@@ -39,7 +39,7 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
                 <Select
                     default={translate('selectElement')}
                     value={chemicalComplexId}
-                    options={adaptForSelect(props.chemicalList)}
+                    options={adaptForSelect(props.chemicalComplexList)}
                     containerclass={style.element}
                     onChange={onNameChange}
                 />

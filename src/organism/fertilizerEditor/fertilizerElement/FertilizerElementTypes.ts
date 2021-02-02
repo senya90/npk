@@ -1,7 +1,8 @@
 import {FertilizerIngredient} from "../../../models/fertilizerIngredient";
+import {ChemicalComplex} from "../../../models/chemicalComplex/chemicalComplex";
 
 export interface FertilizerElementProps {
     chemical: FertilizerIngredient
-    chemicalList: any // list of chemical elements
+    chemicalComplexList: ChemicalComplex[]
     onChemicalChanged: (updatedElement: FertilizerIngredient) => void
 }
