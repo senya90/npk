@@ -114,15 +114,13 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
                     +
                 </Button>
             }
-
-
             {renderAtoms()}
             <Button
                 containerclass={style.addAtomButton}
                 onClick={addAtom}
                 type={BUTTON_TYPE.PRIMARY}
             >
-                {translate('addAtom')}
+                + {translate('addAtom')}
             </Button>
         </div>
     );

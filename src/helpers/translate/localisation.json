@@ -175,5 +175,9 @@
     "addCompound": {
         "ru": "Добавить соединение",
         "en": "Add compound"
+    },
+    "addAtom": {
+        "ru": "Добавить атом",
+        "en": "Add atom"
     }
 }

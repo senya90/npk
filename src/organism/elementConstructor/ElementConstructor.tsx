@@ -150,10 +150,12 @@ const ElementConstructor = () => {
                     type={BUTTON_TYPE.PRIMARY}
                     onClick={addAggregation}
                 >
-                    {translate('addCompound')}
+                    + {translate('addCompound')}
                 </Button>
                 {renderAggregations()}
-                {aggregationsToString()}
+                <div className={style.result}>
+                    {aggregationsToString()}
+                </div>
                 {notEmptyArray(aggregations) &&
                     <div className={style.saveButtonWrapper}>
                         <Button
