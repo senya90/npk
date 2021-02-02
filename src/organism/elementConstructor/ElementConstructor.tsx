@@ -47,7 +47,7 @@ const ElementConstructor = () => {
     }
 
     const saveComplexApi = async (complex: ChemicalComplex) => {
-        return await API.post(ApiURL.addChemicalComplex, {complex})
+        return await API.postAuthorized(ApiURL.addChemicalComplex, complex)
     }
 
     const onChangeAggregationMultiplier = useCallback((updatedAggregation: ChemicalAggregate, multiplier) => {

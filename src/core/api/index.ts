@@ -3,15 +3,22 @@ import {NotificationService} from "../notificationService/NotificationService";
 import { store } from "core/redux/store";
 import {INotificationService} from "../notificationService/NotificationServiceTypes";
 import {NotificationHelper} from "../../helpers/notifications/notificationHelper";
+import {LocalStorageProvider} from "../localStorageProvider/LocalStorageProvider";
+import {ILocalStorageProvider} from "../localStorageProvider/LocalStorageProviderTypes";
 
 interface IAPI {
     notificationService: INotificationService
+    localStorageService: ILocalStorageProvider
+
     get: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+
     post: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+    postAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
 }
 
 export const API: IAPI = {
     notificationService: new NotificationService(store.dispatch),
+    localStorageService: new LocalStorageProvider(),
     get: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         return request.get(apiURL, apiParams, headers)
             .catch(err => {
@@ -20,7 +27,15 @@ export const API: IAPI = {
                 throw err
             })
     },
-
+    postAuthorized: function(apiURL: string, apiParams?: any, headers?: any) {
+        const tokens = this.localStorageService.getTokens()
+        let accessToken;
+        if (tokens) {
+            accessToken = tokens.accessToken
+        }
+        const authHeader = {'Authorization': `Bearer ${accessToken}`}
+        return this.post(apiURL, apiParams, {...headers, ...authHeader})
+    },
     post: function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         return request.post(apiURL, apiParams, headers)
             .then(response => {
