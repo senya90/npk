@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useState, useMemo} from 'react';
+import React, {useCallback, useContext, useState, useMemo, FC} from 'react';
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
 import { BUTTON_TYPE } from 'atom/button/ButtonTypes';
@@ -14,8 +14,13 @@ import { notEmptyArray } from 'helpers/utils';
 import {ApiURL} from "../../core/api/ApiURL";
 import { API } from 'core/api';
 import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
+import { Gag } from 'molecule/gag/Gag';
 
-const ElementConstructor = () => {
+interface ElementConstructorProps {
+    complexes: ChemicalComplex[]
+}
+
+const ElementConstructor: FC<ElementConstructorProps> = ({complexes}) => {
     const complexId = useMemo(() => {
         return IdGenerator.generate()
     }, [])
@@ -148,6 +153,16 @@ const ElementConstructor = () => {
         return ChemicalAggregate.allToString(aggregations)
     }
 
+    const renderComplexes = () => {
+        if (!notEmptyArray(complexes)) {
+            return null
+        }
+        
+        return complexes.map(complex => {
+            return complex.name
+        })
+    }
+
     return (
         <div>
             <ElementConstructorContext.Provider value={{
@@ -158,6 +173,16 @@ const ElementConstructor = () => {
                 onRemoveAtom: onRemoveAtom,
                 onRemoveAggregation: onRemoveAggregation
             }}>
+                <div>
+                    <div className={style.title}>{translate('availableCompounds')}</div>
+                    <div className={style.complexesBox}>
+                        {!notEmptyArray(complexes) ?
+                            <Gag>{translate('listIsEmpty')}</Gag>
+                            :
+                            renderComplexes()
+                        }
+                    </div>
+                </div>
                 <Button
                     containerclass={style.addAggregationButton}
                     type={BUTTON_TYPE.PRIMARY}

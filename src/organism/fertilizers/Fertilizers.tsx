@@ -115,7 +115,7 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
                 title={translate('elementConstructor')}
                 onClose={closeElementConstructor}
             >
-                <ElementConstructor/>
+                <ElementConstructor complexes={[]}/>
             </Modal>
             }
 

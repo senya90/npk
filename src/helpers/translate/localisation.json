@@ -176,8 +176,16 @@
         "ru": "Добавить соединение",
         "en": "Add compound"
     },
+    "availableCompounds": {
+        "ru": "Доступные соединения",
+        "en": "Available compounds"
+    },
     "addAtom": {
         "ru": "Добавить атом",
         "en": "Add atom"
+    },
+    "listIsEmpty": {
+        "ru": "Список пуск",
+        "en": "List is empty"
     }
 }
