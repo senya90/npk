@@ -17,10 +17,10 @@ import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
 import { Gag } from 'molecule/gag/Gag';
 
 interface ElementConstructorProps {
-    complexes: ChemicalComplex[]
+    chemicalComplexes: ChemicalComplex[]
 }
 
-const ElementConstructor: FC<ElementConstructorProps> = ({complexes}) => {
+const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) => {
     const complexId = useMemo(() => {
         return IdGenerator.generate()
     }, [])
@@ -154,12 +154,12 @@ const ElementConstructor: FC<ElementConstructorProps> = ({complexes}) => {
     }
 
     const renderComplexes = () => {
-        if (!notEmptyArray(complexes)) {
+        if (!notEmptyArray(chemicalComplexes)) {
             return null
         }
-        
-        return complexes.map(complex => {
-            return complex.name
+
+        return chemicalComplexes.map(complex => {
+            return <div key={complex.id}>{complex.name}</div>
         })
     }
 
@@ -176,7 +176,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({complexes}) => {
                 <div>
                     <div className={style.title}>{translate('availableCompounds')}</div>
                     <div className={style.complexesBox}>
-                        {!notEmptyArray(complexes) ?
+                        {!notEmptyArray(chemicalComplexes) ?
                             <Gag>{translate('listIsEmpty')}</Gag>
                             :
                             renderComplexes()

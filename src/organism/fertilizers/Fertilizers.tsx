@@ -19,6 +19,8 @@ import { ICON_TYPE } from 'atom/icon/IconTypes';
 import { Icon } from 'atom/icon/Icon';
 import { ElementConstructor } from 'organism/elementConstructor/ElementConstructor';
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
+import {API} from "../../core/api";
+import {ApiURL} from "../../core/api/ApiURL";
 
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture}) => {
@@ -28,9 +30,18 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
     const [isShowElementConstructor, setIsShowElementConstructor] = useState(false)
 
     useEffect(() => {
-        // TODO: get from API
-        setChemicalComplexes([])
+        getComplexesAPI()
+            .then(response => {
+                const complexes = response.data.data
+                if (complexes) {
+                    setChemicalComplexes(complexes)
+                }
+            })
     }, [])
+
+    const getComplexesAPI = async () => {
+        return await API.getAuthorized(ApiURL.getChemicalComplexes)
+    }
 
     const renderFertilizers = () => {
         return fertilizers.map(fertilizer => {
@@ -115,7 +126,7 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
                 title={translate('elementConstructor')}
                 onClose={closeElementConstructor}
             >
-                <ElementConstructor complexes={[]}/>
+                <ElementConstructor chemicalComplexes={chemicalComplexes}/>
             </Modal>
             }
 

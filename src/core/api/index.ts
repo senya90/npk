@@ -11,6 +11,7 @@ interface IAPI {
     localStorageService: ILocalStorageProvider
 
     get: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+    getAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
 
     post: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
     postAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
@@ -26,6 +27,15 @@ export const API: IAPI = {
                 console.error(`url:${apiURL} params: ${JSON.stringify(apiParams)}, headers: ${JSON.stringify(headers)}`)
                 throw err
             })
+    },
+    getAuthorized: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+        const tokens = this.localStorageService.getTokens()
+        let accessToken;
+        if (tokens) {
+            accessToken = tokens.accessToken
+        }
+        const authHeader = {'Authorization': `Bearer ${accessToken}`}
+        return this.get(apiURL, apiParams, {...headers, ...authHeader})
     },
     postAuthorized: function(apiURL: string, apiParams?: any, headers?: any) {
         const tokens = this.localStorageService.getTokens()

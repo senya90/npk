@@ -2,6 +2,7 @@ export const ApiURL = {
     getChemicals: 'chemicals',
 
     addChemicalComplex: 'chemicals/chemical-complex',
+    getChemicalComplexes: 'chemicals/chemical-complex',
 
     getUser: 'user',
     registration: 'user/registration',
