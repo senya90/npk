@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useState} from 'react';
+import React, {useCallback, useContext, useState, useMemo} from 'react';
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
 import { BUTTON_TYPE } from 'atom/button/ButtonTypes';
@@ -13,8 +13,12 @@ import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 import { notEmptyArray } from 'helpers/utils';
 import {ApiURL} from "../../core/api/ApiURL";
 import { API } from 'core/api';
+import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
 
 const ElementConstructor = () => {
+    const complexId = useMemo(() => {
+        return IdGenerator.generate()
+    }, [])
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
     const {chemicals} = useContext(CalculatorContext)
 
@@ -37,13 +41,14 @@ const ElementConstructor = () => {
         }
     }
 
-    const saveComplex = () => {
+    const saveComplex = async () => {
         const complexName = ChemicalAggregate.allToString(aggregations)
-        const chemicalComplex = new ChemicalComplex(complexName, aggregations)
+        const chemicalComplex = new ChemicalComplex(complexName, aggregations, complexId)
 
         console.log('chemicalComplex', chemicalComplex)
 
-        saveComplexApi(chemicalComplex)
+        const response = await saveComplexApi(chemicalComplex)
+        console.log('response', response)
     }
 
     const saveComplexApi = async (complex: ChemicalComplex) => {
