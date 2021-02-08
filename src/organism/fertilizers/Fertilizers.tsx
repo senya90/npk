@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useCallback, useContext, useEffect, useState} from 'react';
+import React, {FunctionComponent, useCallback, useContext, useState} from 'react';
 
 import {BUTTON_TYPE} from "atom/button/ButtonTypes";
 import {Button} from "atom/button/Button";
@@ -18,30 +18,12 @@ import { Gag } from 'molecule/gag/Gag';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
 import { Icon } from 'atom/icon/Icon';
 import { ElementConstructor } from 'organism/elementConstructor/ElementConstructor';
-import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
-import {API} from "../../core/api";
-import {ApiURL} from "../../core/api/ApiURL";
 
 
-const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture}) => {
+const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture, chemicalComplexes}) => {
     const {onSaveFertilizer, onEditFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
-    const [chemicalComplexes, setChemicalComplexes] = useState<ChemicalComplex[]>([])
     const [isShowFertilizerEditor, setIsShowFertilizerEditor] = useState(false)
     const [isShowElementConstructor, setIsShowElementConstructor] = useState(false)
-
-    useEffect(() => {
-        getComplexesAPI()
-            .then(response => {
-                const complexes = response.data.data
-                if (complexes) {
-                    setChemicalComplexes(complexes)
-                }
-            })
-    }, [])
-
-    const getComplexesAPI = async () => {
-        return await API.getAuthorized(ApiURL.getChemicalComplexes)
-    }
 
     const renderFertilizers = () => {
         return fertilizers.map(fertilizer => {

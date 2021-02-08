@@ -22,6 +22,7 @@ import {ApiURL} from "core/api/ApiURL";
 
 const Calculator = () => {
     const [chemicals, setChemicals] = useState<ChemicalUnit[]>([])
+    const [chemicalComplexes, setChemicalComplexes] = useState<ChemicalComplex[]>([])
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>([])
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
     const [allMixtures, setAllMixtures] = useState<Mixture[]>(mixturesMock)
@@ -36,6 +37,9 @@ const Calculator = () => {
 
         getFertilizersApi()
             .then(result => setFertilizers(result))
+
+        getComplexesApi()
+            .then(complexes => setChemicalComplexes(complexes))
     }, [])
 
     const getChemicalsApi = async (): Promise<ChemicalUnit[]> => {
@@ -59,7 +63,18 @@ const Calculator = () => {
         })
     }
 
+    const getComplexesApi = async (): Promise<ChemicalComplex[]> => {
+        const response = await API.getAuthorized(ApiURL.getChemicalComplexes)
 
+        if (response.data.data) {
+            let complexes: ChemicalComplex[] = response.data.data
+            return complexes.map(complex => {
+                return new ChemicalComplex(complex.name, [...complex.chemicalAggregates], complex.id)
+            })
+        }
+
+        return []
+    }
 
     const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
         const found = fertilizers.find(fertilizer => fertilizer.id === savedFertilizer.id)
@@ -193,6 +208,7 @@ const Calculator = () => {
                         fertilizers={fertilizers}
                         editableFertilizer={editableFertilizer}
                         mixture={mixture}
+                        chemicalComplexes={chemicalComplexes}
                     />
                     <MixtureComposition
                         mixture={mixture}
