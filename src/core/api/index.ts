@@ -15,6 +15,8 @@ interface IAPI {
 
     post: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
     postAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+
+    deleteAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
 }
 
 export const API: IAPI = {
@@ -62,6 +64,26 @@ export const API: IAPI = {
                 console.error(`url:${apiURL} params: ${JSON.stringify(apiParams)}, headers: ${JSON.stringify(headers)}`)
                 this.notificationService.notifySomethingWrong(err)
 
+                throw err
+            })
+    },
+
+    deleteAuthorized: function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+        const tokens = this.localStorageService.getTokens()
+        let accessToken;
+        if (tokens) {
+            accessToken = tokens.accessToken
+        }
+        const authHeader = {'Authorization': `Bearer ${accessToken}`}
+
+        const headersWithAuth = {
+            ...headers,
+            ...authHeader
+        }
+        return request.delete(apiURL, apiParams, headersWithAuth)
+            .catch(err => {
+                console.error(`API DELETE request error: `, err)
+                console.error(`url:${apiURL} params: ${JSON.stringify(apiParams)}, headers: ${JSON.stringify(headersWithAuth)}`)
                 throw err
             })
     }

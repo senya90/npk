@@ -131,6 +131,12 @@ const Calculator = () => {
         setChemicalComplexes(complexes)
     }
 
+    const onChemicalComplexRemoved = async (ids: string[]) => {
+        console.log('onChemicalComplexRemoved', ids)
+        const complexes = await getComplexesApi()
+        setChemicalComplexes(complexes)
+    }
+
     const onAddFertilizerToMixture = (fertilizerId: string) => {
         const addedFertilizer = getFertilizerById(fertilizerId)
 
@@ -200,6 +206,7 @@ const Calculator = () => {
                 getFertilizerById: getFertilizerById,
                 getChemicalComplexById: getChemicalComplexById,
                 onChemicalComplexSaved: onChemicalComplexSaved,
+                onChemicalComplexRemoved: onChemicalComplexRemoved,
 
                 onMixtureUpdated: onMixtureUpdated,
                 onAddFertilizerToMixture: onAddFertilizerToMixture,

@@ -21,10 +21,21 @@ export const request: IRequest =  {
                 headers: headers? {...headers} : undefined
             }
         )
+    },
+
+    delete: function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+        return axios.delete(
+            apiURL,
+            {
+                params: {...apiParams},
+                headers: headers? {...headers} : undefined
+            }
+        )
     }
 }
 
 export interface IRequest {
     get: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
     post: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+    delete: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
 }

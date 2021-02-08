@@ -32,7 +32,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     const user: User = useSelector((state: any) => state.user.user)
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
     const [loading, setLoading] = useState<boolean>(false)
-    const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
+    const {chemicals, onChemicalComplexSaved, onChemicalComplexRemoved} = useContext(CalculatorContext)
 
     const getDefaultChemicalUnit = () => {
         return chemicals.find(chemical => chemical.name === 'N')
@@ -163,8 +163,11 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         return ChemicalAggregate.allToString(aggregations)
     }
 
-    const removeComplex = (complex: ChemicalComplex) => {
-        console.log('remove ', complex)
+    const removeComplex = async (complex: ChemicalComplex) => {
+        const response = await API.postAuthorized(ApiURL.deleteChemicalComplexes, {id: [complex.id]})
+        if (!response.data.error) {
+            onChemicalComplexRemoved([complex.id])
+        }
     }
 
     const renderComplexes = () => {
