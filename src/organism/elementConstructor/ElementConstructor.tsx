@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useState, useMemo, FC} from 'react';
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
-import { BUTTON_TYPE } from 'atom/button/ButtonTypes';
+import {BUTTON_SHAPE, BUTTON_TYPE} from 'atom/button/ButtonTypes';
 import {ChemicalAggregate} from "../../models/chemicalAggregate";
 import {AggregationConstructor} from "./aggregationConstructor/AggregationConstructor";
 
@@ -15,6 +15,8 @@ import {ApiURL} from "../../core/api/ApiURL";
 import { API } from 'core/api';
 import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
 import { Gag } from 'molecule/gag/Gag';
+import {Icon} from "../../atom/icon/Icon";
+import {ICON_TYPE} from "../../atom/icon/IconTypes";
 
 interface ElementConstructorProps {
     chemicalComplexes: ChemicalComplex[]
@@ -163,7 +165,17 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         }
 
         return chemicalComplexes.map(complex => {
-            return <div key={complex.id}>{complex.name}</div>
+            return (
+                <div className={style.complexItem} key={complex.id}>
+                    <span>{complex.name}</span>
+                    <Button
+                        containerclass={style.complexItemDelete}
+                        shape={BUTTON_SHAPE.CIRCLE}
+                    >
+                        <Icon type={ICON_TYPE.Cross} size={8}/>
+                    </Button>
+                </div>
+            )
         })
     }
 
