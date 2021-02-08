@@ -44,6 +44,14 @@
     }
 }
 
+.complexItemNotOwner {
+    background-color: $color_backPrimaryDark;
+
+    &:hover {
+        background-color: $color_backPrimaryDark + 30%;
+    }
+}
+
 .complexItemDelete {
     display: none;
     align-items: center;

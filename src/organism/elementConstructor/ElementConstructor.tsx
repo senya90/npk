@@ -1,4 +1,5 @@
 import React, {useCallback, useContext, useState, useMemo, FC} from 'react';
+import cn from 'classnames'
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
 import {BUTTON_SHAPE, BUTTON_TYPE} from 'atom/button/ButtonTypes';
@@ -18,6 +19,7 @@ import { Gag } from 'molecule/gag/Gag';
 import {Icon} from "../../atom/icon/Icon";
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {useSelector} from "react-redux";
+import { User } from 'models/user';
 
 interface ElementConstructorProps {
     chemicalComplexes: ChemicalComplex[]
@@ -27,7 +29,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     const complexId = useMemo(() => {
         return IdGenerator.generate()
     }, [])
-    const user = useSelector((state: any) => state.user)
+    const user: User = useSelector((state: any) => state.user.user)
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
     const [loading, setLoading] = useState<boolean>(false)
     const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
@@ -162,31 +164,31 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     }
 
     const removeComplex = (complex: ChemicalComplex) => {
-        console.log('all', chemicalComplexes)
         console.log('remove ', complex)
     }
 
     const renderComplexes = () => {
-        console.log('0')
         if (!notEmptyArray(chemicalComplexes)) {
             return null
         }
 
-        console.log('1')
-
         return chemicalComplexes.map(complex => {
-            console.log('user', user)
-            // const owner = complex.userId ===
+            const isOwner = complex.userId === user.userId
+            const complexStyle = cn(style.complexItem, {[style.complexItemNotOwner]: !isOwner})
+
             return (
-                <div className={style.complexItem} key={complex.id}>
+                <div className={complexStyle} key={complex.id}>
                     <span>{complex.name}</span>
-                    <Button
-                        containerclass={style.complexItemDelete}
-                        shape={BUTTON_SHAPE.CIRCLE}
-                        onClick={removeComplex.bind(null, complex)}
-                    >
-                        <Icon type={ICON_TYPE.Cross} size={8}/>
-                    </Button>
+                    {isOwner &&
+                        <Button
+                            containerclass={style.complexItemDelete}
+                            shape={BUTTON_SHAPE.CIRCLE}
+                            onClick={removeComplex.bind(null, complex)}
+                        >
+                            <Icon type={ICON_TYPE.Cross} size={8}/>
+                        </Button>
+                    }
+
                 </div>
             )
         })
