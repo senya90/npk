@@ -25,7 +25,8 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         return IdGenerator.generate()
     }, [])
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
-    const {chemicals} = useContext(CalculatorContext)
+    const [loading, setLoading] = useState<boolean>(false)
+    const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
 
     const getDefaultChemicalUnit = () => {
         return chemicals.find(chemical => chemical.name === 'N')
@@ -50,10 +51,13 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         const complexName = ChemicalAggregate.allToString(aggregations)
         const chemicalComplex = new ChemicalComplex(complexName, aggregations, complexId)
 
-        console.log('chemicalComplex', chemicalComplex)
-
+        setLoading(true)
         const response = await saveComplexApi(chemicalComplex)
-        console.log('response', response)
+        setLoading(false)
+        const addedComplexes = response.data.data
+        if (addedComplexes) {
+            onChemicalComplexSaved(addedComplexes)
+        }
     }
 
     const saveComplexApi = async (complex: ChemicalComplex) => {
@@ -197,6 +201,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                 {notEmptyArray(aggregations) &&
                     <div className={style.saveButtonWrapper}>
                         <Button
+                            disabled={loading}
                             type={BUTTON_TYPE.PRIMARY}
                             onClick={saveComplex}
                         >

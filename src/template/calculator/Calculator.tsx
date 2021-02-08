@@ -126,6 +126,11 @@ const Calculator = () => {
         return chemicalComplexMockArray().find(chemicalComplex => chemicalComplex.id === chemicalComplexId)
     }
 
+    const onChemicalComplexSaved = async (savedComplexes: ChemicalComplex[]) => {
+        const complexes = await getComplexesApi()
+        setChemicalComplexes(complexes)
+    }
+
     const onAddFertilizerToMixture = (fertilizerId: string) => {
         const addedFertilizer = getFertilizerById(fertilizerId)
 
@@ -194,6 +199,7 @@ const Calculator = () => {
 
                 getFertilizerById: getFertilizerById,
                 getChemicalComplexById: getChemicalComplexById,
+                onChemicalComplexSaved: onChemicalComplexSaved,
 
                 onMixtureUpdated: onMixtureUpdated,
                 onAddFertilizerToMixture: onAddFertilizerToMixture,
