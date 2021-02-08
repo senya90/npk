@@ -69,7 +69,7 @@ const Calculator = () => {
         if (response.data.data) {
             let complexes: ChemicalComplex[] = response.data.data
             return complexes.map(complex => {
-                return new ChemicalComplex(complex.name, [...complex.chemicalAggregates], complex.id)
+                return new ChemicalComplex(complex.name, [...complex.chemicalAggregates], complex.id, complex.userId)
             })
         }
 

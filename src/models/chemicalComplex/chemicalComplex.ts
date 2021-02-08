@@ -8,11 +8,13 @@ export class ChemicalComplex {
     name: string
     chemicalAggregates: ChemicalAggregate[]
     id: string
+    userId?: string
 
-    constructor(name: string, chemicalAggregates?: ChemicalAggregate[], id?: string,) {
+    constructor(name: string, chemicalAggregates?: ChemicalAggregate[], id?: string, userId?: string) {
         this.name = name;
         this.chemicalAggregates = chemicalAggregates ? chemicalAggregates : []
         this.id = id ? id : IdGenerator.generate();
+        this.userId = userId
     }
 
     toAtomsProportions = (): ChemicalAtomProportion[] => {

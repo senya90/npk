@@ -12,9 +12,10 @@ import { AppContext } from 'helpers/contexts/AppContext';
 import styles from './App.module.css'
 import {PrivateRoute} from "core/privateRoute/PrivateRoute";
 import {useDispatch} from 'react-redux';
-import { setTokens } from 'core/redux/userSlice';
+import { setTokens, setUser } from 'core/redux/userSlice';
 import {TokensPair} from "models/tokensPair";
 import {NotificationService} from "core/notificationService/NotificationService";
+import {TokenHelper} from "../helpers/tokens";
 
 
 const App = () => {
@@ -31,13 +32,21 @@ const App = () => {
         if (tokens) {
             localStorageProvider.saveTokens(tokens)
             dispatch(setTokens(tokens))
+            const user = TokenHelper.getUser(tokens.accessToken)
+            if (user) {
+                dispatch(setUser(user))
+            }
         }
     }
 
     useEffect(() => {
         const tokens = localStorageProvider.getTokens()
-        if (tokens) {
+        if (tokens) { // TODO: remove duplicate code through userService
             dispatch(setTokens(tokens))
+            const user = TokenHelper.getUser(tokens.accessToken)
+            if (user) {
+                dispatch(setUser(user))
+            }
         }
     }, [dispatch, localStorageProvider])
 

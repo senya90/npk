@@ -17,6 +17,7 @@ import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
 import { Gag } from 'molecule/gag/Gag';
 import {Icon} from "../../atom/icon/Icon";
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
+import {useSelector} from "react-redux";
 
 interface ElementConstructorProps {
     chemicalComplexes: ChemicalComplex[]
@@ -26,6 +27,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     const complexId = useMemo(() => {
         return IdGenerator.generate()
     }, [])
+    const user = useSelector((state: any) => state.user)
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
     const [loading, setLoading] = useState<boolean>(false)
     const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
@@ -159,18 +161,29 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         return ChemicalAggregate.allToString(aggregations)
     }
 
+    const removeComplex = (complex: ChemicalComplex) => {
+        console.log('all', chemicalComplexes)
+        console.log('remove ', complex)
+    }
+
     const renderComplexes = () => {
+        console.log('0')
         if (!notEmptyArray(chemicalComplexes)) {
             return null
         }
 
+        console.log('1')
+
         return chemicalComplexes.map(complex => {
+            console.log('user', user)
+            // const owner = complex.userId ===
             return (
                 <div className={style.complexItem} key={complex.id}>
                     <span>{complex.name}</span>
                     <Button
                         containerclass={style.complexItemDelete}
                         shape={BUTTON_SHAPE.CIRCLE}
+                        onClick={removeComplex.bind(null, complex)}
                     >
                         <Icon type={ICON_TYPE.Cross} size={8}/>
                     </Button>
