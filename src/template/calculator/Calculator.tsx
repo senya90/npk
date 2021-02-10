@@ -132,7 +132,6 @@ const Calculator = () => {
     }
 
     const onChemicalComplexRemoved = async (ids: string[]) => {
-        console.log('onChemicalComplexRemoved', ids)
         const complexes = await getComplexesApi()
         setChemicalComplexes(complexes)
     }
