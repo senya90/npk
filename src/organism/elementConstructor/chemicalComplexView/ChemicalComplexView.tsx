@@ -30,7 +30,7 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
     }
 
     return (
-        <div className={complexStyle} key={complex.id}>
+        <div className={complexStyle}>
             <span>{complex.name}</span>
             {isOwner &&
             <Button

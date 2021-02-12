@@ -167,7 +167,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         }
 
         return chemicalComplexes.map(complex => {
-            return <ChemicalComplexView complex={complex} userId={user.userId}/>
+            return <ChemicalComplexView complex={complex} userId={user.userId}  key={complex.id}/>
         })
     }
 
