@@ -1,8 +1,7 @@
 import React, {useCallback, useContext, useState, useMemo, FC} from 'react';
-import cn from 'classnames'
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
-import {BUTTON_SHAPE, BUTTON_TYPE} from 'atom/button/ButtonTypes';
+import {BUTTON_TYPE} from 'atom/button/ButtonTypes';
 import {ChemicalAggregate} from "../../models/chemicalAggregate";
 import {AggregationConstructor} from "./aggregationConstructor/AggregationConstructor";
 
@@ -16,10 +15,9 @@ import {ApiURL} from "../../core/api/ApiURL";
 import { API } from 'core/api';
 import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
 import { Gag } from 'molecule/gag/Gag';
-import {Icon} from "../../atom/icon/Icon";
-import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {useSelector} from "react-redux";
 import { User } from 'models/user';
+import ChemicalComplexView from "./chemicalComplexView/ChemicalComplexView";
 
 interface ElementConstructorProps {
     chemicalComplexes: ChemicalComplex[]
@@ -32,7 +30,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     const user: User = useSelector((state: any) => state.user.user)
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
     const [loading, setLoading] = useState<boolean>(false)
-    const {chemicals, onChemicalComplexSaved, onChemicalComplexRemoved} = useContext(CalculatorContext)
+    const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
 
     const getDefaultChemicalUnit = () => {
         return chemicals.find(chemical => chemical.name === 'N')
@@ -163,37 +161,13 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         return ChemicalAggregate.allToString(aggregations)
     }
 
-    const removeComplex = async (complex: ChemicalComplex) => {
-        const response = await API.postAuthorized(ApiURL.deleteChemicalComplexes, {id: [complex.id]})
-        if (!response.data.error) {
-            onChemicalComplexRemoved([complex.id])
-        }
-    }
-
     const renderComplexes = () => {
         if (!notEmptyArray(chemicalComplexes)) {
             return null
         }
 
         return chemicalComplexes.map(complex => {
-            const isOwner = complex.userId === user.userId
-            const complexStyle = cn(style.complexItem, {[style.complexItemNotOwner]: !isOwner})
-
-            return (
-                <div className={complexStyle} key={complex.id}>
-                    <span>{complex.name}</span>
-                    {isOwner &&
-                        <Button
-                            containerclass={style.complexItemDelete}
-                            shape={BUTTON_SHAPE.CIRCLE}
-                            onClick={removeComplex.bind(null, complex)}
-                        >
-                            <Icon type={ICON_TYPE.Cross} size={8}/>
-                        </Button>
-                    }
-
-                </div>
-            )
+            return <ChemicalComplexView complex={complex} userId={user.userId}/>
         })
     }
 
