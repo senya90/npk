@@ -8,7 +8,7 @@ export class ChemicalAtom {
 
 
     constructor(chemical: ChemicalUnit, atomsCount = 1, id?: string) {
-        this.chemicalUnit = chemical;
+        this.chemicalUnit = new ChemicalUnit(chemical.name, chemical.molar, chemical.id);
         this.atomsCount = atomsCount;
         this.id = id ? id : IdGenerator.generate()
     }

@@ -1,4 +1,4 @@
-import React, {useCallback, useContext, useState, useMemo, FC} from 'react';
+import React, {useCallback, useContext, useState, FC} from 'react';
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
 import {BUTTON_TYPE} from 'atom/button/ButtonTypes';
@@ -24,10 +24,8 @@ interface ElementConstructorProps {
 }
 
 const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) => {
-    const complexId = useMemo(() => {
-        return IdGenerator.generate()
-    }, [])
     const user: User = useSelector((state: any) => state.user.user)
+    const [complexId, setComplexId] = useState<string>(IdGenerator.generate())
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
     const [loading, setLoading] = useState<boolean>(false)
     const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
@@ -49,6 +47,11 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                 ])
             ])
         }
+    }
+
+    const onEditComplex = (complex: ChemicalComplex) => {
+        setComplexId(complex.id)
+        setAggregation(complex.chemicalAggregates)
     }
 
     const saveComplex = async () => {
@@ -174,8 +177,9 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     return (
         <div>
             <ElementConstructorContext.Provider value={{
-                onAddAtom: onAddAtom,
                 onChangeAggregationMultiplier: onChangeAggregationMultiplier,
+                onEditComplex: onEditComplex,
+                onAddAtom: onAddAtom,
                 onChangeAtom: onChangeAtom,
                 onChangeAtomCount: onChangeAtomCount,
                 onRemoveAtom: onRemoveAtom,

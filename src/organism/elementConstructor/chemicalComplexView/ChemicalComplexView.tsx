@@ -10,6 +10,7 @@ import style from './chemucalComplexView.module.scss'
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import {CalculatorContext} from "helpers/contexts/CalculatorContext";
+import {ElementConstructorContext} from "helpers/contexts/ElementConstructorContext";
 
 interface ChemicalComplexViewProps {
     complex: ChemicalComplex
@@ -18,6 +19,7 @@ interface ChemicalComplexViewProps {
 
 const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) => {
     const {onChemicalComplexRemoved} = useContext(CalculatorContext)
+    const {onEditComplex} = useContext(ElementConstructorContext)
 
     const isOwner = complex.userId === userId
     const complexStyle = cn(style.complexItem, {[style.complexItemNotOwner]: !isOwner})
@@ -29,8 +31,12 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
         }
     }
 
+    const editComplex = () => {
+        onEditComplex(complex)
+    }
+
     return (
-        <div className={complexStyle}>
+        <div className={complexStyle} onClick={editComplex}>
             <span>{complex.name}</span>
             {isOwner &&
             <Button

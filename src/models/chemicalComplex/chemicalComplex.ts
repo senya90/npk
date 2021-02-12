@@ -12,9 +12,13 @@ export class ChemicalComplex {
 
     constructor(name: string, chemicalAggregates?: ChemicalAggregate[], id?: string, userId?: string) {
         this.name = name;
-        this.chemicalAggregates = chemicalAggregates ? chemicalAggregates : []
+        this.chemicalAggregates = chemicalAggregates ? this._aggregatesFactory(chemicalAggregates)  : []
         this.id = id ? id : IdGenerator.generate();
         this.userId = userId
+    }
+
+    private _aggregatesFactory = (chemicalAggregates: ChemicalAggregate[]) => {
+        return chemicalAggregates.map(aggregate => new ChemicalAggregate(aggregate.atoms, aggregate.multiplier, aggregate.id))
     }
 
     toAtomsProportions = (): ChemicalAtomProportion[] => {
