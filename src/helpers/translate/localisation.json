@@ -187,5 +187,9 @@
     "listIsEmpty": {
         "ru": "Список пуск",
         "en": "List is empty"
+    },
+    "create": {
+        "ru": "Создать",
+        "en": "Create"
     }
 }

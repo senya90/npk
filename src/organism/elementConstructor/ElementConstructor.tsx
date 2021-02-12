@@ -27,6 +27,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     const user: User = useSelector((state: any) => state.user.user)
     const [complexId, setComplexId] = useState<string>(IdGenerator.generate())
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
+    const [isEditMode, setIsEditMode] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
     const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
 
@@ -50,6 +51,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     }
 
     const onEditComplex = (complex: ChemicalComplex) => {
+        setIsEditMode(true)
         setComplexId(complex.id)
         setAggregation(complex.chemicalAggregates)
     }
@@ -59,7 +61,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         const chemicalComplex = new ChemicalComplex(complexName, aggregations, complexId)
 
         setLoading(true)
-        const response = await saveComplexApi(chemicalComplex)
+        const response = await _saveToServer(chemicalComplex)
         setLoading(false)
         const addedComplexes = response.data.data
         if (addedComplexes) {
@@ -67,8 +69,20 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         }
     }
 
-    const saveComplexApi = async (complex: ChemicalComplex) => {
+    const _updateComplexApi = async (complex: ChemicalComplex) => {
+        return await API.postAuthorized(ApiURL.updateChemicalComplex, complex)
+    }
+
+    const _saveComplexApi = async (complex: ChemicalComplex) => {
         return await API.postAuthorized(ApiURL.addChemicalComplex, complex)
+    }
+
+    const _saveToServer = (chemicalComplex: ChemicalComplex): Promise<any> => {
+        if (isEditMode) {
+            return _updateComplexApi(chemicalComplex)
+        }
+
+        return _saveComplexApi(chemicalComplex)
     }
 
     const onChangeAggregationMultiplier = useCallback((updatedAggregation: ChemicalAggregate, multiplier) => {
@@ -213,7 +227,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                             type={BUTTON_TYPE.PRIMARY}
                             onClick={saveComplex}
                         >
-                            {translate('save')}
+                            {isEditMode ? translate('save') : translate('create')}
                         </Button>
                     </div>
                 }
