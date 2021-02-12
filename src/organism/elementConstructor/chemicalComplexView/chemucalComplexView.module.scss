@@ -42,3 +42,15 @@
     top: 0;
     line-height: 1;
 }
+
+.modalButtonsBox {
+    text-align: center;
+}
+
+.modalButton {
+    margin-left: 30px;
+
+    &:first-child {
+        margin-left: 0;
+    }
+}

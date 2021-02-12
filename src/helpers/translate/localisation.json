@@ -191,5 +191,17 @@
     "create": {
         "ru": "Создать",
         "en": "Create"
+    },
+    "deleteChemicalCompound": {
+        "ru": "Удалить химическое соединение",
+        "en": "Delete chemical compound"
+    },
+    "cancel": {
+        "ru": "Отмена",
+        "en": "Cancel"
+    },
+    "delete": {
+        "ru": "Удалить",
+        "en": "Delete"
     }
 }

@@ -5,6 +5,7 @@ export interface ButtonProps {
     type?: ButtonType,
     disabled?: boolean,
     shape?: ButtonShape,
+    danger?: boolean
     containerclass?: string,
     onClick?: (e: React.MouseEvent) => void
 }
