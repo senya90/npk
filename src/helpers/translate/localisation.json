@@ -15,7 +15,6 @@
         "ru": "Ошибка сервера",
         "en": "Internal server error"
     },
-
     "add": {
         "ru": "Добавить",
         "en": "Add"
@@ -203,5 +202,9 @@
     "delete": {
         "ru": "Удалить",
         "en": "Delete"
+    },
+    "logout": {
+        "ru": "Выйти",
+        "en": "Logout"
     }
 }
