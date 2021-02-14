@@ -9,6 +9,7 @@ export const ApiURL = {
     getUser: 'user',
     registration: 'user/registration',
     login: 'user/login',
+    logout: 'user/logout',
     updateToken: 'user/update-tokens'
 
 

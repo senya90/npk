@@ -29,9 +29,15 @@ const userSlice = createSlice({
 
         setUser(state, action) {
             state.user = action.payload
+        },
+
+        resetAuth(state) {
+            const initial = getInitialState()
+            state.tokens = initial.tokens
+            state.user = initial.user
         }
     }
 })
 
-export const {setTokens, setUser} = userSlice.actions
+export const {setTokens, setUser, resetAuth} = userSlice.actions
 export default userSlice.reducer
