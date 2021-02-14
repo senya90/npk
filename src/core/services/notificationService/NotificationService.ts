@@ -1,7 +1,7 @@
 import { INotificationService } from "./NotificationServiceTypes";
 import {clearNotification, setNotification, TNotification} from "core/redux/notificationsSlice";
-import {NotificationHelper} from "../../helpers/notifications/notificationHelper";
-import {translate} from "../../helpers/translate/translate";
+import {NotificationHelper} from "../../../helpers/notifications/notificationHelper";
+import {translate} from "../../../helpers/translate/translate";
 
 export class NotificationService implements INotificationService {
 

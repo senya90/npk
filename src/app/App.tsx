@@ -7,15 +7,15 @@ import { Header } from 'organism/header/Header';
 import {ROUTES} from "core/routes/routes";
 import { SignIn } from 'pages/signIn/SignIn';
 import {NotificationBar} from "../organism/notificationBar/NotificationBar";
-import {LocalStorageProvider} from "core/localStorageProvider/LocalStorageProvider";
+import {LocalStorageProvider} from "core/services/localStorageProvider/LocalStorageProvider";
 import { AppContext } from 'helpers/contexts/AppContext';
 import styles from './App.module.css'
 import {PrivateRoute} from "core/privateRoute/PrivateRoute";
 import {useDispatch} from 'react-redux';
-import { setTokens, setUser } from 'core/redux/userSlice';
 import {TokensPair} from "models/tokensPair";
-import {NotificationService} from "core/notificationService/NotificationService";
-import {TokenHelper} from "../helpers/tokens";
+import {NotificationService} from "core/services/notificationService/NotificationService";
+import {UserService} from "../core/services/userService/UserService";
+import {IUserService} from "../core/services/userService/UserServiceTypes";
 
 
 const App = () => {
@@ -26,29 +26,20 @@ const App = () => {
     const notificationService = useMemo(() => {
         return new NotificationService(dispatch)
     }, [dispatch])
+    const userService: IUserService = useMemo(() => {
+        return new UserService(dispatch, new LocalStorageProvider())
+    }, [dispatch])
 
 
     const updateTokensApp = (tokens: TokensPair) => {
         if (tokens) {
-            localStorageProvider.saveTokens(tokens)
-            dispatch(setTokens(tokens))
-            const user = TokenHelper.getUser(tokens.accessToken)
-            if (user) {
-                dispatch(setUser(user))
-            }
+            userService.updateTokens(tokens)
         }
     }
 
     useEffect(() => {
-        const tokens = localStorageProvider.getTokens()
-        if (tokens) { // TODO: remove duplicate code through userService
-            dispatch(setTokens(tokens))
-            const user = TokenHelper.getUser(tokens.accessToken)
-            if (user) {
-                dispatch(setUser(user))
-            }
-        }
-    }, [dispatch, localStorageProvider])
+        userService.setAuthByStorage()
+    }, [userService])
 
     const onNotificationHide = useCallback(() => {
         notificationService.clearNotification()

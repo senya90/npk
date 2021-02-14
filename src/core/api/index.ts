@@ -1,10 +1,10 @@
 import {request} from "./request";
-import {NotificationService} from "../notificationService/NotificationService";
+import {NotificationService} from "../services/notificationService/NotificationService";
 import { store } from "core/redux/store";
-import {INotificationService} from "../notificationService/NotificationServiceTypes";
+import {INotificationService} from "../services/notificationService/NotificationServiceTypes";
 import {NotificationHelper} from "../../helpers/notifications/notificationHelper";
-import {LocalStorageProvider} from "../localStorageProvider/LocalStorageProvider";
-import {ILocalStorageProvider} from "../localStorageProvider/LocalStorageProviderTypes";
+import {LocalStorageProvider} from "../services/localStorageProvider/LocalStorageProvider";
+import {ILocalStorageProvider} from "../services/localStorageProvider/LocalStorageProviderTypes";
 
 interface IAPI {
     notificationService: INotificationService
