@@ -8,13 +8,17 @@ import {ROUTES} from 'core/routes/routes';
 import style from './header.module.scss'
 import { useSelector } from 'react-redux';
 import {TokenHelper} from "../../helpers/tokens";
+import {TokensPair} from "../../models/tokensPair";
+import { User } from 'models/user';
 
 const Header = () => {
-    const tokens = useSelector((state: any) => state.user.tokens)
-    const isAuth = TokenHelper.isActive(tokens.accessToken)
+    const userStore = useSelector((state: any) => state.user)
+    const tokens: TokensPair = userStore.tokens
+    const user: User = userStore.user
+    const isAuth: boolean = (tokens && TokenHelper.isActive(tokens.accessToken))
 
     const logout = () => {
-        
+
     }
 
     return (
@@ -22,6 +26,9 @@ const Header = () => {
             <div className={style.headerContainer}>
                 <div>Logo</div>
                 <nav className={style.navigation}>
+                    {isAuth &&
+                        <div className={style.username}>{user.login}</div>
+                    }
                     <NavLink
                         to={ROUTES.MAIN_PAGE}
                         className={style.link}
