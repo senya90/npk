@@ -24,9 +24,9 @@ const Header = () => {
     const isAuth: boolean = (tokens && TokenHelper.isActive(tokens.accessToken))
 
     const logout = async () => {
+        await API.postAuthorized(ApiURL.logout)
         localStorageProvider.clearTokens()
         dispatch(resetAuth())
-        await API.postAuthorized(ApiURL.logout, {userId: user.userId})
     }
 
     return (
