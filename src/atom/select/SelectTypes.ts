@@ -5,6 +5,7 @@ export interface SelectProps {
     containerStyle?: object
     containerclass?: string
     onChange: (value: string) => void
+    disabled?: boolean
 }
 
 export interface SelectOption {

@@ -18,9 +18,10 @@ interface AtomConstructorProps {
     changeAtomCount: (atom: ChemicalAtom, count: number) => void
     changeAtom: (updatedAtom: ChemicalAtom, chemicalId: string) => void
     removeAtom: (removedAtom: ChemicalAtom) => void
+    disabled?: boolean
 }
 
-const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtomCount, removeAtom}) => {
+const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtomCount, removeAtom, disabled = true}) => {
     const {chemicals} = useContext(CalculatorContext)
 
     const changeChemical = (chemicalId: string) => {
@@ -76,21 +77,25 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
                 }))}
                 containerclass={style.atomSelect}
                 onChange={changeChemical}
+                disabled
             />
             {isShowAtomsCountInput() &&
                 <Input
                     value={String(atom.atomsCount)}
                     className={style.atomCount}
                     onKeyDown={changeCount}
+                    disabled
                 />
             }
-            <Button
-                containerclass={style.removeButton}
-                shape={BUTTON_SHAPE.CIRCLE}
-                onClick={remove}
-            >
-                <Icon type={ICON_TYPE.Cross} size={8}/>
-            </Button>
+            {!disabled &&
+                <Button
+                    containerclass={style.removeButton}
+                    shape={BUTTON_SHAPE.CIRCLE}
+                    onClick={remove}
+                >
+                    <Icon type={ICON_TYPE.Cross} size={8}/>
+                </Button>
+            }
             <div className={style.atomsCountButtons}>
                 <Button
                     containerclass={cn(style.atomButton, style.removeAtomButton)}

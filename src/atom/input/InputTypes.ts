@@ -11,4 +11,5 @@ export interface InputProps {
     onKeyUp?: any
     onKeyDown?: any
     mode?: InputMode
+    disabled?: boolean
 }
