@@ -22,9 +22,11 @@ export class UserService implements IUserService {
     }
 
     updateTokens(newTokens: TokensPair): void {
-        this.localStorageProvider.saveTokens(newTokens)
-        this.dispatch(setTokens(newTokens))
-        this._setUserByToken(newTokens.accessToken)
+        if (newTokens) {
+            this.localStorageProvider.saveTokens(newTokens)
+            this.dispatch(setTokens(newTokens))
+            this._setUserByToken(newTokens.accessToken)
+        }
     }
 
     private _setUserByToken = (token: string) => {

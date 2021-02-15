@@ -12,7 +12,6 @@ import { AppContext } from 'helpers/contexts/AppContext';
 import styles from './App.module.css'
 import {PrivateRoute} from "core/privateRoute/PrivateRoute";
 import {useDispatch} from 'react-redux';
-import {TokensPair} from "models/tokensPair";
 import {NotificationService} from "core/services/notificationService/NotificationService";
 import {UserService} from "../core/services/userService/UserService";
 import {IUserService} from "../core/services/userService/UserServiceTypes";
@@ -30,13 +29,6 @@ const App = () => {
         return new UserService(dispatch, new LocalStorageProvider())
     }, [dispatch])
 
-
-    const updateTokensApp = (tokens: TokensPair) => {
-        if (tokens) {
-            userService.updateTokens(tokens)
-        }
-    }
-
     useEffect(() => {
         userService.setAuthByStorage()
     }, [userService])
@@ -50,7 +42,7 @@ const App = () => {
             <div>
                 <AppContext.Provider value={{
                     localStorageProvider: localStorageProvider,
-                    updateTokensApp: updateTokensApp,
+                    userService: userService,
                     notificationService: notificationService
                 }}>
                     <Header/>

@@ -17,7 +17,7 @@ import {LoginProps} from "./LoginTypes";
 const LoginComponent: FC<LoginProps> = (props) => {
     const {
         localStorageProvider,
-        updateTokensApp,
+        userService,
         notificationService
     } = useContext(AppContext)
     const [login, setLogin] = useState<string>('')
@@ -45,7 +45,7 @@ const LoginComponent: FC<LoginProps> = (props) => {
                 }
 
                 if (response.data && response.data.data) {
-                    updateTokensApp(response.data.data)
+                    userService.updateTokens(response.data.data)
                     props.history.push(getPathForRedirect())
                 }
             } catch (err) {

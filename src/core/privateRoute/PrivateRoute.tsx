@@ -15,7 +15,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
      component,
      ...rest
 }) => {
-    const {updateTokensApp} = useContext(AppContext)
+    const {userService} = useContext(AppContext)
     const tokens = useSelector((state: any) => state.user.tokens)
     const [auth, setAuth] = useState<boolean>(false)
     const [isUpdating, setIsUpdating] = useState<boolean>(true)
@@ -24,15 +24,13 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
         try {
             setIsUpdating(true)
             const updatedTokens = await TokenHelper.updateTokens(tokens.refreshToken)
-            if (updatedTokens) {
-                updateTokensApp(updatedTokens)
-            }
+            userService.updateTokens(updatedTokens)
             setIsUpdating(false)
         } catch (err) {
             setIsUpdating(false)
             console.error(err)
         }
-    }, [updateTokensApp])
+    }, [userService])
 
     const setStateForRedirect = () => {
         setIsUpdating(false)
