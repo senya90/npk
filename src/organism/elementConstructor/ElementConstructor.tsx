@@ -54,18 +54,20 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     }
 
     const onEditComplex = (complex: ChemicalComplex) => {
-        if (!_isCurrentUser(complex.userId) && user.role !== "admin") {
-            setDisabledForEdit(true)
-        } else {
-            setDisabledForEdit(false)
-        }
+        const canEdit = _canEditComplex(complex)
+        setDisabledForEdit(!canEdit)
+        
         setIsEditMode(true)
         setComplexId(complex.id)
         setAggregation(complex.chemicalAggregates)
     }
 
-    const _isCurrentUser = (checkedUserId: string | undefined) => {
-        return checkedUserId === user.userId
+    const _canEditComplex = (complex: ChemicalComplex): boolean => {
+        if (user.role === "admin") {
+            return true
+        }
+
+        return complex.userId === user.userId;
     }
 
     const saveComplex = async () => {
