@@ -40,7 +40,8 @@ export const TokenHelper = {
         if (decoded) {
             return {
                 login: decoded.login,
-                userId: decoded.userId
+                userId: decoded.userId,
+                role: decoded.role
             }
         }
 

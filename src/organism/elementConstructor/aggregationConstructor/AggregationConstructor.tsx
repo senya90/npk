@@ -17,11 +17,12 @@ import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 
 interface AggregationConstructorProps {
     aggregation: ChemicalAggregate
+    disabled?: boolean
 }
 
 const MIN_MULTIPLIER = 1
 
-const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) => {
+const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, disabled = true}) => {
     const {onChangeAggregationMultiplier, onChangeAtom, onChangeAtomCount, onRemoveAtom, onAddAtom, onRemoveAggregation} = useContext(ElementConstructorContext)
 
     const changeMultiplier = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +66,7 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
     const renderAtoms = () => {
         return aggregation.atoms.map((atom, index) => {
             return (
-                <AtomConstructor atom={atom} key={index} changeAtomCount={changeAtomCount} removeAtom={removeAtom} changeAtom={changeAtom}/>
+                <AtomConstructor atom={atom} key={index} changeAtomCount={changeAtomCount} removeAtom={removeAtom} changeAtom={changeAtom} disabled={disabled}/>
             )
         })
     }
@@ -82,52 +83,57 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation}) 
         onRemoveAggregation(aggregation)
     }
 
+
     return (
         <div className={style.aggregate}>
-            {isShowMultiplier() ?
-                <div className={style.multiplierWrapper}>
-                    <Input
-                        className={style.multiplier}
-                        onChange={changeMultiplier}
-                        value={String(aggregation.multiplier)}
-                    />
-                    <div className={style.multiplierButtons}>
-                        <Button
-                            containerclass={cn(style.smallButton, style.smallButtonRemove)}
-                            shape={BUTTON_SHAPE.CIRCLE}
-                            onClick={removeMultiplier}
-                        >
-                            -
-                        </Button>
-                        <Button
-                            containerclass={style.smallButton}
-                            type={BUTTON_TYPE.PRIMARY}
-                            shape={BUTTON_SHAPE.CIRCLE}
-                            onClick={addMultiplier}
-                        >
-                            +
-                        </Button>
-                    </div>
-                </div>
-
+            {disabled ?
+                null
                 :
-                <Button
-                    containerclass={style.addMultiplierButton}
-                    shape={BUTTON_SHAPE.CIRCLE}
-                    type={BUTTON_TYPE.PRIMARY}
-                    onClick={addMultiplier}
-                >
-                    +
-                </Button>
+                isShowMultiplier() ?
+                    <div className={style.multiplierWrapper}>
+                        <Input
+                            className={style.multiplier}
+                            onChange={changeMultiplier}
+                            value={String(aggregation.multiplier)}
+                        />
+                        <div className={style.multiplierButtons}>
+                            <Button
+                                containerclass={cn(style.smallButton, style.smallButtonRemove)}
+                                shape={BUTTON_SHAPE.CIRCLE}
+                                onClick={removeMultiplier}
+                            >
+                                -
+                            </Button>
+                            <Button
+                                containerclass={style.smallButton}
+                                type={BUTTON_TYPE.PRIMARY}
+                                shape={BUTTON_SHAPE.CIRCLE}
+                                onClick={addMultiplier}
+                            >
+                                +
+                            </Button>
+                        </div>
+                    </div>
+                    :
+                    <Button
+                        containerclass={style.addMultiplierButton}
+                        shape={BUTTON_SHAPE.CIRCLE}
+                        type={BUTTON_TYPE.PRIMARY}
+                        onClick={addMultiplier}
+                    >
+                        +
+                    </Button>
             }
             {renderAtoms()}
-            <Button
-                containerclass={style.addAtomButton}
-                onClick={addAtom}
-                type={BUTTON_TYPE.PRIMARY}
-            >
-                + {translate('addAtom')}
-            </Button>
+            {!disabled &&
+                <Button
+                    containerclass={style.addAtomButton}
+                    onClick={addAtom}
+                    type={BUTTON_TYPE.PRIMARY}
+                >
+                    + {translate('addAtom')}
+                </Button>
+            }
             <Button
                 containerclass={style.removeAggregation}
                 onClick={removeAggregation}

@@ -24,12 +24,15 @@ interface ElementConstructorProps {
 }
 
 const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) => {
+    const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
     const user: User = useSelector((state: any) => state.user.user)
+
     const [complexId, setComplexId] = useState<string>(IdGenerator.generate())
     const [aggregations, setAggregation] = useState<ChemicalAggregate[]>([])
     const [isEditMode, setIsEditMode] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
-    const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
+    const [disabledForEdit, setDisabledForEdit] = useState<boolean>(false)
+
 
     const getDefaultChemicalUnit = () => {
         return chemicals.find(chemical => chemical.name === 'N')
@@ -51,9 +54,18 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     }
 
     const onEditComplex = (complex: ChemicalComplex) => {
+        if (!_isCurrentUser(complex.userId) && user.role !== "admin") {
+            setDisabledForEdit(true)
+        } else {
+            setDisabledForEdit(false)
+        }
         setIsEditMode(true)
         setComplexId(complex.id)
         setAggregation(complex.chemicalAggregates)
+    }
+
+    const _isCurrentUser = (checkedUserId: string | undefined) => {
+        return checkedUserId === user.userId
     }
 
     const saveComplex = async () => {
@@ -169,6 +181,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                 <AggregationConstructor
                     aggregation={aggregation}
                     key={index}
+                    disabled={disabledForEdit}
                 />
             )
         })
@@ -220,7 +233,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                 <div className={style.result}>
                     {aggregationsToString()}
                 </div>
-                {notEmptyArray(aggregations) &&
+                {!disabledForEdit && notEmptyArray(aggregations) &&
                     <div className={style.saveButtonWrapper}>
                         <Button
                             disabled={loading}

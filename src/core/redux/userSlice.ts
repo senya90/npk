@@ -14,7 +14,8 @@ const getInitialState = (): UserSliceState => {
         tokens: localStorageProvider.getTokens(),
         user: {
             login: null,
-            userId: null
+            userId: null,
+            role: null
         }
     }
 }

@@ -77,14 +77,14 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
                 }))}
                 containerclass={style.atomSelect}
                 onChange={changeChemical}
-                disabled
+                disabled={disabled}
             />
             {isShowAtomsCountInput() &&
                 <Input
                     value={String(atom.atomsCount)}
                     className={style.atomCount}
                     onKeyDown={changeCount}
-                    disabled
+                    disabled={disabled}
                 />
             }
             {!disabled &&
@@ -96,6 +96,7 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
                     <Icon type={ICON_TYPE.Cross} size={8}/>
                 </Button>
             }
+            {!disabled &&
             <div className={style.atomsCountButtons}>
                 <Button
                     containerclass={cn(style.atomButton, style.removeAtomButton)}
@@ -113,7 +114,7 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
                     +
                 </Button>
             </div>
-
+            }
         </div>
     );
 };
