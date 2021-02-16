@@ -83,19 +83,17 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, d
         onRemoveAggregation(aggregation)
     }
 
-
     return (
         <div className={style.aggregate}>
-            {disabled ?
-                null
-                :
-                isShowMultiplier() ?
-                    <div className={style.multiplierWrapper}>
-                        <Input
-                            className={style.multiplier}
-                            onChange={changeMultiplier}
-                            value={String(aggregation.multiplier)}
-                        />
+            {isShowMultiplier() ?
+                <div className={style.multiplierWrapper}>
+                    <Input
+                        className={style.multiplier}
+                        onChange={changeMultiplier}
+                        value={String(aggregation.multiplier)}
+                        disabled={disabled}
+                    />
+                    {!disabled &&
                         <div className={style.multiplierButtons}>
                             <Button
                                 containerclass={cn(style.smallButton, style.smallButtonRemove)}
@@ -113,16 +111,18 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, d
                                 +
                             </Button>
                         </div>
-                    </div>
-                    :
-                    <Button
-                        containerclass={style.addMultiplierButton}
-                        shape={BUTTON_SHAPE.CIRCLE}
-                        type={BUTTON_TYPE.PRIMARY}
-                        onClick={addMultiplier}
-                    >
-                        +
-                    </Button>
+                    }
+                </div>
+                :
+                <Button
+                    containerclass={style.addMultiplierButton}
+                    shape={BUTTON_SHAPE.CIRCLE}
+                    type={BUTTON_TYPE.PRIMARY}
+                    onClick={addMultiplier}
+                    disabled={disabled}
+                >
+                    +
+                </Button>
             }
             {renderAtoms()}
             {!disabled &&

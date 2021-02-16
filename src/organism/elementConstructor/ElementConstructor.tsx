@@ -56,7 +56,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     const onEditComplex = (complex: ChemicalComplex) => {
         const canEdit = _canEditComplex(complex)
         setDisabledForEdit(!canEdit)
-        
+
         setIsEditMode(true)
         setComplexId(complex.id)
         setAggregation(complex.chemicalAggregates)
