@@ -206,5 +206,9 @@
     "logout": {
         "ru": "Выйти",
         "en": "Logout"
+    },
+    "addElement": {
+        "ru": "Добавить соединение",
+        "en": "Add compound"
     }
 }
