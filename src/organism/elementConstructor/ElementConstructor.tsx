@@ -7,13 +7,13 @@ import {AggregationConstructor} from "./aggregationConstructor/AggregationConstr
 
 import style from './elementConstructor.module.scss'
 import { ChemicalAtom } from 'models/chemicalAtom';
-import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
+import {CalculatorContext} from "helpers/contexts/CalculatorContext";
 import { ElementConstructorContext } from 'helpers/contexts/ElementConstructorContext';
-import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
+import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
 import { notEmptyArray } from 'helpers/utils';
 import {ApiURL} from "../../core/api/ApiURL";
 import { API } from 'core/api';
-import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
+import {IdGenerator} from "helpers/idGenerator/IdGenerator";
 import { Gag } from 'molecule/gag/Gag';
 import {useSelector} from "react-redux";
 import { User } from 'models/user';
@@ -199,7 +199,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         }
 
         return chemicalComplexes.map(complex => {
-            return <ChemicalComplexView complex={complex} userId={user.userId}  key={complex.id}/>
+            return <ChemicalComplexView complex={complex} userId={user.userId} key={complex.id}/>
         })
     }
 

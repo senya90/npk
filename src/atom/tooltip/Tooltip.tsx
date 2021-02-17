@@ -1,12 +1,17 @@
 import React, {FC} from 'react'
+import {Tooltip as TooltipAnt} from 'antd'
 import {TooltipProps} from "./TooltipTypes";
 
+const Tooltip: FC<TooltipProps> = ({children, className, title}) => {
 
-const Tooltip: FC<TooltipProps> = ({children}) => {
     return (
-        <div>
-            {children}
-        </div>
+        <TooltipAnt
+            title={title}
+        >
+            <div className={className}>
+                {children}
+            </div>
+        </TooltipAnt>
     );
 };
 
