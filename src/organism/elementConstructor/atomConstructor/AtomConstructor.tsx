@@ -1,5 +1,4 @@
 import React, {FC, useContext} from 'react';
-import cn from 'classnames'
 import {ChemicalAtom} from "../../../models/chemicalAtom";
 import {CalculatorContext} from "../../../helpers/contexts/CalculatorContext";
 import {translate} from "../../../helpers/translate/translate";
@@ -9,7 +8,7 @@ import style from './atomConstructor.module.scss'
 import {isExist} from "../../../helpers/utils";
 import { Input } from 'atom/input/Input';
 import { Button } from 'atom/button/Button';
-import { BUTTON_SHAPE, BUTTON_TYPE } from 'atom/button/ButtonTypes';
+import {BUTTON_SHAPE, BUTTON_SIZE, BUTTON_TYPE} from 'atom/button/ButtonTypes';
 import { Icon } from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 
@@ -90,6 +89,7 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
             {!disabled &&
                 <Button
                     className={style.removeButton}
+                    size={BUTTON_SIZE.SMALL}
                     shape={BUTTON_SHAPE.CIRCLE}
                     onClick={remove}
                 >
@@ -99,14 +99,15 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
             {!disabled &&
             <div className={style.atomsCountButtons}>
                 <Button
-                    className={cn(style.atomButton, style.removeAtomButton)}
+                    className={style.removeAtomButton}
+                    size={BUTTON_SIZE.SMALL}
                     shape={BUTTON_SHAPE.CIRCLE}
                     onClick={decreaseAtom}
                 >
                     -
                 </Button>
                 <Button
-                    className={style.atomButton}
+                    size={BUTTON_SIZE.SMALL}
                     type={BUTTON_TYPE.PRIMARY}
                     shape={BUTTON_SHAPE.CIRCLE}
                     onClick={addAtom}

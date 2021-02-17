@@ -1,12 +1,11 @@
 import React, {FC, useContext} from 'react';
-import cn from "classnames";
 
 import {ChemicalAggregate} from "models/chemicalAggregate";
 import { Input } from 'atom/input/Input';
 import {AtomConstructor} from "../atomConstructor/AtomConstructor";
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
-import {BUTTON_SHAPE, BUTTON_TYPE} from 'atom/button/ButtonTypes';
+import {BUTTON_SHAPE, BUTTON_SIZE, BUTTON_TYPE} from 'atom/button/ButtonTypes';
 import {ChemicalAtom} from "models/chemicalAtom";
 
 import style from './aggregationConstructor.module.scss'
@@ -96,14 +95,15 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, d
                     {!disabled &&
                         <div className={style.multiplierButtons}>
                             <Button
-                                className={cn(style.smallButton, style.smallButtonRemove)}
+                                className={style.smallButtonRemove}
+                                size={BUTTON_SIZE.SMALL}
                                 shape={BUTTON_SHAPE.CIRCLE}
                                 onClick={removeMultiplier}
                             >
                                 -
                             </Button>
                             <Button
-                                className={style.smallButton}
+                                size={BUTTON_SIZE.SMALL}
                                 type={BUTTON_TYPE.PRIMARY}
                                 shape={BUTTON_SHAPE.CIRCLE}
                                 onClick={addMultiplier}

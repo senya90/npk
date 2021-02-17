@@ -39,13 +39,9 @@
     align-items: center;
     justify-content: center;
 
-    min-width: 17px!important;
-    height: 17px;
-    padding: 0;
     position: absolute;
     right: 2px;
     top: 2px;
-    line-height: 1;
 }
 
 .atomsCountButtons {
@@ -55,14 +51,6 @@
     bottom: -11px;
     font-size: 1em;
     font-family: $font_family_secondary;
-}
-
-.atomButton {
-    min-width: 17px!important;
-    height: 17px;
-    padding: 0;
-
-    line-height: 1;
 }
 
 .removeAtomButton {

@@ -1,8 +1,7 @@
 @import "src/index";
 
 .aggregate {
-    padding: 10px;
-    padding-bottom: 0;
+    padding: 10px 0 0 ;
     display: flex;
     flex-wrap: wrap;
     position: relative;
@@ -54,14 +53,6 @@
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
-}
-
-.smallButton {
-    min-width: 17px!important;
-    height: 17px;
-    padding: 0;
-
-    line-height: 1;
 }
 
 .smallButtonRemove {
