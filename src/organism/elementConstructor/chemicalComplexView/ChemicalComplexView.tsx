@@ -57,13 +57,13 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
                 >
                     <div className={style.modalButtonsBox}>
                         <Button
-                            containerclass={style.modalButton}
+                            className={style.modalButton}
                             onClick={closeModal}
                         >
                             {translate('cancel')}
                         </Button>
                         <Button
-                            containerclass={style.modalButton}
+                            className={style.modalButton}
                             danger
                             type={BUTTON_TYPE.PRIMARY}
                             onClick={removeComplex}
@@ -77,7 +77,7 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
                 <span>{complex.name}</span>
                 {isOwner &&
                 <Button
-                    containerclass={style.complexItemDelete}
+                    className={style.complexItemDelete}
                     shape={BUTTON_SHAPE.CIRCLE}
                     onClick={showDeleteComplexModal}
                 >

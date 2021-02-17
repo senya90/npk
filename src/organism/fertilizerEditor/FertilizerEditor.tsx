@@ -82,7 +82,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
             <Button
                 type={BUTTON_TYPE.PRIMARY}
                 shape={BUTTON_SHAPE.CIRCLE}
-                containerclass={style.addButton}
+                className={style.addButton}
                 onClick={onAddFertilizerNewElement}
             >
                 +
@@ -90,14 +90,14 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
             <div className={style.footer}>
                 <Button
                     type={BUTTON_TYPE.PRIMARY}
-                    containerclass={`${commonStyles.mb_nano}`}
+                    className={`${commonStyles.mb_nano}`}
                     onClick={save}
                 >
                     {translate('save')}
                 </Button>
 
                 <Button
-                    containerclass={`${commonStyles.mb_nano}`}
+                    className={`${commonStyles.mb_nano}`}
                     onClick={addElement}
                 >
                     {translate('addElement')}

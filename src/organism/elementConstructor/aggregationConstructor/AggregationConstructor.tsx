@@ -96,14 +96,14 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, d
                     {!disabled &&
                         <div className={style.multiplierButtons}>
                             <Button
-                                containerclass={cn(style.smallButton, style.smallButtonRemove)}
+                                className={cn(style.smallButton, style.smallButtonRemove)}
                                 shape={BUTTON_SHAPE.CIRCLE}
                                 onClick={removeMultiplier}
                             >
                                 -
                             </Button>
                             <Button
-                                containerclass={style.smallButton}
+                                className={style.smallButton}
                                 type={BUTTON_TYPE.PRIMARY}
                                 shape={BUTTON_SHAPE.CIRCLE}
                                 onClick={addMultiplier}
@@ -115,7 +115,7 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, d
                 </div>
                 :
                 <Button
-                    containerclass={style.addMultiplierButton}
+                    className={style.addMultiplierButton}
                     shape={BUTTON_SHAPE.CIRCLE}
                     type={BUTTON_TYPE.PRIMARY}
                     onClick={addMultiplier}
@@ -127,7 +127,7 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, d
             {renderAtoms()}
             {!disabled &&
                 <Button
-                    containerclass={style.addAtomButton}
+                    className={style.addAtomButton}
                     onClick={addAtom}
                     type={BUTTON_TYPE.PRIMARY}
                 >
@@ -135,7 +135,7 @@ const AggregationConstructor: FC<AggregationConstructorProps> = ({aggregation, d
                 </Button>
             }
             <Button
-                containerclass={style.removeAggregation}
+                className={style.removeAggregation}
                 onClick={removeAggregation}
             >
                 <Icon type={ICON_TYPE.Cross} size={10}/>

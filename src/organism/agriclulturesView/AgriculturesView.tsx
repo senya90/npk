@@ -108,7 +108,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
             }
             <Button
                 onClick={openEditor}
-                containerclass={style.addButton}
+                className={style.addButton}
                 type={BUTTON_TYPE.PRIMARY}
             >
                 {translate('addAgriculture')}

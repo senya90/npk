@@ -95,7 +95,7 @@ const LoginComponent: FC<LoginProps> = (props) => {
                     mode={"borderBottom"}
                 />
                 <Button
-                    containerclass={style.formButton}
+                    className={style.formButton}
                     type={"primary"}
                     onClick={onSubmit}
                 >

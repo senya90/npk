@@ -225,7 +225,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                     </div>
                 </div>
                 <Button
-                    containerclass={style.addAggregationButton}
+                    className={style.addAggregationButton}
                     type={BUTTON_TYPE.PRIMARY}
                     onClick={addAggregation}
                 >

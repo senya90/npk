@@ -89,7 +89,7 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
             }
             {!disabled &&
                 <Button
-                    containerclass={style.removeButton}
+                    className={style.removeButton}
                     shape={BUTTON_SHAPE.CIRCLE}
                     onClick={remove}
                 >
@@ -99,14 +99,14 @@ const AtomConstructor: FC<AtomConstructorProps> = ({atom, changeAtom, changeAtom
             {!disabled &&
             <div className={style.atomsCountButtons}>
                 <Button
-                    containerclass={cn(style.atomButton, style.removeAtomButton)}
+                    className={cn(style.atomButton, style.removeAtomButton)}
                     shape={BUTTON_SHAPE.CIRCLE}
                     onClick={decreaseAtom}
                 >
                     -
                 </Button>
                 <Button
-                    containerclass={style.atomButton}
+                    className={style.atomButton}
                     type={BUTTON_TYPE.PRIMARY}
                     shape={BUTTON_SHAPE.CIRCLE}
                     onClick={addAtom}
