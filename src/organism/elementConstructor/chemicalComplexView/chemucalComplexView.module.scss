@@ -16,7 +16,7 @@
         background-color: $color_backPrimary + 30%;
 
         .complexItemDelete {
-            display: flex;
+            visibility: visible;
         }
     }
 }
@@ -30,7 +30,7 @@
 }
 
 .complexItemDelete {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
 
@@ -41,6 +41,7 @@
     right: 0;
     top: 0;
     line-height: 1;
+    visibility: hidden;
 }
 
 .modalButtonsBox {

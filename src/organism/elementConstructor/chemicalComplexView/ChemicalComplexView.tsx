@@ -9,11 +9,11 @@ import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import {CalculatorContext} from "helpers/contexts/CalculatorContext";
 import {ElementConstructorContext} from "helpers/contexts/ElementConstructorContext";
-import Modal from 'organism/modal/Modal';
 import { translate } from 'helpers/translate/translate';
 import {Tooltip} from "atom/tooltip/Tooltip";
 
 import style from './chemucalComplexView.module.scss'
+import { Popover } from 'atom/popover/Popover';
 
 
 interface ChemicalComplexViewProps {
@@ -29,16 +29,22 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
     const isOwner = complex.userId === userId
     const complexStyle = cn(style.complexItem, {[style.complexItemNotOwner]: !isOwner})
 
-    const showDeleteComplexModal = (event: React.MouseEvent) => {
-        event.stopPropagation()
+    const showDeleteComplexModal = (e: React.MouseEvent) => {
+        e.stopPropagation()
         setIsShowModal(true)
     }
 
-    const closeModal = () => {
+    const closeModal = (e: React.MouseEvent) => {
+        e.stopPropagation()
         setIsShowModal(false)
     }
 
-    const removeComplex = async () => {
+    const onVisibleChange = (visible: boolean) => {
+        setIsShowModal(visible)
+    }
+
+    const removeComplex = async (e: React.MouseEvent) => {
+        e.stopPropagation()
         setIsShowModal(false)
         const response = await API.postAuthorized(ApiURL.deleteChemicalComplexes, {id: [complex.id]})
         if (!response.data.error) {
@@ -55,13 +61,38 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
             <div className={complexStyle} onClick={editComplex}>
                 <span>{complex.name}</span>
                 {isOwner &&
-                <Button
-                    className={style.complexItemDelete}
-                    shape={BUTTON_SHAPE.CIRCLE}
-                    onClick={showDeleteComplexModal}
-                >
-                    <Icon type={ICON_TYPE.Cross} size={8}/>
-                </Button>
+                    <Popover
+                        visible={isShowModal}
+                        title={`${translate('deleteChemicalCompound')} - ${complex.name} ?`}
+                        onVisibleChange={onVisibleChange}
+                        content={
+                            <div className={style.modalButtonsBox}>
+                                <Button
+                                    className={style.modalButton}
+                                    onClick={closeModal}
+                                >
+                                    {translate('cancel')}
+                                </Button>
+                                <Button
+                                    className={style.modalButton}
+                                    danger
+                                    type={BUTTON_TYPE.PRIMARY}
+                                    onClick={removeComplex}
+                                >
+                                    {translate('delete')}
+                                </Button>
+                            </div>
+                        }
+                    >
+                        <Button
+                            className={style.complexItemDelete}
+                            shape={BUTTON_SHAPE.CIRCLE}
+                            onClick={showDeleteComplexModal}
+                        >
+                            <Icon type={ICON_TYPE.Cross} size={8}/>
+                        </Button>
+                    </Popover>
+
                 }
 
             </div>
@@ -70,29 +101,6 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
 
     return (
         <>
-            {isShowModal &&
-                <Modal
-                    onClose={closeModal}
-                    title={`${translate('deleteChemicalCompound')} - ${complex.name} ?`}
-                >
-                    <div className={style.modalButtonsBox}>
-                        <Button
-                            className={style.modalButton}
-                            onClick={closeModal}
-                        >
-                            {translate('cancel')}
-                        </Button>
-                        <Button
-                            className={style.modalButton}
-                            danger
-                            type={BUTTON_TYPE.PRIMARY}
-                            onClick={removeComplex}
-                        >
-                            {translate('delete')}
-                        </Button>
-                    </div>
-                </Modal>
-            }
             {isOwner ?
                 renderComplex()
                 :
