@@ -210,5 +210,9 @@
     "addElement": {
         "ru": "Добавить соединение",
         "en": "Add compound"
+    },
+    "admin": {
+        "ru": "Админ",
+        "en": "Admin"
     }
 }

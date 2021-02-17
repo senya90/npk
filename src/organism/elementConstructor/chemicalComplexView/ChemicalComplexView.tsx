@@ -1,18 +1,20 @@
 import React, {FC, useContext, useState} from 'react';
+import cn from "classnames";
 import {Button} from "atom/button/Button";
 import {BUTTON_SHAPE, BUTTON_TYPE} from "atom/button/ButtonTypes";
 import {Icon} from "atom/icon/Icon";
 import {ICON_TYPE} from "atom/icon/IconTypes";
-import cn from "classnames";
 import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
-
-import style from './chemucalComplexView.module.scss'
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import {CalculatorContext} from "helpers/contexts/CalculatorContext";
 import {ElementConstructorContext} from "helpers/contexts/ElementConstructorContext";
 import Modal from 'organism/modal/Modal';
 import { translate } from 'helpers/translate/translate';
+import {Tooltip} from "atom/tooltip/Tooltip";
+
+import style from './chemucalComplexView.module.scss'
+
 
 interface ChemicalComplexViewProps {
     complex: ChemicalComplex
@@ -48,6 +50,24 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
         onEditComplex(complex)
     }
 
+    const renderComplex = () => {
+        return (
+            <div className={complexStyle} onClick={editComplex}>
+                <span>{complex.name}</span>
+                {isOwner &&
+                <Button
+                    className={style.complexItemDelete}
+                    shape={BUTTON_SHAPE.CIRCLE}
+                    onClick={showDeleteComplexModal}
+                >
+                    <Icon type={ICON_TYPE.Cross} size={8}/>
+                </Button>
+                }
+
+            </div>
+        )
+    }
+
     return (
         <>
             {isShowModal &&
@@ -73,19 +93,17 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
                     </div>
                 </Modal>
             }
-            <div className={complexStyle} onClick={editComplex}>
-                <span>{complex.name}</span>
-                {isOwner &&
-                <Button
-                    className={style.complexItemDelete}
-                    shape={BUTTON_SHAPE.CIRCLE}
-                    onClick={showDeleteComplexModal}
+            {isOwner ?
+                renderComplex()
+                :
+                <Tooltip
+                    title={`${complex.name} (${translate('admin')})`}
                 >
-                    <Icon type={ICON_TYPE.Cross} size={8}/>
-                </Button>
-                }
+                    {renderComplex()}
+                </Tooltip>
 
-            </div>
+            }
+
         </>
 
     );
