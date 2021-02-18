@@ -9,6 +9,7 @@ export interface ButtonProps {
     size?: TButtonSize
     className?: string,
     onClick?: (e: React.MouseEvent) => void
+    htmlType?: 'submit' | 'button' | 'reset'
 }
 
 

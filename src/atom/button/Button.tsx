@@ -15,6 +15,7 @@ const Button: FunctionComponent<ButtonProps> = (props) => {
     return (
         <ButtonAnt
             type={props.type}
+            htmlType={props.htmlType}
             className={styles}
             disabled={props.disabled}
             shape={props.shape}

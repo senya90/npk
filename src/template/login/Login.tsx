@@ -35,7 +35,8 @@ const LoginComponent: FC<LoginProps> = (props) => {
         }
     }
 
-    const onSubmit = async () => {
+    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
         if (notEmptyString(login) && notEmptyString(password)) {
             try {
                 const response = await loginApi(login, password)
@@ -78,7 +79,7 @@ const LoginComponent: FC<LoginProps> = (props) => {
     return (
         <div>
             <Title bottomMargin={"little"}>{translate('login')}</Title>
-            <form className={style.form}>
+            <form className={style.form} onSubmit={onSubmit}>
                 <Input
                     value={login}
                     onChange={changeLogin}
@@ -97,7 +98,7 @@ const LoginComponent: FC<LoginProps> = (props) => {
                 <Button
                     className={style.formButton}
                     type={"primary"}
-                    onClick={onSubmit}
+                    htmlType={"submit"}
                 >
                     {translate('login')}
                 </Button>
