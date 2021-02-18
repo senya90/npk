@@ -29,7 +29,8 @@ const Registration: FC<RegistrationProps> = (props) => {
         setConfirmPassword(event.target.value)
     }
 
-    const onSubmit = async () => {
+    const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
         const isValid = validate()
         if (isValid) {
             const response = await registrationApi(login, password)
@@ -79,7 +80,7 @@ const Registration: FC<RegistrationProps> = (props) => {
                 :
                 <>
                     <Title bottomMargin={"little"}>{translate('registration')}</Title>
-                    <form className={style.form}>
+                    <form className={style.form} onSubmit={onSubmit}>
                         <Input
                             value={login}
                             onChange={changeLogin}
@@ -106,7 +107,7 @@ const Registration: FC<RegistrationProps> = (props) => {
                         <Button
                             className={style.formButton}
                             type={"primary"}
-                            onClick={onSubmit}
+                            htmlType={"submit"}
                         >
                             {translate('registration')}
                         </Button>
