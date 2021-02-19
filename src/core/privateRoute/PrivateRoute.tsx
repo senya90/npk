@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useContext, useEffect, useState} from 'react'
+import React, {FC, useContext, useEffect, useState} from 'react'
 import {Route, Redirect} from 'react-router-dom'
 import {TokensPair} from "models/tokensPair";
 import {TokenHelper} from "helpers/tokens";
@@ -18,11 +18,10 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
     const {userService} = useContext(AppContext)
     const tokens = useSelector((state: any) => state.user.tokens)
     const [auth, setAuth] = useState<boolean>(false)
-    const [isUpdating, setIsUpdating] = useState<boolean>(true)
+    const [isUpdating, setIsUpdating] = useState<boolean | undefined>(undefined)
 
-    const updateTokens = useCallback( async (tokens: TokensPair) => {
+    const updateTokens = async (tokens: TokensPair) => {
         try {
-            setIsUpdating(true)
             const updatedTokens = await TokenHelper.updateTokens(tokens.refreshToken)
             userService.updateTokens(updatedTokens)
             setIsUpdating(false)
@@ -30,7 +29,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
             setIsUpdating(false)
             console.error(err)
         }
-    }, [userService])
+    }
 
     const setStateForRedirect = () => {
         setIsUpdating(false)
@@ -40,6 +39,11 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
     const setStateForPrivate = () => {
         setIsUpdating(false)
         setAuth(true)
+    }
+
+    const setStateForUpdating = () => {
+        setIsUpdating(true)
+        setAuth(false)
     }
 
     useEffect(() => {
@@ -53,7 +57,12 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
             }
 
             if (!accessIsActive) {
-                updateTokens(tokens).then()
+                if (!isUpdating) {
+                    setStateForUpdating()
+                    updateTokens(tokens).then()
+                }
+
+                return
             }
 
             setStateForPrivate()
@@ -61,10 +70,9 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
         }
 
         setStateForRedirect()
+    })
 
-    }, [tokens, updateTokens])
-
-    if (isUpdating ) {
+    if (isUpdating || isUpdating === undefined) {
         return <div className="loading"/>
     }
 
