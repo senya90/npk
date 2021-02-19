@@ -1,4 +1,6 @@
+export type DropdownTheme = "light" | "light_contrast" | "dark" | undefined
+
 export interface DropdownProps {
-    items: any[] ,
-    placeholder?: string
+    items: any[],
+    theme?: DropdownTheme
 }

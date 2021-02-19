@@ -52,6 +52,7 @@ const Header = () => {
                     </NavLink>
                     {isAuth ?
                         <Dropdown
+                            theme={"light_contrast"}
                             items={[
                                 <div key={'settings'}>settings</div>,
                                 <div key={'some setting 2'}>some setting 2</div>,
