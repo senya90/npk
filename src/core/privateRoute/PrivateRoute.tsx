@@ -11,6 +11,8 @@ interface PrivateRouteProps {
     tokens?: TokensPair
 }
 
+type UpdatingState = "INIT" | "PROGRESS" | "DONE"
+
 const PrivateRoute: FC<PrivateRouteProps> = ({
      component,
      ...rest
@@ -18,31 +20,31 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
     const {userService} = useContext(AppContext)
     const tokens = useSelector((state: any) => state.user.tokens)
     const [auth, setAuth] = useState<boolean>(false)
-    const [isUpdating, setIsUpdating] = useState<boolean | undefined>(undefined)
+    const [isUpdating, setIsUpdating] = useState<UpdatingState>("INIT")
 
     const updateTokens = async (tokens: TokensPair) => {
         try {
             const updatedTokens = await TokenHelper.updateTokens(tokens.refreshToken)
             userService.updateTokens(updatedTokens)
-            setIsUpdating(false)
+            setIsUpdating("DONE")
         } catch (err) {
-            setIsUpdating(false)
+            setIsUpdating("DONE")
             console.error(err)
         }
     }
 
     const setStateForRedirect = () => {
-        setIsUpdating(false)
+        setIsUpdating("DONE")
         setAuth(false)
     }
 
     const setStateForPrivate = () => {
-        setIsUpdating(false)
+        setIsUpdating("DONE")
         setAuth(true)
     }
 
     const setStateForUpdating = () => {
-        setIsUpdating(true)
+        setIsUpdating("PROGRESS")
         setAuth(false)
     }
 
@@ -57,7 +59,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
             }
 
             if (!accessIsActive) {
-                if (!isUpdating) {
+                if (isUpdating !== "PROGRESS") {
                     setStateForUpdating()
                     updateTokens(tokens).then()
                 }
@@ -72,7 +74,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
         setStateForRedirect()
     })
 
-    if (isUpdating || isUpdating === undefined) {
+    if (isUpdating === "INIT" || isUpdating === "PROGRESS") {
         return <div className="loading"/>
     }
 
