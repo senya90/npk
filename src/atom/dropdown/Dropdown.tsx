@@ -5,14 +5,15 @@ import {DropdownProps} from "./DropdownTypes";
 import { Menu } from './menu/Menu';
 
 const Dropdown: FunctionComponent<DropdownProps> = (props) => {
-    const menu = <Menu items={props.items} />
+    const menu = <Menu>{props.items}</Menu>
 
     return (
-        <DropdownAnt.Button
+        <DropdownAnt
             overlay={menu}
+            placement={'bottomRight'}
         >
-            {props.placeholder}
-        </DropdownAnt.Button>
+            {props.children}
+        </DropdownAnt>
     );
 };
 

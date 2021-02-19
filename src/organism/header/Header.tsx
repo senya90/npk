@@ -14,6 +14,7 @@ import {AppContext} from "helpers/contexts/AppContext";
 import {resetAuth} from "core/redux/userSlice";
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
+import {Dropdown} from "../../atom/dropdown/Dropdown";
 
 const Header = () => {
     const {localStorageProvider} = useContext(AppContext)
@@ -34,9 +35,6 @@ const Header = () => {
             <div className={style.headerContainer}>
                 <div>Logo</div>
                 <nav className={style.navigation}>
-                    {isAuth &&
-                        <div className={style.username}>{user.login}</div>
-                    }
                     <NavLink
                         to={ROUTES.MAIN_PAGE}
                         className={style.link}
@@ -53,12 +51,24 @@ const Header = () => {
                         {translate('calculatorPage')}
                     </NavLink>
                     {isAuth ?
-                        <div
-                            className={cn(style.link, style.logout)}
-                            onClick={logout}
+                        <Dropdown
+                            items={[
+                                <div key={'settings'}>settings</div>,
+                                <div key={'some setting 2'}>some setting 2</div>,
+                                <div
+                                    key={'exit'}
+                                    className={cn(style.link, style.logout)}
+                                    onClick={logout}
+                                >
+                                    {translate('logout')}
+                                </div>
+                            ]}
                         >
-                            {translate('logout')}
-                        </div>
+                            <div className={style.usernameWrapper}>
+                                <div className={style.username}>{user.login}</div>
+                            </div>
+                        </Dropdown>
+
                         :
                         <NavLink
                             to={ROUTES.LOGIN}

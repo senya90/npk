@@ -1,4 +1,4 @@
 export interface DropdownProps {
-    items: any[],
+    items: any[] ,
     placeholder?: string
 }
