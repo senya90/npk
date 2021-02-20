@@ -18,7 +18,6 @@ import {ChemicalUnit} from "../../models/chemicalUnit";
 import {isExist} from "../../helpers/utils";
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
-import { Menu } from 'atom/dropdown/menu/Menu';
 
 
 const Calculator = () => {
@@ -127,12 +126,12 @@ const Calculator = () => {
         return chemicalComplexMockArray().find(chemicalComplex => chemicalComplex.id === chemicalComplexId)
     }
 
-    const onChemicalComplexSaved = async (savedComplexes: ChemicalComplex[]) => {
+    const onChemicalComplexSaved = async () => {
         const complexes = await getComplexesApi()
         setChemicalComplexes(complexes)
     }
 
-    const onChemicalComplexRemoved = async (ids: string[]) => {
+    const onChemicalComplexRemoved = async () => {
         const complexes = await getComplexesApi()
         setChemicalComplexes(complexes)
     }
