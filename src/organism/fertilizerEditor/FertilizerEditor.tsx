@@ -36,7 +36,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
         setElements(updatedElements)
     }
 
-    const onAddFertilizerNewElement = (e: React.MouseEvent) => {
+    const onAddFertilizerNewElement = () => {
         updateElements([...elements, new FertilizerIngredient()])
     }
 

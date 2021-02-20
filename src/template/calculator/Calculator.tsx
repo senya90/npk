@@ -76,12 +76,12 @@ const Calculator = () => {
         return []
     }
 
-    const onSaveFertilizer = (savedFertilizer: Fertilizer): Fertilizer => {
+    const onSaveFertilizer = async (savedFertilizer: Fertilizer): Promise<any> => {
         const found = fertilizers.find(fertilizer => fertilizer.id === savedFertilizer.id)
         setEditableFertilizer(undefined)
 
         if (!found) {
-            addFertilizer(savedFertilizer)
+            await _addFertilizerApi(savedFertilizer)
             return savedFertilizer
         }
 
@@ -89,8 +89,9 @@ const Calculator = () => {
         return savedFertilizer
     }
 
-    const addFertilizer = (savedFertilizer: Fertilizer) => {
-        setFertilizers([...fertilizers, savedFertilizer])
+    const _addFertilizerApi = async (newFertilizer: Fertilizer): Promise<any> => {
+        const response = await API.postAuthorized(ApiURL.addFertilizer, newFertilizer)
+        return response.data.data
     }
 
     const updateFertilizer = (updatedFertilizer: Fertilizer) => {
