@@ -96,6 +96,7 @@ const Calculator = () => {
         if (!response.data.error) {
             getFertilizersApi().then(result => setFertilizers(result))
         }
+        return response.data.data
     }
 
     const updateFertilizer = (updatedFertilizer: Fertilizer) => {

@@ -57,9 +57,13 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
         setIsShowElementConstructor(false)
     }
 
-    const onSave = (fertilizer: Fertilizer) => {
-        closeFertilizerEditor()
-        onSaveFertilizer(fertilizer)
+    const onSave = async (fertilizer: Fertilizer) => {
+        try {
+            await onSaveFertilizer(fertilizer)
+            closeFertilizerEditor()
+        } catch (err) {
+            throw err
+        }
     }
 
     return (
