@@ -6,7 +6,8 @@ export const ApiURL = {
     getChemicalComplexes: 'chemicals/chemical-complex',
     deleteChemicalComplexes: 'chemicals/delete-chemical-complex',
 
-    addFertilizer: 'chemicals/fertilizer',
+    addFertilizer: 'fertilizer/fertilizer',
+    getFertilizers: 'fertilizer/fertilizers',
 
     getUser: 'user',
     registration: 'user/registration',

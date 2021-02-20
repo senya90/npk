@@ -57,10 +57,12 @@ const Calculator = () => {
         }
     }
 
-    const getFertilizersApi = (): Promise<Fertilizer[]> => {
-        return new Promise<Fertilizer[]>(resolve => {
-            resolve([])
-        })
+    const getFertilizersApi = async (): Promise<Fertilizer[]> => {
+        const result = await API.getAuthorized(ApiURL.getFertilizers)
+        if (result.data.error) {
+            return []
+        }
+        return result.data.data
     }
 
     const getComplexesApi = async (): Promise<ChemicalComplex[]> => {
@@ -91,7 +93,9 @@ const Calculator = () => {
 
     const _addFertilizerApi = async (newFertilizer: Fertilizer): Promise<any> => {
         const response = await API.postAuthorized(ApiURL.addFertilizer, newFertilizer)
-        return response.data.data
+        if (!response.data.error) {
+            getFertilizersApi().then(result => setFertilizers(result))
+        }
     }
 
     const updateFertilizer = (updatedFertilizer: Fertilizer) => {
