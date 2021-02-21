@@ -24,6 +24,10 @@
     color: $color_description;
 }
 
+.ingredient_underline {
+    border-bottom: 1px solid $color_description;
+}
+
 .chemicalName {
     margin-right: 5px;
 }

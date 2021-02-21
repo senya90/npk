@@ -1,4 +1,5 @@
 import React, {FunctionComponent, useContext} from 'react';
+import cn from 'classnames'
 import {FertilizerIngredient} from "../../models/fertilizerIngredient";
 
 import style from './ingredientView.module.scss'
@@ -14,13 +15,13 @@ const IngredientsView: FunctionComponent<IngredientsViewProps> = ({ingredients, 
     const {chemicalComplexes} = useContext(CalculatorContext)
 
     const renderIngredients = () => {
-        return ingredients.map(ingredient => {
+        return ingredients.map((ingredient, index) => {
             const chemicalElement = chemicalComplexes.find(element => element.id === ingredient.chemicalComplex.id)
             if (chemicalElement) {
                 return (
                     <span
                         key={ingredient.id}
-                        className={style.ingredient}
+                        className={cn(style.ingredient, {[style.ingredient_underline]: !fullSize})}
                     >
                         <span className={style.chemicalName}>{chemicalElement.name}</span>
                         <span className={style.chemicalValue}>{ingredient.valuePercent}%</span>
@@ -31,7 +32,10 @@ const IngredientsView: FunctionComponent<IngredientsViewProps> = ({ingredients, 
         })
     }
 
-    const ingredientsWrapperStyle = fullSize ? `${style.fullSize} ${style.ingredientsWrapper}` : style.ingredientsWrapper
+    const ingredientsWrapperStyle = cn(
+        style.ingredientsWrapper,
+        {[style.fullSize]: fullSize}
+    )
 
     return (
         <div className={ingredientsWrapperStyle}>
