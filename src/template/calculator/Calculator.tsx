@@ -109,10 +109,13 @@ const Calculator = () => {
         setFertilizers(newFertilizers)
     }
 
-    const onFertilizerDelete = (fertilizerId: string): boolean => {
-        const updatedFertilizers = fertilizers.filter(fertilizer => fertilizer.id !== fertilizerId)
-        setFertilizers(updatedFertilizers)
-        return true
+    const onDeleteFertilizer = async (fertilizerId: string) => {
+        try {
+            await API.postAuthorized(ApiURL.deleteFertilizer, {id: [fertilizerId]})
+            updateFertilizersByServer()
+        } catch (err) {
+
+        }
     }
 
     const onFertilizerEdit = (fertilizerId: string): Fertilizer => {
@@ -204,7 +207,7 @@ const Calculator = () => {
         <div>
             <CalculatorContext.Provider value={{
                 chemicals: chemicals,
-                onDeleteFertilizer: onFertilizerDelete,
+                onDeleteFertilizer: onDeleteFertilizer,
                 onSaveFertilizer: onSaveFertilizer,
                 onEditFertilizer: onFertilizerEdit,
 
