@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Fertilizers} from "../../organism/fertilizers/Fertilizers";
 import { Fertilizer } from 'models/fertilizer';
 import {MixtureComposition} from "../../organism/mixtureComposition/MixtureComposition";
@@ -31,16 +31,19 @@ const Calculator = () => {
     const [agricultures, setAgricultures] = useState<Agriculture[]>([])
 
 
+    const updateFertilizersByServer = useCallback(() => {
+        getFertilizersApi().then(res => setFertilizers(res))
+    }, [])
+
     useEffect(() => {
         getChemicalsApi()
             .then(result => setChemicals(result))
 
-        getFertilizersApi()
-            .then(result => setFertilizers(result))
+        updateFertilizersByServer()
 
         getComplexesApi()
             .then(complexes => setChemicalComplexes(complexes))
-    }, [])
+    }, [updateFertilizersByServer])
 
     const getChemicalsApi = async (): Promise<ChemicalUnit[]> => {
         try {
@@ -94,7 +97,7 @@ const Calculator = () => {
     const _addFertilizerApi = async (newFertilizer: Fertilizer): Promise<any> => {
         const response = await API.postAuthorized(ApiURL.addFertilizer, newFertilizer)
         if (!response.data.error) {
-            getFertilizersApi().then(result => setFertilizers(result))
+            updateFertilizersByServer()
         }
         return response.data.data
     }
