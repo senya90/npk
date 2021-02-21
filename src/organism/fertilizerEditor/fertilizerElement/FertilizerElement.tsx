@@ -19,19 +19,19 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
     }
 
     const onNameChange = (chemicalComplexId: string) => {
-        const {valuePercent, id} = props.chemical
+        const {valuePercent, id} = props.ingredient
         const chemicalComplex = getChemicalComplexById(chemicalComplexId)
         const updatedElement = new FertilizerIngredient(chemicalComplex, valuePercent, id)
         props.onChemicalChanged(updatedElement)
     }
 
-    const onValueChange = (value: InputTypeValue) => {
-        const {chemicalComplex, id} = props.chemical
-        const updatedElement = new FertilizerIngredient(chemicalComplex, Number(value), id )
+    const onPercentChange = (value: InputTypeValue) => {
+        const {chemicalComplex, id} = props.ingredient
+        const updatedElement = new FertilizerIngredient(chemicalComplex, Number(value), id)
         props.onChemicalChanged(updatedElement)
     }
 
-    let chemicalComplexId = props.chemical.chemicalComplex.isValid() ? props.chemical.chemicalComplex.id : undefined
+    let chemicalComplexId = props.ingredient.chemicalComplex.isValid() ? props.ingredient.chemicalComplex.id : undefined
 
     return (
         <div className={style.elementsBox}>
@@ -45,9 +45,9 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
                 />
                 <InputNumber
                     defaultValue={0}
-                    value={props.chemical.valuePercent}
+                    value={props.ingredient.valuePercent}
                     isPositive={true}
-                    onChange={onValueChange}
+                    onChange={onPercentChange}
                 />
             </div>
         </div>

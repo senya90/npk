@@ -18,7 +18,7 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, edi
     const [active, setActive] = useState<boolean>(false)
     const {onDeleteFertilizer, onAddFertilizerToMixture} = useContext(CalculatorContext)
 
-    const toggleActive = (e: React.MouseEvent<HTMLDivElement>) => {
+    const toggleActive = () => {
         setActive(!active)
     }
 

@@ -61,7 +61,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
     const renderElements = () => {
         return elements.map(element => <FertilizerElement
             key={element.id}
-            chemical={element}
+            ingredient={element}
             chemicalComplexList={chemicalComplexes}
             onChemicalChanged={onElementChanged}
         />)

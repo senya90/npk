@@ -1,21 +1,18 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {Fertilizers} from "../../organism/fertilizers/Fertilizers";
+import {Fertilizers} from "organism/fertilizers/Fertilizers";
 import { Fertilizer } from 'models/fertilizer';
-import {MixtureComposition} from "../../organism/mixtureComposition/MixtureComposition";
+import {MixtureComposition} from "organism/mixtureComposition/MixtureComposition";
 
 import style from './calculator.module.scss'
 import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
-import {Mixture} from "../../models/mixture/mixture";
+import {Mixture} from "models/mixture/mixture";
 import { Mixtures } from 'organism/mixtures/Mixtures';
-import {mixturesMock} from "../../mocks/mixturesMock";
-import {AgriculturesView} from "../../organism/agriclulturesView/AgriculturesView";
-import {agriculturesMock} from "../../mocks/agriculturesMock";
-import {ChemicalComparison} from "../../organism/checmicalComparison/ChemicalComparison";
-import {Agriculture} from "../../models/agriculture";
-import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
-import {chemicalComplexMockArray} from "../../mocks/chemicalComplexMock";
-import {ChemicalUnit} from "../../models/chemicalUnit";
-import {isExist} from "../../helpers/utils";
+import {AgriculturesView} from "organism/agriclulturesView/AgriculturesView";
+import {ChemicalComparison} from "organism/checmicalComparison/ChemicalComparison";
+import {Agriculture} from "models/agriculture";
+import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
+import {ChemicalUnit} from "models/chemicalUnit";
+import {isExist} from "helpers/utils";
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 
@@ -25,9 +22,9 @@ const Calculator = () => {
     const [chemicalComplexes, setChemicalComplexes] = useState<ChemicalComplex[]>([])
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>([])
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
-    const [allMixtures, setAllMixtures] = useState<Mixture[]>(mixturesMock)
+    const [allMixtures, setAllMixtures] = useState<Mixture[]>([])
     const [mixture, setMixture] = useState<Mixture>()
-    const [activeAgriculture, setActiveAgriculture] = useState<Agriculture>(agriculturesMock[0])
+    const [activeAgriculture, setActiveAgriculture] = useState<Agriculture>(new Agriculture())
     const [agricultures, setAgricultures] = useState<Agriculture[]>([])
 
 
@@ -132,7 +129,7 @@ const Calculator = () => {
     }
 
     const getChemicalComplexById = (chemicalComplexId: string): ChemicalComplex | undefined => {
-        return chemicalComplexMockArray().find(chemicalComplex => chemicalComplex.id === chemicalComplexId)
+        return chemicalComplexes.find(chemicalComplex => chemicalComplex.id === chemicalComplexId)
     }
 
     const onChemicalComplexSaved = async () => {
@@ -212,6 +209,7 @@ const Calculator = () => {
                 onEditFertilizer: onFertilizerEdit,
 
                 getFertilizerById: getFertilizerById,
+                chemicalComplexes: chemicalComplexes,
                 getChemicalComplexById: getChemicalComplexById,
                 onChemicalComplexSaved: onChemicalComplexSaved,
                 onChemicalComplexRemoved: onChemicalComplexRemoved,
