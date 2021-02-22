@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {Fertilizers} from "organism/fertilizers/Fertilizers";
-import { Fertilizer } from 'models/fertilizer';
+import {Fertilizer, FertilizerDTO} from 'models/fertilizer';
 import {MixtureComposition} from "organism/mixtureComposition/MixtureComposition";
 
 import style from './calculator.module.scss'
@@ -63,9 +63,8 @@ const Calculator = () => {
             return []
         }
 
-        console.log('result.data.data', result.data.data)
-
-        return result.data.data
+        const fertilizersDTO: FertilizerDTO[] = result.data.data
+        return fertilizersDTO.map(dto => Fertilizer.createFromDTO(dto))
     }
 
     const getComplexesApi = async (): Promise<ChemicalComplex[]> => {

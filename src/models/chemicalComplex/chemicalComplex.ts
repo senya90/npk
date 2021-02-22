@@ -4,6 +4,14 @@ import { ChemicalAtom } from "../chemicalAtom";
 import { ChemicalAtomProportion } from "../chemicalAtomProportion";
 import {isExist, Utils} from "helpers/utils";
 
+export type ChemicalComplexDTO = {
+    id: string
+    name: string
+    chemicalAggregates: ChemicalAggregate[]
+    userId?: string
+}
+
+
 export class ChemicalComplex {
     name: string
     chemicalAggregates: ChemicalAggregate[]
@@ -15,6 +23,10 @@ export class ChemicalComplex {
         this.chemicalAggregates = chemicalAggregates ? this._aggregatesFactory(chemicalAggregates)  : []
         this.id = id ? id : IdGenerator.generate();
         this.userId = userId
+    }
+
+    static createFromDto(complex: ChemicalComplexDTO): ChemicalComplex {
+        return new ChemicalComplex(complex.name, complex.chemicalAggregates, complex.id, complex.userId)
     }
 
     private _aggregatesFactory = (chemicalAggregates: ChemicalAggregate[]) => {
