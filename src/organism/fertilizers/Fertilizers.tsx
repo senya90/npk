@@ -13,7 +13,7 @@ import {CalculatorContext, CalculatorContextType} from "helpers/contexts/Calcula
 import { Dosage } from 'models/dosage';
 
 import style from './fertilizers.module.scss'
-import {notEmptyArray} from "../../helpers/utils";
+import {notEmptyArray} from "helpers/utils";
 import { Gag } from 'molecule/gag/Gag';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
 import { Icon } from 'atom/icon/Icon';

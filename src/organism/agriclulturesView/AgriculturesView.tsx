@@ -10,7 +10,7 @@ import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {Button} from "../../atom/button/Button";
 import Modal from 'organism/modal/Modal';
 import {AgricultureEditor} from 'organism/agricultureEditor/AgricultureEditor';
-import {isExist, notEmptyArray} from "../../helpers/utils";
+import {isExist, notEmptyArray} from "helpers/utils";
 import { Gag } from 'molecule/gag/Gag';
 import { Icon } from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";

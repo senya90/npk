@@ -16,6 +16,12 @@ export class Utils {
         }
         return arr
     }
+
+    static getNowTimeSeconds = () => {
+        const MILLISECONDS_TO_SECONDS = 1000
+        const seconds = new Date().valueOf() / MILLISECONDS_TO_SECONDS
+        return Math.trunc(seconds)
+    }
 }
 
 export const isExist = (value: any) => {

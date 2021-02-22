@@ -9,6 +9,7 @@ export const ApiURL = {
     addFertilizer: 'fertilizer/fertilizer',
     getFertilizers: 'fertilizer/fertilizers',
     deleteFertilizer: 'fertilizer/delete-fertilizer',
+    updateFertilizer: 'fertilizer/update-fertilizer',
 
     getUser: 'user',
     registration: 'user/registration',

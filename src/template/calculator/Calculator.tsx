@@ -62,6 +62,9 @@ const Calculator = () => {
         if (result.data.error) {
             return []
         }
+
+        console.log('result.data.data', result.data.data)
+
         return result.data.data
     }
 
@@ -80,14 +83,14 @@ const Calculator = () => {
 
     const onSaveFertilizer = async (savedFertilizer: Fertilizer): Promise<any> => {
         const found = fertilizers.find(fertilizer => fertilizer.id === savedFertilizer.id)
-        setEditableFertilizer(undefined)
 
         if (!found) {
             await _addFertilizerApi(savedFertilizer)
+            setEditableFertilizer(undefined)
             return savedFertilizer
         }
 
-        updateFertilizer(savedFertilizer)
+        await _updateFertilizer(savedFertilizer)
         return savedFertilizer
     }
 
@@ -99,14 +102,13 @@ const Calculator = () => {
         return response.data.data
     }
 
-    const updateFertilizer = (updatedFertilizer: Fertilizer) => {
-        const newFertilizers = fertilizers.map(fertilizer => {
-            if (fertilizer.id === updatedFertilizer.id) {
-                return updatedFertilizer
-            }
-            return fertilizer
-        })
-        setFertilizers(newFertilizers)
+    const _updateFertilizer = async (updatedFertilizer: Fertilizer) => {
+        try {
+            await API.postAuthorized(ApiURL.updateFertilizer, {fertilizer: [updatedFertilizer]})
+            updateFertilizersByServer()
+        } catch (err) {
+
+        }
     }
 
     const onDeleteFertilizer = async (fertilizerId: string) => {
