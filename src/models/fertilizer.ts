@@ -14,7 +14,7 @@ export class Fertilizer {
     id: string
     name: string
     ingredients: FertilizerIngredient[]
-    orderNumber: number | null | undefined
+    orderNumber: number | null
     timestamp: number
 
     constructor(name = '', ingredients?: FertilizerIngredient[], id?: string, timestamp?: number, order?: number | null) {
@@ -22,7 +22,7 @@ export class Fertilizer {
         this.ingredients = ingredients ? ingredients : [];
         this.id = id ? id : IdGenerator.generate();
         this.timestamp = timestamp || Utils.getNowTimeSeconds()
-        this.orderNumber = order
+        this.orderNumber = order || null
     }
 
     static createFromDTO(fertilizer: FertilizerDTO): Fertilizer {
