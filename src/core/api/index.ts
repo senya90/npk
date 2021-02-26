@@ -6,13 +6,14 @@ import {NotificationHelper} from "../../helpers/notifications/notificationHelper
 import {LocalStorageProvider} from "../services/localStorageProvider/LocalStorageProvider";
 import {UserService} from "../services/userService/UserService";
 import {IUserService} from "../services/userService/UserServiceTypes";
+import {ServerResponse} from "../../models/response";
 
 interface IAPI {
     notificationService: INotificationService
     userService: IUserService
 
-    get: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
-    getAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+    get: <T = any>(apiURL: string, apiParams?: any, headers?: any) => Promise<ServerResponse<T>>
+    getAuthorized: <T = any>(apiURL: string, apiParams?: any, headers?: any) => Promise<ServerResponse<T>>
 
     post: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
     postAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
@@ -23,7 +24,7 @@ interface IAPI {
 export const API: IAPI = {
     notificationService: new NotificationService(store.dispatch),
     userService: new UserService(store.dispatch, new LocalStorageProvider()),
-    get: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+    get: async function <T>(apiURL: string, apiParams?: any, headers?: any): Promise<ServerResponse<T>> {
         return request.get(apiURL, apiParams, headers)
             .catch(err => {
                 console.error(`API GET request error: `, err)
@@ -31,10 +32,10 @@ export const API: IAPI = {
                 throw err
             })
     },
-    getAuthorized: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+    getAuthorized: async function <T>(apiURL: string, apiParams?: any, headers?: any): Promise<ServerResponse<T>> {
         let accessToken = await this.userService.getAccessTokenUpdateIfNeed()
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
-        return this.get(apiURL, apiParams, {...headers, ...authHeader})
+        return this.get<T>(apiURL, apiParams, {...headers, ...authHeader})
     },
     postAuthorized: async function(apiURL: string, apiParams?: any, headers?: any) {
         let accessToken = await this.userService.getAccessTokenUpdateIfNeed()

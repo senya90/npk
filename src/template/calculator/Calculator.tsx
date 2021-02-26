@@ -10,11 +10,12 @@ import { Mixtures } from 'organism/mixtures/Mixtures';
 import {AgriculturesView} from "organism/agriclulturesView/AgriculturesView";
 import {ChemicalComparison} from "organism/checmicalComparison/ChemicalComparison";
 import {Agriculture} from "models/agriculture";
-import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
+import {ChemicalComplex, ChemicalComplexDTO} from "models/chemicalComplex/chemicalComplex";
 import {ChemicalUnit} from "models/chemicalUnit";
 import {isExist} from "helpers/utils";
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
+import { ServerResponse } from 'models/response';
 
 
 const Calculator = () => {
@@ -58,7 +59,7 @@ const Calculator = () => {
     }
 
     const getFertilizersApi = async (): Promise<Fertilizer[]> => {
-        const result = await API.getAuthorized(ApiURL.getFertilizers)
+        const result = await API.getAuthorized<FertilizerDTO[]>(ApiURL.getFertilizers)
         if (result.data.error) {
             return []
         }
@@ -68,10 +69,10 @@ const Calculator = () => {
     }
 
     const getComplexesApi = async (): Promise<ChemicalComplex[]> => {
-        const response = await API.getAuthorized(ApiURL.getChemicalComplexes)
+        const response = await API.getAuthorized<ChemicalComplexDTO[]>(ApiURL.getChemicalComplexes)
 
         if (response.data.data) {
-            let complexes: ChemicalComplex[] = response.data.data
+            let complexes: ChemicalComplex[] = response.data.data.map(chemicalDTO => ChemicalComplex.createFromDto(chemicalDTO))
             return complexes.map(complex => {
                 return new ChemicalComplex(complex.name, [...complex.chemicalAggregates], complex.id, complex.userId)
             })
