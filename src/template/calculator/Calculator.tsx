@@ -89,7 +89,8 @@ const Calculator = () => {
             return savedFertilizer
         }
 
-        await _updateFertilizer(savedFertilizer)
+        await _updateFertilizerApi(savedFertilizer)
+        setEditableFertilizer(undefined)
         return savedFertilizer
     }
 
@@ -101,7 +102,7 @@ const Calculator = () => {
         return response.data.data
     }
 
-    const _updateFertilizer = async (updatedFertilizer: Fertilizer) => {
+    const _updateFertilizerApi = async (updatedFertilizer: Fertilizer) => {
         try {
             await API.postAuthorized(ApiURL.updateFertilizer, {fertilizer: [updatedFertilizer]})
             updateFertilizersByServer()
