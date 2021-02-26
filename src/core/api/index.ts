@@ -4,13 +4,11 @@ import { store } from "core/redux/store";
 import {INotificationService} from "../services/notificationService/NotificationServiceTypes";
 import {NotificationHelper} from "../../helpers/notifications/notificationHelper";
 import {LocalStorageProvider} from "../services/localStorageProvider/LocalStorageProvider";
-import {ILocalStorageProvider} from "../services/localStorageProvider/LocalStorageProviderTypes";
 import {UserService} from "../services/userService/UserService";
 import {IUserService} from "../services/userService/UserServiceTypes";
 
 interface IAPI {
     notificationService: INotificationService
-    localStorageService: ILocalStorageProvider
     userService: IUserService
 
     get: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
@@ -24,7 +22,6 @@ interface IAPI {
 
 export const API: IAPI = {
     notificationService: new NotificationService(store.dispatch),
-    localStorageService: new LocalStorageProvider(),
     userService: new UserService(store.dispatch, new LocalStorageProvider()),
     get: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         return request.get(apiURL, apiParams, headers)
