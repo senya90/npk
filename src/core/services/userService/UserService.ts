@@ -35,4 +35,27 @@ export class UserService implements IUserService {
             this.dispatch(setUser(user))
         }
     }
+
+    async getAccessTokenUpdateIfNeed(): Promise<string | undefined> {
+        const tokens = this.localStorageProvider.getTokens()
+        let accessToken;
+
+        if (tokens) {
+            accessToken = tokens.accessToken
+            const isActive = TokenHelper.isActive(tokens.accessToken)
+
+            if (!isActive) {
+                try {
+                    const updatedTokens = await TokenHelper.updateTokens(tokens.refreshToken)
+                    if (updatedTokens) {
+                        await this.updateTokens(updatedTokens);
+                        accessToken = updatedTokens.accessToken
+                    }
+                } catch (err) {
+                    console.log('Error auto update tokens', err)
+                }
+            }
+        }
+        return accessToken
+    }
 }

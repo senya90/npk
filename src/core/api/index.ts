@@ -7,7 +7,6 @@ import {LocalStorageProvider} from "../services/localStorageProvider/LocalStorag
 import {ILocalStorageProvider} from "../services/localStorageProvider/LocalStorageProviderTypes";
 import {UserService} from "../services/userService/UserService";
 import {IUserService} from "../services/userService/UserServiceTypes";
-import {TokenHelper} from "../../helpers/tokens";
 
 interface IAPI {
     notificationService: INotificationService
@@ -36,34 +35,12 @@ export const API: IAPI = {
             })
     },
     getAuthorized: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
-        const tokens = this.localStorageService.getTokens()
-        let accessToken;
-        if (tokens) {
-            accessToken = tokens.accessToken
-        }
+        let accessToken = await this.userService.getAccessTokenUpdateIfNeed()
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
         return this.get(apiURL, apiParams, {...headers, ...authHeader})
     },
     postAuthorized: async function(apiURL: string, apiParams?: any, headers?: any) {
-        const tokens = this.localStorageService.getTokens()
-        let accessToken;
-        if (tokens) {
-            accessToken = tokens.accessToken
-            const isActive = TokenHelper.isActive(tokens.accessToken)
-
-            if (!isActive) {
-                try {
-                    const updatedTokens = await TokenHelper.updateTokens(tokens.refreshToken)
-                    if (updatedTokens) {
-                        await this.userService.updateTokens(updatedTokens);
-                        accessToken = updatedTokens.accessToken
-                    }
-                } catch (err) {
-                    console.log('Error auto update tokens', err)
-                }
-            }
-        }
-
+        let accessToken = await this.userService.getAccessTokenUpdateIfNeed()
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
         return this.post(apiURL, apiParams, {...headers, ...authHeader})
     },
@@ -87,12 +64,8 @@ export const API: IAPI = {
             })
     },
 
-    deleteAuthorized: function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
-        const tokens = this.localStorageService.getTokens()
-        let accessToken;
-        if (tokens) {
-            accessToken = tokens.accessToken
-        }
+    deleteAuthorized: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+        let accessToken = await this.userService.getAccessTokenUpdateIfNeed()
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
 
         const headersWithAuth = {
