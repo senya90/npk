@@ -15,7 +15,7 @@ import {ChemicalUnit} from "models/chemicalUnit";
 import {isExist} from "helpers/utils";
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
-import { ServerResponse } from 'models/response';
+import { ServerResponse } from 'models/serverResponse';
 
 
 const Calculator = () => {

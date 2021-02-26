@@ -6,7 +6,7 @@ import {NotificationHelper} from "../../helpers/notifications/notificationHelper
 import {LocalStorageProvider} from "../services/localStorageProvider/LocalStorageProvider";
 import {UserService} from "../services/userService/UserService";
 import {IUserService} from "../services/userService/UserServiceTypes";
-import {ServerResponse} from "../../models/response";
+import {ServerResponse} from "../../models/serverResponse";
 
 interface IAPI {
     notificationService: INotificationService
@@ -15,10 +15,10 @@ interface IAPI {
     get: <T = any>(apiURL: string, apiParams?: any, headers?: any) => Promise<ServerResponse<T>>
     getAuthorized: <T = any>(apiURL: string, apiParams?: any, headers?: any) => Promise<ServerResponse<T>>
 
-    post: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
-    postAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+    post: <T = any>(apiURL: string, apiParams?: any, headers?: any) => Promise<ServerResponse<T>>
+    postAuthorized: <T = any>(apiURL: string, apiParams?: any, headers?: any) => Promise<ServerResponse<T>>
 
-    deleteAuthorized: (apiURL: string, apiParams?: any, headers?: any) => Promise<any>
+    deleteAuthorized: <T = any>(apiURL: string, apiParams?: any, headers?: any) => Promise<ServerResponse<T>>
 }
 
 export const API: IAPI = {
@@ -37,12 +37,12 @@ export const API: IAPI = {
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
         return this.get<T>(apiURL, apiParams, {...headers, ...authHeader})
     },
-    postAuthorized: async function(apiURL: string, apiParams?: any, headers?: any) {
+    postAuthorized: async function <T>(apiURL: string, apiParams?: any, headers?: any) {
         let accessToken = await this.userService.getAccessTokenUpdateIfNeed()
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
         return this.post(apiURL, apiParams, {...headers, ...authHeader})
     },
-    post: function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+    post: function <T>(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         return request.post(apiURL, apiParams, headers)
             .then(response => {
                 if (response.data.error) {
@@ -62,7 +62,7 @@ export const API: IAPI = {
             })
     },
 
-    deleteAuthorized: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+    deleteAuthorized: async function <T>(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         let accessToken = await this.userService.getAccessTokenUpdateIfNeed()
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
 
