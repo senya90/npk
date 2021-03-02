@@ -9,8 +9,12 @@ import {InputTypeValue} from "../../../atom/inputNumber/InputNumberTypes";
 import {FertilizerElementProps} from "./FertilizerElementTypes";
 import {FertilizerIngredient} from "../../../models/fertilizerIngredient";
 import { CalculatorContext } from 'helpers/contexts/CalculatorContext';
+import { Button } from 'atom/button/Button';
+import { BUTTON_SHAPE, BUTTON_TYPE } from 'atom/button/ButtonTypes';
+import { Icon } from 'atom/icon/Icon';
+import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 
-const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => {
+const FertilizerElement: FunctionComponent<FertilizerElementProps> = ({ingredient, onChemicalChanged, chemicalComplexList}) => {
 
     const {getChemicalComplexById} = useContext(CalculatorContext)
 
@@ -19,19 +23,23 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
     }
 
     const onNameChange = (chemicalComplexId: string) => {
-        const {valuePercent, id} = props.ingredient
+        const {valuePercent, id} = ingredient
         const chemicalComplex = getChemicalComplexById(chemicalComplexId)
         const updatedElement = new FertilizerIngredient(chemicalComplex, valuePercent, id)
-        props.onChemicalChanged(updatedElement)
+        onChemicalChanged(updatedElement)
     }
 
     const onPercentChange = (value: InputTypeValue) => {
-        const {chemicalComplex, id} = props.ingredient
+        const {chemicalComplex, id} = ingredient
         const updatedElement = new FertilizerIngredient(chemicalComplex, Number(value), id)
-        props.onChemicalChanged(updatedElement)
+        onChemicalChanged(updatedElement)
     }
 
-    let chemicalComplexId = props.ingredient.chemicalComplex.isValid() ? props.ingredient.chemicalComplex.id : undefined
+    const deleteIngredient = () => {
+
+    }
+
+    let chemicalComplexId = ingredient.chemicalComplex.isValid() ? ingredient.chemicalComplex.id : undefined
 
     return (
         <div className={style.elementsBox}>
@@ -39,17 +47,25 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = (props) => 
                 <Select
                     default={translate('selectElement')}
                     value={chemicalComplexId}
-                    options={adaptForSelect(props.chemicalComplexList)}
+                    options={adaptForSelect(chemicalComplexList)}
                     containerclass={style.element}
                     onChange={onNameChange}
                 />
                 <InputNumber
                     defaultValue={0}
-                    value={props.ingredient.valuePercent}
+                    value={ingredient.valuePercent}
                     isPositive={true}
                     onChange={onPercentChange}
                 />
             </div>
+            <Button
+                className={style.deleteIngredient}
+                shape={BUTTON_SHAPE.CIRCLE}
+                type={BUTTON_TYPE.PRIMARY}
+                onClick={deleteIngredient}
+            >
+                <Icon type={ICON_TYPE.Cross}/>
+            </Button>
         </div>
     );
 };

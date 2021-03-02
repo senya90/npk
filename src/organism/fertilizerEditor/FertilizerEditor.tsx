@@ -22,7 +22,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
         }
     }, [editableFertilizer])
 
-    const onElementChanged = (updatedElement: FertilizerIngredient) => {
+    const onChemicalChanged = (updatedElement: FertilizerIngredient) => {
         const updatedElements = elements.map(element => {
             if (element.id === updatedElement.id) {
                 return updatedElement
@@ -63,7 +63,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
             key={element.id}
             ingredient={element}
             chemicalComplexList={chemicalComplexes}
-            onChemicalChanged={onElementChanged}
+            onChemicalChanged={onChemicalChanged}
         />)
     }
 
