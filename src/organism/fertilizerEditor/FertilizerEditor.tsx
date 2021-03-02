@@ -13,31 +13,36 @@ import {Fertilizer} from "../../models/fertilizer";
 
 const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFertilizer, onSave, addElement, chemicalComplexes}) => {
     const [name, setName] = useState<string>('')
-    const [elements, setElements] = useState<FertilizerIngredient[]>([])
+    const [ingredients, setIngredients] = useState<FertilizerIngredient[]>([])
 
     useEffect(() => {
         if (editableFertilizer) {
             setName(editableFertilizer.name)
-            setElements(editableFertilizer.ingredients)
+            setIngredients(editableFertilizer.ingredients)
         }
     }, [editableFertilizer])
 
-    const onChemicalChanged = (updatedElement: FertilizerIngredient) => {
-        const updatedElements = elements.map(element => {
-            if (element.id === updatedElement.id) {
-                return updatedElement
+    const onChemicalChanged = (updatedIngredient: FertilizerIngredient) => {
+        const updatedElements = ingredients.map(element => {
+            if (element.id === updatedIngredient.id) {
+                return updatedIngredient
             }
             return element
         })
-        updateElements(updatedElements)
+        updateIngredients(updatedElements)
     }
 
-    const updateElements = (updatedElements: FertilizerIngredient[]) => {
-        setElements(updatedElements)
+    const onDeleteIngredient = (deletedIngredient: FertilizerIngredient) => {
+        const updatedIngredients = ingredients.filter(ingredient => ingredient.id !== deletedIngredient.id)
+        updateIngredients(updatedIngredients)
+    }
+
+    const updateIngredients = (updatedElements: FertilizerIngredient[]) => {
+        setIngredients(updatedElements)
     }
 
     const onAddFertilizerNewElement = () => {
-        updateElements([...elements, new FertilizerIngredient()])
+        updateIngredients([...ingredients, new FertilizerIngredient()])
     }
 
     const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,25 +50,26 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
     }
 
     const save = () => {
-        let fertilizer = new Fertilizer(name, elements)
+        let fertilizer = new Fertilizer(name, ingredients)
         if (editableFertilizer) {
-            fertilizer = new Fertilizer(name, elements, editableFertilizer.id)
+            fertilizer = new Fertilizer(name, ingredients, editableFertilizer.id)
         }
         onSave(fertilizer)
         resetState()
     }
 
     const resetState = () => {
-        setElements([])
+        setIngredients([])
         setName('')
     }
 
     const renderElements = () => {
-        return elements.map(element => <FertilizerElement
+        return ingredients.map(element => <FertilizerElement
             key={element.id}
             ingredient={element}
             chemicalComplexList={chemicalComplexes}
             onChemicalChanged={onChemicalChanged}
+            onDeleteIngredient={onDeleteIngredient}
         />)
     }
 

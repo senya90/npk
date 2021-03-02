@@ -14,7 +14,7 @@ import { BUTTON_SHAPE, BUTTON_TYPE } from 'atom/button/ButtonTypes';
 import { Icon } from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 
-const FertilizerElement: FunctionComponent<FertilizerElementProps> = ({ingredient, onChemicalChanged, chemicalComplexList}) => {
+const FertilizerElement: FunctionComponent<FertilizerElementProps> = ({ingredient, onChemicalChanged, chemicalComplexList, onDeleteIngredient}) => {
 
     const {getChemicalComplexById} = useContext(CalculatorContext)
 
@@ -36,7 +36,7 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = ({ingredien
     }
 
     const deleteIngredient = () => {
-
+        onDeleteIngredient(ingredient)
     }
 
     let chemicalComplexId = ingredient.chemicalComplex.isValid() ? ingredient.chemicalComplex.id : undefined

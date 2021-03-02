@@ -5,4 +5,5 @@ export interface FertilizerElementProps {
     ingredient: FertilizerIngredient
     chemicalComplexList: ChemicalComplex[]
     onChemicalChanged: (updatedElement: FertilizerIngredient) => void
+    onDeleteIngredient: (deletedIngredient: FertilizerIngredient) => void
 }
