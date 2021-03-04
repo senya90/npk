@@ -171,6 +171,18 @@
         "ru": "Конструктор химических элементов",
         "en": "Chemical elements constructor"
     },
+    "attention": {
+        "ru": "Внимание",
+        "en": "Attention"
+    },
+    "compound": {
+        "ru": "Соединение",
+        "en": "Compound"
+    },
+    "usingInFertilizers": {
+        "ru": "используется в следующих удобрениях",
+        "en": "using in following fertilizers"
+    },
     "addCompound": {
         "ru": "Добавить соединение",
         "en": "Add compound"

@@ -18,6 +18,9 @@ import { Gag } from 'molecule/gag/Gag';
 import {useSelector} from "react-redux";
 import { User } from 'models/_types/user';
 import ChemicalComplexView from "./chemicalComplexView/ChemicalComplexView";
+import Modal from 'organism/modal/Modal';
+import {FertilizersUsingComplexes} from "../../models/_types/fertilizer";
+import {DeleteComplexModal} from "./DeleteComplexModal";
 
 interface ElementConstructorProps {
     chemicalComplexes: ChemicalComplex[]
@@ -32,6 +35,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
     const [isEditMode, setIsEditMode] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
     const [disabledForEdit, setDisabledForEdit] = useState<boolean>(false)
+    const [confirmDeleteComplex, setConfirmDeleteComplex] = useState<FertilizersUsingComplexes[] | undefined>()
 
 
     const getDefaultChemicalUnit = () => {
@@ -176,6 +180,14 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         setAggregation(updated)
     }
 
+    const onConfirmComplexDeleting = (fertilizersUsingComplexes: FertilizersUsingComplexes[]) => {
+        console.log('onConfirmComplexDeleting fertilizersUsingComplexes', fertilizersUsingComplexes)
+        setConfirmDeleteComplex(fertilizersUsingComplexes)
+    }
+
+    const closeConfirmationModal = () => {
+        setConfirmDeleteComplex(undefined)
+    }
 
     const renderAggregations = () => {
         return aggregations.map((aggregation, index) => {
@@ -212,7 +224,8 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                 onChangeAtom: onChangeAtom,
                 onChangeAtomCount: onChangeAtomCount,
                 onRemoveAtom: onRemoveAtom,
-                onRemoveAggregation: onRemoveAggregation
+                onRemoveAggregation: onRemoveAggregation,
+                onConfirmComplexDeleting: onConfirmComplexDeleting
             }}>
                 <div>
                     <div className={style.title}>{translate('availableCompounds')}</div>
@@ -245,6 +258,14 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                             {isEditMode ? translate('save') : translate('create')}
                         </Button>
                     </div>
+                }
+                {confirmDeleteComplex &&
+                    <Modal 
+                        title={`${translate('attention')}!`}
+                        onClose={closeConfirmationModal}
+                    >
+                        <DeleteComplexModal fertilizersUsingComplexes={confirmDeleteComplex}/>
+                    </Modal>
                 }
 
             </ElementConstructorContext.Provider>

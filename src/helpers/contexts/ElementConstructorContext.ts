@@ -2,10 +2,12 @@ import React from "react";
 import {ChemicalAggregate} from "../../models/chemicalAggregate";
 import {ChemicalAtom} from "../../models/chemicalAtom";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
+import {FertilizersUsingComplexes} from "../../models/_types/fertilizer";
 
 export type ElementConstructorContextType = {
     onChangeAggregationMultiplier: (updatedAggregation: ChemicalAggregate, multiplier: number) => void
     onEditComplex: (complex: ChemicalComplex) => void
+    onConfirmComplexDeleting: (fertilizersUsingComplexes: FertilizersUsingComplexes[]) => void
 
     onAddAtom: (updatedAggregation: ChemicalAggregate) => void
     onChangeAtom: (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, chemicalId: string) => void
@@ -18,6 +20,8 @@ export const ElementConstructorContext = React.createContext<ElementConstructorC
     onChangeAggregationMultiplier(updatedAggregation: ChemicalAggregate, multiplier: number): void {
     },
     onEditComplex(complex: ChemicalComplex): void {
+    },
+    onConfirmComplexDeleting(fertilizersUsingComplexes: FertilizersUsingComplexes[]): void {
     },
 
     onAddAtom(updatedAggregation: ChemicalAggregate): void {
