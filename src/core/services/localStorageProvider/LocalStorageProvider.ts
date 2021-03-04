@@ -1,5 +1,5 @@
 import {ILocalStorageProvider} from "./LocalStorageProviderTypes";
-import { TokensPair } from "models/tokensPair";
+import { TokensPair } from "models/_types/tokensPair";
 
 export class LocalStorageProvider implements ILocalStorageProvider {
     private readonly LS_KEYS = {

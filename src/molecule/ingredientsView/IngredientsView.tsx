@@ -1,6 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react';
 import cn from 'classnames'
-import {FertilizerIngredient} from "../../models/fertilizerIngredient";
+import {FertilizerIngredient} from "../../models/fertilizer/fertilizerIngredient";
 
 import style from './ingredientView.module.scss'
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";

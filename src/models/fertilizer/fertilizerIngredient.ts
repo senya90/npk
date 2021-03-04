@@ -1,11 +1,7 @@
 import { IdGenerator } from "helpers/idGenerator/IdGenerator";
-import { ChemicalComplex } from "./chemicalComplex/chemicalComplex";
+import { ChemicalComplex } from "../chemicalComplex/chemicalComplex";
+import { FertilizerIngredientDTO } from "models/_types/fertilizer";
 
-export type FertilizerIngredientDTO = {
-    id: string
-    chemicalComplex: ChemicalComplex,
-    valuePercent: number
-}
 
 export class FertilizerIngredient {
     id: string;

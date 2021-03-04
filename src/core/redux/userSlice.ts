@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TokensPair } from "models/tokensPair";
+import { TokensPair } from "models/_types/tokensPair";
 import {LocalStorageProvider} from "../services/localStorageProvider/LocalStorageProvider";
-import {User} from "../../models/user";
+import {User} from "../../models/_types/user";
 
 type UserSliceState = {
     tokens: TokensPair | undefined

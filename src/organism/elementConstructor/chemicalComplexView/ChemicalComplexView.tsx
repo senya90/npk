@@ -14,6 +14,7 @@ import {Tooltip} from "atom/tooltip/Tooltip";
 
 import style from './chemucalComplexView.module.scss'
 import { Popover } from 'atom/popover/Popover';
+import {DeleteComplexResponse} from "../../../models/_types/chemicalComplex";
 
 
 interface ChemicalComplexViewProps {
@@ -46,10 +47,11 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
     const removeComplex = async (e: React.MouseEvent) => {
         e.stopPropagation()
         setIsShowModal(false)
-        const response = await API.postAuthorized(ApiURL.deleteChemicalComplexes, {id: [complex.id]})
-        if (!response.data.error) {
-            onChemicalComplexRemoved([complex.id])
-        }
+        const response = await API.postAuthorized<DeleteComplexResponse>(ApiURL.deleteChemicalComplexes, {id: [complex.id]})
+
+        // if (!response.data.error) {
+        //     onChemicalComplexRemoved([complex.id])
+        // }
     }
 
     const editComplex = () => {

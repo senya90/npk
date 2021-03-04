@@ -1,5 +1,5 @@
-import {Fertilizer} from "../models/fertilizer";
-import {FertilizerIngredient} from "../models/fertilizerIngredient";
+import {Fertilizer} from "../models/fertilizer/fertilizer";
+import {FertilizerIngredient} from "../models/fertilizer/fertilizerIngredient";
 import { chemicalComplexMock } from "./chemicalComplexMock";
 
 export const fertilizersMock: Fertilizer[] = [

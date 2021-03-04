@@ -11,10 +11,10 @@ export class ChemicalAtomProportion {
         this.proportion = proportion
     }
 
-    toChemicalByMiligrams = (dosageMiligram: number): ChemicalUnitValue => {
+    toChemicalByMilligrams = (dosageMilligram: number): ChemicalUnitValue => {
         return new ChemicalUnitValue(
             this.chemicalAtom.chemicalUnit, 
-            Utils.round(this.proportion * dosageMiligram)
+            Utils.round(this.proportion * dosageMilligram)
         )
     }
 }

@@ -12,11 +12,11 @@ export class AtomsProportionCalculator {
         this._atomsProportions = value
     }
 
-    correctDecimalByAggregate = (chemicalAggragateDecimal: number): ChemicalAtomProportion[] => {
+    correctDecimalByAggregate = (chemicalAggregateDecimal: number): ChemicalAtomProportion[] => {
         const atomsWithCorrectDecimals = this._atomsProportions.map(chemicalAtomProportion => {
             return new ChemicalAtomProportion(
                 chemicalAtomProportion.chemicalAtom,
-                chemicalAtomProportion.proportion * chemicalAggragateDecimal
+                chemicalAtomProportion.proportion * chemicalAggregateDecimal
             )
         })
         this.atomsProportions = atomsWithCorrectDecimals
@@ -25,7 +25,7 @@ export class AtomsProportionCalculator {
 
     toChemicalValueByMiligrams = (miligrams: number): ChemicalUnitValue[] => {
         return this._atomsProportions.map(atom => {
-            return atom.toChemicalByMiligrams(miligrams)
+            return atom.toChemicalByMilligrams(miligrams)
         })
     }
 }

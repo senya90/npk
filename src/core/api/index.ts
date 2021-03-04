@@ -6,7 +6,7 @@ import {NotificationHelper} from "../../helpers/notifications/notificationHelper
 import {LocalStorageProvider} from "../services/localStorageProvider/LocalStorageProvider";
 import {UserService} from "../services/userService/UserService";
 import {IUserService} from "../services/userService/UserServiceTypes";
-import {ServerResponse} from "../../models/serverResponse";
+import {ServerResponse} from "../../models/_types/serverResponse";
 
 interface IAPI {
     notificationService: INotificationService

@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {Fertilizers} from "organism/fertilizers/Fertilizers";
-import {Fertilizer, FertilizerDTO} from 'models/fertilizer';
+import {Fertilizer} from 'models/fertilizer/fertilizer';
 import {MixtureComposition} from "organism/mixtureComposition/MixtureComposition";
 
 import style from './calculator.module.scss'
@@ -10,12 +10,13 @@ import { Mixtures } from 'organism/mixtures/Mixtures';
 import {AgriculturesView} from "organism/agriclulturesView/AgriculturesView";
 import {ChemicalComparison} from "organism/checmicalComparison/ChemicalComparison";
 import {Agriculture} from "models/agriculture";
-import {ChemicalComplex, ChemicalComplexDTO} from "models/chemicalComplex/chemicalComplex";
+import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
 import {ChemicalUnit} from "models/chemicalUnit";
 import {isExist} from "helpers/utils";
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
-import { ServerResponse } from 'models/serverResponse';
+import { FertilizerDTO } from 'models/_types/fertilizer';
+import { ChemicalComplexDTO } from 'models/_types/chemicalComplex';
 
 
 const Calculator = () => {

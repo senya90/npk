@@ -1,5 +1,5 @@
 import React from "react";
-import {Fertilizer} from "../../models/fertilizer";
+import {Fertilizer} from "../../models/fertilizer/fertilizer";
 import { Mixture } from "models/mixture/mixture";
 import { Agriculture } from "models/agriculture";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";

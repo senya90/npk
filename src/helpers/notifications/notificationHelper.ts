@@ -1,5 +1,5 @@
 import {TNotification} from "../../core/redux/notificationsSlice";
-import {TError} from "../../models/error";
+import {TError} from "../../models/_types/error";
 import {translate} from "../translate/translate";
 
 export const NotificationHelper = {

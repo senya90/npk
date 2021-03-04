@@ -1,14 +1,7 @@
 import { FertilizerIngredient } from "./fertilizerIngredient"
-import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
+import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
 import { Utils } from "helpers/utils";
-
-export type FertilizerDTO = {
-    id: string
-    name: string
-    ingredients: FertilizerIngredient[]
-    timestamp: number
-    order: number | null
-}
+import { FertilizerDTO } from "models/_types/fertilizer";
 
 export class Fertilizer {
     id: string

@@ -8,8 +8,8 @@ import {ROUTES} from 'core/routes/routes';
 import style from './header.module.scss'
 import {useDispatch, useSelector} from 'react-redux';
 import {TokenHelper} from "helpers/tokens";
-import {TokensPair} from "models/tokensPair";
-import { User } from 'models/user';
+import {TokensPair} from "models/_types/tokensPair";
+import { User } from 'models/_types/user';
 import {AppContext} from "helpers/contexts/AppContext";
 import {resetAuth} from "core/redux/userSlice";
 import {API} from "core/api";

@@ -2,7 +2,7 @@ import { IUserService } from "./UserServiceTypes";
 import {setTokens, setUser} from "../../redux/userSlice";
 import {TokenHelper} from "../../../helpers/tokens";
 import {ILocalStorageProvider} from "../localStorageProvider/LocalStorageProviderTypes";
-import { TokensPair } from "models/tokensPair";
+import { TokensPair } from "models/_types/tokensPair";
 
 export class UserService implements IUserService {
     private readonly dispatch: any

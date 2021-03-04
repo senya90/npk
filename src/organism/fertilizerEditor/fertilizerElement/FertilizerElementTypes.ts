@@ -1,4 +1,4 @@
-import {FertilizerIngredient} from "../../../models/fertilizerIngredient";
+import {FertilizerIngredient} from "../../../models/fertilizer/fertilizerIngredient";
 import {ChemicalComplex} from "../../../models/chemicalComplex/chemicalComplex";
 
 export interface FertilizerElementProps {

@@ -8,7 +8,7 @@ import {FertilizersProps} from "./FertilizersTypes";
 import {FertilizerView} from "../fertilizerView/FertilizerView";
 import Modal from 'organism/modal/Modal';
 import {FertilizerEditor} from "../fertilizerEditor/FertilizerEditor";
-import {Fertilizer} from "models/fertilizer";
+import {Fertilizer} from "models/fertilizer/fertilizer";
 import {CalculatorContext, CalculatorContextType} from "helpers/contexts/CalculatorContext";
 import { Dosage } from 'models/dosage';
 

@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
-import {TokensPair} from "../../models/tokensPair";
-import {User} from "../../models/user";
+import {TokensPair} from "../../models/_types/tokensPair";
+import {User} from "../../models/_types/user";
 
 const SECONDS_TO_MILLISECONDS = 1000
 

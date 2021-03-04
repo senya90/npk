@@ -1,8 +1,8 @@
 export class Weight {
 
-    private static GRAM_TO_MILIGRAM_MULTIPLIER = 1000
+    private static GRAM_TO_MILLIGRAM_MULTIPLIER = 1000
 
-    static gramToMiligram = (weight: number): number => {
-        return weight * Weight.GRAM_TO_MILIGRAM_MULTIPLIER
+    static gramToMilligram = (weight: number): number => {
+        return weight * Weight.GRAM_TO_MILLIGRAM_MULTIPLIER
     }
 }

@@ -1,6 +1,6 @@
 import React, {FC, useContext, useEffect, useState} from 'react'
 import {Route, Redirect} from 'react-router-dom'
-import {TokensPair} from "models/tokensPair";
+import {TokensPair} from "models/_types/tokensPair";
 import {TokenHelper} from "helpers/tokens";
 import {useSelector} from "react-redux";
 import {AppContext} from "helpers/contexts/AppContext";

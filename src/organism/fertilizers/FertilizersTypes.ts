@@ -1,4 +1,4 @@
-import {Fertilizer} from "../../models/fertilizer";
+import {Fertilizer} from "../../models/fertilizer/fertilizer";
 import {Mixture} from "../../models/mixture/mixture";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 

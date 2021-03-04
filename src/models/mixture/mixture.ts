@@ -1,6 +1,6 @@
 import {Dosage} from "../dosage";
 import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
-import { Fertilizer } from "../fertilizer";
+import { Fertilizer } from "../fertilizer/fertilizer";
 import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
 import { Weight } from "../weight";
 import { AtomsProportionCalculator } from "../proportionCalculator";
@@ -54,7 +54,7 @@ export class Mixture {
 
                 if (ingredient.chemicalComplex) {
                     let atomsProportions = ingredient.chemicalComplex.toAtomsProportions()
-                    const miligrams = Weight.gramToMiligram(dosage.valueGram)
+                    const miligrams = Weight.gramToMilligram(dosage.valueGram)
 
                     let atomsCalculator = new AtomsProportionCalculator(atomsProportions)
                     atomsCalculator.correctDecimalByAggregate(ingredient.percentToDecimal())

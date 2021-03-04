@@ -3,14 +3,7 @@ import { ChemicalAggregate } from "../chemicalAggregate";
 import { ChemicalAtom } from "../chemicalAtom";
 import { ChemicalAtomProportion } from "../chemicalAtomProportion";
 import {isExist, Utils} from "helpers/utils";
-
-export type ChemicalComplexDTO = {
-    id: string
-    name: string
-    chemicalAggregates: ChemicalAggregate[]
-    userId?: string
-}
-
+import { ChemicalComplexDTO } from "models/_types/chemicalComplex";
 
 export class ChemicalComplex {
     name: string

@@ -1,9 +1,9 @@
 import { Mixture } from "../models/mixture/mixture";
-import { FertilizerIngredient } from "models/fertilizerIngredient";
+import { FertilizerIngredient } from "models/fertilizer/fertilizerIngredient";
 import { chemicalComplexMock } from "./chemicalComplexMock";
 import { Dosage } from "models/dosage";
 import { fertilizersMock } from "./fertilizersMock";
-import { Fertilizer } from "models/fertilizer";
+import { Fertilizer } from "models/fertilizer/fertilizer";
 
 export const mixturesMock: Mixture[] = [
     new Mixture(

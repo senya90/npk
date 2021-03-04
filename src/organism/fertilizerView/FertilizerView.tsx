@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext, useState} from 'react';
-import {Fertilizer} from "../../models/fertilizer";
+import {Fertilizer} from "../../models/fertilizer/fertilizer";
 import {IngredientsView} from "../../molecule/ingredientsView/IngredientsView";
 
 import style from './fertilizerView.module.scss'

@@ -6,10 +6,10 @@ import { Input } from 'atom/input/Input';
 import style from './fertilizerEditor.module.scss'
 import {commonStyles} from "../../helpers/commonStyle";
 import {FertilizerEditorProps} from "./FertilizerEditorTypes";
-import {FertilizerIngredient} from "../../models/fertilizerIngredient";
+import {FertilizerIngredient} from "../../models/fertilizer/fertilizerIngredient";
 import {FertilizerElement} from "./fertilizerElement/FertilizerElement";
 import {translate} from "../../helpers/translate/translate";
-import {Fertilizer} from "../../models/fertilizer";
+import {Fertilizer} from "../../models/fertilizer/fertilizer";
 
 const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFertilizer, onSave, addElement, chemicalComplexes}) => {
     const [name, setName] = useState<string>('')

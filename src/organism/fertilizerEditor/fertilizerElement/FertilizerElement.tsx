@@ -7,7 +7,7 @@ import {SelectOption} from "../../../atom/select/SelectTypes";
 import {AdapterFertilizer} from "../../../helpers/adapters/adapterFertilizer/AdapterFertilizer";
 import {InputTypeValue} from "../../../atom/inputNumber/InputNumberTypes";
 import {FertilizerElementProps} from "./FertilizerElementTypes";
-import {FertilizerIngredient} from "../../../models/fertilizerIngredient";
+import {FertilizerIngredient} from "../../../models/fertilizer/fertilizerIngredient";
 import { CalculatorContext } from 'helpers/contexts/CalculatorContext';
 import { Button } from 'atom/button/Button';
 import { BUTTON_SHAPE, BUTTON_TYPE } from 'atom/button/ButtonTypes';

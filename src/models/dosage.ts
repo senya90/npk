@@ -1,4 +1,4 @@
-import {Fertilizer} from "./fertilizer";
+import {Fertilizer} from "./fertilizer/fertilizer";
 
 export class Dosage {
     fertilizer: Fertilizer

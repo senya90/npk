@@ -16,7 +16,7 @@ import { API } from 'core/api';
 import {IdGenerator} from "helpers/idGenerator/IdGenerator";
 import { Gag } from 'molecule/gag/Gag';
 import {useSelector} from "react-redux";
-import { User } from 'models/user';
+import { User } from 'models/_types/user';
 import ChemicalComplexView from "./chemicalComplexView/ChemicalComplexView";
 
 interface ElementConstructorProps {
