@@ -20,7 +20,7 @@ import { User } from 'models/_types/user';
 import ChemicalComplexView from "./chemicalComplexView/ChemicalComplexView";
 import Modal from 'organism/modal/Modal';
 import {FertilizersUsingComplexes} from "../../models/_types/fertilizer";
-import {DeleteComplexModal} from "./DeleteComplexModal";
+import {DeleteComplexModal} from "./deleteComplexModal/DeleteComplexModal";
 
 interface ElementConstructorProps {
     chemicalComplexes: ChemicalComplex[]
