@@ -230,5 +230,9 @@
     "deleteCompoundFromLibraryFertilizers": {
         "ru": "Удалить соединение из Библиотеки соединений и из удобрений",
         "en": "Delete compound from compound library and from fertilizers"
+    },
+    "deleteFertilizer": {
+        "ru": "Удалить удобрение",
+        "en": "Delete fertilizer"
     }
 }

@@ -10,6 +10,7 @@ import { translate } from 'helpers/translate/translate';
 import {Tooltip} from "atom/tooltip/Tooltip";
 
 import style from './chemucalComplexView.module.scss'
+import stylePopover from 'atom/popover/popover.module.scss'
 import { Popover } from 'atom/popover/Popover';
 
 
@@ -59,15 +60,15 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
                         title={`${translate('deleteChemicalCompound')} - ${complex.name} ?`}
                         onVisibleChange={onVisibleChange}
                         content={
-                            <div className={style.modalButtonsBox}>
+                            <div className={stylePopover.modalButtonsBox}>
                                 <Button
-                                    className={style.modalButton}
+                                    className={stylePopover.modalButton}
                                     onClick={closeModal}
                                 >
                                     {translate('cancel')}
                                 </Button>
                                 <Button
-                                    className={style.modalButton}
+                                    className={stylePopover.modalButton}
                                     danger
                                     type={BUTTON_TYPE.PRIMARY}
                                     onClick={removeComplex}

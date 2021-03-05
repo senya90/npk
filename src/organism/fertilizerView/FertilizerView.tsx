@@ -6,6 +6,11 @@ import style from './fertilizerView.module.scss'
 import {Icon} from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
+import {translate} from "../../helpers/translate/translate";
+import {Popover} from "../../atom/popover/Popover";
+import stylePopover from 'atom/popover/popover.module.scss'
+import {Button} from "../../atom/button/Button";
+import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 
 
 interface FertilizerViewProps {
@@ -16,6 +21,7 @@ interface FertilizerViewProps {
 
 const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, editFertilizer, isShowAdd}) => {
     const [active, setActive] = useState<boolean>(false)
+    const [isShowTooltip, setIsShowTooltip] = useState<boolean>(false)
     const {onDeleteFertilizer, onAddFertilizerToMixture} = useContext(CalculatorContext)
 
     const toggleActive = () => {
@@ -29,12 +35,27 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, edi
 
     const deleteFertilizer = (e: React.MouseEvent) => {
         e.stopPropagation()
+        setIsShowTooltip(false)
         onDeleteFertilizer(fertilizer.id)
     }
 
     const addToMixture = (e: React.MouseEvent) => {
         e.stopPropagation()
         onAddFertilizerToMixture(fertilizer.id)
+    }
+
+    const onVisibleChange = (visible: boolean) => {
+        setIsShowTooltip(visible)
+    }
+
+    const closeTooltip = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        setIsShowTooltip(false)
+    }
+
+    const showTooltip = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        setIsShowTooltip(true)
     }
 
     const footerStyle = active ? `${style.footer} ${style.activeFooter}` : style.footer
@@ -63,12 +84,36 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, edi
                         className={style.icon}
                         onClick={edit}
                     />
-                    <Icon
-                        type={ICON_TYPE.Delete}
-                        size={20}
-                        className={`${style.icon}`}
-                        onClick={deleteFertilizer}
-                    />
+                    <Popover
+                        visible={isShowTooltip}
+                        title={`${translate('deleteFertilizer')}?`}
+                        onVisibleChange={onVisibleChange}
+                        content={
+                            <div className={stylePopover.modalButtonsBox}>
+                                <Button
+                                    className={stylePopover.modalButton}
+                                    onClick={closeTooltip}
+                                >
+                                    {translate('cancel')}
+                                </Button>
+                                <Button
+                                    className={stylePopover.modalButton}
+                                    danger
+                                    type={BUTTON_TYPE.PRIMARY}
+                                    onClick={deleteFertilizer}
+                                >
+                                    {translate('delete')}
+                                </Button>
+                            </div>
+                        }
+                    >
+                        <Icon
+                            type={ICON_TYPE.Delete}
+                            size={20}
+                            className={`${style.icon}`}
+                            onClick={showTooltip}
+                        />
+                    </Popover>
                 </div>
                 }
 
