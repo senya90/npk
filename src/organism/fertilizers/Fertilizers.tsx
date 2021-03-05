@@ -51,6 +51,7 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
 
     const closeFertilizerEditor = () => {
         setIsShowFertilizerEditor(false)
+        onEditFertilizer(undefined)
     }
 
     const closeElementConstructor = () => {

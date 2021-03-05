@@ -122,13 +122,17 @@ const Calculator = () => {
         }
     }
 
-    const onFertilizerEdit = (fertilizerId: string): Fertilizer => {
+    const onEditFertilizer = (fertilizerId: string | undefined) => {
+        if (!fertilizerId) {
+            return setEditableFertilizer(new Fertilizer())
+        }
+
         const found = getFertilizerById(fertilizerId)
         if (found) {
-            setEditableFertilizer(found)
-            return found
+            return setEditableFertilizer(found)
         }
-        return new Fertilizer()
+
+        return setEditableFertilizer(new Fertilizer())
     }
 
     const getFertilizerById = (fertilizerId: string): Fertilizer | undefined => {
@@ -213,7 +217,7 @@ const Calculator = () => {
                 chemicals: chemicals,
                 onDeleteFertilizer: onDeleteFertilizer,
                 onSaveFertilizer: onSaveFertilizer,
-                onEditFertilizer: onFertilizerEdit,
+                onEditFertilizer: onEditFertilizer,
 
                 getFertilizerById: getFertilizerById,
                 chemicalComplexes: chemicalComplexes,

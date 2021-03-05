@@ -9,7 +9,7 @@ export type CalculatorContextType = {
     chemicals: ChemicalUnit[],
     onDeleteFertilizer: (fertilizerId: string) => void
     onSaveFertilizer: (fertilizer: Fertilizer) => Promise<any>
-    onEditFertilizer: (fertilizerId: string) => Fertilizer
+    onEditFertilizer: (fertilizerId: string | undefined) => void
 
     onAddFertilizerToMixture: (fertilizerId: string) => void
     onMixtureUpdated: (mixture: Mixture) => void
@@ -32,8 +32,7 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     onSaveFertilizer(fertilizer: Fertilizer): Promise<any> {
         return Promise.resolve(undefined);
     },
-    onEditFertilizer(fertilizerId: string): Fertilizer {
-        return new Fertilizer('template', []);
+    onEditFertilizer(fertilizerId: string | undefined): void {
     },
 
     onMixtureUpdated(mixture: Mixture): void {
