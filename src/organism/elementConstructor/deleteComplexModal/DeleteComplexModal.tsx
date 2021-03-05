@@ -5,12 +5,24 @@ import { Button } from 'atom/button/Button';
 
 import style from './deleteComplexModal.module.scss'
 import { BUTTON_TYPE } from 'atom/button/ButtonTypes';
+import {ChemicalComplex} from "../../../models/chemicalComplex/chemicalComplex";
+import { ChemicalComplexDTO } from 'models/_types/chemicalComplex';
 
 interface DeleteComplexModalProps {
     fertilizersUsingComplexes: FertilizersUsingComplexes[]
+    closeModal: () => void
+    onRemoveComplex: (chemicalComplex: ChemicalComplex | ChemicalComplexDTO, isConfirmed: boolean) => void
 }
 
-const DeleteComplexModal: FC<DeleteComplexModalProps> = ({fertilizersUsingComplexes}) => {
+const DeleteComplexModal: FC<DeleteComplexModalProps> = ({fertilizersUsingComplexes, closeModal, onRemoveComplex}) => {
+
+    const deleteComplex = (complex: ChemicalComplexDTO) => {
+        onRemoveComplex(complex, true)
+    }
+
+    const cancel = () => {
+        closeModal()
+    }
 
     const renderFertilizers = (fertilizers: FertilizerDTO[]) => {
         return fertilizers.map((fertilizer, index) => {
@@ -25,14 +37,6 @@ const DeleteComplexModal: FC<DeleteComplexModalProps> = ({fertilizersUsingComple
             )
         })
     }
-
-    const deleteComplex = () => {
-        console.log('deleteComplex')
-    }
-    const cancel = () => {
-        console.log('cancel')
-    }
-
 
     const renderWarnings = () => {
         return fertilizersUsingComplexes.map(({fertilizers, chemicalComplex}) => {
@@ -52,7 +56,7 @@ const DeleteComplexModal: FC<DeleteComplexModalProps> = ({fertilizersUsingComple
                         <Button
                             danger
                             type={BUTTON_TYPE.PRIMARY}
-                            onClick={deleteComplex}
+                            onClick={deleteComplex.bind(null, chemicalComplex)}
                             className={style.formButton}
                         >
                             {translate('deleteCompoundFromLibraryFertilizers')}

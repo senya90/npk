@@ -21,7 +21,7 @@ import ChemicalComplexView from "./chemicalComplexView/ChemicalComplexView";
 import Modal from 'organism/modal/Modal';
 import {FertilizersUsingComplexes} from "../../models/_types/fertilizer";
 import {DeleteComplexModal} from "./deleteComplexModal/DeleteComplexModal";
-import {DeleteComplexResponse} from "../../models/_types/chemicalComplex";
+import {ChemicalComplexDTO, DeleteComplexResponse} from "../../models/_types/chemicalComplex";
 
 interface ElementConstructorProps {
     chemicalComplexes: ChemicalComplex[]
@@ -181,9 +181,13 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         setAggregation(updated)
     }
 
-    const onRemoveComplex = async (chemicalComplex: ChemicalComplex) => {
+    const onRemoveComplex = async (chemicalComplex: ChemicalComplex | ChemicalComplexDTO, isConfirmed = false) => {
         try {
-            const response = await API.postAuthorized<DeleteComplexResponse>(ApiURL.deleteChemicalComplexes, {id: [chemicalComplex.id]})
+            const requestBody = {
+                id: [chemicalComplex.id],
+                isConfirmed
+            }
+            const response = await API.postAuthorized<DeleteComplexResponse>(ApiURL.deleteChemicalComplexes, requestBody)
             const deleteComplex = response.data.data
             if (deleteComplex.needToConfirm) {
                 setConfirmDeleteComplex(deleteComplex.fertilizerUsingComplexes)
@@ -277,7 +281,11 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                         title={`${translate('attention')}!`}
                         onClose={closeConfirmationModal}
                     >
-                        <DeleteComplexModal fertilizersUsingComplexes={confirmDeleteComplex}/>
+                        <DeleteComplexModal
+                            fertilizersUsingComplexes={confirmDeleteComplex}
+                            onRemoveComplex={onRemoveComplex}
+                            closeModal={closeConfirmationModal}
+                        />
                     </Modal>
                 }
 
