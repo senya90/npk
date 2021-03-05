@@ -7,21 +7,19 @@ import {FertilizersUsingComplexes} from "../../models/_types/fertilizer";
 export type ElementConstructorContextType = {
     onChangeAggregationMultiplier: (updatedAggregation: ChemicalAggregate, multiplier: number) => void
     onEditComplex: (complex: ChemicalComplex) => void
-    onConfirmComplexDeleting: (fertilizersUsingComplexes: FertilizersUsingComplexes[]) => void
 
     onAddAtom: (updatedAggregation: ChemicalAggregate) => void
     onChangeAtom: (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, chemicalId: string) => void
     onChangeAtomCount: (aggregation: ChemicalAggregate, updatedAtom: ChemicalAtom, updatedCount: number) => void
     onRemoveAtom: (aggregation: ChemicalAggregate, removedAtom: ChemicalAtom) => void
     onRemoveAggregation: (aggregation: ChemicalAggregate) => void
+    onRemoveComplex: (chemicalComplex: ChemicalComplex) => void
 }
 
 export const ElementConstructorContext = React.createContext<ElementConstructorContextType>({
     onChangeAggregationMultiplier(updatedAggregation: ChemicalAggregate, multiplier: number): void {
     },
     onEditComplex(complex: ChemicalComplex): void {
-    },
-    onConfirmComplexDeleting(fertilizersUsingComplexes: FertilizersUsingComplexes[]): void {
     },
 
     onAddAtom(updatedAggregation: ChemicalAggregate): void {
@@ -33,5 +31,8 @@ export const ElementConstructorContext = React.createContext<ElementConstructorC
     onRemoveAtom(aggregation: ChemicalAggregate, removedAtom: ChemicalAtom): void {
     },
     onRemoveAggregation(aggregation: ChemicalAggregate): void {
+    },
+    onRemoveComplex(chemicalComplex: ChemicalComplex): void {
     }
+
 })

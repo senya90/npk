@@ -5,17 +5,12 @@ import {BUTTON_SHAPE, BUTTON_TYPE} from "atom/button/ButtonTypes";
 import {Icon} from "atom/icon/Icon";
 import {ICON_TYPE} from "atom/icon/IconTypes";
 import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
-import {API} from "core/api";
-import {ApiURL} from "core/api/ApiURL";
-import {CalculatorContext} from "helpers/contexts/CalculatorContext";
 import {ElementConstructorContext} from "helpers/contexts/ElementConstructorContext";
 import { translate } from 'helpers/translate/translate';
 import {Tooltip} from "atom/tooltip/Tooltip";
 
 import style from './chemucalComplexView.module.scss'
 import { Popover } from 'atom/popover/Popover';
-import {DeleteComplexResponse} from "../../../models/_types/chemicalComplex";
-import {FertilizersUsingComplexes} from "../../../models/_types/fertilizer";
 
 
 interface ChemicalComplexViewProps {
@@ -24,8 +19,7 @@ interface ChemicalComplexViewProps {
 }
 
 const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) => {
-    const {onChemicalComplexRemoved} = useContext(CalculatorContext)
-    const {onEditComplex, onConfirmComplexDeleting} = useContext(ElementConstructorContext)
+    const {onEditComplex, onRemoveComplex} = useContext(ElementConstructorContext)
     const [isShowModal, setIsShowModal] = useState<boolean>(false)
 
     const isOwner = complex.userId === userId
@@ -45,27 +39,10 @@ const ChemicalComplexView: FC<ChemicalComplexViewProps> = ({complex, userId}) =>
         setIsShowModal(visible)
     }
 
-    const openConfirmDeletionModal = (fertilizerUsingComplexes: FertilizersUsingComplexes[]) => {
-        onConfirmComplexDeleting(fertilizerUsingComplexes)
-    }
-
     const removeComplex = async (e: React.MouseEvent) => {
         e.stopPropagation()
         setIsShowModal(false)
-        try {
-            const response = await API.postAuthorized<DeleteComplexResponse>(ApiURL.deleteChemicalComplexes, {id: [complex.id]})
-            const deleteComplex = response.data.data
-            if (deleteComplex.needToConfirm) {
-                openConfirmDeletionModal(deleteComplex.fertilizerUsingComplexes)
-                return
-            }
-
-            if (!response.data.error) {
-                onChemicalComplexRemoved([complex.id])
-            }
-        } catch (err) {
-            console.error(`ChemicalComplexView#removeComplex`, err)
-        }
+        onRemoveComplex(complex)
     }
 
     const editComplex = () => {

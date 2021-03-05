@@ -21,13 +21,14 @@ import ChemicalComplexView from "./chemicalComplexView/ChemicalComplexView";
 import Modal from 'organism/modal/Modal';
 import {FertilizersUsingComplexes} from "../../models/_types/fertilizer";
 import {DeleteComplexModal} from "./deleteComplexModal/DeleteComplexModal";
+import {DeleteComplexResponse} from "../../models/_types/chemicalComplex";
 
 interface ElementConstructorProps {
     chemicalComplexes: ChemicalComplex[]
 }
 
 const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) => {
-    const {chemicals, onChemicalComplexSaved} = useContext(CalculatorContext)
+    const {chemicals, onChemicalComplexSaved, onChemicalComplexRemoved} = useContext(CalculatorContext)
     const user: User = useSelector((state: any) => state.user.user)
 
     const [complexId, setComplexId] = useState<string>(IdGenerator.generate())
@@ -180,9 +181,21 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
         setAggregation(updated)
     }
 
-    const onConfirmComplexDeleting = (fertilizersUsingComplexes: FertilizersUsingComplexes[]) => {
-        console.log('onConfirmComplexDeleting fertilizersUsingComplexes', fertilizersUsingComplexes)
-        setConfirmDeleteComplex(fertilizersUsingComplexes)
+    const onRemoveComplex = async (chemicalComplex: ChemicalComplex) => {
+        try {
+            const response = await API.postAuthorized<DeleteComplexResponse>(ApiURL.deleteChemicalComplexes, {id: [chemicalComplex.id]})
+            const deleteComplex = response.data.data
+            if (deleteComplex.needToConfirm) {
+                setConfirmDeleteComplex(deleteComplex.fertilizerUsingComplexes)
+                return
+            }
+
+            if (!response.data.error) {
+                onChemicalComplexRemoved([chemicalComplex.id])
+            }
+        } catch (err) {
+            console.error(`ChemicalComplexView#removeComplex`, err)
+        }
     }
 
     const closeConfirmationModal = () => {
@@ -225,7 +238,7 @@ const ElementConstructor: FC<ElementConstructorProps> = ({chemicalComplexes}) =>
                 onChangeAtomCount: onChangeAtomCount,
                 onRemoveAtom: onRemoveAtom,
                 onRemoveAggregation: onRemoveAggregation,
-                onConfirmComplexDeleting: onConfirmComplexDeleting
+                onRemoveComplex: onRemoveComplex,
             }}>
                 <div>
                     <div className={style.title}>{translate('availableCompounds')}</div>
