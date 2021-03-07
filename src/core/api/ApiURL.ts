@@ -15,7 +15,8 @@ export const ApiURL = {
     registration: 'user/registration',
     login: 'user/login',
     logout: 'user/logout',
-    updateToken: 'user/update-tokens'
+    updateToken: 'user/update-tokens',
 
+    getMixtures: 'mixture/mixtures'
 
 }

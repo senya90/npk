@@ -42,7 +42,21 @@ const Calculator = () => {
 
         getComplexesApi()
             .then(complexes => setChemicalComplexes(complexes))
+
+        getMixturesAPI()
+            .then(mixtures => setAllMixtures(mixtures))
+        
     }, [updateFertilizersByServer])
+
+    const getMixturesAPI = async (): Promise<Mixture[]> => {
+        try {
+            const result = await API.getAuthorized<Mixture[]>(ApiURL.getMixtures)
+            return result.data.data
+        } catch (err) {
+            console.error(err)
+            return []
+        }
+    }
 
     const getChemicalsApi = async (): Promise<ChemicalUnit[]> => {
         try {
