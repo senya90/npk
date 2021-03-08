@@ -9,15 +9,15 @@ import style from './solution.module.scss'
 
 const Solutions: FunctionComponent<SolutionProps> = ({solutions}) => {
 
-    const renderMixtures = () => {
-        return solutions.map(mixture => <SolutionDispensing key={mixture.id} mixture={mixture}/>)
+    const renderSolutions = () => {
+        return solutions.map(solution => <SolutionDispensing key={solution.id} solution={solution}/>)
     }
 
     return (
         <div>
             <Title>{translate('readySolutions')}</Title>
-            <div className={style.mixturesBox}>
-                {renderMixtures()}
+            <div className={style.solutionsBox}>
+                {renderSolutions()}
             </div>
         </div>
 

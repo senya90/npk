@@ -24,8 +24,8 @@ const Calculator = () => {
     const [chemicalComplexes, setChemicalComplexes] = useState<ChemicalComplex[]>([])
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>([])
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
-    const [allMixtures, setAllMixtures] = useState<Solution[]>([])
-    const [mixture, setMixture] = useState<Solution>()
+    const [allSolutions, setAllSolutions] = useState<Solution[]>([])
+    const [solution, setSolution] = useState<Solution>()
     const [activeAgriculture, setActiveAgriculture] = useState<Agriculture>(new Agriculture())
     const [agricultures, setAgricultures] = useState<Agriculture[]>([])
 
@@ -43,14 +43,14 @@ const Calculator = () => {
         getComplexesApi()
             .then(complexes => setChemicalComplexes(complexes))
 
-        getMixturesAPI()
-            .then(mixtures => setAllMixtures(mixtures))
+        getSolutionsAPI()
+            .then(solutions => setAllSolutions(solutions))
 
     }, [updateFertilizersByServer])
 
-    const getMixturesAPI = async (): Promise<Solution[]> => {
+    const getSolutionsAPI = async (): Promise<Solution[]> => {
         try {
-            const result = await API.getAuthorized<Solution[]>(ApiURL.getMixtures)
+            const result = await API.getAuthorized<Solution[]>(ApiURL.getSolutions)
             return result.data.data
         } catch (err) {
             console.error(err)
@@ -167,33 +167,33 @@ const Calculator = () => {
         setChemicalComplexes(complexes)
     }
 
-    const onAddFertilizerToMixture = (fertilizerId: string) => {
+    const onAddFertilizerToSolution = (fertilizerId: string) => {
         const addedFertilizer = getFertilizerById(fertilizerId)
 
-        if (mixture && !mixture.isAvailableForFertilizer(addedFertilizer)) {
+        if (solution && !solution.isAvailableForFertilizer(addedFertilizer)) {
             return
         }
 
-        const newMixture = Solution.getActualMixture(mixture)
+        const newSolution = Solution.getActualSolution(solution)
         if (addedFertilizer) {
-            newMixture.addFertilizer(addedFertilizer)
+            newSolution.addFertilizer(addedFertilizer)
         }
-        onMixtureUpdated(newMixture)
+        onSolutionUpdated(newSolution)
     }
 
-    const onMixtureUpdated = (mixture: Solution) => {
-        setMixture(mixture)
+    const onSolutionUpdated = (solution: Solution) => {
+        setSolution(solution)
     }
 
-    const onMixtureSave = () => {
-        if (mixture) {
-            setAllMixtures([...allMixtures, mixture])
-            clearEditingMixture()
+    const onSolutionSave = () => {
+        if (solution) {
+            setAllSolutions([...allSolutions, solution])
+            clearEditingSolution()
         }
     }
 
-    const clearEditingMixture = () => {
-        setMixture(undefined)
+    const clearEditingSolution = () => {
+        setSolution(undefined)
     }
 
     const onSelectAgriculture = (agriculture: Agriculture) => {
@@ -239,9 +239,9 @@ const Calculator = () => {
                 onChemicalComplexSaved: onChemicalComplexSaved,
                 onChemicalComplexRemoved: onChemicalComplexRemoved,
 
-                onMixtureUpdated: onMixtureUpdated,
-                onAddFertilizerToMixture: onAddFertilizerToMixture,
-                onMixtureSave: onMixtureSave,
+                onSolutionUpdated: onSolutionUpdated,
+                onAddFertilizerToSolution: onAddFertilizerToSolution,
+                onSolutionSave: onSolutionSave,
 
                 onAgricultureSelect: onSelectAgriculture,
                 onAgriculturesUpdated: onAgriculturesUpdated
@@ -251,16 +251,16 @@ const Calculator = () => {
                     <Fertilizers
                         fertilizers={fertilizers}
                         editableFertilizer={editableFertilizer}
-                        mixture={mixture}
+                        solution={solution}
                         chemicalComplexes={chemicalComplexes}
                     />
                     <SolutionComposition
-                        mixture={mixture}
+                        solution={solution}
                     />
                     <ChemicalComparison
                         chemicals={chemicals}
                         activeAgriculture={activeAgriculture}
-                        mixture={mixture}
+                        solution={solution}
                     />
                     <AgriculturesView
                         chemicals={chemicals}
@@ -272,7 +272,7 @@ const Calculator = () => {
                 </div>
                 <div>
                     <Solutions
-                        solutions={allMixtures}
+                        solutions={allSolutions}
                     />
                 </div>
                 <br/>

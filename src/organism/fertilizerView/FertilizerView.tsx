@@ -22,7 +22,7 @@ interface FertilizerViewProps {
 const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, editFertilizer, isShowAdd}) => {
     const [active, setActive] = useState<boolean>(false)
     const [isShowTooltip, setIsShowTooltip] = useState<boolean>(false)
-    const {onDeleteFertilizer, onAddFertilizerToMixture} = useContext(CalculatorContext)
+    const {onDeleteFertilizer, onAddFertilizerToSolution} = useContext(CalculatorContext)
 
     const toggleActive = () => {
         setActive(!active)
@@ -39,9 +39,9 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, edi
         onDeleteFertilizer(fertilizer.id)
     }
 
-    const addToMixture = (e: React.MouseEvent) => {
+    const addToSolution = (e: React.MouseEvent) => {
         e.stopPropagation()
-        onAddFertilizerToMixture(fertilizer.id)
+        onAddFertilizerToSolution(fertilizer.id)
     }
 
     const onVisibleChange = (visible: boolean) => {
@@ -65,9 +65,9 @@ const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, edi
             <div className={style.name}>{fertilizer.name}</div>
             {isShowAdd &&
                 <Icon
-                    className={style.addToMixture}
+                    className={style.addToSolution}
                     type={ICON_TYPE.DoubleRightOutlined}
-                    onClick={addToMixture}
+                    onClick={addToSolution}
                     size={15}
                 />
             }

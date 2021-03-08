@@ -20,7 +20,7 @@ import { Icon } from 'atom/icon/Icon';
 import { ElementConstructor } from 'organism/elementConstructor/ElementConstructor';
 
 
-const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, mixture, chemicalComplexes}) => {
+const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, solution, chemicalComplexes}) => {
     const {onSaveFertilizer, onEditFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
     const [isShowFertilizerEditor, setIsShowFertilizerEditor] = useState(false)
     const [isShowElementConstructor, setIsShowElementConstructor] = useState(false)
@@ -28,8 +28,8 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
     const renderFertilizers = () => {
         return fertilizers.map(fertilizer => {
             let fertilizerUsedNow: Dosage | undefined = undefined
-            if (mixture) {
-                fertilizerUsedNow = mixture.dosages.find(dosage => dosage.fertilizer.id === fertilizer.id)
+            if (solution) {
+                fertilizerUsedNow = solution.dosages.find(dosage => dosage.fertilizer.id === fertilizer.id)
             }
 
             return <FertilizerView key={fertilizer.id} fertilizer={fertilizer} editFertilizer={editFertilizer} isShowAdd={!fertilizerUsedNow}/>

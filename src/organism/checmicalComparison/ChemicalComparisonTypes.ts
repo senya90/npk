@@ -4,6 +4,6 @@ import {ChemicalUnit} from "../../models/chemicalUnit";
 
 export interface ChemicalComparisonProps {
     activeAgriculture: Agriculture
-    mixture?: Solution
+    solution?: Solution
     chemicals: ChemicalUnit[]
 }

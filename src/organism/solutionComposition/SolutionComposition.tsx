@@ -16,60 +16,60 @@ import { Gag } from 'molecule/gag/Gag';
 import { Icon } from 'atom/icon/Icon';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
 
-const SolutionComposition: FunctionComponent<SolutionCompositionProps> = ({mixture}) => {
-    const {onMixtureUpdated, onMixtureSave} = useContext<CalculatorContextType>(CalculatorContext)
+const SolutionComposition: FunctionComponent<SolutionCompositionProps> = ({solution}) => {
+    const {onSolutionUpdated, onSolutionSave} = useContext<CalculatorContextType>(CalculatorContext)
 
-    const renderMixture = () => {
-        if (!mixture) {
+    const renderSolution = () => {
+        if (!solution) {
             return null
         }
 
-        return mixture.dosages.map(dosage => (
+        return solution.dosages.map(dosage => (
             <DosageView
                 key={dosage.fertilizer.id}
                 dosage={dosage}
-                deleteFertilizerFromMixture={onDeleteFertilizerFromMixture}
+                deleteFertilizerFromSolution={onDeleteFertilizerFromSolution}
                 onDosageChanged={onDosageChanged}
             />
         ))
     }
 
-    const onDeleteFertilizerFromMixture = (fertilizer: Fertilizer) => {
-        onMixtureUpdated(deleteFertilizerFromMixture(fertilizer))
+    const onDeleteFertilizerFromSolution = (fertilizer: Fertilizer) => {
+        onSolutionUpdated(deleteFertilizerFromSolution(fertilizer))
     }
 
-    const deleteFertilizerFromMixture = (fertilizer: Fertilizer): Solution => {
-        let updatedMixture = Solution.getActualMixture(mixture)
-        updatedMixture.dosages = updatedMixture.dosages.filter(dosage => dosage.fertilizer.id !== fertilizer.id)
-        return updatedMixture
+    const deleteFertilizerFromSolution = (fertilizer: Fertilizer): Solution => {
+        let updatedSolution = Solution.getActualSolution(solution)
+        updatedSolution.dosages = updatedSolution.dosages.filter(dosage => dosage.fertilizer.id !== fertilizer.id)
+        return updatedSolution
     }
 
     const onDosageChanged = (updatedDosage: Dosage) => {
-        let updatedMixture = Solution.getActualMixture(mixture)
-        updatedMixture.dosages = updatedMixture.dosages.map(dosage => {
+        let updatedSolution = Solution.getActualSolution(solution)
+        updatedSolution.dosages = updatedSolution.dosages.map(dosage => {
             if (dosage.fertilizer.id === updatedDosage.fertilizer.id) {
                 return updatedDosage
             }
             return dosage
         })
 
-        onMixtureUpdated(updatedMixture)
+        onSolutionUpdated(updatedSolution)
     }
 
-    const onMixtureNameChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const updatedMixture = Solution.getActualMixture(mixture)
-        updatedMixture.name = e.target.value
-        onMixtureUpdated(updatedMixture)
+    const onSolutionNameChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const updatedSolution = Solution.getActualSolution(solution)
+        updatedSolution.name = e.target.value
+        onSolutionUpdated(updatedSolution)
     }
 
-    const saveMixtureComposition = () => {
-        onMixtureSave()
+    const saveSolutionComposition = () => {
+        onSolutionSave()
     }
 
     return (
         <div>
             <Title border>{translate('solutionComposition')}</Title>
-            {!mixture &&
+            {!solution &&
                 <div className={style.gagWrapper}>
                     <Gag
                         icon={
@@ -81,20 +81,20 @@ const SolutionComposition: FunctionComponent<SolutionCompositionProps> = ({mixtu
                 </div>
 
             }
-            {mixture &&
-                renderMixture()
+            {solution &&
+                renderSolution()
             }
-            {mixture && mixture.dosages.length > 0 &&
+            {solution && solution.dosages.length > 0 &&
                 <>
                     <Input
-                        className={style.mixtureName}
-                        value={mixture.name}
-                        onChange={onMixtureNameChanged}
-                        placeholder={translate('inputMixtureName')}
+                        className={style.solutionName}
+                        value={solution.name}
+                        onChange={onSolutionNameChanged}
+                        placeholder={translate('inputSolutionName')}
                     />
                     <Button
                         type={BUTTON_TYPE.PRIMARY}
-                        onClick={saveMixtureComposition}
+                        onClick={saveSolutionComposition}
                     >
                         {translate('save')}
                     </Button>

@@ -9,11 +9,11 @@ import { Icon } from 'atom/icon/Icon';
 import {ICON_TYPE} from "atom/icon/IconTypes";
 
 
-interface MixtureDispensingProps {
-    mixture: Solution
+interface SolutionDispensingProps {
+    solution: Solution
 }
 
-const SolutionDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture}) => {
+const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solution}) => {
     const [volume, setVolume] = useState<number>(0)
     const [percent, setPercent] = useState<number>(100)
     const [isShowControls, setIsShowControls] = useState<boolean>(false)
@@ -31,11 +31,11 @@ const SolutionDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture}
     }
 
     return (
-        <div className={cn(style.mixture, {[style._mixtureActive] : isShowControls})}>
-            {mixture &&
+        <div className={cn(style.solution, {[style._solutionActive] : isShowControls})}>
+            {solution &&
                 <>
-                    <div className={style.mixtureName} onClick={toggleShow}>
-                        {mixture.name}
+                    <div className={style.solutionName} onClick={toggleShow}>
+                        {solution.name}
                         <Icon
                             className={style.open}
                             type={isShowControls ? ICON_TYPE.DownOutlined : ICON_TYPE.RightOutlined }
@@ -49,7 +49,7 @@ const SolutionDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture}
                             onPercentChanged: onPercentChanged
                         }}>
                             <SolutionFertilizers
-                                dosages={mixture.dosages}
+                                dosages={solution.dosages}
                                 volume={volume}
                                 percent={percent}
                             />

@@ -22,7 +22,7 @@ const SolutionDistributor: FunctionComponent<SolutionDistributorProps> = (props)
 
     return (
         <div
-            className={style.mixtureDistributor}
+            className={style.solutionDistributor}
             {...props}
         >
             <div className={style.inputLine}>

@@ -11,13 +11,13 @@ import { ChemicalUnit } from 'models/chemicalUnit';
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
 
-    const getMixedValueFromMixture = (): ChemicalUnitValue[] => {
-        if (props.mixture && props.mixture.dosages) {
-            return props.mixture.toChemicals()
+    const getMixedValueFromSolution = (): ChemicalUnitValue[] => {
+        if (props.solution && props.solution.dosages) {
+            return props.solution.toChemicals()
         }
         return []
     }
-    let mixed: ChemicalUnitValue[] = getMixedValueFromMixture();
+    let mixed: ChemicalUnitValue[] = getMixedValueFromSolution();
 
     const getChemicalFromMix = (chemical: ChemicalUnit): number => {
         if (mixed) {

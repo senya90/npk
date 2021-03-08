@@ -13,7 +13,7 @@ import { InputNumber } from 'atom/inputNumber/InputNumber';
 import {InputTypeValue} from "../../atom/inputNumber/InputNumberTypes";
 
 
-const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilizerFromMixture, onDosageChanged}) => {
+const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilizerFromSolution, onDosageChanged}) => {
 
     const inputValue = (value: InputTypeValue) => {
         onDosageChanged(updateDosageByValue(Number(value)))
@@ -36,7 +36,7 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilize
     }
 
     const deleteFertilizer = () => {
-        deleteFertilizerFromMixture(dosage.fertilizer)
+        deleteFertilizerFromSolution(dosage.fertilizer)
     }
 
     return (

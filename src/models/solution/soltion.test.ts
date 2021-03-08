@@ -1,23 +1,23 @@
 import { Solution } from "./solution"
 import { solutionsMock } from "mocks/solutionsMock"
 import { ChemicalUnitValue } from "models/chemicalUnitValue/chemicalUnitValue"
-import { chemicalUnitsMock, chemicalUnitsMockArray } from "mocks/chemicalMock"
+import { chemicalUnitsMock } from "mocks/chemicalMock"
 
-describe('Mixture', () => {
+describe('Solution', () => {
 
     describe('toChemical', () => {
 
 
         it('is array', () => {
-            const mixture = new Solution()
-            const result = mixture.toChemicals()
+            const solution = new Solution()
+            const result = solution.toChemicals()
 
             expect(Array.isArray(result)).toEqual(true)
         })
 
         it('MgSO4', () => {
-            const mixture = solutionsMock[3]
-            const result = mixture.toChemicals().map(chemical => chemical.value)
+            const solution = solutionsMock[3]
+            const result = solution.toChemicals().map(chemical => chemical.value)
 
             expect(result).toEqual([
                 new ChemicalUnitValue(chemicalUnitsMock.Mg, 62),
@@ -28,8 +28,8 @@ describe('Mixture', () => {
         })
 
         it('MgSO4, MgSO4*7H2O, PK, MgCaN, Fe', () => {
-            const mixture = solutionsMock[2]
-            const result = mixture.toChemicals().map(chemical => chemical.value)
+            const solution = solutionsMock[2]
+            const result = solution.toChemicals().map(chemical => chemical.value)
 
 
             expect(result).toEqual([
@@ -44,8 +44,5 @@ describe('Mixture', () => {
                 new ChemicalUnitValue(chemicalUnitsMock.Fe, 2),
             ].map(chemical => chemical.value))
         })
-
-
-
     })
 })

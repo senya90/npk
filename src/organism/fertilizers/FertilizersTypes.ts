@@ -5,6 +5,6 @@ import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 export interface FertilizersProps {
     fertilizers: Fertilizer[]
     editableFertilizer?: Fertilizer
-    mixture?: Solution
+    solution?: Solution
     chemicalComplexes: ChemicalComplex[]
 }

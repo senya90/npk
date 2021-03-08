@@ -47,11 +47,11 @@
         "ru": "Удобрения",
         "en": "Fertilizers"
     },
-    "mixtureComposition": {
+    "solutionComposition": {
         "ru": "Состав раствора",
-        "en": "Mixture composition"
+        "en": "Solution composition"
     },
-    "inputMixtureName": {
+    "inputSolutionName": {
         "ru": "Введите название раствора",
         "en": "Enter solution name"
     },

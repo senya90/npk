@@ -16,13 +16,13 @@ export class Solution {
         this.id = id ? id : IdGenerator.generate()
     }
 
-    static getActualMixture = (fromMixture: Solution | undefined) => {
-        let actualMixture = new Solution()
-        if (fromMixture) {
-            const {name, dosages, id} = fromMixture
-            actualMixture = new Solution(name, dosages, id)
+    static getActualSolution = (fromSolution: Solution | undefined) => {
+        let actualSolution = new Solution()
+        if (fromSolution) {
+            const {name, dosages, id} = fromSolution
+            actualSolution = new Solution(name, dosages, id)
         }
-        return actualMixture
+        return actualSolution
     }
 
     addFertilizer = (fertilizer: Fertilizer) => {

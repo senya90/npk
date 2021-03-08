@@ -1,16 +1,16 @@
 @import "../../index";
 @import "src/mixins.module";
 
-.mixture {
+.solution {
     padding: 5px 10px;
 
-    &._mixtureActive {
+    &._solutionActive {
         background-color: $color_backSecondary;
         border-bottom: 1px solid $border_light;
     }
 }
 
-.mixtureName {
+.solutionName {
     font-weight: bold;
     font-size: $font_mb;
     padding-bottom: 10px;
