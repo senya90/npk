@@ -32,7 +32,7 @@ const DosageView: FunctionComponent<DosageViewProps> = ({dosage, deleteFertilize
     }
 
     const updateDosageByValue = (toValue: number): Dosage => {
-        return {...dosage, valueGram: Utils.round(toValue)}
+        return new Dosage(dosage.fertilizer, Utils.round(toValue))
     }
 
     const deleteFertilizer = () => {

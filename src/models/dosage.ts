@@ -5,7 +5,7 @@ export class Dosage {
     valueGram: number
 
     constructor(fertilizer: Fertilizer, value = 0) {
-        this.fertilizer = fertilizer;
+        this.fertilizer = new Fertilizer(fertilizer.name, fertilizer.ingredients, fertilizer.id, fertilizer.timestamp, fertilizer.orderNumber);
         this.valueGram = value;
     }
 }
