@@ -17,6 +17,6 @@ export const ApiURL = {
     logout: 'user/logout',
     updateToken: 'user/update-tokens',
 
-    getMixtures: 'mixture/mixtures'
+    getMixtures: 'solution/solutions'
 
 }

@@ -1,14 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react';
-import {MixtureDistributorProps} from "./MixtureDistributorTypes";
+import {SolutionDistributorProps} from "./SolutionDistributorTypes";
 
-import style from './mixtureDistributor.module.scss'
+import style from './solutionDistributor.module.scss'
 import {InputNumber} from "../../atom/inputNumber/InputNumber";
 import {DispensingContext, DispensingContextType} from "../../helpers/contexts/DispensingContext";
 import {InputTypeValue} from "../../atom/inputNumber/InputNumberTypes";
 import {translate} from "../../helpers/translate/translate";
 
 
-const MixtureDistributor: FunctionComponent<MixtureDistributorProps> = (props) => {
+const SolutionDistributor: FunctionComponent<SolutionDistributorProps> = (props) => {
     const {volume, percent = 100} = props
     const {onVolumeChanged, onPercentChanged} = useContext<DispensingContextType>(DispensingContext)
 
@@ -47,4 +47,4 @@ const MixtureDistributor: FunctionComponent<MixtureDistributorProps> = (props) =
     );
 };
 
-export {MixtureDistributor}
+export {SolutionDistributor}

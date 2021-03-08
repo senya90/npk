@@ -5,7 +5,7 @@ import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
 import { Weight } from "../weight";
 import { AtomsProportionCalculator } from "../proportionCalculator";
 
-export class Mixture {
+export class Solution {
     dosages: Dosage[]
     name: string
     id: string
@@ -16,11 +16,11 @@ export class Mixture {
         this.id = id ? id : IdGenerator.generate()
     }
 
-    static getActualMixture = (fromMixture: Mixture | undefined) => {
-        let actualMixture = new Mixture()
+    static getActualMixture = (fromMixture: Solution | undefined) => {
+        let actualMixture = new Solution()
         if (fromMixture) {
             const {name, dosages, id} = fromMixture
-            actualMixture = new Mixture(name, dosages, id)
+            actualMixture = new Solution(name, dosages, id)
         }
         return actualMixture
     }

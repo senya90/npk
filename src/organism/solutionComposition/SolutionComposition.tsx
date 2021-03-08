@@ -1,14 +1,14 @@
 import React, {FunctionComponent, useContext} from 'react';
-import {MixtureCompositionProps} from "./MixtureCompositionTypes";
+import {SolutionCompositionProps} from "./SolutionCompositionTypes";
 import {translate} from "../../helpers/translate/translate";
 import Title from "../../atom/title/Title";
 import DosageView from "../dosageView/DosageView";
 import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
 import {Fertilizer} from "../../models/fertilizer/fertilizer";
-import {Mixture} from "../../models/mixture/mixture";
+import {Solution} from "../../models/solution/solution";
 import {Input} from 'atom/input/Input';
 
-import style from './mixtureComposition.module.scss'
+import style from './solutionComposition.module.scss'
 import {Dosage} from "../../models/dosage";
 import { Button } from 'atom/button/Button';
 import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
@@ -16,7 +16,7 @@ import { Gag } from 'molecule/gag/Gag';
 import { Icon } from 'atom/icon/Icon';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
 
-const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture}) => {
+const SolutionComposition: FunctionComponent<SolutionCompositionProps> = ({mixture}) => {
     const {onMixtureUpdated, onMixtureSave} = useContext<CalculatorContextType>(CalculatorContext)
 
     const renderMixture = () => {
@@ -38,14 +38,14 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
         onMixtureUpdated(deleteFertilizerFromMixture(fertilizer))
     }
 
-    const deleteFertilizerFromMixture = (fertilizer: Fertilizer): Mixture => {
-        let updatedMixture = Mixture.getActualMixture(mixture)
+    const deleteFertilizerFromMixture = (fertilizer: Fertilizer): Solution => {
+        let updatedMixture = Solution.getActualMixture(mixture)
         updatedMixture.dosages = updatedMixture.dosages.filter(dosage => dosage.fertilizer.id !== fertilizer.id)
         return updatedMixture
     }
 
     const onDosageChanged = (updatedDosage: Dosage) => {
-        let updatedMixture = Mixture.getActualMixture(mixture)
+        let updatedMixture = Solution.getActualMixture(mixture)
         updatedMixture.dosages = updatedMixture.dosages.map(dosage => {
             if (dosage.fertilizer.id === updatedDosage.fertilizer.id) {
                 return updatedDosage
@@ -57,7 +57,7 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
     }
 
     const onMixtureNameChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const updatedMixture = Mixture.getActualMixture(mixture)
+        const updatedMixture = Solution.getActualMixture(mixture)
         updatedMixture.name = e.target.value
         onMixtureUpdated(updatedMixture)
     }
@@ -68,7 +68,7 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
 
     return (
         <div>
-            <Title border>{translate('mixtureComposition')}</Title>
+            <Title border>{translate('solutionComposition')}</Title>
             {!mixture &&
                 <div className={style.gagWrapper}>
                     <Gag
@@ -105,4 +105,4 @@ const MixtureComposition: FunctionComponent<MixtureCompositionProps> = ({mixture
     );
 };
 
-export {MixtureComposition}
+export {SolutionComposition}

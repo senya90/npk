@@ -1,9 +1,9 @@
 import { Agriculture } from "models/agriculture";
-import {Mixture} from "../../models/mixture/mixture";
+import {Solution} from "../../models/solution/solution";
 import {ChemicalUnit} from "../../models/chemicalUnit";
 
 export interface ChemicalComparisonProps {
     activeAgriculture: Agriculture
-    mixture?: Mixture
+    mixture?: Solution
     chemicals: ChemicalUnit[]
 }

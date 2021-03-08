@@ -1,10 +1,10 @@
 import {Fertilizer} from "../../models/fertilizer/fertilizer";
-import {Mixture} from "../../models/mixture/mixture";
+import {Solution} from "../../models/solution/solution";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 
 export interface FertilizersProps {
     fertilizers: Fertilizer[]
     editableFertilizer?: Fertilizer
-    mixture?: Mixture
+    mixture?: Solution
     chemicalComplexes: ChemicalComplex[]
 }

@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import style from "../mixtureDispensing/mixtureDispensing.module.scss";
+import style from "../solutionDispensing/solutionDispensing.module.scss";
 import {translate} from "../../helpers/translate/translate";
 import { Dosage } from 'models/dosage';
 import { Utils } from 'helpers/utils';
@@ -10,7 +10,7 @@ interface MixtureDistributorVolumeProps {
     percent?: number
 }
 
-const MixtureDistributorVolume: FunctionComponent<MixtureDistributorVolumeProps> = ({dosage, volume, percent}) => {
+const SolutionDistributorVolume: FunctionComponent<MixtureDistributorVolumeProps> = ({dosage, volume, percent}) => {
 
     const calculateVolume = (): number => {
         if (!percent) {
@@ -27,4 +27,4 @@ const MixtureDistributorVolume: FunctionComponent<MixtureDistributorVolumeProps>
     );
 };
 
-export {MixtureDistributorVolume}
+export {SolutionDistributorVolume}

@@ -1,5 +1,5 @@
-import { Mixture } from "./mixture"
-import { mixturesMock } from "mocks/mixturesMock"
+import { Solution } from "./solution"
+import { solutionsMock } from "mocks/solutionsMock"
 import { ChemicalUnitValue } from "models/chemicalUnitValue/chemicalUnitValue"
 import { chemicalUnitsMock, chemicalUnitsMockArray } from "mocks/chemicalMock"
 
@@ -9,14 +9,14 @@ describe('Mixture', () => {
 
 
         it('is array', () => {
-            const mixture = new Mixture()
+            const mixture = new Solution()
             const result = mixture.toChemicals()
 
             expect(Array.isArray(result)).toEqual(true)
         })
 
         it('MgSO4', () => {
-            const mixture = mixturesMock[3]
+            const mixture = solutionsMock[3]
             const result = mixture.toChemicals().map(chemical => chemical.value)
 
             expect(result).toEqual([
@@ -28,7 +28,7 @@ describe('Mixture', () => {
         })
 
         it('MgSO4, MgSO4*7H2O, PK, MgCaN, Fe', () => {
-            const mixture = mixturesMock[2]
+            const mixture = solutionsMock[2]
             const result = mixture.toChemicals().map(chemical => chemical.value)
 
 

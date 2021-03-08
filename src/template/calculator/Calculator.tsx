@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {Fertilizers} from "organism/fertilizers/Fertilizers";
 import {Fertilizer} from 'models/fertilizer/fertilizer';
-import {MixtureComposition} from "organism/mixtureComposition/MixtureComposition";
+import {SolutionComposition} from "organism/solutionComposition/SolutionComposition";
 
 import style from './calculator.module.scss'
 import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
-import {Mixture} from "models/mixture/mixture";
-import { Mixtures } from 'organism/mixtures/Mixtures';
+import {Solution} from "models/solution/solution";
+import { Solutions } from 'organism/solutions/Solutions';
 import {AgriculturesView} from "organism/agriclulturesView/AgriculturesView";
 import {ChemicalComparison} from "organism/checmicalComparison/ChemicalComparison";
 import {Agriculture} from "models/agriculture";
@@ -24,8 +24,8 @@ const Calculator = () => {
     const [chemicalComplexes, setChemicalComplexes] = useState<ChemicalComplex[]>([])
     const [fertilizers, setFertilizers] = useState<Fertilizer[]>([])
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
-    const [allMixtures, setAllMixtures] = useState<Mixture[]>([])
-    const [mixture, setMixture] = useState<Mixture>()
+    const [allMixtures, setAllMixtures] = useState<Solution[]>([])
+    const [mixture, setMixture] = useState<Solution>()
     const [activeAgriculture, setActiveAgriculture] = useState<Agriculture>(new Agriculture())
     const [agricultures, setAgricultures] = useState<Agriculture[]>([])
 
@@ -45,12 +45,12 @@ const Calculator = () => {
 
         getMixturesAPI()
             .then(mixtures => setAllMixtures(mixtures))
-        
+
     }, [updateFertilizersByServer])
 
-    const getMixturesAPI = async (): Promise<Mixture[]> => {
+    const getMixturesAPI = async (): Promise<Solution[]> => {
         try {
-            const result = await API.getAuthorized<Mixture[]>(ApiURL.getMixtures)
+            const result = await API.getAuthorized<Solution[]>(ApiURL.getMixtures)
             return result.data.data
         } catch (err) {
             console.error(err)
@@ -174,14 +174,14 @@ const Calculator = () => {
             return
         }
 
-        const newMixture = Mixture.getActualMixture(mixture)
+        const newMixture = Solution.getActualMixture(mixture)
         if (addedFertilizer) {
             newMixture.addFertilizer(addedFertilizer)
         }
         onMixtureUpdated(newMixture)
     }
 
-    const onMixtureUpdated = (mixture: Mixture) => {
+    const onMixtureUpdated = (mixture: Solution) => {
         setMixture(mixture)
     }
 
@@ -254,7 +254,7 @@ const Calculator = () => {
                         mixture={mixture}
                         chemicalComplexes={chemicalComplexes}
                     />
-                    <MixtureComposition
+                    <SolutionComposition
                         mixture={mixture}
                     />
                     <ChemicalComparison
@@ -271,8 +271,8 @@ const Calculator = () => {
                     />
                 </div>
                 <div>
-                    <Mixtures
-                        mixtures={allMixtures}
+                    <Solutions
+                        solutions={allMixtures}
                     />
                 </div>
                 <br/>

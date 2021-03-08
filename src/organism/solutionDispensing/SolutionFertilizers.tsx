@@ -2,18 +2,18 @@ import React, {FunctionComponent} from 'react';
 import {Dosage} from "../../models/dosage";
 import {translate} from "../../helpers/translate/translate";
 
-import style from './mixtureDispensing.module.scss'
-import {MixtureDistributor} from "../mixtureDistributor/MixtureDistributor";
-import {MixtureDistributorVolume} from "../mixtureDistributor/MixtureDistributorVolume";
+import style from './solutionDispensing.module.scss'
+import {SolutionDistributor} from "../solutionDistributor/SolutionDistributor";
+import {SolutionDistributorVolume} from "../solutionDistributor/SolutionDistributorVolume";
 
 
-interface MixtureFertilizersProps {
+interface SolutionFertilizersProps {
     dosages: Dosage[]
     volume?: number
     percent?: number
 }
 
-const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages, volume= 0, percent= 100}) => {
+const SolutionFertilizers: FunctionComponent<SolutionFertilizersProps> = ({dosages, volume= 0, percent= 100}) => {
 
     const renderDosages = () => {
         return dosages.map(dosage => {
@@ -29,7 +29,7 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
     const renderDosagesValueByVolume = () => {
         return dosages.map(dosage => {
             return (
-                <MixtureDistributorVolume key={dosage.fertilizer.id} dosage={dosage} volume={volume}/>
+                <SolutionDistributorVolume key={dosage.fertilizer.id} dosage={dosage} volume={volume}/>
             )
         })
     }
@@ -37,7 +37,7 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
     const renderDosagesValueByPercentVolume = () => {
         return dosages.map(dosage => {
             return (
-                <MixtureDistributorVolume key={dosage.fertilizer.id} dosage={dosage} volume={volume} percent={percent}/>
+                <SolutionDistributorVolume key={dosage.fertilizer.id} dosage={dosage} volume={volume} percent={percent}/>
             )
         })
     }
@@ -59,7 +59,7 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
                     {renderDosagesValueByPercentVolume()}
                 </div>
             }
-            <MixtureDistributor
+            <SolutionDistributor
                 percent={percent}
                 volume={volume}
             />
@@ -68,4 +68,4 @@ const MixtureFertilizers: FunctionComponent<MixtureFertilizersProps> = ({dosages
     );
 };
 
-export {MixtureFertilizers}
+export {SolutionFertilizers}

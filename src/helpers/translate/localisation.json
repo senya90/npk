@@ -75,7 +75,7 @@
         "ru": "%-ый раствор",
         "en": "% solution"
     },
-    "mixtures": {
+    "readySolutions": {
         "ru": "Готовые растворы",
         "en": "Ready-to-use solutions"
     },

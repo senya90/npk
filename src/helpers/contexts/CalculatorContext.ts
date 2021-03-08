@@ -1,6 +1,6 @@
 import React from "react";
 import {Fertilizer} from "../../models/fertilizer/fertilizer";
-import { Mixture } from "models/mixture/mixture";
+import { Solution } from "models/solution/solution";
 import { Agriculture } from "models/agriculture";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 import {ChemicalUnit} from "../../models/chemicalUnit";
@@ -12,7 +12,7 @@ export type CalculatorContextType = {
     onEditFertilizer: (fertilizerId: string | undefined) => void
 
     onAddFertilizerToMixture: (fertilizerId: string) => void
-    onMixtureUpdated: (mixture: Mixture) => void
+    onMixtureUpdated: (mixture: Solution) => void
     onMixtureSave: () => void
 
     getFertilizerById: (fertilizerId: string) => Fertilizer | undefined
@@ -35,7 +35,7 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     onEditFertilizer(fertilizerId: string | undefined): void {
     },
 
-    onMixtureUpdated(mixture: Mixture): void {
+    onMixtureUpdated(mixture: Solution): void {
     },
     onAddFertilizerToMixture(fertilizerId: string): void {
     },

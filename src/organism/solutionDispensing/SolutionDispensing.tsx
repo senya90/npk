@@ -1,19 +1,19 @@
 import React, {FunctionComponent, useState} from 'react';
 import cn from 'classnames'
-import {Mixture} from 'models/mixture/mixture';
-import {MixtureFertilizers} from "./MixtureFertilizers";
+import {Solution} from 'models/solution/solution';
+import {SolutionFertilizers} from "./SolutionFertilizers";
 
-import style from './mixtureDispensing.module.scss'
+import style from './solutionDispensing.module.scss'
 import { DispensingContext } from 'helpers/contexts/DispensingContext';
 import { Icon } from 'atom/icon/Icon';
 import {ICON_TYPE} from "atom/icon/IconTypes";
 
 
 interface MixtureDispensingProps {
-    mixture: Mixture
+    mixture: Solution
 }
 
-const MixtureDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture}) => {
+const SolutionDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture}) => {
     const [volume, setVolume] = useState<number>(0)
     const [percent, setPercent] = useState<number>(100)
     const [isShowControls, setIsShowControls] = useState<boolean>(false)
@@ -48,7 +48,7 @@ const MixtureDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture})
                             onVolumeChanged: onVolumeChanged,
                             onPercentChanged: onPercentChanged
                         }}>
-                            <MixtureFertilizers
+                            <SolutionFertilizers
                                 dosages={mixture.dosages}
                                 volume={volume}
                                 percent={percent}
@@ -61,4 +61,4 @@ const MixtureDispensing: FunctionComponent<MixtureDispensingProps> = ({mixture})
     );
 };
 
-export {MixtureDispensing}
+export {SolutionDispensing}

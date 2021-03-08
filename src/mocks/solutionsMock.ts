@@ -1,12 +1,12 @@
-import { Mixture } from "../models/mixture/mixture";
+import { Solution } from "../models/solution/solution";
 import { FertilizerIngredient } from "models/fertilizer/fertilizerIngredient";
 import { chemicalComplexMock } from "./chemicalComplexMock";
 import { Dosage } from "models/dosage";
 import { fertilizersMock } from "./fertilizersMock";
 import { Fertilizer } from "models/fertilizer/fertilizer";
 
-export const mixturesMock: Mixture[] = [
-    new Mixture(
+export const solutionsMock: Solution[] = [
+    new Solution(
         "Для огурцов",
         [
             new Dosage(
@@ -46,7 +46,7 @@ export const mixturesMock: Mixture[] = [
         ],
         "15a0788b-2e76-4ad6-99ef-206e11e751bf"
     ),
-    new Mixture(
+    new Solution(
         'Тестовый раствор',
         [
             new Dosage(fertilizersMock[6], 2.75),
@@ -57,7 +57,7 @@ export const mixturesMock: Mixture[] = [
         ],
         '8fe969b4-dfd7-4582-a715-3c2e31d0aac7'
     ),
-    new Mixture(
+    new Solution(
         'Тестовый раствор 2',
         [
             new Dosage(fertilizersMock[6], 2.75),
