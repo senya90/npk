@@ -87,6 +87,10 @@
         "ru": "Таблица смесей",
         "en": "Table of solutions"
     },
+    "deleteSolution": {
+        "ru": "Удалить раствор",
+        "en": "Delete the solution"
+    },
     "fertilizer": {
         "ru": "Удобрение",
         "en": "Fertilizer"
