@@ -194,6 +194,15 @@ const Calculator = () => {
         }
     }
 
+    const onDeleteSolution = async (solution: Solution) => {
+        const response = await API.postAuthorized(ApiURL.deleteSolution, {id: [solution.id]})
+
+        if (!response.data.error) {
+            const solutions = await getSolutionsAPI()
+            setAllSolutions(solutions)
+        }
+    }
+
     const clearEditingSolution = () => {
         setSolution(undefined)
     }
@@ -244,6 +253,7 @@ const Calculator = () => {
                 onSolutionUpdated: onSolutionUpdated,
                 onAddFertilizerToSolution: onAddFertilizerToSolution,
                 onSolutionSave: onSolutionSave,
+                onDeleteSolution,
 
                 onAgricultureSelect: onSelectAgriculture,
                 onAgriculturesUpdated: onAgriculturesUpdated

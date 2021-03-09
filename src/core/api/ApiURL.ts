@@ -18,6 +18,7 @@ export const ApiURL = {
     updateToken: 'user/update-tokens',
 
     getSolutions: 'solution/solutions',
-    addSolution: 'solution/add-solution'
+    addSolution: 'solution/add-solution',
+    deleteSolution: 'solution/delete-solution'
 
 }

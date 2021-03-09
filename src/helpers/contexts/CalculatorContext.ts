@@ -14,6 +14,7 @@ export type CalculatorContextType = {
     onAddFertilizerToSolution: (fertilizerId: string) => void
     onSolutionUpdated: (solution: Solution) => void
     onSolutionSave: () => void
+    onDeleteSolution: (solution: Solution) => void
 
     getFertilizerById: (fertilizerId: string) => Fertilizer | undefined
     chemicalComplexes: ChemicalComplex[],
@@ -40,6 +41,8 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     onAddFertilizerToSolution(fertilizerId: string): void {
     },
     onSolutionSave(): void {
+    },
+    onDeleteSolution(solution: Solution): void {
     },
 
 

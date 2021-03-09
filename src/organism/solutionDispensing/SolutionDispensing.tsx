@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, useContext, useState} from 'react';
 import cn from 'classnames'
 import {Solution} from 'models/solution/solution';
 import {SolutionFertilizers} from "./SolutionFertilizers";
@@ -12,6 +12,7 @@ import stylePopover from "atom/popover/popover.module.scss";
 import {Button} from "../../atom/button/Button";
 import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {Popover} from "../../atom/popover/Popover";
+import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 
 interface SolutionDispensingProps {
@@ -19,6 +20,7 @@ interface SolutionDispensingProps {
 }
 
 const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solution}) => {
+    const {onDeleteSolution} = useContext(CalculatorContext)
     const [isShowModal, setIsShowModal] = useState<boolean>(false)
     const [volume, setVolume] = useState<number>(0)
     const [percent, setPercent] = useState<number>(100)
@@ -41,7 +43,7 @@ const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solutio
     }
 
     const deleteSolution = () => {
-        console.log('deleteSolution')
+        onDeleteSolution(solution)
     }
 
     const onVisibleChange = (visible: boolean) => {
