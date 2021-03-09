@@ -3,18 +3,38 @@
 
 .solution {
     padding: 5px 10px;
+    border-bottom: 1px solid $border_light;
 
     &._solutionActive {
         background-color: $color_backSecondary;
-        border-bottom: 1px solid $border_light;
     }
 }
 
+.topLine {
+    display: flex;
+}
+
 .solutionName {
+    flex: 1 1 auto;
     font-weight: bold;
     font-size: $font_mb;
     padding-bottom: 10px;
     @include hover;
+}
+
+.controls {
+
+}
+
+.topLineButton {
+    margin-left: 10px;
+    padding: 5px;
+    cursor: pointer;
+    @include hover;
+
+    &:first-child {
+        margin-left: 0;
+    }
 }
 
 .fertilizerBox {

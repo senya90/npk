@@ -30,18 +30,45 @@ const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solutio
         setIsShowControls(!isShowControls)
     }
 
+    const edit = () => {
+        console.log('edit')
+    }
+
+    const deleteSolution = () => {
+        console.log('deleteSolution')
+    }
+
     return (
         <div className={cn(style.solution, {[style._solutionActive] : isShowControls})}>
             {solution &&
                 <>
-                    <div className={style.solutionName} onClick={toggleShow}>
-                        {solution.name}
-                        <Icon
-                            className={style.open}
-                            type={isShowControls ? ICON_TYPE.DownOutlined : ICON_TYPE.RightOutlined }
-                            size={15}
-                        />
+                    <div className={style.topLine}>
+                        <div className={style.solutionName} onClick={toggleShow}>
+                            {solution.name}
+                            <Icon
+                                className={style.open}
+                                type={isShowControls ? ICON_TYPE.DownOutlined : ICON_TYPE.RightOutlined }
+                                size={15}
+                            />
+                        </div>
+                        {isShowControls &&
+                            <div>
+                                <Icon
+                                    className={style.topLineButton}
+                                    type={ICON_TYPE.Edit}
+                                    size={25}
+                                    onClick={edit}
+                                />
+                                <Icon
+                                    className={style.topLineButton}
+                                    type={ICON_TYPE.Delete}
+                                    size={25}
+                                    onClick={deleteSolution}
+                                />
+                            </div>
+                        }
                     </div>
+
 
                     {isShowControls &&
                         <DispensingContext.Provider value={{
