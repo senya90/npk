@@ -185,10 +185,12 @@ const Calculator = () => {
         setSolution(solution)
     }
 
-    const onSolutionSave = () => {
+    const onSolutionSave = async () => {
         if (solution) {
-            setAllSolutions([...allSolutions, solution])
-            clearEditingSolution()
+            const response = await API.postAuthorized(ApiURL.addSolution, {solution: [solution]})
+            if (!response.data.error) {
+                clearEditingSolution()
+            }
         }
     }
 
