@@ -34,6 +34,11 @@ const Calculator = () => {
         getFertilizersApi().then(res => setFertilizers(res))
     }, [])
 
+    const _updateSolutionsByAPI = useCallback(async () => {
+        const solutions = await getSolutionsAPI()
+        setAllSolutions(solutions)
+    }, [])
+
     useEffect(() => {
         getChemicalsApi()
             .then(result => setChemicals(result))
@@ -43,10 +48,9 @@ const Calculator = () => {
         getComplexesApi()
             .then(complexes => setChemicalComplexes(complexes))
 
-        getSolutionsAPI()
-            .then(solutions => setAllSolutions(solutions))
+        _updateSolutionsByAPI().then()
 
-    }, [updateFertilizersByServer])
+    }, [updateFertilizersByServer, _updateSolutionsByAPI])
 
     const getSolutionsAPI = async (): Promise<Solution[]> => {
         try {
@@ -190,6 +194,7 @@ const Calculator = () => {
             const response = await API.postAuthorized(ApiURL.addSolution, {solution: [solution]})
             if (!response.data.error) {
                 clearEditingSolution()
+                await _updateSolutionsByAPI()
             }
         }
     }
@@ -198,8 +203,7 @@ const Calculator = () => {
         const response = await API.postAuthorized(ApiURL.deleteSolution, {id: [solution.id]})
 
         if (!response.data.error) {
-            const solutions = await getSolutionsAPI()
-            setAllSolutions(solutions)
+            await _updateSolutionsByAPI()
         }
     }
 
