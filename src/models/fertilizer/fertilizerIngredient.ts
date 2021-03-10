@@ -15,8 +15,8 @@ export class FertilizerIngredient {
         this.id = id ? id : IdGenerator.generate();
     }
 
-    static createFromDto(ingredient: FertilizerIngredientDTO): FertilizerIngredient {
-        const complexes = ChemicalComplex.createFromDto(ingredient.chemicalComplex)
+    static createNew(ingredient: FertilizerIngredientDTO): FertilizerIngredient {
+        const complexes = ChemicalComplex.createNew(ingredient.chemicalComplex)
         return new FertilizerIngredient(
             complexes,
             ingredient.valuePercent,

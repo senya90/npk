@@ -18,7 +18,7 @@ export class ChemicalComplex {
         this.userId = userId
     }
 
-    static createFromDto(complex: ChemicalComplexDTO): ChemicalComplex {
+    static createNew(complex: ChemicalComplexDTO): ChemicalComplex {
         return new ChemicalComplex(complex.name, complex.chemicalAggregates, complex.id, complex.userId)
     }
 

@@ -7,7 +7,7 @@ export type FertilizerDTO = {
     name: string
     ingredients: FertilizerIngredient[]
     timestamp: number
-    order: number | null
+    orderNumber: number | null
 }
 
 export type FertilizerIngredientDTO = {

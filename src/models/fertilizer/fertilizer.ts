@@ -10,22 +10,22 @@ export class Fertilizer {
     orderNumber: number | null
     timestamp: number
 
-    constructor(name = '', ingredients?: FertilizerIngredient[], id?: string, timestamp?: number, order?: number | null) {
+    constructor(name = '', ingredients?: FertilizerIngredient[], id?: string, timestamp?: number, orderNumber?: number | null) {
         this.name = name
         this.ingredients = ingredients ? ingredients : [];
         this.id = id ? id : IdGenerator.generate();
         this.timestamp = timestamp || Utils.getNowTimeSeconds()
-        this.orderNumber = order || null
+        this.orderNumber = orderNumber || null
     }
 
-    static createFromDTO(fertilizer: FertilizerDTO): Fertilizer {
-        const ingredients = fertilizer.ingredients.map(ingredient => FertilizerIngredient.createFromDto(ingredient))
+    static createNew(fertilizer: FertilizerDTO | Fertilizer): Fertilizer {
+        const ingredients = fertilizer.ingredients.map(ingredient => FertilizerIngredient.createNew(ingredient))
         return new Fertilizer(
             fertilizer.name,
             ingredients,
             fertilizer.id,
             fertilizer.timestamp,
-            fertilizer.order
+            fertilizer.orderNumber
         )
     }
 }

@@ -84,14 +84,14 @@ const Calculator = () => {
         }
 
         const fertilizersDTO: FertilizerDTO[] = result.data.data
-        return fertilizersDTO.map(dto => Fertilizer.createFromDTO(dto))
+        return fertilizersDTO.map(dto => Fertilizer.createNew(dto))
     }
 
     const getComplexesApi = async (): Promise<ChemicalComplex[]> => {
         const response = await API.getAuthorized<ChemicalComplexDTO[]>(ApiURL.getChemicalComplexes)
 
         if (response.data.data) {
-            let complexes: ChemicalComplex[] = response.data.data.map(chemicalDTO => ChemicalComplex.createFromDto(chemicalDTO))
+            let complexes: ChemicalComplex[] = response.data.data.map(chemicalDTO => ChemicalComplex.createNew(chemicalDTO))
             return complexes.map(complex => {
                 return new ChemicalComplex(complex.name, [...complex.chemicalAggregates], complex.id, complex.userId)
             })
