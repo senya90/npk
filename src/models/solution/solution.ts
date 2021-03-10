@@ -5,22 +5,42 @@ import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
 import { Weight } from "../weight";
 import { AtomsProportionCalculator } from "../proportionCalculator";
 
+export type SolutionDTO = {
+    id: string
+    name: string
+    dosages: Dosage[]
+    orderNumber: number | null
+    timestamp: number
+}
+
 export class Solution {
     dosages: Dosage[]
     name: string
     id: string
+    orderNumber: number | null
+    timestamp: number | null
 
-    constructor(name = '', dosages?: Dosage[], id?: string) {
-        this.name = name
-        this.dosages = dosages ? dosages : [];
-        this.id = id ? id : IdGenerator.generate()
+    constructor(solution?: SolutionDTO | Solution) {
+        if (solution) {
+            this.name = solution.name ? solution.name : ''
+            this.dosages = solution.dosages ? solution.dosages : [];
+            this.id = solution.id ? solution.id : IdGenerator.generate()
+            this.orderNumber = solution.orderNumber
+            this.timestamp = solution.timestamp
+            return
+        }
+
+        this.name = ''
+        this.dosages = []
+        this.id = IdGenerator.generate()
+        this.orderNumber = null
+        this.timestamp = null
     }
 
     static getActualSolution = (fromSolution: Solution | undefined) => {
         let actualSolution = new Solution()
         if (fromSolution) {
-            const {name, dosages, id} = fromSolution
-            actualSolution = new Solution(name, dosages, id)
+            actualSolution = new Solution(fromSolution)
         }
         return actualSolution
     }

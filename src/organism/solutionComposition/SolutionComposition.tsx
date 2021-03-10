@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext} from 'react';
+import React, {FC, useContext} from 'react';
 import {SolutionCompositionProps} from "./SolutionCompositionTypes";
 import {translate} from "../../helpers/translate/translate";
 import Title from "../../atom/title/Title";
@@ -16,7 +16,7 @@ import { Gag } from 'molecule/gag/Gag';
 import { Icon } from 'atom/icon/Icon';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
 
-const SolutionComposition: FunctionComponent<SolutionCompositionProps> = ({solution}) => {
+const SolutionComposition: FC<SolutionCompositionProps> = ({solution}) => {
     const {onSolutionUpdated, onSolutionSave} = useContext<CalculatorContextType>(CalculatorContext)
 
     const renderSolution = () => {

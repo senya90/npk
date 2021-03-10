@@ -20,7 +20,7 @@ interface SolutionDispensingProps {
 }
 
 const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solution}) => {
-    const {onDeleteSolution} = useContext(CalculatorContext)
+    const {onDeleteSolution, onEditSolution} = useContext(CalculatorContext)
     const [isShowModal, setIsShowModal] = useState<boolean>(false)
     const [volume, setVolume] = useState<number>(0)
     const [percent, setPercent] = useState<number>(100)
@@ -39,7 +39,7 @@ const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solutio
     }
 
     const edit = () => {
-        console.log('edit')
+        onEditSolution(solution)
     }
 
     const deleteSolution = () => {

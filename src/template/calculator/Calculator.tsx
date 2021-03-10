@@ -5,7 +5,7 @@ import {SolutionComposition} from "organism/solutionComposition/SolutionComposit
 
 import style from './calculator.module.scss'
 import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
-import {Solution} from "models/solution/solution";
+import {Solution, SolutionDTO} from "models/solution/solution";
 import { Solutions } from 'organism/solutions/Solutions';
 import {AgriculturesView} from "organism/agriclulturesView/AgriculturesView";
 import {ChemicalComparison} from "organism/checmicalComparison/ChemicalComparison";
@@ -54,8 +54,8 @@ const Calculator = () => {
 
     const getSolutionsAPI = async (): Promise<Solution[]> => {
         try {
-            const result = await API.getAuthorized<Solution[]>(ApiURL.getSolutions)
-            return result.data.data
+            const result = await API.getAuthorized<SolutionDTO[]>(ApiURL.getSolutions)
+            return result.data.data.map(solution => new Solution(solution))
         } catch (err) {
             console.error(err)
             return []
@@ -178,7 +178,7 @@ const Calculator = () => {
             return
         }
 
-        const newSolution = Solution.getActualSolution(solution)
+        const newSolution = solution ? solution : Solution.getActualSolution(solution)
         if (addedFertilizer) {
             newSolution.addFertilizer(addedFertilizer)
         }
@@ -186,7 +186,11 @@ const Calculator = () => {
     }
 
     const onSolutionUpdated = (solution: Solution) => {
-        setSolution(solution)
+        setSolution(new Solution(solution))
+    }
+
+    const onEditSolution = (solution: Solution) => {
+        setSolution(new Solution(solution))
     }
 
     const onSolutionSave = async () => {
@@ -258,6 +262,7 @@ const Calculator = () => {
                 onAddFertilizerToSolution: onAddFertilizerToSolution,
                 onSolutionSave: onSolutionSave,
                 onDeleteSolution,
+                onEditSolution,
 
                 onAgricultureSelect: onSelectAgriculture,
                 onAgriculturesUpdated: onAgriculturesUpdated
