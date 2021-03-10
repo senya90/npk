@@ -10,7 +10,7 @@ export type SolutionDTO = {
     name: string
     dosages: Dosage[]
     orderNumber: number | null
-    timestamp: number
+    timestamp: number | null
 }
 
 export class Solution {

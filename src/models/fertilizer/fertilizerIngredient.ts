@@ -9,9 +9,9 @@ export class FertilizerIngredient {
     valuePercent: number;
     private static PERCENTS_TO_DECIMAL_DIVIDER = 100
 
-    constructor(chemicalComplex = new ChemicalComplex(''), value = 0, id?: string) {
+    constructor(chemicalComplex = new ChemicalComplex(''), valuePercent = 0, id?: string) {
         this.chemicalComplex = chemicalComplex;
-        this.valuePercent = value;
+        this.valuePercent = valuePercent;
         this.id = id ? id : IdGenerator.generate();
     }
 

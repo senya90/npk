@@ -17,6 +17,8 @@ import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import { FertilizerDTO } from 'models/_types/fertilizer';
 import { ChemicalComplexDTO } from 'models/_types/chemicalComplex';
+import {Dosage} from "../../models/dosage";
+import {FertilizerIngredient} from "../../models/fertilizer/fertilizerIngredient";
 
 
 const Calculator = () => {
@@ -170,6 +172,26 @@ const Calculator = () => {
     const onChemicalComplexRemoved = async () => {
         const complexes = await getComplexesApi()
         setChemicalComplexes(complexes)
+
+        _updateEditedSolutionIfNeed(complexes)
+    }
+
+    const _updateEditedSolutionIfNeed = (updatedComplexes: ChemicalComplex[]) => {
+        if (solution) {
+            const dosagesWithoutDeletedComplex: Dosage[] = solution.dosages.map(dosage => {
+                return dosage.subtractPreviouslyUsedIngredients(updatedComplexes)
+            })
+
+            const solutionDTO: SolutionDTO = {
+                id: solution.id,
+                name: solution.name,
+                dosages: dosagesWithoutDeletedComplex,
+                timestamp: solution.timestamp,
+                orderNumber: solution.orderNumber
+            }
+            const updatedSolution = new Solution(solutionDTO)
+            setSolution(updatedSolution)
+        }
     }
 
     const onAddFertilizerToSolution = (fertilizerId: string) => {
