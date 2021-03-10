@@ -71,50 +71,46 @@ const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solutio
                                 size={15}
                             />
                         </div>
-                        {isShowControls &&
-                            <div>
+                        <div>
+                            <Icon
+                                className={style.topLineButton}
+                                type={ICON_TYPE.Edit}
+                                size={25}
+                                onClick={edit}
+                            />
+                            <Popover
+                                visible={isShowModal}
+                                title={`${translate('deleteSolution')}?`}
+                                onVisibleChange={onVisibleChange}
+                                content={
+                                    <div className={stylePopover.modalButtonsBox}>
+                                        <Button
+                                            className={stylePopover.modalButton}
+                                            onClick={closeModal}
+                                        >
+                                            {translate('cancel')}
+                                        </Button>
+                                        <Button
+                                            className={stylePopover.modalButton}
+                                            danger
+                                            type={BUTTON_TYPE.PRIMARY}
+                                            onClick={deleteSolution}
+                                        >
+                                            {translate('delete')}
+                                        </Button>
+                                    </div>
+                                }
+                            >
                                 <Icon
                                     className={style.topLineButton}
-                                    type={ICON_TYPE.Edit}
+                                    type={ICON_TYPE.Delete}
                                     size={25}
-                                    onClick={edit}
+                                    onClick={showModal}
                                 />
-                                <Popover
-                                    visible={isShowModal}
-                                    title={`${translate('deleteSolution')}?`}
-                                    onVisibleChange={onVisibleChange}
-                                    content={
-                                        <div className={stylePopover.modalButtonsBox}>
-                                            <Button
-                                                className={stylePopover.modalButton}
-                                                onClick={closeModal}
-                                            >
-                                                {translate('cancel')}
-                                            </Button>
-                                            <Button
-                                                className={stylePopover.modalButton}
-                                                danger
-                                                type={BUTTON_TYPE.PRIMARY}
-                                                onClick={deleteSolution}
-                                            >
-                                                {translate('delete')}
-                                            </Button>
-                                        </div>
-                                    }
-                                >
-                                    <Icon
-                                        className={style.topLineButton}
-                                        type={ICON_TYPE.Delete}
-                                        size={25}
-                                        onClick={showModal}
-                                    />
-                                </Popover>
+                            </Popover>
 
-                            </div>
-                        }
+                        </div>
                     </div>
-
-
                     {isShowControls &&
                         <DispensingContext.Provider value={{
                             onVolumeChanged: onVolumeChanged,
