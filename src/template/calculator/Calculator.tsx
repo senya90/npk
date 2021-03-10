@@ -12,7 +12,7 @@ import {ChemicalComparison} from "organism/checmicalComparison/ChemicalCompariso
 import {Agriculture} from "models/agriculture";
 import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
 import {ChemicalUnit} from "models/chemicalUnit";
-import {isExist} from "helpers/utils";
+import {isExist, notEmptyArray} from "helpers/utils";
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import { FertilizerDTO } from 'models/_types/fertilizer';
@@ -26,6 +26,7 @@ const Calculator = () => {
     const [editableFertilizer, setEditableFertilizer] = useState<Fertilizer>()
     const [allSolutions, setAllSolutions] = useState<Solution[]>([])
     const [solution, setSolution] = useState<Solution>()
+    const [editSolutionMode, setEditSolutionMode] = useState<boolean>(false)
     const [activeAgriculture, setActiveAgriculture] = useState<Agriculture>(new Agriculture())
     const [agricultures, setAgricultures] = useState<Agriculture[]>([])
 
@@ -186,21 +187,32 @@ const Calculator = () => {
     }
 
     const onSolutionUpdated = (solution: Solution) => {
-        setSolution(new Solution(solution))
+        if (notEmptyArray(solution.dosages)) {
+            setSolution(new Solution(solution))
+            return
+        }
+
+        clearEditingSolution()
     }
 
     const onEditSolution = (solution: Solution) => {
         setSolution(new Solution(solution))
+        setEditSolutionMode(true)
     }
 
     const onSolutionSave = async () => {
         if (solution) {
-            const response = await API.postAuthorized(ApiURL.addSolution, {solution: [solution]})
+            let urlRequest = editSolutionMode ? ApiURL.updateSolution : ApiURL.addSolution
+            const response = await API.postAuthorized(urlRequest, {solution: [solution]})
+
             if (!response.data.error) {
                 clearEditingSolution()
                 await _updateSolutionsByAPI()
             }
+            return
         }
+
+        clearEditingSolution()
     }
 
     const onDeleteSolution = async (solution: Solution) => {
@@ -213,6 +225,7 @@ const Calculator = () => {
 
     const clearEditingSolution = () => {
         setSolution(undefined)
+        setEditSolutionMode(false)
     }
 
     const onSelectAgriculture = (agriculture: Agriculture) => {

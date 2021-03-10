@@ -19,6 +19,7 @@ export const ApiURL = {
 
     getSolutions: 'solution/solutions',
     addSolution: 'solution/add-solution',
-    deleteSolution: 'solution/delete-solution'
+    deleteSolution: 'solution/delete-solution',
+    updateSolution: 'solution/update-solution'
 
 }
