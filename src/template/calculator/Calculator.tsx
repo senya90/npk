@@ -133,8 +133,11 @@ const Calculator = () => {
         }
     }
 
-    const onDeleteFertilizer = async (fertilizerId: string) => {
+    const onDeleteFertilizer = async (fertilizerId: string, needUpdateSolutions = false) => {
         updateFertilizersByServer()
+        if (needUpdateSolutions) {
+            _updateSolutionsByAPI().then()
+        }
     }
 
     const onEditFertilizer = (fertilizerId: string | undefined) => {

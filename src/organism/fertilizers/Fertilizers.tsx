@@ -26,7 +26,7 @@ import {SolutionsUsingFertilizer} from "../../models/solution/solution";
 
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, solution, chemicalComplexes}) => {
-    const {onSaveFertilizer, onEditFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
+    const {onSaveFertilizer, onEditFertilizer, onDeleteFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
     const [solutionUsingFertilizer, setSolutionUsingFertilizer] = useState<SolutionsUsingFertilizer[] | undefined>()
     const [isShowFertilizerEditor, setIsShowFertilizerEditor] = useState(false)
     const [isShowElementConstructor, setIsShowElementConstructor] = useState(false)
@@ -88,21 +88,18 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
     const deleteFertilizer = async (fertilizerId: string, isConfirmed = false) => {
         try {
             const response = await API.postAuthorized<DeleteFertilizerResponse>(ApiURL.deleteFertilizer, {id: [fertilizerId], isConfirmed})
-            console.log('response', response)
 
-
+            const solutions = response.data.data.solutionsUsingFertilizers
             if (response.data.data.needToConfirm) {
-                const solutions = response.data.data.solutionsUsingFertilizers
                 setSolutionUsingFertilizer(solutions)
                 return
             }
 
-
-
-            console.log('response', response)
+            setSolutionUsingFertilizer(undefined)
+            onDeleteFertilizer(fertilizerId, notEmptyArray(solutions))
 
         } catch (err) {
-
+            throw err
         }
     }
 
