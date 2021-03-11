@@ -187,6 +187,10 @@
         "ru": "используется в следующих удобрениях",
         "en": "using in following fertilizers"
     },
+    "usingInSolutions": {
+        "ru": "используется в следующих растворах",
+        "en": "using in following solutions"
+    },
     "addCompound": {
         "ru": "Добавить соединение",
         "en": "Add compound"
@@ -233,7 +237,11 @@
     },
     "deleteCompoundFromLibraryFertilizers": {
         "ru": "Удалить соединение из Библиотеки соединений и из удобрений",
-        "en": "Delete compound from compound library and from fertilizers"
+        "en": "Delete compound from the Compounds library and from fertilizers"
+    },
+    "deleteFertilizerFromLibraryFertilizers": {
+        "ru": "Удалить удобрение из Библиотеки удобрений и из готовых растворов",
+        "en": "Delete fertilizer from the Fertilizers library and from ready-to-use solutions"
     },
     "deleteFertilizer": {
         "ru": "Удалить удобрение",

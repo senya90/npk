@@ -1,0 +1,15 @@
+.message {
+    margin-bottom: 30px;
+    font-size: 1.5em;
+}
+
+.formButton {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 15px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
