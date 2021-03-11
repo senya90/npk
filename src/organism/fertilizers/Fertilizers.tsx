@@ -18,10 +18,16 @@ import { Gag } from 'molecule/gag/Gag';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
 import { Icon } from 'atom/icon/Icon';
 import { ElementConstructor } from 'organism/elementConstructor/ElementConstructor';
+import { DeleteFertilizerModal } from './deleteFertilizerModal/DeleteFertilizerModal';
+import {DeleteFertilizerResponse} from "../../models/_types/fertilizer";
+import {API} from "../../core/api";
+import {ApiURL} from "../../core/api/ApiURL";
+import {SolutionsUsingFertilizer} from "../../models/solution/solution";
 
 
 const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, solution, chemicalComplexes}) => {
     const {onSaveFertilizer, onEditFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
+    const [solutionUsingFertilizer, setSolutionUsingFertilizer] = useState<SolutionsUsingFertilizer[] | undefined>()
     const [isShowFertilizerEditor, setIsShowFertilizerEditor] = useState(false)
     const [isShowElementConstructor, setIsShowElementConstructor] = useState(false)
 
@@ -32,7 +38,15 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
                 fertilizerUsedNow = solution.dosages.find(dosage => dosage.fertilizer.id === fertilizer.id)
             }
 
-            return <FertilizerView key={fertilizer.id} fertilizer={fertilizer} editFertilizer={editFertilizer} isShowAdd={!fertilizerUsedNow}/>
+            return (
+                <FertilizerView
+                    key={fertilizer.id}
+                    fertilizer={fertilizer}
+                    editFertilizer={editFertilizer}
+                    isShowAdd={!fertilizerUsedNow}
+                    onDeleteFertilizer={deleteFertilizer}
+                />
+            )
         })
     }
 
@@ -64,6 +78,31 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
             closeFertilizerEditor()
         } catch (err) {
             throw err
+        }
+    }
+
+    const closeConfirmationModal = () => {
+        setSolutionUsingFertilizer(undefined)
+    }
+
+    const deleteFertilizer = async (fertilizerId: string, isConfirmed = false) => {
+        try {
+            const response = await API.postAuthorized<DeleteFertilizerResponse>(ApiURL.deleteFertilizer, {id: [fertilizerId], isConfirmed})
+            console.log('response', response)
+
+
+            if (response.data.data.needToConfirm) {
+                const solutions = response.data.data.solutionsUsingFertilizers
+                setSolutionUsingFertilizer(solutions)
+                return
+            }
+
+
+
+            console.log('response', response)
+
+        } catch (err) {
+
         }
     }
 
@@ -115,6 +154,18 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
             >
                 <ElementConstructor chemicalComplexes={chemicalComplexes}/>
             </Modal>
+            }
+            {solutionUsingFertilizer &&
+                <Modal
+                    title={`${translate('attention')}!`}
+                    onClose={closeConfirmationModal}
+                >
+                    <DeleteFertilizerModal
+                        closeModal={closeConfirmationModal}
+                        onDeleteFertilizer={deleteFertilizer}
+                        solutionUsingFertilizers={solutionUsingFertilizer}
+                    />
+                </Modal>
             }
 
         </div>

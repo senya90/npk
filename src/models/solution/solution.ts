@@ -4,6 +4,7 @@ import { Fertilizer } from "../fertilizer/fertilizer";
 import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
 import { Weight } from "../weight";
 import { AtomsProportionCalculator } from "../proportionCalculator";
+import {FertilizerDTO} from "../_types/fertilizer";
 
 export type SolutionDTO = {
     id: string
@@ -11,6 +12,11 @@ export type SolutionDTO = {
     dosages: Dosage[]
     orderNumber: number | null
     timestamp: number | null
+}
+
+export type SolutionsUsingFertilizer = {
+    fertilizer: FertilizerDTO,
+    solutions: SolutionDTO[]
 }
 
 export class Solution {

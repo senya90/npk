@@ -18,7 +18,6 @@ import {ApiURL} from "core/api/ApiURL";
 import { FertilizerDTO } from 'models/_types/fertilizer';
 import { ChemicalComplexDTO } from 'models/_types/chemicalComplex';
 import {Dosage} from "../../models/dosage";
-import {FertilizerIngredient} from "../../models/fertilizer/fertilizerIngredient";
 
 
 const Calculator = () => {
@@ -135,12 +134,7 @@ const Calculator = () => {
     }
 
     const onDeleteFertilizer = async (fertilizerId: string) => {
-        try {
-            await API.postAuthorized(ApiURL.deleteFertilizer, {id: [fertilizerId]})
-            updateFertilizersByServer()
-        } catch (err) {
-
-        }
+        updateFertilizersByServer()
     }
 
     const onEditFertilizer = (fertilizerId: string | undefined) => {

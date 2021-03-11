@@ -16,13 +16,14 @@ import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 interface FertilizerViewProps {
     fertilizer: Fertilizer
     editFertilizer: (fertilizer: Fertilizer) => void
+    onDeleteFertilizer: (fertilizerId: string, isConfirm?: boolean) => void
     isShowAdd: boolean
 }
 
-const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, editFertilizer, isShowAdd}) => {
+const FertilizerView: FunctionComponent<FertilizerViewProps> = ({fertilizer, editFertilizer, isShowAdd, onDeleteFertilizer}) => {
     const [active, setActive] = useState<boolean>(false)
     const [isShowTooltip, setIsShowTooltip] = useState<boolean>(false)
-    const {onDeleteFertilizer, onAddFertilizerToSolution} = useContext(CalculatorContext)
+    const {onAddFertilizerToSolution} = useContext(CalculatorContext)
 
     const toggleActive = () => {
         setActive(!active)

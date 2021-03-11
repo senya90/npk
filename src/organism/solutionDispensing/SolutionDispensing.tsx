@@ -24,7 +24,7 @@ const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solutio
     const [isShowModal, setIsShowModal] = useState<boolean>(false)
     const [volume, setVolume] = useState<number>(0)
     const [percent, setPercent] = useState<number>(100)
-    const [isShowControls, setIsShowControls] = useState<boolean>(false)
+    const [isShowControls, setIsShowControls] = useState<boolean>(true)
 
     const onVolumeChanged = (volume: number) => {
         setVolume(volume)
