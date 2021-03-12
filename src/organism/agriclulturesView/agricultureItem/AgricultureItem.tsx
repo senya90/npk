@@ -34,6 +34,7 @@ const AgricultureItem: FunctionComponent<AgricultureItemProps> = ({agriculture, 
 
     const deleteAgriculture = () => {
         onDelete(agriculture)
+        setIsShowTooltip(false)
     }
 
     const onVisibleChange = (visible: boolean) => {

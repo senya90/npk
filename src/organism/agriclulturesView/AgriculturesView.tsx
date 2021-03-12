@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useCallback, useState} from 'react';
+import React, {FunctionComponent, useCallback, useContext, useState} from 'react';
 import Title from 'atom/title/Title';
 import {translate} from 'helpers/translate/translate';
 import {AgriculturesProps} from "./AgricultureTypes";
@@ -16,6 +16,7 @@ import { Icon } from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {API} from "../../core/api";
 import {ApiURL} from "../../core/api/ApiURL";
+import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 
 const AgriculturesView: FunctionComponent<AgriculturesProps> =
@@ -26,6 +27,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
          onAgriculturesAdd,
          chemicals
     }) => {
+    const {onDeleteAgricultures} = useContext(CalculatorContext)
     const [isAddNew, setIsAddNew] = useState(false)
     const [editableAgriculture, setEditableAgriculture] = useState<Agriculture | undefined>(undefined)
 
@@ -33,20 +35,22 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
         setEditableAgriculture(agriculture)
     }, [])
 
-    const onDelete = useCallback((agriculture: Agriculture) => {
-        console.log('onDelete',agriculture )
-    }, [])
+    const onDelete = useCallback(async (agriculture: Agriculture) => {
+        const response = await API.postAuthorized<string[]>(ApiURL.deleteAgriculture, {ids: [agriculture.id]})
 
-    const onAgricultureChanged = useCallback(
-        (agriculture: Agriculture) => {
-
-            console.log('onAgricultureChanged', agriculture)
-
-            // setEditableAgriculture(undefined)
-            // onAgriculturesUpdated([agriculture])
+        if (!response.data.error) {
+            const deletedAgriculturesIds = response.data.data
+            onDeleteAgricultures(deletedAgriculturesIds)
         }
-        , [onAgriculturesUpdated]
-    )
+
+    }, [onDeleteAgricultures])
+
+    const onAgricultureChanged = useCallback((agriculture: Agriculture) => {
+        console.log('onAgricultureChanged', agriculture)
+
+        // setEditableAgriculture(undefined)
+        // onAgriculturesUpdated([agriculture])
+    }, [onAgriculturesUpdated])
 
     const onAgricultureAdd = useCallback(async (agriculture: Agriculture) => {
         const response = await API.postAuthorized<AgricultureDTO[]>(ApiURL.addAgriculture, {agriculture: [agriculture]})

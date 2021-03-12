@@ -25,6 +25,7 @@ export type CalculatorContextType = {
 
     onAgricultureSelect: (agriculture: Agriculture) => void
     onAgriculturesUpdated: (agricultures: Agriculture[]) => void
+    onDeleteAgricultures: (agriculturesIds: string[]) => void
 }
 
 export const CalculatorContext = React.createContext<CalculatorContextType>({
@@ -65,5 +66,7 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     onAgricultureSelect(agriculture: Agriculture): void {
     },
     onAgriculturesUpdated(agricultures: Agriculture[]): void {
+    },
+    onDeleteAgricultures(agriculturesIds: string[]): void {
     }
 })

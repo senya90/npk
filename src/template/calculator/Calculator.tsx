@@ -64,12 +64,9 @@ const Calculator = () => {
     const getAgriculturesAPI = async (): Promise<Agriculture[]> => {
         try {
             const response = await API.getAuthorized<AgricultureDTO[]>(ApiURL.getAgricultures)
-            console.log('getAgriculturesAPI response', response)
             const agricultures: AgricultureDTO[] = response.data.data
             if (agricultures) {
-                const agro = agricultures.map(agriculture => Agriculture.createNew(agriculture))
-                console.log('agro', agro)
-                return agro
+                return agricultures.map(agriculture => Agriculture.createNew(agriculture))
             }
 
             return []
@@ -322,6 +319,10 @@ const Calculator = () => {
         updateAgriculturesByAPI().then()
     }
 
+    const onDeleteAgricultures = () => {
+        updateAgriculturesByAPI().then()
+    }
+
     return (
         <div>
             <CalculatorContext.Provider value={{
@@ -343,7 +344,8 @@ const Calculator = () => {
                 onEditSolution,
 
                 onAgricultureSelect: onSelectAgriculture,
-                onAgriculturesUpdated: onAgriculturesUpdated
+                onAgriculturesUpdated: onAgriculturesUpdated,
+                onDeleteAgricultures: onDeleteAgricultures
             }}
             >
                 <div className={style.box}>
