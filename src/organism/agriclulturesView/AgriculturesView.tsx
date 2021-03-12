@@ -29,17 +29,21 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
     const [isAddNew, setIsAddNew] = useState(false)
     const [editableAgriculture, setEditableAgriculture] = useState<Agriculture | undefined>(undefined)
 
-    const onEdit = useCallback(
-        (agriculture: Agriculture) => {
-            setEditableAgriculture(agriculture)
-        }
-        , []
-    )
+    const onEdit = useCallback((agriculture: Agriculture) => {
+        setEditableAgriculture(agriculture)
+    }, [])
+
+    const onDelete = useCallback((agriculture: Agriculture) => {
+        console.log('onDelete',agriculture )
+    }, [])
 
     const onAgricultureChanged = useCallback(
         (agriculture: Agriculture) => {
-            setEditableAgriculture(undefined)
-            onAgriculturesUpdated([agriculture])
+
+            console.log('onAgricultureChanged', agriculture)
+
+            // setEditableAgriculture(undefined)
+            // onAgriculturesUpdated([agriculture])
         }
         , [onAgriculturesUpdated]
     )
@@ -112,6 +116,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
                         key={agriculture.id}
                         isActive={isActive(agriculture)}
                         onEdit={onEdit}
+                        onDelete={onDelete}
                     />
                 ))
             }

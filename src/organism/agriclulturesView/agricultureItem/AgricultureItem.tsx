@@ -11,27 +11,30 @@ import {ICON_TYPE} from "../../../atom/icon/IconTypes";
 interface AgricultureItemProps {
     agriculture: Agriculture
     isActive?: boolean
-    onEdit?: (agriculture: Agriculture) => void
+    onEdit: (agriculture: Agriculture) => void
+    onDelete: (agriculture: Agriculture) => void
 }
 
-const AgricultureItem: FunctionComponent<AgricultureItemProps> = (props) => {
+const AgricultureItem: FunctionComponent<AgricultureItemProps> = ({agriculture, isActive, onEdit, onDelete}) => {
     const {onAgricultureSelect} = useContext(CalculatorContext)
 
     const selectAgriculture = () => {
-        onAgricultureSelect(props.agriculture)
+        onAgricultureSelect(agriculture)
     }
 
     const edit = () => {
-        if (props.onEdit) {
-            props.onEdit(props.agriculture)
-        }
+        onEdit(agriculture)
+    }
+
+    const deleteAgriculture = () => {
+        onDelete(agriculture)
     }
 
     return (
         <div
             onClick={selectAgriculture}
-            className={cn(style.agriculture, {[style.activeAgriculture]: props.isActive})}>
-            {props.agriculture.name}
+            className={cn(style.agriculture, {[style.activeAgriculture]: isActive})}>
+            {agriculture.name}
             <div className={style.controls}>
                 <Icon
                     onClick={edit}
@@ -43,6 +46,7 @@ const AgricultureItem: FunctionComponent<AgricultureItemProps> = (props) => {
                     type={ICON_TYPE.Delete}
                     className={style.controlsIcon}
                     size={18}
+                    onClick={deleteAgriculture}
                 />
             </div>
 

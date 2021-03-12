@@ -107,7 +107,7 @@ const AgricultureEditor: FC<AgricultureEditorProps> =
 
     const save = () => {
         if (agriculture) {
-            let updatedAgriculture = agriculture.clone()
+            let updatedAgriculture = Agriculture.createNew(agriculture)
             updatedAgriculture.name = name
             updatedAgriculture.vegetation = editableVegetation
             updatedAgriculture.bloom = editableBloom
