@@ -138,7 +138,10 @@ const Calculator = () => {
     const onDeleteFertilizer = async (fertilizerId: string, needUpdateSolutions = false) => {
         updateFertilizersByServer()
 
-        _removeFertilizerInSolution(fertilizerId)
+        if (solution) {
+            const updatedSolution: Solution = solution.removeFertilizer(fertilizerId)
+            setSolution(updatedSolution)
+        }
 
         if (needUpdateSolutions) {
             _updateSolutionsByAPI().then()
@@ -184,21 +187,6 @@ const Calculator = () => {
         }
     }
 
-    const _removeFertilizerInSolution = (fertilizerId: string) => {
-        if (solution) {
-            const dosagesWithoutDeletedFertilizer = solution.dosages.filter(dosage => dosage.fertilizer.id !== fertilizerId)
-
-            const updatedSolution = new Solution({
-                id: solution.id,
-                name: solution.name,
-                dosages: dosagesWithoutDeletedFertilizer,
-                orderNumber: solution.orderNumber,
-                timestamp: solution.timestamp
-            })
-
-            setSolution(updatedSolution)
-        }
-    }
 
     const onEditFertilizer = (fertilizerId: string | undefined) => {
         if (!fertilizerId) {

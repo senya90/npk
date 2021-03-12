@@ -93,7 +93,18 @@ export class Solution {
         })
 
         const merged = ChemicalUnitValue.merge(allChemicals)
-        const normalized = merged.map(chemicalUnitValue => chemicalUnitValue.normalizeValueForView())
-        return normalized
+        return merged.map(chemicalUnitValue => chemicalUnitValue.normalizeValueForView())
+    }
+
+    removeFertilizer(fertilizerId: string): Solution {
+        const dosagesWithoutDeletedFertilizer = this.dosages.filter(dosage => dosage.fertilizer.id !== fertilizerId)
+
+        return new Solution({
+            id: this.id,
+            name: this.name,
+            dosages: dosagesWithoutDeletedFertilizer,
+            orderNumber: this.orderNumber,
+            timestamp: this.timestamp
+        })
     }
 }
