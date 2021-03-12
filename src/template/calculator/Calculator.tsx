@@ -9,7 +9,7 @@ import {Solution, SolutionDTO} from "models/solution/solution";
 import { Solutions } from 'organism/solutions/Solutions';
 import {AgriculturesView} from "organism/agriclulturesView/AgriculturesView";
 import {ChemicalComparison} from "organism/checmicalComparison/ChemicalComparison";
-import {Agriculture} from "models/agriculture";
+import {Agriculture, AgricultureDTO} from "models/agriculture";
 import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
 import {ChemicalUnit} from "models/chemicalUnit";
 import {isExist, notEmptyArray} from "helpers/utils";
@@ -42,18 +42,40 @@ const Calculator = () => {
         setAllSolutions(solutions)
     }, [])
 
+    const updateAgriculturesByAPI = useCallback(async () => {
+        const agricultures = await getAgriculturesAPI()
+        setAgricultures(agricultures)
+    }, [])
+
     useEffect(() => {
         getChemicalsApi()
             .then(result => setChemicals(result))
 
         updateFertilizersByServer()
+        updateAgriculturesByAPI().then()
 
         getComplexesApi()
             .then(complexes => setChemicalComplexes(complexes))
 
         _updateSolutionsByAPI().then()
 
-    }, [updateFertilizersByServer, _updateSolutionsByAPI])
+    }, [updateFertilizersByServer, _updateSolutionsByAPI, updateAgriculturesByAPI])
+
+    const getAgriculturesAPI = async (): Promise<Agriculture[]> => {
+        try {
+            const response = await API.getAuthorized<AgricultureDTO[]>(ApiURL.getAgricultures)
+            console.log('getAgriculturesAPI response', response)
+            const agricultures: AgricultureDTO[] = response.data.data
+            if (agricultures) {
+                return agricultures.map(agriculture => Agriculture.createNew(agriculture))
+            }
+
+            return []
+        } catch (err) {
+            console.error(err)
+            return []
+        }
+    }
 
     const getSolutionsAPI = async (): Promise<Solution[]> => {
         try {
