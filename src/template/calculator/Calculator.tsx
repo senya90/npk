@@ -67,7 +67,9 @@ const Calculator = () => {
             console.log('getAgriculturesAPI response', response)
             const agricultures: AgricultureDTO[] = response.data.data
             if (agricultures) {
-                return agricultures.map(agriculture => Agriculture.createNew(agriculture))
+                const agro = agricultures.map(agriculture => Agriculture.createNew(agriculture))
+                console.log('agro', agro)
+                return agro
             }
 
             return []

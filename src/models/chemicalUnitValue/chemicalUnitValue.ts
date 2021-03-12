@@ -1,12 +1,17 @@
-import { ChemicalUnit } from "../chemicalUnit";
+import { ChemicalUnit, ChemicalUnitDTO } from "../chemicalUnit";
 import { Utils } from "helpers/utils";
+
+export type ChemicalUnitValueDTO = {
+    chemicalUnit: ChemicalUnitDTO
+    value: number
+}
 
 export class ChemicalUnitValue {
     chemicalUnit: ChemicalUnit
     private _value: number
 
     constructor(chemicalUnit: ChemicalUnit, value: number) {
-        this.chemicalUnit = chemicalUnit;
+        this.chemicalUnit = ChemicalUnit.createNew(chemicalUnit);
         this._value = value;
     }
 
@@ -16,6 +21,13 @@ export class ChemicalUnitValue {
 
     set value(value: number) {
         this._value = value
+    }
+
+    static createNew(chemicalUnitValue: ChemicalUnitValue | ChemicalUnitValueDTO): ChemicalUnitValue {
+        return new ChemicalUnitValue(
+            chemicalUnitValue.chemicalUnit,
+            chemicalUnitValue.value
+        )
     }
 
     static merge = (chemicalUnits: ChemicalUnitValue[]): ChemicalUnitValue[] => {

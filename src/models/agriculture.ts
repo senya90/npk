@@ -1,7 +1,5 @@
 import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
 import { ChemicalUnitValue } from "./chemicalUnitValue/chemicalUnitValue";
-import {FertilizerDTO} from "./_types/fertilizer";
-import {FertilizerIngredient} from "./fertilizer/fertilizerIngredient";
 
 export type AgricultureDTO = {
     id: string
@@ -18,8 +16,8 @@ export class Agriculture {
 
     constructor(name = '', vegetation?: ChemicalUnitValue[], bloom?: ChemicalUnitValue[], id?: string,) {
         this.name = name;
-        this.vegetation = vegetation ? vegetation : [];
-        this.bloom = bloom ? bloom : [];
+        this.vegetation = vegetation ? vegetation.map(vegetationChemical => ChemicalUnitValue.createNew(vegetationChemical)) : [];
+        this.bloom = bloom ? bloom.map(bloomChemical => ChemicalUnitValue.createNew(bloomChemical)) : [];
         this.id = id ? id : IdGenerator.generate();
     }
 
