@@ -246,5 +246,9 @@
     "deleteFertilizer": {
         "ru": "Удалить удобрение",
         "en": "Delete fertilizer"
+    },
+    "deleteAgriculture": {
+        "ru": "Удалить агрокультуру",
+        "en": "Delete agriculture"
     }
 }
