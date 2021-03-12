@@ -17,7 +17,7 @@ import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import { FertilizerDTO } from 'models/_types/fertilizer';
 import { ChemicalComplexDTO } from 'models/_types/chemicalComplex';
-import {Dosage} from "../../models/dosage";
+import {Dosage, DosageDTO} from "../../models/dosage";
 
 
 const Calculator = () => {
@@ -111,8 +111,9 @@ const Calculator = () => {
             return savedFertilizer
         }
 
-        await _updateFertilizerApi(savedFertilizer)
+        const updatedFertilizers = await _updateFertilizerApi(savedFertilizer)
         setEditableFertilizer(undefined)
+        _updateFertilizerInSolution(updatedFertilizers)
         return savedFertilizer
     }
 
@@ -124,26 +125,66 @@ const Calculator = () => {
         return response.data.data
     }
 
-    const _updateFertilizerApi = async (updatedFertilizer: Fertilizer) => {
+    const _updateFertilizerApi = async (updatedFertilizer: Fertilizer): Promise<FertilizerDTO[]> => {
         try {
-            await API.postAuthorized(ApiURL.updateFertilizer, {fertilizer: [updatedFertilizer]})
+            const updatedFertilizers = await API.postAuthorized<FertilizerDTO[]>(ApiURL.updateFertilizer, {fertilizer: [updatedFertilizer]})
             updateFertilizersByServer()
+            return updatedFertilizers.data.data
         } catch (err) {
-
+            throw err
         }
     }
 
     const onDeleteFertilizer = async (fertilizerId: string, needUpdateSolutions = false) => {
         updateFertilizersByServer()
 
-        _removeFertilizerFromSolution(fertilizerId)
+        _removeFertilizerInSolution(fertilizerId)
 
         if (needUpdateSolutions) {
             _updateSolutionsByAPI().then()
         }
     }
 
-    const _removeFertilizerFromSolution = (fertilizerId: string) => {
+    const _updateFertilizerInSolution = (fertilizersDTO: FertilizerDTO[]) => {
+        if (solution && notEmptyArray(fertilizersDTO)) {
+            const dosagesWithUpdated: Dosage[] = []
+            const dosages = solution.dosages
+
+            for (let i = 0; i < dosages.length; i++) {
+                let include: FertilizerDTO | undefined;
+
+                for (let j = 0; j < fertilizersDTO.length; j++) {
+                    if (dosages[i].fertilizer.id === fertilizersDTO[j].id) {
+                        include = fertilizersDTO[j]
+                        break;
+                    }
+                }
+
+                if (include) {
+                    const updatedDosage: DosageDTO = {
+                        id: dosages[i].id,
+                        valueGram: dosages[i].valueGram,
+                        fertilizer: include
+                    }
+                    dosagesWithUpdated.push(Dosage.createNew(updatedDosage))
+                } else {
+                    dosagesWithUpdated.push(dosages[i])
+                }
+            }
+
+            const updatedSolution = new Solution({
+                id: solution.id,
+                name: solution.name,
+                dosages: dosagesWithUpdated,
+                orderNumber: solution.orderNumber,
+                timestamp: solution.timestamp
+            })
+
+            setSolution(updatedSolution)
+        }
+    }
+
+    const _removeFertilizerInSolution = (fertilizerId: string) => {
         if (solution) {
             const dosagesWithoutDeletedFertilizer = solution.dosages.filter(dosage => dosage.fertilizer.id !== fertilizerId)
 
