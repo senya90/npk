@@ -318,8 +318,8 @@ const Calculator = () => {
         }
     }
 
-    const onAgriculturesAdd = (addedAgricultures: Agriculture[]) => {
-        setAgricultures([...agricultures, ...addedAgricultures])
+    const onAgriculturesAdd = () => {
+        updateAgriculturesByAPI().then()
     }
 
     return (

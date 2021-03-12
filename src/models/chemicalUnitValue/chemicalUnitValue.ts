@@ -8,19 +8,11 @@ export type ChemicalUnitValueDTO = {
 
 export class ChemicalUnitValue {
     chemicalUnit: ChemicalUnit
-    private _value: number
+    value: number
 
     constructor(chemicalUnit: ChemicalUnit, value: number) {
         this.chemicalUnit = ChemicalUnit.createNew(chemicalUnit);
-        this._value = value;
-    }
-
-    get value(): number {
-        return this._value
-    }
-
-    set value(value: number) {
-        this._value = value
+        this.value = value;
     }
 
     static createNew(chemicalUnitValue: ChemicalUnitValue | ChemicalUnitValueDTO): ChemicalUnitValue {

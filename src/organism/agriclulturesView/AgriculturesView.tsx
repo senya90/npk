@@ -5,7 +5,7 @@ import {AgriculturesProps} from "./AgricultureTypes";
 
 import style from './agriculture.module.scss'
 import {AgricultureItem} from "./agricultureItem/AgricultureItem";
-import {Agriculture} from 'models/agriculture';
+import {Agriculture, AgricultureDTO} from 'models/agriculture';
 import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import {Button} from "../../atom/button/Button";
 import Modal from 'organism/modal/Modal';
@@ -14,6 +14,8 @@ import {isExist, notEmptyArray} from "helpers/utils";
 import { Gag } from 'molecule/gag/Gag';
 import { Icon } from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
+import {API} from "../../core/api";
+import {ApiURL} from "../../core/api/ApiURL";
 
 
 const AgriculturesView: FunctionComponent<AgriculturesProps> =
@@ -42,12 +44,19 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
         , [onAgriculturesUpdated]
     )
 
-    const onAgricultureAdd = useCallback(
-        (agriculture: Agriculture) => {
+    const onAgricultureAdd = useCallback(async (agriculture: Agriculture) => {
+        const response = await API.postAuthorized<AgricultureDTO[]>(ApiURL.addAgriculture, {agriculture: [agriculture]})
+
+        if (!response.data.error) {
             setIsAddNew(false)
-            onAgriculturesAdd([agriculture])
-        }, [onAgriculturesAdd]
-    )
+            const addedAgriculturesDTO = response.data.data
+
+            if (notEmptyArray(addedAgriculturesDTO)) {
+                const agricultures = addedAgriculturesDTO.map(agro => Agriculture.createNew(agro))
+                onAgriculturesAdd(agricultures)
+            }
+        }
+    }, [onAgriculturesAdd])
 
     const isActive = (agriculture: Agriculture) => {
         return agriculture.id === activeAgriculture.id

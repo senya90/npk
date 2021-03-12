@@ -22,6 +22,7 @@ export const ApiURL = {
     deleteSolution: 'solution/delete-solution',
     updateSolution: 'solution/update-solution',
 
-    getAgricultures: 'agriculture/agricultures'
+    getAgricultures: 'agriculture/agricultures',
+    addAgriculture: 'agriculture/add-agriculture'
 
 }
