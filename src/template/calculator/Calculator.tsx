@@ -17,7 +17,8 @@ import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import { FertilizerDTO } from 'models/_types/fertilizer';
 import { ChemicalComplexDTO } from 'models/_types/chemicalComplex';
-import {Dosage, DosageDTO} from "../../models/dosage";
+import {Dosage} from "../../models/dosage";
+import {ServerResponse} from "../../models/_types/serverResponse";
 
 
 const Calculator = () => {
@@ -105,34 +106,47 @@ const Calculator = () => {
     const onSaveFertilizer = async (savedFertilizer: Fertilizer): Promise<any> => {
         const found = fertilizers.find(fertilizer => fertilizer.id === savedFertilizer.id)
 
-        if (!found) {
-            await _addFertilizerApi(savedFertilizer)
-            setEditableFertilizer(undefined)
-            return savedFertilizer
-        }
+        try {
+            if (!found) {
+                _onAddFertilizer(savedFertilizer).then()
+                return
+            }
 
-        const updatedFertilizers = await _updateFertilizerApi(savedFertilizer)
-        setEditableFertilizer(undefined)
-        _updateFertilizerInSolution(updatedFertilizers)
-        return savedFertilizer
+            _onUpdatedFertilizer(savedFertilizer).then()
+        } catch (err) {
+            console.error(err)
+            throw err
+        }
     }
 
-    const _addFertilizerApi = async (newFertilizer: Fertilizer): Promise<any> => {
-        const response = await API.postAuthorized(ApiURL.addFertilizer, newFertilizer)
+    const _onAddFertilizer = async (savedFertilizer: Fertilizer) => {
+        const response = await _addFertilizerApi(savedFertilizer)
         if (!response.data.error) {
             updateFertilizersByServer()
         }
-        return response.data.data
+        setEditableFertilizer(undefined)
     }
 
-    const _updateFertilizerApi = async (updatedFertilizer: Fertilizer): Promise<FertilizerDTO[]> => {
-        try {
-            const updatedFertilizers = await API.postAuthorized<FertilizerDTO[]>(ApiURL.updateFertilizer, {fertilizer: [updatedFertilizer]})
+    const _onUpdatedFertilizer = async (savedFertilizer: Fertilizer) => {
+        const response = await _updateFertilizerApi(savedFertilizer)
+        if (!response.data.error) {
             updateFertilizersByServer()
-            return updatedFertilizers.data.data
-        } catch (err) {
-            throw err
         }
+        const updatedFertilizers: FertilizerDTO[] = response.data.data
+        setEditableFertilizer(undefined)
+
+        if (solution && notEmptyArray(updatedFertilizers)) {
+            const updatedSolution: Solution = solution.updateFertilizers(updatedFertilizers)
+            setSolution(updatedSolution)
+        }
+    }
+
+    const _addFertilizerApi = async (newFertilizer: Fertilizer): Promise<ServerResponse<FertilizerDTO[]>> => {
+        return await API.postAuthorized<FertilizerDTO[]>(ApiURL.addFertilizer, newFertilizer)
+    }
+
+    const _updateFertilizerApi = async (updatedFertilizer: Fertilizer): Promise<ServerResponse<FertilizerDTO[]>> => {
+        return await API.postAuthorized<FertilizerDTO[]>(ApiURL.updateFertilizer, {fertilizer: [updatedFertilizer]})
     }
 
     const onDeleteFertilizer = async (fertilizerId: string, needUpdateSolutions = false) => {
@@ -147,46 +161,6 @@ const Calculator = () => {
             _updateSolutionsByAPI().then()
         }
     }
-
-    const _updateFertilizerInSolution = (fertilizersDTO: FertilizerDTO[]) => {
-        if (solution && notEmptyArray(fertilizersDTO)) {
-            const dosagesWithUpdated: Dosage[] = []
-            const dosages = solution.dosages
-
-            for (let i = 0; i < dosages.length; i++) {
-                let include: FertilizerDTO | undefined;
-
-                for (let j = 0; j < fertilizersDTO.length; j++) {
-                    if (dosages[i].fertilizer.id === fertilizersDTO[j].id) {
-                        include = fertilizersDTO[j]
-                        break;
-                    }
-                }
-
-                if (include) {
-                    const updatedDosage: DosageDTO = {
-                        id: dosages[i].id,
-                        valueGram: dosages[i].valueGram,
-                        fertilizer: include
-                    }
-                    dosagesWithUpdated.push(Dosage.createNew(updatedDosage))
-                } else {
-                    dosagesWithUpdated.push(dosages[i])
-                }
-            }
-
-            const updatedSolution = new Solution({
-                id: solution.id,
-                name: solution.name,
-                dosages: dosagesWithUpdated,
-                orderNumber: solution.orderNumber,
-                timestamp: solution.timestamp
-            })
-
-            setSolution(updatedSolution)
-        }
-    }
-
 
     const onEditFertilizer = (fertilizerId: string | undefined) => {
         if (!fertilizerId) {

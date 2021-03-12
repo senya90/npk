@@ -1,4 +1,4 @@
-import {Dosage} from "../dosage";
+import {Dosage, DosageDTO} from "../dosage";
 import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
 import { Fertilizer } from "../fertilizer/fertilizer";
 import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
@@ -103,6 +103,41 @@ export class Solution {
             id: this.id,
             name: this.name,
             dosages: dosagesWithoutDeletedFertilizer,
+            orderNumber: this.orderNumber,
+            timestamp: this.timestamp
+        })
+    }
+
+    updateFertilizers(updatedFertilizers: FertilizerDTO[]): Solution {
+        const dosagesWithUpdated: Dosage[] = []
+        const dosages = this.dosages
+
+        for (let i = 0; i < dosages.length; i++) {
+            let include: FertilizerDTO | undefined;
+
+            for (let j = 0; j < updatedFertilizers.length; j++) {
+                if (dosages[i].fertilizer.id === updatedFertilizers[j].id) {
+                    include = updatedFertilizers[j]
+                    break;
+                }
+            }
+
+            if (include) {
+                const updatedDosage: DosageDTO = {
+                    id: dosages[i].id,
+                    valueGram: dosages[i].valueGram,
+                    fertilizer: include
+                }
+                dosagesWithUpdated.push(Dosage.createNew(updatedDosage))
+            } else {
+                dosagesWithUpdated.push(dosages[i])
+            }
+        }
+
+        return new Solution({
+            id: this.id,
+            name: this.name,
+            dosages: dosagesWithUpdated,
             orderNumber: this.orderNumber,
             timestamp: this.timestamp
         })
