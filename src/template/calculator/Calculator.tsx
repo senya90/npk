@@ -309,8 +309,15 @@ const Calculator = () => {
         updateAgriculturesByAPI().then()
     }
 
-    const onDeleteAgricultures = () => {
+    const onDeleteAgricultures = (deletedAgriculturesIds: string[]) => {
         updateAgriculturesByAPI().then()
+
+        if (activeAgriculture) {
+            const needToClear = deletedAgriculturesIds.find(agricultureId => agricultureId === activeAgriculture.id)
+            if (needToClear) {
+                setActiveAgriculture(new Agriculture())
+            }
+        }
     }
 
     return (
