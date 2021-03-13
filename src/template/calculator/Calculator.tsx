@@ -295,8 +295,14 @@ const Calculator = () => {
     }
 
     const onUpdateAgricultures = (updatedAgricultures: Agriculture[]) => {
-        console.log('onUpdateAgricultures updatedAgricultures', updatedAgricultures)
         updateAgriculturesByAPI().then()
+
+        if (activeAgriculture) {
+            const agricultureForUpdate = updatedAgricultures.find(agriculture => agriculture.id === activeAgriculture.id)
+            if (agricultureForUpdate) {
+                setActiveAgriculture(agricultureForUpdate)
+            }
+        }
     }
 
     const onAgriculturesAdd = () => {
