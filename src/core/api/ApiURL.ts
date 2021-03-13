@@ -24,6 +24,7 @@ export const ApiURL = {
 
     getAgricultures: 'agriculture/agricultures',
     addAgriculture: 'agriculture/add-agriculture',
-    deleteAgriculture: 'agriculture/delete-agriculture'
+    deleteAgriculture: 'agriculture/delete-agriculture',
+    updateAgriculture: 'agriculture/update-agriculture',
 
 }

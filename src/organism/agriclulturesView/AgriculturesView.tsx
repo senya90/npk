@@ -23,11 +23,10 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
     ({
          agricultures,
          activeAgriculture,
-         onAgriculturesUpdated,
          onAgriculturesAdd,
          chemicals
     }) => {
-    const {onDeleteAgricultures} = useContext(CalculatorContext)
+    const {onDeleteAgricultures, onUpdateAgricultures} = useContext(CalculatorContext)
     const [isAddNew, setIsAddNew] = useState(false)
     const [editableAgriculture, setEditableAgriculture] = useState<Agriculture | undefined>(undefined)
 
@@ -45,12 +44,17 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
 
     }, [onDeleteAgricultures])
 
-    const onAgricultureChanged = useCallback((agriculture: Agriculture) => {
-        console.log('onAgricultureChanged', agriculture)
+    const onAgricultureChanged = useCallback(async (agriculture: Agriculture) => {
+        const response = await API.postAuthorized<AgricultureDTO[]>(ApiURL.updateAgriculture, {agriculture: [agriculture]})
 
-        // setEditableAgriculture(undefined)
-        // onAgriculturesUpdated([agriculture])
-    }, [onAgriculturesUpdated])
+        if (!response.data.error) {
+            const updatedAgricultures = response.data.data
+            const agricultures = updatedAgricultures.map(updated => Agriculture.createNew(updated))
+            onUpdateAgricultures(agricultures)
+            setEditableAgriculture(undefined)
+        }
+
+    }, [onUpdateAgricultures])
 
     const onAgricultureAdd = useCallback(async (agriculture: Agriculture) => {
         const response = await API.postAuthorized<AgricultureDTO[]>(ApiURL.addAgriculture, {agriculture: [agriculture]})

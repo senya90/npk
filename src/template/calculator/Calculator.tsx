@@ -294,25 +294,9 @@ const Calculator = () => {
         setActiveAgriculture(agriculture)
     }
 
-    const onAgriculturesUpdated = (updatedAgricultures: Agriculture[]) => {
-        const withUpdated = agricultures.map(agriculture => {
-            let agricultureForUpdatedList = agriculture
-
-            for (let i = 0; i < updatedAgricultures.length; i++) {
-                if (updatedAgricultures[i].id === agriculture.id) {
-                    agricultureForUpdatedList = updatedAgricultures[i]
-                    break
-                }
-            }
-            return agricultureForUpdatedList
-        })
-
-        setAgricultures(withUpdated)
-        
-        const newUpdatedAgriculture = updatedAgricultures.find(agriculture => agriculture.id === activeAgriculture.id)
-        if (newUpdatedAgriculture) {
-            setActiveAgriculture(newUpdatedAgriculture)
-        }
+    const onUpdateAgricultures = (updatedAgricultures: Agriculture[]) => {
+        console.log('onUpdateAgricultures updatedAgricultures', updatedAgricultures)
+        updateAgriculturesByAPI().then()
     }
 
     const onAgriculturesAdd = () => {
@@ -344,7 +328,7 @@ const Calculator = () => {
                 onEditSolution,
 
                 onAgricultureSelect: onSelectAgriculture,
-                onAgriculturesUpdated: onAgriculturesUpdated,
+                onUpdateAgricultures: onUpdateAgricultures,
                 onDeleteAgricultures: onDeleteAgricultures
             }}
             >
@@ -367,7 +351,6 @@ const Calculator = () => {
                         chemicals={chemicals}
                         agricultures={agricultures}
                         activeAgriculture={activeAgriculture}
-                        onAgriculturesUpdated={onAgriculturesUpdated}
                         onAgriculturesAdd={onAgriculturesAdd}
                     />
                 </div>
