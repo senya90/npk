@@ -30,17 +30,27 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     }
 
     const renderChemicalComposition = () => {
-        return props.chemicals.map(chemical => {
-            return (
-                <ChemicalComparisonView
-                    key={chemical.id}
-                    chemical={chemical}
-                    mixed={getChemicalFromMix(chemical)}
-                    vegetation={getVegetationValueFromAgriculture(chemical)}
-                    bloom={getBloomValueFromAgriculture(chemical)}
-                />
-            )
-        })
+        return props.chemicals
+            .map(chemical => {
+                const mixed = getChemicalFromMix(chemical)
+                const vegetation = getVegetationValueFromAgriculture(chemical)
+                const bloom = getBloomValueFromAgriculture(chemical)
+
+                if (mixed || vegetation || bloom) {
+                    return (
+                        <ChemicalComparisonView
+                            key={chemical.id}
+                            chemical={chemical}
+                            mixed={mixed}
+                            vegetation={vegetation}
+                            bloom={bloom}
+                        />
+                    )
+                }
+
+                return undefined
+            })
+            .filter(domElement => domElement)
     }
 
     const getVegetationValueFromAgriculture = (chemical: ChemicalUnit): number => {
