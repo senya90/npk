@@ -27,6 +27,7 @@
 }
 
 .main {
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,6 +39,7 @@
 .name {
     display: inline-block;
     padding-left: 10px;
+    padding-right: 10px;
     flex: 1 1 0;
 }
 
