@@ -8,6 +8,13 @@ import {TableCell} from "../table/tableCell/TableCell";
 import {ChemicalComparisonView} from 'molecule/chemicalComparisonView/ChemicalComparisonView';
 import {ChemicalUnitValue} from "../../models/chemicalUnitValue/chemicalUnitValue";
 import { ChemicalUnit } from 'models/chemicalUnit';
+import { notEmptyArray } from 'helpers/utils';
+import {Icon} from "../../atom/icon/Icon";
+import {ICON_TYPE} from "../../atom/icon/IconTypes";
+import {Gag} from "../../molecule/gag/Gag";
+
+import style from './chemicalConparison.module.scss'
+import {colors} from "../../helpers/commonStyle/colors";
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
 
@@ -74,23 +81,41 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
         }
         return 0
     }
-    
+
+    const renderedRows = renderChemicalComposition()
+
     return (
         <div>
             <Title border>{translate('tableSolutions')}</Title>
-            <Table full>
-                <thead>
+            {renderedRows && notEmptyArray(renderedRows) ?
+                <Table full>
+                    <thead>
                     <TableRaw>
                         <TableCell header>{translate('element')}</TableCell>
                         <TableCell header>{translate('mixed')}</TableCell>
                         <TableCell header>{translate('vegetation')}</TableCell>
                         <TableCell header>{translate('bloom')}</TableCell>
                     </TableRaw>
-                </thead>
-                <tbody>
-                    {renderChemicalComposition()}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                    {renderedRows}
+                    </tbody>
+                </Table>
+                :
+                <div className={style.emptyWrapper}>
+                    <Gag
+                        icon={
+                            <Icon
+                                type={ICON_TYPE.Table}
+                                size={70}
+                                className={`${colors.gag}`}
+                            />
+                        }
+                    >
+                        {translate('chooseAgriculture')}
+                    </Gag>
+                </div>
+            }
         </div>
     );
 };

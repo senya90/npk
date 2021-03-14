@@ -13,6 +13,7 @@ import {
     CloseOutlined,
     CaretRightOutlined,
     DoubleRightOutlined,
+    TableOutlined
 } from '@ant-design/icons';
 import { CustomIcon } from 'atom/customIcon/CustomIcon';
 
@@ -50,6 +51,9 @@ export function IconsProvider(iconType: ICON_TYPE, size = 30, color = '#000000')
 
         case (ICON_TYPE.DoubleRightOutlined):
             return <DoubleRightOutlined />
+
+        case (ICON_TYPE.Table):
+            return <TableOutlined />
 
         case (ICON_TYPE.Fertilizer):
             return <CustomIcon iconType={ICON_TYPE.Fertilizer} size={size} color={color}/>

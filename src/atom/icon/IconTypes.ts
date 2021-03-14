@@ -24,6 +24,7 @@ export class ICON_TYPE {
     static readonly DoubleRightOutlined = 'DoubleRightOutlined'
 
     static readonly Cross = 'CloseOutlined'
+    static readonly Table = 'TableOutlined'
 
 
     // CUSTOM ICONS

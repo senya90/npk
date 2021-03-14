@@ -250,5 +250,9 @@
     "deleteAgriculture": {
         "ru": "Удалить агрокультуру",
         "en": "Delete agriculture"
+    },
+    "chooseAgriculture": {
+        "ru": "Выберите агрокультуру или добавьте удобрение в раствор",
+        "en": "Choose an agriculture or add fertilizers to the solution"
     }
 }
