@@ -2,7 +2,6 @@ import React from "react";
 import {ChemicalAggregate} from "../../models/chemicalAggregate";
 import {ChemicalAtom} from "../../models/chemicalAtom";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
-import {FertilizersUsingComplexes} from "../../models/_types/fertilizer";
 
 export type ElementConstructorContextType = {
     onChangeAggregationMultiplier: (updatedAggregation: ChemicalAggregate, multiplier: number) => void

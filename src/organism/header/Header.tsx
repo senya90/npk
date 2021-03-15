@@ -1,5 +1,4 @@
 import React, {useContext} from 'react';
-import cn from 'classnames'
 import {NavLink} from 'react-router-dom';
 
 import {translate} from "helpers/translate/translate";

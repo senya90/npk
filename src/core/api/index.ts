@@ -37,12 +37,12 @@ export const API: IAPI = {
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
         return this.get<T>(apiURL, apiParams, {...headers, ...authHeader})
     },
-    postAuthorized: async function <T>(apiURL: string, apiParams?: any, headers?: any) {
+    postAuthorized: async function (apiURL: string, apiParams?: any, headers?: any) {
         let accessToken = await this.userService.getAccessTokenUpdateIfNeed()
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
         return this.post(apiURL, apiParams, {...headers, ...authHeader})
     },
-    post: function <T>(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+    post: function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         return request.post(apiURL, apiParams, headers)
             .then(response => {
                 if (response.data.error) {
@@ -62,7 +62,7 @@ export const API: IAPI = {
             })
     },
 
-    deleteAuthorized: async function <T>(apiURL: string, apiParams?: any, headers?: any): Promise<any> {
+    deleteAuthorized: async function (apiURL: string, apiParams?: any, headers?: any): Promise<any> {
         let accessToken = await this.userService.getAccessTokenUpdateIfNeed()
         const authHeader = {'Authorization': `Bearer ${accessToken}`}
 
