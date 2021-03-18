@@ -1,4 +1,4 @@
-import {Utils} from '../utils'
+import {isArray, isExist, notEmptyArray, Utils} from '../utils'
 
 describe('Utils', () => {
 
@@ -43,6 +43,125 @@ describe('Utils', () => {
             expect(Utils.objectToArray(testObj)).toEqual([])
         })
 
+    })
+
+    describe('isExist', () => {
+
+        it('for undefined, null', () => {
+            expect(isExist(undefined)).toBe(false)
+            expect(isExist(null)).toBe(false)
+        })
+
+        it('for string, number, boolean', () => {
+            expect(isExist('text')).toBe(true)
+            expect(isExist(5)).toBe(true)
+            expect(isExist(false)).toBe(true)
+        })
+
+        it('for object', () => {
+            const testObj = {
+                field: 'text'
+            }
+            expect(isExist(testObj)).toBe(true)
+        })
+
+        it('for empty object', () => {
+            const testObj = {}
+            expect(isExist(testObj)).toBe(true)
+        })
+
+        it('for array', () => {
+            const arr = [1, 2, 3]
+            expect(isExist(arr)).toBe(true)
+        })
+
+        it('for empty array', () => {
+            const arr: any[] = []
+            expect(isExist(arr)).toBe(true)
+        })
+
+        it('for function', () => {
+            const test1 = function () {}
+            const test2 = () => {}
+
+            expect(isExist(test1)).toBe(true)
+            expect(isExist(test2)).toBe(true)
+        })
+
+    })
+
+    describe('isArray', () => {
+
+        it('for undefined, null', () => {
+            expect(isArray(undefined)).toBe(false)
+            expect(isArray(null)).toBe(false)
+        })
+
+        it('for number, string, boolean', () => {
+            expect(isArray(1)).toBe(false)
+            expect(isArray('str')).toBe(false)
+            expect(isArray(true)).toBe(false)
+        })
+
+        it('for object, empty object', () => {
+            const test = {
+                field: 'test'
+            }
+
+            expect(isArray(test)).toBe(false)
+            expect(isArray({})).toBe(false)
+        })
+
+        it('for function', () => {
+            const test = function () {}
+            expect(isArray(test)).toBe(false)
+        })
+
+        it('for array', () => {
+            expect(isArray([1, 2])).toBe(true)
+        })
+
+        it('for empty array', () => {
+            expect(isArray([])).toBe(true)
+        })
+
+    })
+
+    describe('notEmptyArray', () => {
+
+        it('empty array', () => {
+            expect(notEmptyArray([])).toBe(false)
+        })
+
+        it('array', () => {
+            expect(
+                notEmptyArray([1, 2, 'true', false, {}])
+            ).toBe(true)
+        })
+
+        it('array of functions', () => {
+            const functions = [
+                function() {},
+                function (a: string) {return a},
+                () => {},
+                (a: number, b: string) => {return a + b},
+            ]
+            expect(
+                notEmptyArray(functions)
+            ).toBe(true)
+        })
+
+        it('undefined, null', () => {
+            expect(notEmptyArray(undefined)).toBe(false)
+            expect(notEmptyArray(null)).toBe(false)
+        })
+
+        it('string, number, boolean, object', () => {
+            expect(notEmptyArray('text')).toBe(false)
+            expect(notEmptyArray(1)).toBe(false)
+            expect(notEmptyArray(true)).toBe(false)
+            expect(notEmptyArray({})).toBe(false)
+        })
 
     })
 
