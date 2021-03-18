@@ -5,24 +5,34 @@ import { ButtonProps } from './ButtonTypes';
 
 import style from './button.module.scss'
 
-const Button: FunctionComponent<ButtonProps> = (props) => {
+const Button: FunctionComponent<ButtonProps> = ({
+    className,
+    children,
+    htmlType,
+    size,
+    danger,
+    shape,
+    disabled,
+    type,
+    onClick = (e) => {}
+}) => {
 
     const styles = cn(
-        {[style[`size_${props.size}`]]: props.size},
-        props.className
+        {[style[`size_${size}`]]: size},
+        className
     )
 
     return (
         <ButtonAnt
-            type={props.type}
-            htmlType={props.htmlType}
+            type={type}
+            htmlType={htmlType}
             className={styles}
-            disabled={props.disabled}
-            shape={props.shape}
-            danger={props.danger}
-            onClick={props.onClick}
+            disabled={disabled}
+            shape={shape}
+            danger={danger}
+            onClick={onClick}
         >
-            {props.children}
+            {children}
         </ButtonAnt>
     );
 };
