@@ -3,7 +3,7 @@ import React, {FunctionComponent, useCallback, useContext, useState} from 'react
 import {BUTTON_TYPE} from "atom/button/ButtonTypes";
 import {Button} from "atom/button/Button";
 import {translate} from "helpers/translate/translate";
-import Title from 'atom/title/Title';
+import {Title} from 'atom/title/Title';
 import {FertilizersProps} from "./FertilizersTypes";
 import {FertilizerView} from "../fertilizerView/FertilizerView";
 import Modal from 'organism/modal/Modal';

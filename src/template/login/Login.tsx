@@ -2,7 +2,7 @@ import React, {FC, useContext, useState} from 'react';
 import {connect} from 'react-redux';
 import qs from 'qs'
 
-import Title from 'atom/title/Title';
+import {Title} from 'atom/title/Title';
 import {translate} from "helpers/translate/translate";
 import {Input} from "atom/input/Input";
 import {isExist, notEmptyString} from "helpers/utils";

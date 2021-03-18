@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import {translate} from "helpers/translate/translate";
-import Title from "atom/title/Title";
+import {Title} from "atom/title/Title";
 import style from "./registration.module.scss";
 import {Input} from "atom/input/Input";
 import {Button} from "atom/button/Button";

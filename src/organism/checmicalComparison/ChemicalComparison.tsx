@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import Title from 'atom/title/Title';
+import {Title} from 'atom/title/Title';
 import {translate} from "../../helpers/translate/translate";
 import {ChemicalComparisonProps} from "./ChemicalComparisonTypes";
 import { Table } from 'organism/table/Table';

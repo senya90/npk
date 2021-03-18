@@ -35,4 +35,4 @@ const Title: FunctionComponent<TitleProps> = ({
     );
 };
 
-export default Title;
+export {Title}

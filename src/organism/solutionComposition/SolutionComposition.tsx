@@ -1,7 +1,7 @@
 import React, {FC, useContext} from 'react';
 import {SolutionCompositionProps} from "./SolutionCompositionTypes";
 import {translate} from "../../helpers/translate/translate";
-import Title from "../../atom/title/Title";
+import {Title} from "../../atom/title/Title";
 import DosageView from "../dosageView/DosageView";
 import {CalculatorContext, CalculatorContextType} from "../../helpers/contexts/CalculatorContext";
 import {Fertilizer} from "../../models/fertilizer/fertilizer";
