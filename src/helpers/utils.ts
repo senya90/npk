@@ -9,6 +9,10 @@ export class Utils {
             return []
         }
 
+        if (typeof object === "number" || typeof object === "string" || typeof object === "boolean") {
+            return [object]
+        }
+
         const arr = []
         for (let key in object) {
             if (object.hasOwnProperty(key)) {
