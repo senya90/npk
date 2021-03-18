@@ -60,3 +60,11 @@ export const fertilizersMock: Fertilizer[] = [
         '5de1961a-da62-4754-bef8-900c88d9668f'
     )
 ]
+
+export const fertilizersStubs = {
+    MgSO4_11_22: fertilizersMock[6],
+    Mg_11__MgSO4_3_2__MgSO47H2O_4_6: fertilizersMock[2],
+    P_10__K_3_2: fertilizersMock[1],
+    Mg_1_2__Ca_0_5__N_0_3: fertilizersMock[3],
+    Fe_10: fertilizersMock[4]
+}

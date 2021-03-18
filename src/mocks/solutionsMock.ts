@@ -2,7 +2,7 @@ import {Solution, SolutionDTO} from "../models/solution/solution";
 import { FertilizerIngredient } from "models/fertilizer/fertilizerIngredient";
 import { chemicalComplexMock } from "./chemicalComplexMock";
 import { Dosage } from "models/dosage";
-import { fertilizersMock } from "./fertilizersMock";
+import { fertilizersMock, fertilizersStubs } from "./fertilizersMock";
 import { Fertilizer } from "models/fertilizer/fertilizer";
 
 export const solutionsMock: Solution[] = [
@@ -51,11 +51,11 @@ export const solutionsMock: Solution[] = [
         {
             name: 'Тестовый раствор',
             dosages: [
-                new Dosage(fertilizersMock[6], 2.75),
-                new Dosage(fertilizersMock[2], 5),
-                new Dosage(fertilizersMock[1], 6.3),
-                new Dosage(fertilizersMock[3], 0.2),
-                new Dosage(fertilizersMock[4], 0.02),
+                new Dosage(fertilizersStubs.MgSO4_11_22, 2.75),
+                new Dosage(fertilizersStubs.Mg_11__MgSO4_3_2__MgSO47H2O_4_6, 5),
+                new Dosage(fertilizersStubs.P_10__K_3_2, 6.3),
+                new Dosage(fertilizersStubs.Mg_1_2__Ca_0_5__N_0_3, 0.2),
+                new Dosage(fertilizersStubs.Fe_10, 0.02),
             ],
             id: '8fe969b4-dfd7-4582-a715-3c2e31d0aac7'
 

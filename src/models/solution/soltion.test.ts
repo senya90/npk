@@ -7,7 +7,6 @@ describe('Solution', () => {
 
     describe('toChemical', () => {
 
-
         it('is array', () => {
             const solution = new Solution()
             const result = solution.toChemicals()
@@ -16,21 +15,21 @@ describe('Solution', () => {
         })
 
         it('MgSO4', () => {
-            const solution = solutionsMock[3]
-            const result = solution.toChemicals().map(chemical => chemical.value)
-
-            expect(result).toEqual([
-                new ChemicalUnitValue(chemicalUnitsMock.Mg, 62),
-                new ChemicalUnitValue(chemicalUnitsMock.S, 82),
-                new ChemicalUnitValue(chemicalUnitsMock.O, 164),
-
-            ].map(chemical => chemical.value))
-        })
-
-        it('MgSO4, MgSO4*7H2O, PK, MgCaN, Fe', () => {
             const solution = solutionsMock[2]
             const result = solution.toChemicals().map(chemical => chemical.value)
 
+            const expectedValues = [
+                new ChemicalUnitValue(chemicalUnitsMock.Mg, 62),
+                new ChemicalUnitValue(chemicalUnitsMock.S, 82),
+                new ChemicalUnitValue(chemicalUnitsMock.O, 164),
+            ].map(chemical => chemical.value)
+
+            expect(result).toEqual(expectedValues)
+        })
+
+        it('MgSO4, MgSO4*7H2O, PK, MgCaN, Fe', () => {
+            const solution = solutionsMock[1]
+            const result = solution.toChemicals().map(chemical => chemical.value)
 
             expect(result).toEqual([
                 new ChemicalUnitValue(chemicalUnitsMock.Mg, 670),
