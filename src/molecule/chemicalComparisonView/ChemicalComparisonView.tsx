@@ -24,12 +24,12 @@ const ChemicalComparisonView: FunctionComponent<ChemicalComparisonViewProps> = (
     }
 
     return (
-            <TableRaw>
-                <TableCell>{props.chemical.name}</TableCell>
-                <TableCell className={getFadeStyle(mixed)}>{mixed}</TableCell>
-                <TableCell className={getFadeStyle(vegetation)}>{vegetation}</TableCell>
-                <TableCell className={getFadeStyle(bloom)}>{bloom}</TableCell>
-            </TableRaw>
+        <TableRaw>
+            <TableCell>{props.chemical.name}</TableCell>
+            <TableCell className={getFadeStyle(mixed)}>{mixed}</TableCell>
+            <TableCell className={getFadeStyle(vegetation)}>{vegetation}</TableCell>
+            <TableCell className={getFadeStyle(bloom)}>{bloom}</TableCell>
+        </TableRaw>
     );
 };
 

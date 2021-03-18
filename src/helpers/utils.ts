@@ -1,6 +1,7 @@
 export class Utils {
     static round = (value: number, to = 4): number => {
-        return Number(Number(value).toFixed(to))
+        const repairedFloatValue = Number(value) + 1 - 1;
+        return Number(repairedFloatValue.toFixed(to))
     }
 
     static objectToArray = (object: any): any[] => {
