@@ -11,6 +11,8 @@
         "@testing-library/user-event": "7.2.1",
         "@types/axios": "0.14.0",
         "@types/classnames": "2.2.11",
+        "@types/enzyme": "^3.10.8",
+        "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "24.9.1",
         "@types/jsonwebtoken": "8.5.0",
         "@types/node": "12.12.54",
@@ -55,5 +57,9 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://localhost:12312"
+    "proxy": "http://localhost:12312",
+    "devDependencies": {
+        "enzyme": "^3.11.0",
+        "enzyme-adapter-react-16": "^1.15.6"
+    }
 }
