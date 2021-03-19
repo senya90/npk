@@ -1,5 +1,5 @@
 import React from "react";
-import {ChemicalAggregate} from "../../models/chemicalAggregate";
+import {ChemicalAggregate} from "../../models/chemicalAggregate/chemicalAggregate";
 import {ChemicalAtom} from "../../models/chemicalAtom";
 import {ChemicalComplex} from "../../models/chemicalComplex/chemicalComplex";
 

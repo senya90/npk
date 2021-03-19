@@ -1,4 +1,4 @@
-import {ChemicalAggregate} from "../chemicalAggregate";
+import {ChemicalAggregate} from "../chemicalAggregate/chemicalAggregate";
 import { FertilizersUsingComplexes } from "./fertilizer";
 
 export type ChemicalComplexDTO = {

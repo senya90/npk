@@ -1,7 +1,7 @@
 import { ChemicalComplex } from "models/chemicalComplex/chemicalComplex";
 import { chemicalUnitsMock } from "./chemicalMock";
 import { ChemicalAtom } from "models/chemicalAtom";
-import { ChemicalAggregate } from "../models/chemicalAggregate";
+import { ChemicalAggregate } from "../models/chemicalAggregate/chemicalAggregate";
 import { Utils } from "helpers/utils";
 
 export const chemicalComplexMock = {

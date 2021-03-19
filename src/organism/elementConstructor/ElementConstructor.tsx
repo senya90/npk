@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useState, FC} from 'react';
 import { Button } from 'atom/button/Button';
 import { translate } from 'helpers/translate/translate';
 import {BUTTON_TYPE} from 'atom/button/ButtonTypes';
-import {ChemicalAggregate} from "../../models/chemicalAggregate";
+import {ChemicalAggregate} from "../../models/chemicalAggregate/chemicalAggregate";
 import {AggregationConstructor} from "./aggregationConstructor/AggregationConstructor";
 
 import style from './elementConstructor.module.scss'

@@ -1,5 +1,6 @@
-import {ChemicalAtom} from "./chemicalAtom";
-import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
+import {ChemicalAtom} from "../chemicalAtom";
+import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
+import {notEmptyArray, isEmptyArray} from "../../helpers/utils";
 
 export class ChemicalAggregate {
     id: string
@@ -23,13 +24,18 @@ export class ChemicalAggregate {
         return atoms.map(atom => new ChemicalAtom(atom.chemicalUnit, atom.atomsCount, atom.id))
     }
 
-    static allToString = (aggregations: ChemicalAggregate[], separator = '*') => {
+    static allToString = (aggregations: ChemicalAggregate[], separator = '*'): string => {
         return aggregations
             .map(aggregation => aggregation.toString())
+            .filter(result => result)
             .join(` ${separator} `)
     }
 
     toString = (): string => {
+        if (isEmptyArray(this.atoms)) {
+            return ''
+        }
+
         const atomsString = this._atomsToString()
 
         let multiplierString = String(this.multiplier)

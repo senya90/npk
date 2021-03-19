@@ -1,6 +1,6 @@
 import React, {FC, useContext} from 'react';
 
-import {ChemicalAggregate} from "models/chemicalAggregate";
+import {ChemicalAggregate} from "models/chemicalAggregate/chemicalAggregate";
 import { Input } from 'atom/input/Input';
 import {AtomConstructor} from "../atomConstructor/AtomConstructor";
 import { Button } from 'atom/button/Button';

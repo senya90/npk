@@ -1,5 +1,5 @@
 import { IdGenerator } from "../../helpers/idGenerator/IdGenerator";
-import { ChemicalAggregate } from "../chemicalAggregate";
+import { ChemicalAggregate } from "../chemicalAggregate/chemicalAggregate";
 import { ChemicalAtom } from "../chemicalAtom";
 import { ChemicalAtomProportion } from "../chemicalAtomProportion";
 import {isExist, Utils} from "helpers/utils";
