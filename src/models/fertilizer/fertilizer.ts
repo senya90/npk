@@ -10,9 +10,9 @@ export class Fertilizer {
     orderNumber: number | null
     timestamp: number
 
-    constructor(name = '', ingredients?: FertilizerIngredient[], id?: string, timestamp?: number, orderNumber?: number | null) {
+    constructor(name = '', ingredients: FertilizerIngredient[] = [], id?: string, timestamp?: number, orderNumber?: number | null) {
         this.name = name
-        this.ingredients = ingredients ? ingredients : [];
+        this.ingredients = ingredients;
         this.id = id ? id : IdGenerator.generate();
         this.timestamp = timestamp || Utils.getNowTimeSeconds()
         this.orderNumber = orderNumber || null
