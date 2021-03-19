@@ -11,9 +11,9 @@ export class ChemicalComplex {
     id: string
     userId?: string
 
-    constructor(name: string, chemicalAggregates?: ChemicalAggregate[], id?: string, userId?: string) {
+    constructor(name: string, chemicalAggregates: ChemicalAggregate[] = [], id?: string, userId?: string) {
         this.name = name;
-        this.chemicalAggregates = chemicalAggregates ? this._aggregatesFactory(chemicalAggregates)  : []
+        this.chemicalAggregates = this._aggregatesFactory(chemicalAggregates)
         this.id = id ? id : IdGenerator.generate();
         this.userId = userId
     }
@@ -75,7 +75,7 @@ export class ChemicalComplex {
         })
     }
 
-    private _calculateAtomProportion = (aggregate: ChemicalAggregate,aggregateMolarMass: number, atom: ChemicalAtom): number => {
+    private _calculateAtomProportion = (aggregate: ChemicalAggregate, aggregateMolarMass: number, atom: ChemicalAtom): number => {
         if (aggregateMolarMass === 0) {
             return 0
         }
