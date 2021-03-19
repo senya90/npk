@@ -1,4 +1,4 @@
-import {isArray, isExist, notEmptyArray, Utils} from '../utils'
+import {isArray, isExist, notEmptyArray, notEmptyString, Utils} from '../utils'
 
 describe('Utils', () => {
 
@@ -161,6 +161,35 @@ describe('Utils', () => {
             expect(notEmptyArray(1)).toBe(false)
             expect(notEmptyArray(true)).toBe(false)
             expect(notEmptyArray({})).toBe(false)
+        })
+
+    })
+
+    describe('notEmptyString', () => {
+
+        it('string', () => {
+            expect(notEmptyString('some string')).toBe(true)
+        })
+
+        it('empty string', () => {
+            expect(notEmptyString('')).toBe(false)
+        })
+
+        it('array', () => {
+            expect(notEmptyString(['some', 'test', 'text'])).toBe(false)
+        })
+
+        it('empty array', () => {
+            expect(notEmptyString([])).toBe(false)
+        })
+
+        it('number, boolean, undefined, null, object, empty object', () => {
+            expect(notEmptyString(1)).toBe(false)
+            expect(notEmptyString(true)).toBe(false)
+            expect(notEmptyString(undefined)).toBe(false)
+            expect(notEmptyString(null)).toBe(false)
+            expect(notEmptyString({field: 'test'})).toBe(false)
+            expect(notEmptyString({})).toBe(false)
         })
 
     })
