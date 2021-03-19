@@ -1,7 +1,6 @@
-import { ChemicalUnitValue } from "./chemicalUnitValue"
-import { chemicalComplexMock } from "mocks/chemicalComplexMock"
-import { ChemicalUnit } from "models/chemicalUnit"
+import {ChemicalUnitValue, ChemicalUnitValueDTO} from "./chemicalUnitValue"
 import { chemicalUnitsMock } from "mocks/chemicalMock"
+import {ChemicalUnitDTO} from "../chemicalUnit";
 
 describe('Chemical unit value', () => {
     const mg1 = new ChemicalUnitValue(chemicalUnitsMock.Mg, 12)
@@ -13,6 +12,26 @@ describe('Chemical unit value', () => {
     const n1 = new ChemicalUnitValue(chemicalUnitsMock.N, 33)
     const n2 = new ChemicalUnitValue(chemicalUnitsMock.N, 12.12)
     const p = new ChemicalUnitValue(chemicalUnitsMock.P, 50)
+
+    describe('static createNew()', () => {
+
+        it('from DTO', () => {
+            const chemical: ChemicalUnitDTO = {
+                id: '134544456',
+                molar: 12,
+                name: 'test'
+            }
+            const chemicalUnitValueDTO: ChemicalUnitValueDTO = {
+                chemicalUnit: chemical,
+                value: 10
+            }
+
+            const result = ChemicalUnitValue.createNew(chemicalUnitValueDTO)
+
+            expect(result instanceof ChemicalUnitValue).toBe(true)
+        })
+
+    })
 
     describe('static merge()', () => {
 
