@@ -4,6 +4,7 @@ import { ChemicalUnitValue } from "models/chemicalUnitValue/chemicalUnitValue"
 import { chemicalUnitsMock } from "mocks/chemicalMock"
 import {fertilizersStubs} from "../../mocks/fertilizersMock";
 import { Fertilizer } from "models/fertilizer/fertilizer";
+import {Dosage} from "../dosage";
 
 describe('Solution class', () => {
 
@@ -139,6 +140,67 @@ describe('Solution class', () => {
 
             const remainingFertilizersIds: string[] = newSolution.dosages.map(dosage => dosage.fertilizer.id)
             expect(remainingFertilizersIds).toEqual([fertilizersStubs.Fe_10.id])
+        })
+
+    })
+
+    describe('update fertilizers', () => {
+
+        const getNamesAndIds = (updatedSolution: Solution): {id: string, name: string}[] => {
+            return updatedSolution.dosages.map(dosage => ({
+                id: dosage.fertilizer.id,
+                name: dosage.fertilizer.name
+            }))
+        }
+
+
+        it('correct fertilizers name update', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Fe_10)
+            solution.addFertilizer(fertilizersStubs.MgSO4_11_22)
+            solution.addFertilizer(fertilizersStubs.P_10__K_3_2)
+
+            const feWithNewName = fertilizersStubs.Fe_10
+            feWithNewName.name = 'new Fe test name'
+            const mgWithNewName = fertilizersStubs.MgSO4_11_22
+            mgWithNewName.name = 'new Mg test name'
+
+
+            const updatedSolution = solution.updateFertilizers([feWithNewName, mgWithNewName])
+            const updatesFertilizersValues = getNamesAndIds(updatedSolution)
+
+            expect(updatesFertilizersValues).toEqual([
+                {id: fertilizersStubs.Fe_10.id, name: 'new Fe test name'},
+                {id: fertilizersStubs.MgSO4_11_22.id, name: 'new Mg test name'},
+                {id: fertilizersStubs.P_10__K_3_2.id, name: fertilizersStubs.P_10__K_3_2.name},
+            ])
+        })
+
+        it('empty array for update', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Fe_10)
+            const updatedSolution = solution.updateFertilizers([])
+
+            const resultValues = getNamesAndIds(updatedSolution)
+            expect(resultValues).toEqual([
+                {id: fertilizersStubs.Fe_10.id, name: fertilizersStubs.Fe_10.name}
+            ])
+        })
+
+        it('fertilizer by empty constructor', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Fe_10)
+            solution.addFertilizer(fertilizersStubs.Mg_1_2__Ca_0_5__N_0_3)
+            const updatedSolution = solution.updateFertilizers([new Fertilizer()])
+
+            const resultValues = getNamesAndIds(updatedSolution)
+            expect(resultValues).toEqual([
+                {id: fertilizersStubs.Fe_10.id, name: fertilizersStubs.Fe_10.name},
+                {id: fertilizersStubs.Mg_1_2__Ca_0_5__N_0_3.id, name: fertilizersStubs.Mg_1_2__Ca_0_5__N_0_3.name}
+            ])
         })
 
     })

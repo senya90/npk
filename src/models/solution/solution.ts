@@ -5,6 +5,7 @@ import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";
 import { Weight } from "../weight";
 import { AtomsProportionCalculator } from "../proportionCalculator";
 import {FertilizerDTO} from "../_types/fertilizer";
+import {isEmptyArray} from "../../helpers/utils";
 
 export type SolutionDTO = {
     id: string
@@ -109,6 +110,16 @@ export class Solution {
     }
 
     updateFertilizers(updatedFertilizers: FertilizerDTO[]): Solution {
+        if (isEmptyArray(updatedFertilizers)) {
+            return new Solution({
+                id: this.id,
+                name: this.name,
+                dosages: [...this.dosages],
+                orderNumber: this.orderNumber,
+                timestamp: this.timestamp
+            })
+        }
+
         const dosagesWithUpdated: Dosage[] = []
         const dosages = this.dosages
 
