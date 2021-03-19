@@ -14,8 +14,8 @@ export class ChemicalAggregate {
         )
     }
 
-    constructor(atoms: ChemicalAtom[], multiplier = 1, id?: string) {
-        this.atoms = atoms ? this._atomsFactory(atoms) : [];
+    constructor(atoms: ChemicalAtom[] = [], multiplier = 1, id?: string) {
+        this.atoms = this._atomsFactory(atoms);
         this.multiplier = multiplier
         this.id = id ? id : IdGenerator.generate()
     }

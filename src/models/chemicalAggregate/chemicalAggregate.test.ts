@@ -4,20 +4,28 @@ import {chemicalUnitsMock} from "../../mocks/chemicalMock";
 
 describe('ChemicalAggregate class', () => {
 
+    const getSimpleAggregate = () => {
+        const atom1 = new ChemicalAtom(chemicalUnitsMock.Fe, 2)
+        const atom2 = new ChemicalAtom(chemicalUnitsMock.O)
+        return new ChemicalAggregate([atom1, atom2])
+    }
+
+    const getAggregateWithMultiplier = (multiplier = 1) => {
+        const atom3 = new ChemicalAtom(chemicalUnitsMock.Al, 4)
+        const atom4 = new ChemicalAtom(chemicalUnitsMock.Mo)
+        const atom5 = new ChemicalAtom(chemicalUnitsMock.Ca, 2)
+        return new ChemicalAggregate([atom3, atom4, atom5], multiplier)
+    }
+
+    describe('constructor', () => {
+
+        it('atoms for empty constructor', () => {
+            const aggregate = new ChemicalAggregate()
+            expect(aggregate.atoms.length).toBe(0)
+        })
+    })
+
     describe('static method allToString', () => {
-
-        const getSimpleAggregate = () => {
-            const atom1 = new ChemicalAtom(chemicalUnitsMock.Fe, 2)
-            const atom2 = new ChemicalAtom(chemicalUnitsMock.O)
-            return new ChemicalAggregate([atom1, atom2])
-        }
-
-        const getAggregateWithMultiplier = (multiplier = 1) => {
-            const atom3 = new ChemicalAtom(chemicalUnitsMock.Al, 4)
-            const atom4 = new ChemicalAtom(chemicalUnitsMock.Mo)
-            const atom5 = new ChemicalAtom(chemicalUnitsMock.Ca, 2)
-            return new ChemicalAggregate([atom3, atom4, atom5], multiplier)
-        }
 
         it('simple aggregate, aggregate with multiplier', () => {
             const aggregate1 = getSimpleAggregate()
@@ -57,7 +65,7 @@ describe('ChemicalAggregate class', () => {
         })
 
         it('empty atoms for aggregate', () => {
-            const aggregate1 = new ChemicalAggregate([], 4)
+            const aggregate1 = new ChemicalAggregate([], 4, '231f89nv8dnv98sy-dfb8s7df-sd')
             const aggregate2 = getSimpleAggregate()
             const aggregate3 = new ChemicalAggregate([], 2)
             const aggregate4 = getSimpleAggregate()
