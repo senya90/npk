@@ -28,9 +28,9 @@ export class Solution {
 
     constructor(solution?: SolutionDTO | Solution) {
         if (solution) {
-            this.name = solution.name ? solution.name : ''
-            this.dosages = solution.dosages ? solution.dosages.map(dosage => Dosage.createNew(dosage)) : [];
-            this.id = solution.id ? solution.id : IdGenerator.generate()
+            this.name = solution.name
+            this.dosages = solution.dosages.map(dosage => Dosage.createNew(dosage))
+            this.id = solution.id
             this.orderNumber = solution.orderNumber
             this.timestamp = solution.timestamp
             return

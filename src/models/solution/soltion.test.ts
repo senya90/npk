@@ -1,9 +1,39 @@
-import { Solution } from "./solution"
+import {Solution, SolutionDTO} from "./solution"
 import { solutionsMock } from "mocks/solutionsMock"
 import { ChemicalUnitValue } from "models/chemicalUnitValue/chemicalUnitValue"
 import { chemicalUnitsMock } from "mocks/chemicalMock"
+import {fertilizersStubs} from "../../mocks/fertilizersMock";
+import { Fertilizer } from "models/fertilizer/fertilizer";
 
-describe('Solution', () => {
+describe('Solution class', () => {
+
+    describe('static getActualSolution()', () => {
+
+        it('from DTO', () => {
+            const solutionDTO: SolutionDTO = {
+                id: 'test-id',
+                name: 'test name',
+                dosages: [],
+                orderNumber: null,
+                timestamp: null
+            }
+            const solution = new Solution(solutionDTO)
+            const result = Solution.getActualSolution(solution)
+
+            expect(result.name).toBe('test name')
+            expect(result.id).toBe('test-id')
+        })
+
+        it('from undefined', () => {
+            const result = Solution.getActualSolution(undefined)
+
+            expect(result.name).toBe('')
+            expect(result.dosages.length).toBe(0)
+            expect(result.orderNumber).toBeNull()
+            expect(result.timestamp).toBeNull()
+        })
+
+    })
 
     describe('toChemical', () => {
 
@@ -43,5 +73,121 @@ describe('Solution', () => {
                 new ChemicalUnitValue(chemicalUnitsMock.Fe, 2),
             ].map(chemical => chemical.value))
         })
+
     })
+
+    describe('addFertilizer()', () => {
+
+        it('add fertilizer', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Fe_10)
+            solution.addFertilizer(fertilizersStubs.Mg_1_2__Ca_0_5__N_0_3)
+
+            expect(solution.dosages.length).toBe(2)
+        })
+
+        it('add empty fertilizer', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(new Fertilizer())
+
+            expect(solution.dosages.length).toBe(1)
+        })
+
+    })
+
+    describe('remove fertilizer', () => {
+
+        it('remove existed fertilizer', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Fe_10)
+            solution.addFertilizer(fertilizersStubs.MgSO4_11_22)
+            solution.addFertilizer(fertilizersStubs.P_10__K_3_2)
+
+            const newSolution = solution.removeFertilizer(fertilizersStubs.Fe_10.id)
+
+            const remainingFertilizersIds: string[] = newSolution.dosages.map(dosage => dosage.fertilizer.id)
+            const expectedIds = [fertilizersStubs.MgSO4_11_22.id, fertilizersStubs.P_10__K_3_2.id]
+
+            expect(remainingFertilizersIds).toEqual(expectedIds)
+        })
+
+        it('remove multiple times', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Fe_10)
+            solution.addFertilizer(fertilizersStubs.P_10__K_3_2)
+
+            const newSolution = solution
+                .removeFertilizer(fertilizersStubs.Fe_10.id)
+                .removeFertilizer(fertilizersStubs.Fe_10.id)
+                .removeFertilizer(fertilizersStubs.Fe_10.id)
+
+            const remainingFertilizersIds: string[] = newSolution.dosages.map(dosage => dosage.fertilizer.id)
+            const expectedIds = [fertilizersStubs.P_10__K_3_2.id]
+
+            expect(remainingFertilizersIds).toEqual(expectedIds)
+        })
+
+        it('remove wrong id', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Fe_10)
+            const newSolution = solution.removeFertilizer('some-id')
+
+            const remainingFertilizersIds: string[] = newSolution.dosages.map(dosage => dosage.fertilizer.id)
+            expect(remainingFertilizersIds).toEqual([fertilizersStubs.Fe_10.id])
+        })
+
+    })
+
+    describe('isAvailableForFertilizer()', () => {
+
+        it('push another fertilizer', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Mg_1_2__Ca_0_5__N_0_3)
+
+            const result = solution.isAvailableForFertilizer(fertilizersStubs.Fe_10)
+            expect(result).toBe(true)
+        })
+
+        it('push the same fertilizer', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(fertilizersStubs.Mg_1_2__Ca_0_5__N_0_3)
+
+            const result = solution.isAvailableForFertilizer(fertilizersStubs.Mg_1_2__Ca_0_5__N_0_3)
+            expect(result).toBe(false)
+        })
+
+        it('push two empty fertilizers', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(new Fertilizer())
+
+            const result = solution.isAvailableForFertilizer(new Fertilizer())
+            expect(result).toBe(true)
+        })
+
+        it('check undefined fertilizer', () => {
+            const solution = new Solution()
+
+            solution.addFertilizer(new Fertilizer())
+
+            const result = solution.isAvailableForFertilizer(undefined)
+            expect(result).toBe(true)
+        })
+
+        it('if dosages are empty', () => {
+            const solution = new Solution()
+
+            const result = solution.isAvailableForFertilizer(new Fertilizer())
+            expect(result).toBe(true)
+        })
+
+    })
+
 })
