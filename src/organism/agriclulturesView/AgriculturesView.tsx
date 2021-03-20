@@ -19,14 +19,11 @@ import {ApiURL} from "../../core/api/ApiURL";
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
 
 
-const AgriculturesView: FunctionComponent<AgriculturesProps> =
-    ({
-         agricultures,
-         activeAgriculture,
-         onAgriculturesAdd,
-         chemicals
-    }) => {
-    const {onDeleteAgricultures, onUpdateAgricultures} = useContext(CalculatorContext)
+const AgriculturesView: FunctionComponent<AgriculturesProps> = ({
+     agricultures,
+     activeAgriculture
+}) => {
+    const {onDeleteAgricultures, onUpdateAgricultures, onAgriculturesAdd, chemicals} = useContext(CalculatorContext)
     const [isAddNew, setIsAddNew] = useState(false)
     const [editableAgriculture, setEditableAgriculture] = useState<Agriculture | undefined>(undefined)
 
@@ -88,15 +85,11 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> =
     }
 
     const getTitle = (): string => {
-        if (isAddNew) {
-            return translate('addAgriculture')
-        }
-
         if (editableAgriculture) {
             return translate('editAgriculture')
         }
 
-        return ''
+        return translate('addAgriculture')
     }
 
     const isEmptyAgricultureList = () => {

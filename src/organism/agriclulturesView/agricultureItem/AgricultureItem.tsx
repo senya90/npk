@@ -13,7 +13,7 @@ import {BUTTON_TYPE} from "../../../atom/button/ButtonTypes";
 import {Popover} from "../../../atom/popover/Popover";
 
 
-interface AgricultureItemProps {
+export interface AgricultureItemProps {
     agriculture: Agriculture
     isActive?: boolean
     onEdit: (agriculture: Agriculture) => void

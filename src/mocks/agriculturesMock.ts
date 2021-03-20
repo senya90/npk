@@ -27,3 +27,8 @@ export const agriculturesMock: Agriculture[] = [
         '9e3d97ef-bcd8-4502-8faa-87ae95b1c5a5'
     )
 ]
+
+export const agriculturesStub = {
+    cucumber: agriculturesMock[0],
+    potatoes: agriculturesMock[1]
+}

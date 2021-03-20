@@ -341,6 +341,7 @@ const Calculator = () => {
                 onEditSolution,
 
                 onAgricultureSelect: onSelectAgriculture,
+                onAgriculturesAdd: onAgriculturesAdd,
                 onUpdateAgricultures: onUpdateAgricultures,
                 onDeleteAgricultures: onDeleteAgricultures
             }}
@@ -361,10 +362,8 @@ const Calculator = () => {
                         solution={solution}
                     />
                     <AgriculturesView
-                        chemicals={chemicals}
                         agricultures={agricultures}
                         activeAgriculture={activeAgriculture}
-                        onAgriculturesAdd={onAgriculturesAdd}
                     />
                 </div>
                 <div>

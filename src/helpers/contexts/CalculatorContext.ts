@@ -23,6 +23,7 @@ export type CalculatorContextType = {
     onChemicalComplexSaved: (savedComplexes: []) => void
     onChemicalComplexRemoved: (id: string[]) => void
 
+    onAgriculturesAdd: (agricultures: Agriculture[]) => void
     onAgricultureSelect: (agriculture: Agriculture) => void
     onUpdateAgricultures: (agricultures: Agriculture[]) => void
     onDeleteAgricultures: (agriculturesIds: string[]) => void
@@ -62,7 +63,8 @@ export const CalculatorContextMock: CalculatorContextType = {
     onChemicalComplexRemoved(id: string[]): void {
     },
 
-
+    onAgriculturesAdd(agricultures: Agriculture[]): void {
+    },
     onAgricultureSelect(agriculture: Agriculture): void {
     },
     onUpdateAgricultures(agricultures: Agriculture[]): void {
