@@ -1,6 +1,6 @@
-import React, {FunctionComponent} from 'react'
+import React from 'react'
 import {AgriculturesView} from '../AgriculturesView'
-import {shallow, ShallowWrapper, mount, render} from "enzyme";
+import {shallow} from "enzyme";
 import {CalculatorContextMock, CalculatorContextType} from "../../../helpers/contexts/CalculatorContext";
 import {chemicalUnitsMockArray} from "../../../mocks/chemicalMock";
 import {Agriculture} from "../../../models/agriculture";
@@ -8,10 +8,8 @@ import {agriculturesStub} from "../../../mocks/agriculturesMock";
 import { AgricultureItem } from '../agricultureItem/AgricultureItem';
 import { Gag } from 'molecule/gag/Gag';
 import { AgricultureEditor } from 'organism/agricultureEditor/AgricultureEditor';
-import {AgriculturesProps} from "../AgricultureTypes";
 import { Icon } from 'atom/icon/Icon';
 import Modal from 'organism/modal/Modal';
-import { App } from 'app/App';
 
 describe('<AgriculturesView />', () => {
 
@@ -71,8 +69,13 @@ describe('<AgriculturesView />', () => {
         })
 
         it('close modal', () => {
-            expect('').toHaveLength(0)
+            const component = shallow(<AgriculturesView agricultures={agricultures} activeAgriculture={active}/>)
+            component.find('.addButton').simulate('click')
 
+            const modalWrapper = shallow(component.find(Modal).get(0))
+            modalWrapper.find('.closeModal').simulate('click')
+
+            expect(component.find(AgricultureEditor)).toHaveLength(0)
         })
 
     })
