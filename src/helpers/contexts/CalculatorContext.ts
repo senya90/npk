@@ -28,7 +28,7 @@ export type CalculatorContextType = {
     onDeleteAgricultures: (agriculturesIds: string[]) => void
 }
 
-export const CalculatorContext = React.createContext<CalculatorContextType>({
+export const CalculatorContextMock: CalculatorContextType = {
     chemicals: [],
     onDeleteFertilizer(fertilizerId: string, needUpdateSolutions = false) {
     },
@@ -69,4 +69,6 @@ export const CalculatorContext = React.createContext<CalculatorContextType>({
     },
     onDeleteAgricultures(agriculturesIds: string[]): void {
     }
-})
+}
+
+export const CalculatorContext = React.createContext<CalculatorContextType>(CalculatorContextMock)
