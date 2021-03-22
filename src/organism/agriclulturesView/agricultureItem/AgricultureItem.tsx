@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useContext, useState} from 'react';
+import React, {FunctionComponent, useContext} from 'react';
 import {Agriculture} from "../../../models/agriculture";
 import {CalculatorContext} from "../../../helpers/contexts/CalculatorContext";
 import cn from 'classnames'
@@ -22,7 +22,7 @@ export interface AgricultureItemProps {
 
 const AgricultureItem: FunctionComponent<AgricultureItemProps> = ({agriculture, isActive, onEdit, onDelete}) => {
     const {onAgricultureSelect} = useContext(CalculatorContext)
-    const [isShowTooltip, setIsShowTooltip] = useState<boolean>(false)
+    const [isShowTooltip, setIsShowTooltip] = React.useState<boolean>(false)
 
     const selectAgriculture = () => {
         onAgricultureSelect(agriculture)
