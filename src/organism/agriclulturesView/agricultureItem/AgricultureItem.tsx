@@ -70,12 +70,14 @@ const AgricultureItem: FunctionComponent<AgricultureItemProps> = ({agriculture, 
                     content={
                         <div className={stylePopover.modalButtonsBox}>
                             <Button
+                                data-test-id={'close-popover'}
                                 className={stylePopover.modalButton}
                                 onClick={closeTooltip}
                             >
                                 {translate('cancel')}
                             </Button>
                             <Button
+                                data-test-id={'delete-agriculture'}
                                 className={stylePopover.modalButton}
                                 danger
                                 type={BUTTON_TYPE.PRIMARY}
@@ -87,6 +89,7 @@ const AgricultureItem: FunctionComponent<AgricultureItemProps> = ({agriculture, 
                     }
                 >
                     <Icon
+                        data-test-id={'open-popover'}
                         type={ICON_TYPE.Delete}
                         className={style.controlsIcon}
                         size={18}
