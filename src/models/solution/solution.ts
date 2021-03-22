@@ -1,4 +1,4 @@
-import {Dosage, DosageDTO} from "../dosage";
+import {Dosage, DosageDTO} from "../dosage/dosage";
 import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
 import { Fertilizer } from "../fertilizer/fertilizer";
 import { ChemicalUnitValue } from "../chemicalUnitValue/chemicalUnitValue";

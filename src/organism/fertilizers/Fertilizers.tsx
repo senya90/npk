@@ -10,7 +10,7 @@ import Modal from 'organism/modal/Modal';
 import {FertilizerEditor} from "../fertilizerEditor/FertilizerEditor";
 import {Fertilizer} from "models/fertilizer/fertilizer";
 import {CalculatorContext, CalculatorContextType} from "helpers/contexts/CalculatorContext";
-import { Dosage } from 'models/dosage';
+import { Dosage } from 'models/dosage/dosage';
 
 import style from './fertilizers.module.scss'
 import {notEmptyArray} from "helpers/utils";

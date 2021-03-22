@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import style from "../solutionDispensing/solutionDispensing.module.scss";
 import {translate} from "../../helpers/translate/translate";
-import { Dosage } from 'models/dosage';
+import { Dosage } from 'models/dosage/dosage';
 import { Utils } from 'helpers/utils';
 
 interface SolutionDistributorVolumeProps {

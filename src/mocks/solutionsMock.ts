@@ -1,7 +1,7 @@
 import {Solution, SolutionDTO} from "../models/solution/solution";
 import { FertilizerIngredient } from "models/fertilizer/fertilizerIngredient";
 import { chemicalComplexMock } from "./chemicalComplexMock";
-import { Dosage } from "models/dosage";
+import { Dosage } from "models/dosage/dosage";
 import { fertilizersMock, fertilizersStubs } from "./fertilizersMock";
 import { Fertilizer } from "models/fertilizer/fertilizer";
 

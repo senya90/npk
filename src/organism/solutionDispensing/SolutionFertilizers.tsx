@@ -1,5 +1,5 @@
 import React, {FunctionComponent} from 'react';
-import {Dosage} from "../../models/dosage";
+import {Dosage} from "../../models/dosage/dosage";
 import {translate} from "../../helpers/translate/translate";
 
 import style from './solutionDispensing.module.scss'

@@ -1,8 +1,8 @@
-import {Fertilizer} from "./fertilizer/fertilizer";
-import {IdGenerator} from "../helpers/idGenerator/IdGenerator";
-import { FertilizerDTO } from "./_types/fertilizer";
-import {ChemicalComplex} from "./chemicalComplex/chemicalComplex";
-import {FertilizerIngredient} from "./fertilizer/fertilizerIngredient";
+import {Fertilizer} from "../fertilizer/fertilizer";
+import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
+import { FertilizerDTO } from "../_types/fertilizer";
+import {ChemicalComplex} from "../chemicalComplex/chemicalComplex";
+import {FertilizerIngredient} from "../fertilizer/fertilizerIngredient";
 
 export type DosageDTO = {
     id: string

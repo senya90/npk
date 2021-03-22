@@ -9,7 +9,7 @@ import {Solution} from "../../models/solution/solution";
 import {Input} from 'atom/input/Input';
 
 import style from './solutionComposition.module.scss'
-import {Dosage} from "../../models/dosage";
+import {Dosage} from "../../models/dosage/dosage";
 import { Button } from 'atom/button/Button';
 import {BUTTON_TYPE} from "../../atom/button/ButtonTypes";
 import { Gag } from 'molecule/gag/Gag';

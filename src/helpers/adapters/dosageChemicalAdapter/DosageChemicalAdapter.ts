@@ -1,4 +1,4 @@
-import {Dosage} from "../../../models/dosage";
+import {Dosage} from "../../../models/dosage/dosage";
 import {ChemicalUnitValue} from "../../../models/chemicalUnitValue/chemicalUnitValue";
 import { ChemicalUnit } from "models/chemicalUnit";
 

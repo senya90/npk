@@ -100,7 +100,7 @@ describe('<AgriculturesView />', () => {
             })
 
 
-            let mockOnDelete = jest.fn(() => {console.log('DEBUG MESSAGE')})
+            let mockOnDelete = jest.fn(() => {})
 
             const ctx: CalculatorContextType = {
                 ...getContext(),

@@ -6,7 +6,7 @@ import {Icon} from 'atom/icon/Icon';
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {commonStyles} from "../../helpers/commonStyle";
 import { colors } from 'helpers/commonStyle/colors';
-import { Dosage } from 'models/dosage';
+import { Dosage } from 'models/dosage/dosage';
 import { Utils } from 'helpers/utils';
 import { translate } from 'helpers/translate/translate';
 import { InputNumber } from 'atom/inputNumber/InputNumber';

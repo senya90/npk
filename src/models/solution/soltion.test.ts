@@ -4,7 +4,7 @@ import { ChemicalUnitValue } from "models/chemicalUnitValue/chemicalUnitValue"
 import { chemicalUnitsMock } from "mocks/chemicalMock"
 import {fertilizersStubs} from "../../mocks/fertilizersMock";
 import { Fertilizer } from "models/fertilizer/fertilizer";
-import {Dosage} from "../dosage";
+import {Dosage} from "../dosage/dosage";
 
 describe('Solution class', () => {
 

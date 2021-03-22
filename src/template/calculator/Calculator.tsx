@@ -17,7 +17,7 @@ import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import { FertilizerDTO } from 'models/_types/fertilizer';
 import { ChemicalComplexDTO } from 'models/_types/chemicalComplex';
-import {Dosage} from "../../models/dosage";
+import {Dosage} from "../../models/dosage/dosage";
 import {ServerResponse} from "../../models/_types/serverResponse";
 
 
