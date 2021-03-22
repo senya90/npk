@@ -1,7 +1,7 @@
 export type ServerResponse<T> = {
     data: {
         data: T
-        error: ErrorResponse
+        error: ErrorResponse | null
         status: number
     }
 }

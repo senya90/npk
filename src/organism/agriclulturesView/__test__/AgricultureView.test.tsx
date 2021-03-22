@@ -1,15 +1,17 @@
 import React from 'react'
 import {AgriculturesView} from '../AgriculturesView'
-import {shallow} from "enzyme";
-import {CalculatorContextMock, CalculatorContextType} from "../../../helpers/contexts/CalculatorContext";
+import {mount, shallow} from "enzyme";
+import {CalculatorContextMock, CalculatorContextType, CalculatorContext} from "../../../helpers/contexts/CalculatorContext";
 import {chemicalUnitsMockArray} from "../../../mocks/chemicalMock";
 import {Agriculture} from "../../../models/agriculture";
 import {agriculturesStub} from "../../../mocks/agriculturesMock";
-import { AgricultureItem } from '../agricultureItem/AgricultureItem';
+import {AgricultureItem, AgricultureItemProps} from '../agricultureItem/AgricultureItem';
 import { Gag } from 'molecule/gag/Gag';
 import { AgricultureEditor } from 'organism/agricultureEditor/AgricultureEditor';
 import { Icon } from 'atom/icon/Icon';
 import Modal from 'organism/modal/Modal';
+import { API } from 'core/api';
+import { ServerResponse } from 'models/_types/serverResponse';
 
 describe('<AgriculturesView />', () => {
 
@@ -76,6 +78,51 @@ describe('<AgriculturesView />', () => {
             modalWrapper.find('.closeModal').simulate('click')
 
             expect(component.find(AgricultureEditor)).toHaveLength(0)
+        })
+
+    })
+
+    describe('API calls', () => {
+        const agricultures = getAgricultures()
+        const active = agricultures[0]
+
+        it('API', () => {
+            API.postAuthorized = jest.fn().mockImplementation((apiUrl: string, apiParams?: any, headers?: any): Promise<ServerResponse<string[]>> => {
+                const response: ServerResponse<string[]> = {
+                    data: {
+                        data: [agricultures[0].id],
+                        status: 500,
+                        error: null
+                    }
+                } as ServerResponse<string[]>
+
+                return Promise.resolve(response)
+            })
+
+
+            let mockOnDelete = jest.fn(() => {console.log('DEBUG MESSAGE')})
+
+            const ctx: CalculatorContextType = {
+                ...getContext(),
+                onDeleteAgricultures: mockOnDelete
+            }
+
+            const component = mount(
+                <CalculatorContext.Provider value={{
+                    ...ctx
+                }}>
+                    <AgriculturesView agricultures={agricultures} activeAgriculture={active}/>
+                </CalculatorContext.Provider>
+
+                )
+
+            const itemProps: AgricultureItemProps = component.find(AgricultureItem).get(0).props
+            itemProps.onDelete(itemProps.agriculture)
+
+
+            // TODO: check calls count
+            // expect(mockOnDelete.mock.calls.length).toBe(1)
+            expect('').toEqual('')
         })
 
     })

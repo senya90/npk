@@ -47,7 +47,7 @@ const AgricultureItem: FunctionComponent<AgricultureItemProps> = ({agriculture, 
     }
 
     const showTooltip = (e: React.MouseEvent) => {
-        e.stopPropagation()
+        e && e.stopPropagation()
         setIsShowTooltip(true)
     }
 
