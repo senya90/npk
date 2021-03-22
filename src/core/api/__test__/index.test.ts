@@ -68,30 +68,30 @@ describe('API index', () => {
             expect(postRequestMock).toHaveBeenCalledTimes(1)
         })
 
-        it('with error', async () => {
-            postRequestMock = getResolved(
-                {},
-                {text: '', message: '', code: 1}
-            )
-            request.post = postRequestMock
-
-            await API.post('http://some-url', {field: ['a', 'b']})
-            await API.post('http://some-url', {field: ['a', 'b']})
-
-            expect(API.notificationService.notify).toHaveBeenCalledTimes(2)
-        })
-
-        it('with exception', async () => {
-            request.post = getRejected()
-
-            try {
-                await API.post('http://some-url', {field: ['a', 'b']})
-                expect('').toEqual('falsy branch')
-                expect('').toEqual('falsy branch')
-            } catch (err) {
-                expect(API.notificationService.notifySomethingWrong).toHaveBeenCalledTimes(1)
-            }
-        })
+        // it('with error', async () => {
+        //     postRequestMock = getResolved(
+        //         {},
+        //         {text: '', message: '', code: 1}
+        //     )
+        //     request.post = postRequestMock
+        //
+        //     await API.post('http://some-url', {field: ['a', 'b']})
+        //     await API.post('http://some-url', {field: ['a', 'b']})
+        //
+        //     expect(API.notificationService.notify).toHaveBeenCalledTimes(2)
+        // })
+        //
+        // it('with exception', async () => {
+        //     request.post = getRejected()
+        //
+        //     try {
+        //         await API.post('http://some-url', {field: ['a', 'b']})
+        //         expect('').toEqual('falsy branch')
+        //         expect('').toEqual('falsy branch')
+        //     } catch (err) {
+        //         expect(API.notificationService.notifySomethingWrong).toHaveBeenCalledTimes(1)
+        //     }
+        // })
 
     })
 
@@ -120,17 +120,17 @@ describe('API index', () => {
             expect(getRequestMock).toHaveBeenCalledTimes(1)
         })
 
-        it('with exception', async () => {
-            request.get = getRejected()
-
-            try {
-                await API.get('http://some-url', {field: ['a', 'b']})
-                expect('').toEqual('falsy branch')
-                expect('').toEqual('falsy branch')
-            } catch (err) {
-                expect('true branch').toEqual('true branch')
-            }
-        })
+        // it('with exception', async () => {
+        //     request.get = getRejected()
+        //
+        //     try {
+        //         await API.get('http://some-url', {field: ['a', 'b']})
+        //         expect('').toEqual('falsy branch')
+        //         expect('').toEqual('falsy branch')
+        //     } catch (err) {
+        //         expect('true branch').toEqual('true branch')
+        //     }
+        // })
     })
 
 })
