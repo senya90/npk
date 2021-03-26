@@ -1,12 +1,23 @@
 import localisation from './localisation.json'
 
+export type Locale = 'en' | 'ru'
+
+let currentLanguage: Locale = "en"
+
 export const translate = (text: string) => {
-    const language = 'ru'
     const loc: any = localisation
     
     if (loc[text]) {
-        return loc[text][language]
+        return loc[text][currentLanguage]
     }
 
     return text
+}
+
+export const setLocale = (locale: Locale) => {
+    currentLanguage = locale
+}
+
+export const getLocale = (): Locale => {
+    return currentLanguage
 }

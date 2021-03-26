@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import {Calculator} from "template/calculator/Calculator";
@@ -15,16 +15,23 @@ import {useDispatch} from 'react-redux';
 import {NotificationService} from "core/services/notificationService/NotificationService";
 import {UserService} from "../core/services/userService/UserService";
 import {IUserService} from "../core/services/userService/UserServiceTypes";
+import {Locale, setLocale} from 'helpers/translate/translate';
 
 
 const App = () => {
+    const forceUpdate = useState<object>({})
+    const setForceUpdate = forceUpdate[1]
+
     const dispatch = useDispatch()
+
     const localStorageProvider = useMemo(() => {
         return new LocalStorageProvider()
     }, [])
+
     const notificationService = useMemo(() => {
         return new NotificationService(dispatch)
     }, [dispatch])
+
     const userService: IUserService = useMemo(() => {
         return new UserService(dispatch, new LocalStorageProvider())
     }, [dispatch])
@@ -37,13 +44,23 @@ const App = () => {
         notificationService.clearNotification()
     }, [notificationService])
 
+    const onChangeLocale = (locale: Locale) => {
+        setLocale(locale)
+        callForceUpdate()
+    }
+
+    const callForceUpdate = () => {
+        setForceUpdate({})
+    }
+
     return (
 
             <div>
                 <AppContext.Provider value={{
                     localStorageProvider: localStorageProvider,
                     userService: userService,
-                    notificationService: notificationService
+                    notificationService: notificationService,
+                    onChangeLocale
                 }}>
                     <Header/>
                     <div className={styles.container}>

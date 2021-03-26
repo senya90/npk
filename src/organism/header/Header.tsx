@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {NavLink} from 'react-router-dom';
 
-import {translate} from "helpers/translate/translate";
+import {translate, Locale, getLocale} from "helpers/translate/translate";
 import {ROUTES} from 'core/routes/routes';
 
 import style from './header.module.scss'
@@ -17,7 +17,7 @@ import {Dropdown} from "../../atom/dropdown/Dropdown";
 import {Switcher} from "../../atom/switcher/Switcher";
 
 const Header = () => {
-    const {localStorageProvider} = useContext(AppContext)
+    const {localStorageProvider, onChangeLocale} = useContext(AppContext)
     const dispatch = useDispatch()
     const userStore = useSelector((state: any) => state.user)
     const tokens: TokensPair = userStore.tokens
@@ -28,6 +28,10 @@ const Header = () => {
         await API.postAuthorized(ApiURL.logout)
         localStorageProvider.clearTokens()
         dispatch(resetAuth())
+    }
+
+    const changeLocale = (locale: Locale) => {
+        onChangeLocale(locale)
     }
 
     return (
@@ -61,10 +65,9 @@ const Header = () => {
                                 element: <span>ru</span>
                             },
                         ]}
+                        active={getLocale()}
                         className={style.language}
-                        onChange={(id) => {
-                            console.log('!!!changed', id)
-                        }}
+                        onChange={changeLocale}
                     />
                     {isAuth ?
                         <Dropdown
