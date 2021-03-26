@@ -14,7 +14,7 @@ export const translate = (text: string) => {
     return text
 }
 
-export const setLocale = (locale: Locale) => {
+export const setTranslateLocale = (locale: Locale) => {
     currentLanguage = locale
 }
 
