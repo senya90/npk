@@ -1,4 +1,5 @@
 import React, {FunctionComponent, useCallback, useContext, useState} from 'react';
+import cn from 'classnames'
 
 import {BUTTON_TYPE} from "atom/button/ButtonTypes";
 import {Button} from "atom/button/Button";
@@ -25,7 +26,13 @@ import {ApiURL} from "../../core/api/ApiURL";
 import {SolutionsUsingFertilizer} from "../../models/solution/solution";
 
 
-const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableFertilizer, solution, chemicalComplexes}) => {
+const Fertilizers:FunctionComponent<FertilizersProps> = ({
+    fertilizers,
+    editableFertilizer,
+    solution,
+    chemicalComplexes,
+    className
+}) => {
     const {onSaveFertilizer, onEditFertilizer, onDeleteFertilizer} = useContext<CalculatorContextType>(CalculatorContext)
     const [solutionUsingFertilizer, setSolutionUsingFertilizer] = useState<SolutionsUsingFertilizer[] | undefined>()
     const [isShowFertilizerEditor, setIsShowFertilizerEditor] = useState(false)
@@ -103,8 +110,13 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({fertilizers, editableF
         }
     }
 
+    const wrapperStyles = cn(
+        className,
+        style.fertilizersWrapper,
+    )
+
     return (
-        <div className={style.fertilizers_wrapper}>
+        <div className={wrapperStyles}>
             <Title border>{translate('fertilizers')}</Title>
             {notEmptyArray(fertilizers) ?
                 <div className={style.fertilizersBox}>

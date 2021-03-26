@@ -7,4 +7,5 @@ export interface FertilizersProps {
     editableFertilizer?: Fertilizer
     solution?: Solution
     chemicalComplexes: ChemicalComplex[]
+    className?: string
 }

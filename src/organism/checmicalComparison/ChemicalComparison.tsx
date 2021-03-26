@@ -16,11 +16,16 @@ import {Gag} from "../../molecule/gag/Gag";
 import style from './chemicalConparison.module.scss'
 import {colors} from "../../helpers/commonStyle/colors";
 
-const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) => {
+const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = ({
+    solution,
+    chemicals,
+    activeAgriculture,
+    className
+}) => {
 
     const getMixedValueFromSolution = (): ChemicalUnitValue[] => {
-        if (props.solution && props.solution.dosages) {
-            return props.solution.toChemicals()
+        if (solution && solution.dosages) {
+            return solution.toChemicals()
         }
         return []
     }
@@ -37,7 +42,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     }
 
     const renderChemicalComposition = () => {
-        return props.chemicals
+        return chemicals
             .map(chemical => {
                 const mixed = getChemicalFromMix(chemical)
                 const vegetation = getVegetationValueFromAgriculture(chemical)
@@ -61,11 +66,11 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     }
 
     const getVegetationValueFromAgriculture = (chemical: ChemicalUnit): number => {
-        return _ejectResult(_findByChemicalIn(chemical, props.activeAgriculture.vegetation))
+        return _ejectResult(_findByChemicalIn(chemical, activeAgriculture.vegetation))
     }
 
     const getBloomValueFromAgriculture = (chemical: ChemicalUnit): number => {
-        return _ejectResult(_findByChemicalIn(chemical, props.activeAgriculture.bloom))
+        return _ejectResult(_findByChemicalIn(chemical, activeAgriculture.bloom))
     }
 
     const _findByChemicalIn = (targetChemical: ChemicalUnit, source?: ChemicalUnitValue[]): ChemicalUnitValue | undefined => {
@@ -85,7 +90,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = (props) =
     const renderedRows = renderChemicalComposition()
 
     return (
-        <div>
+        <div className={className}>
             <Title border>{translate('tableSolutions')}</Title>
             {renderedRows && notEmptyArray(renderedRows) ?
                 <Table full>

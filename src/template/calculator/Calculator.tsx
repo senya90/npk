@@ -348,20 +348,24 @@ const Calculator = () => {
             >
                 <div className={style.box}>
                     <Fertilizers
+                        className={style.calculatorItem}
                         fertilizers={fertilizers}
                         editableFertilizer={editableFertilizer}
                         solution={solution}
                         chemicalComplexes={chemicalComplexes}
                     />
                     <SolutionComposition
+                        className={style.calculatorItem}
                         solution={solution}
                     />
                     <ChemicalComparison
+                        className={style.calculatorItem}
                         chemicals={chemicals}
                         activeAgriculture={activeAgriculture}
                         solution={solution}
                     />
                     <AgriculturesView
+                        className={style.calculatorItem}
                         agricultures={agricultures}
                         activeAgriculture={activeAgriculture}
                     />

@@ -16,7 +16,7 @@ import { Gag } from 'molecule/gag/Gag';
 import { Icon } from 'atom/icon/Icon';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
 
-const SolutionComposition: FC<SolutionCompositionProps> = ({solution}) => {
+const SolutionComposition: FC<SolutionCompositionProps> = ({solution, className}) => {
     const {onSolutionUpdated, onSolutionSave} = useContext<CalculatorContextType>(CalculatorContext)
 
     const renderSolution = () => {
@@ -67,7 +67,7 @@ const SolutionComposition: FC<SolutionCompositionProps> = ({solution}) => {
     }
 
     return (
-        <div>
+        <div className={className}>
             <Title border>{translate('solutionComposition')}</Title>
             {!solution &&
                 <div className={style.gagWrapper}>

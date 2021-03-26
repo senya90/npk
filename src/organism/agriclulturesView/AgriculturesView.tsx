@@ -17,11 +17,13 @@ import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {API} from "../../core/api";
 import {ApiURL} from "../../core/api/ApiURL";
 import {CalculatorContext} from "../../helpers/contexts/CalculatorContext";
+import cn from 'classnames'
 
 
 const AgriculturesView: FunctionComponent<AgriculturesProps> = ({
-     agricultures,
-     activeAgriculture
+    agricultures,
+    activeAgriculture,
+    className
 }) => {
     const {onDeleteAgricultures, onUpdateAgricultures, onAgriculturesAdd, chemicals} = useContext(CalculatorContext)
     const [isAddNew, setIsAddNew] = useState(false)
@@ -96,8 +98,13 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = ({
         return !agricultures || !notEmptyArray(agricultures)
     }
 
+    const wrapperStyles = cn(
+        className,
+        style.agricultureWrapper
+    )
+
     return (
-        <div className={style.agricultureWrapper}>
+        <div className={wrapperStyles}>
             <Title border>{translate('agriculture')}</Title>
             {isEmptyAgricultureList() &&
                 <div className={style.gagWrapper}>

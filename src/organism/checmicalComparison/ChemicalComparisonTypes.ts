@@ -6,4 +6,5 @@ export interface ChemicalComparisonProps {
     activeAgriculture: Agriculture
     solution?: Solution
     chemicals: ChemicalUnit[]
+    className?: string
 }

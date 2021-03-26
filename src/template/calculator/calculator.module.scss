@@ -1,12 +1,23 @@
 .box {
     display: flex;
+}
 
-    & > div {
-        flex: 1 0 0;
-        padding-right: 10px;
+.calculatorItem {
+    flex: 1 0 0;
+    padding-right: 10px;
 
-        &:last-child {
-            padding-right: 0;
-        }
+    &:last-child {
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .box {
+        flex-wrap: wrap;
+    }
+
+    .calculatorItem {
+        flex: 1 1 50%;
+        margin-bottom: 5em;
     }
 }

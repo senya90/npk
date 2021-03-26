@@ -13,3 +13,9 @@
 .addButton {
     width: 100%;
 }
+
+@media screen and (max-width: 1280px) {
+    .fertilizersWrapper {
+        width: 50%;
+    }
+}
