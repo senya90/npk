@@ -10,3 +10,9 @@
 .gagWrapper {
     padding: 40px 20px;
 }
+
+@media screen and (max-width: 639px) {
+    .agricultureWrapper {
+        max-width: none;
+    }
+}
