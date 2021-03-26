@@ -14,6 +14,7 @@ import {resetAuth} from "core/redux/userSlice";
 import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import {Dropdown} from "../../atom/dropdown/Dropdown";
+import {Switcher} from "../../atom/switcher/Switcher";
 
 const Header = () => {
     const {localStorageProvider} = useContext(AppContext)
@@ -49,6 +50,22 @@ const Header = () => {
                     >
                         {translate('calculatorPage')}
                     </NavLink>
+                    <Switcher
+                        items={[
+                            {
+                                id: 'en',
+                                element: <span>en</span>
+                            },
+                            {
+                                id: 'ru',
+                                element: <span>ru</span>
+                            },
+                        ]}
+                        className={style.language}
+                        onChange={() => {
+                            console.log('!!!changed')
+                        }}
+                    />
                     {isAuth ?
                         <Dropdown
                             theme={"light_contrast"}

@@ -1,6 +1,6 @@
 import {ChemicalAtom} from "../chemicalAtom";
 import {IdGenerator} from "../../helpers/idGenerator/IdGenerator";
-import {notEmptyArray, isEmptyArray} from "../../helpers/utils";
+import {isEmptyArray} from "../../helpers/utils";
 
 export class ChemicalAggregate {
     id: string

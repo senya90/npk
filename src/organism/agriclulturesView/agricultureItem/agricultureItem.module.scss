@@ -32,6 +32,6 @@
 }
 
 .controlsIcon {
-    @include hover;
+    @include hover(1);
     margin-left: 8px;
 }

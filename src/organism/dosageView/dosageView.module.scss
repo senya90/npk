@@ -23,7 +23,7 @@
     top: 0;
 
     color: $color_negative;
-    @include hover;
+    @include hover(1);
 }
 
 .main {
@@ -71,5 +71,5 @@
 .button {
     padding: 2px 5px;
     line-height: 1.1;
-    @include hover;
+    @include hover(1);
 }
