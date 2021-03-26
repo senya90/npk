@@ -1,6 +1,6 @@
 export interface SwitcherProps {
     items: SwitcherItem[]
-    onChange?: () => void
+    onChange?: (id: any) => void
     active?: string
     className?: string
 

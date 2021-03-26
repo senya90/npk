@@ -62,8 +62,8 @@ const Header = () => {
                             },
                         ]}
                         className={style.language}
-                        onChange={() => {
-                            console.log('!!!changed')
+                        onChange={(id) => {
+                            console.log('!!!changed', id)
                         }}
                     />
                     {isAuth ?

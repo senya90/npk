@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import { SwitcherProps } from './SwitcherTypes';
 import cn from 'classnames'
 
@@ -7,13 +7,26 @@ import style from './switcher.module.scss'
 
 const Switcher: FC<SwitcherProps> = ({items, active, onChange, className}) => {
     let splitter = '/'
+    const [activeItem, setActiveItem] = useState<string | undefined>('')
 
-    if (!active) {
-        active = items[0] ? items[0].id : undefined
-    }
+    useEffect(() => {
+        if (!active) {
+            let activeValue = items[0] ? items[0].id : undefined
+            setActiveItem(activeValue)
+            return
+        }
+
+        setActiveItem(active)
+    }, [active, items])
+
+
 
     const change = (id: string) => {
-        console.log(id)
+        setActiveItem(id)
+
+        if (onChange) {
+            onChange(id)
+        }
     }
 
     const renderItems = () => {
@@ -24,11 +37,11 @@ const Switcher: FC<SwitcherProps> = ({items, active, onChange, className}) => {
 
             const itemValueStyle = cn(
                 style.itemValue,
-                {[style.itemValueActive]: active === switchItem.id}
+                {[style.itemValueActive]: activeItem === switchItem.id}
             )
 
             return (
-                <div className={style.inlineSwitcherItem}>
+                <div className={style.inlineSwitcherItem} key={switchItem.id}>
                     <span className={itemValueStyle} onClick={change.bind(null, switchItem.id)}>
                         {switchItem.element}
                     </span>
