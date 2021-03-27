@@ -16,11 +16,11 @@ interface SolutionFertilizersProps {
 const SolutionFertilizers: FunctionComponent<SolutionFertilizersProps> = ({dosages, volume= 0, percent= 100}) => {
 
     const renderDosages = () => {
-        return dosages.map(dosage => {
+        return dosages.map((dosage, index) => {
             return (
                 <div className={style.fertilizerLine} key={dosage.fertilizer.id}>
-                    <span className={style.name}>{dosage.fertilizer.name}</span>
-                    <span className={style.value}>{dosage.valueGram} {translate('gramLiter')}</span>
+                    <span className={style.name}>{index + 1}. {dosage.fertilizer.name}</span>
+                    <span className={style.value}>{dosage.valueGram}&nbsp;{translate('gramLiter')}</span>
                 </div>
             )
         })
@@ -48,17 +48,19 @@ const SolutionFertilizers: FunctionComponent<SolutionFertilizersProps> = ({dosag
 
     return (
         <div className={style.fertilizerBox}>
-            <div className={style.fertilizerPreview}>
-                {renderDosages()}
-            </div>
-            <div className={style.fertilizerCalculated}>
-                {renderDosagesValueByVolume()}
-            </div>
-            {isShowPercentVolume() &&
+            <div className={style.calculatedValuesBox}>
+                <div className={style.fertilizerPreview}>
+                    {renderDosages()}
+                </div>
+                <div className={style.fertilizerCalculated}>
+                    {renderDosagesValueByVolume()}
+                </div>
+                {isShowPercentVolume() &&
                 <div className={style.fertilizerPercent}>
                     {renderDosagesValueByPercentVolume()}
                 </div>
-            }
+                }
+            </div>
             <SolutionDistributor
                 percent={percent}
                 volume={volume}

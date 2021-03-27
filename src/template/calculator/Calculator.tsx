@@ -370,7 +370,7 @@ const Calculator = () => {
                         activeAgriculture={activeAgriculture}
                     />
                 </div>
-                <div>
+                <div className={style.calculatorItem}>
                     <Solutions
                         solutions={allSolutions}
                     />

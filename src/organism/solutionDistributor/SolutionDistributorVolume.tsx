@@ -14,15 +14,18 @@ const SolutionDistributorVolume: FunctionComponent<SolutionDistributorVolumeProp
 
     const calculateVolume = (): number => {
         if (!percent) {
-            return dosage.valueGram * volume
+            return Utils.round(dosage.valueGram * volume, 2)
         }
 
-        return (dosage.valueGram * (percent / 100)) * volume
+        return Utils.round(
+            (dosage.valueGram * (percent / 100)) * volume,
+            2
+        )
     }
 
     return (
         <div className={style.fertilizerLine}>
-            {Utils.round(calculateVolume())} {translate('gramLiter')}
+            {Utils.round(calculateVolume())} <span className={style.measure}>&nbsp;{translate('gramLiter')}</span>
         </div>
     );
 };
