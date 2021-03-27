@@ -56,3 +56,13 @@
 .removeAtomButton {
     margin-right: 5px;
 }
+
+@media screen and (max-width: 1279px) {
+    .atomsCountButtons {
+        display: block;
+    }
+
+    .removeButton {
+        display: flex;
+    }
+}
