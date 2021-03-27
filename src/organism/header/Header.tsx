@@ -1,4 +1,5 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
+import cn from 'classnames'
 import {NavLink} from 'react-router-dom';
 
 import {translate, Locale, getLocale} from "helpers/translate/translate";
@@ -15,10 +16,14 @@ import {API} from "core/api";
 import {ApiURL} from "core/api/ApiURL";
 import {Dropdown} from "../../atom/dropdown/Dropdown";
 import {Switcher} from "../../atom/switcher/Switcher";
+import { Icon } from 'atom/icon/Icon';
+import { ICON_TYPE } from 'atom/icon/IconTypes';
 
 const Header = () => {
     const {localStorageProvider, onChangeLocale} = useContext(AppContext)
     const dispatch = useDispatch()
+    const [showMenu, setShowMenu] = useState<boolean>(false)
+
     const userStore = useSelector((state: any) => state.user)
     const tokens: TokensPair = userStore.tokens
     const user: User = userStore.user
@@ -34,11 +39,20 @@ const Header = () => {
         onChangeLocale(locale)
     }
 
+    const toggleMenu = () => {
+        setShowMenu(!showMenu)
+    }
+
+    const navStyle = cn(
+        style.navigation,
+        {[style.navigationActive]: showMenu}
+    )
+
     return (
         <div className={style.header}>
             <div className={style.headerContainer}>
                 <div>Logo</div>
-                <nav className={style.navigation}>
+                <nav className={navStyle}>
                     <NavLink
                         to={ROUTES.MAIN_PAGE}
                         className={style.link}
@@ -97,6 +111,13 @@ const Header = () => {
                         </NavLink>
                     }
                 </nav>
+                <div className={style.openMenuButton} onClick={toggleMenu}>
+                    {showMenu ?
+                        <Icon type={ICON_TYPE.Cross} className={style.menuIcon} size={18} />
+                        :
+                        <Icon type={ICON_TYPE.Menu} className={style.menuIcon} size={18} />
+                    }
+                </div>
             </div>
         </div>
     );
