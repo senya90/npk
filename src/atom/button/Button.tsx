@@ -18,6 +18,7 @@ const Button: FunctionComponent<ButtonProps> = ({
 }) => {
 
     const styles = cn(
+        style.button,
         {[style[`size_${size}`]]: size},
         className
     )

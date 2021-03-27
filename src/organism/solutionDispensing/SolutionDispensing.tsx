@@ -24,7 +24,7 @@ const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solutio
     const [isShowModal, setIsShowModal] = useState<boolean>(false)
     const [volume, setVolume] = useState<number>(0)
     const [percent, setPercent] = useState<number>(100)
-    const [isShowControls, setIsShowControls] = useState<boolean>(true)
+    const [isShowControls, setIsShowControls] = useState<boolean>(false)
 
     const onVolumeChanged = (volume: number) => {
         setVolume(volume)
@@ -71,45 +71,46 @@ const SolutionDispensing: FunctionComponent<SolutionDispensingProps> = ({solutio
                                 size={15}
                             />
                         </div>
-                        <div>
-                            <Icon
-                                className={style.topLineButton}
-                                type={ICON_TYPE.Edit}
-                                size={25}
-                                onClick={edit}
-                            />
-                            <Popover
-                                visible={isShowModal}
-                                title={`${translate('deleteSolution')}?`}
-                                onVisibleChange={onVisibleChange}
-                                content={
-                                    <div className={stylePopover.modalButtonsBox}>
-                                        <Button
-                                            className={stylePopover.modalButton}
-                                            onClick={closeModal}
-                                        >
-                                            {translate('cancel')}
-                                        </Button>
-                                        <Button
-                                            className={stylePopover.modalButton}
-                                            danger
-                                            type={BUTTON_TYPE.PRIMARY}
-                                            onClick={deleteSolution}
-                                        >
-                                            {translate('delete')}
-                                        </Button>
-                                    </div>
-                                }
-                            >
+                        {isShowControls &&
+                            <div className={style.controls}>
                                 <Icon
                                     className={style.topLineButton}
-                                    type={ICON_TYPE.Delete}
+                                    type={ICON_TYPE.Edit}
                                     size={25}
-                                    onClick={showModal}
+                                    onClick={edit}
                                 />
-                            </Popover>
-
-                        </div>
+                                <Popover
+                                    visible={isShowModal}
+                                    title={`${translate('deleteSolution')}?`}
+                                    onVisibleChange={onVisibleChange}
+                                    content={
+                                        <div className={stylePopover.modalButtonsBox}>
+                                            <Button
+                                                className={stylePopover.modalButton}
+                                                onClick={closeModal}
+                                            >
+                                                {translate('cancel')}
+                                            </Button>
+                                            <Button
+                                                className={stylePopover.modalButton}
+                                                danger
+                                                type={BUTTON_TYPE.PRIMARY}
+                                                onClick={deleteSolution}
+                                            >
+                                                {translate('delete')}
+                                            </Button>
+                                        </div>
+                                    }
+                                >
+                                    <Icon
+                                        className={style.topLineButton}
+                                        type={ICON_TYPE.Delete}
+                                        size={25}
+                                        onClick={showModal}
+                                    />
+                                </Popover>
+                            </div>
+                        }
                     </div>
                     {isShowControls &&
                         <DispensingContext.Provider value={{

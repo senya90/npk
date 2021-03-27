@@ -15,7 +15,7 @@
 }
 
 .solutionName {
-    flex: 1 1 auto;
+    flex: 1 2 auto;
     font-weight: bold;
     font-size: $font_mb;
     padding-bottom: 10px;
@@ -23,7 +23,10 @@
 }
 
 .controls {
-
+    min-width: 20%;
+    flex: 1 0 auto;
+    text-align: right;
+    padding-left: 15px;
 }
 
 .topLineButton {
