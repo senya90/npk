@@ -18,6 +18,7 @@ import {Dropdown} from "../../atom/dropdown/Dropdown";
 import {Switcher} from "../../atom/switcher/Switcher";
 import { Icon } from 'atom/icon/Icon';
 import { ICON_TYPE } from 'atom/icon/IconTypes';
+import { Logo } from 'atom/logo/Logo';
 
 const Header = () => {
     const {localStorageProvider, onChangeLocale} = useContext(AppContext)
@@ -51,10 +52,12 @@ const Header = () => {
     return (
         <div className={style.header}>
             <div className={style.headerContainer}>
-                <div>Logo</div>
+                <NavLink to={ROUTES.HOME_PAGE}>
+                    <Logo/>
+                </NavLink>
                 <nav className={navStyle}>
                     <NavLink
-                        to={ROUTES.MAIN_PAGE}
+                        to={ROUTES.HOME_PAGE}
                         className={style.link}
                         activeClassName={style.activeLink}
                         exact

@@ -73,7 +73,7 @@ const App = () => {
                 <Header/>
                 <div className={style.container}>
                     <Switch>
-                        <Route exact component={Home} path={ROUTES.MAIN_PAGE}/>
+                        <Route exact component={Home} path={ROUTES.HOME_PAGE}/>
                         <Route component={SignIn} path={ROUTES.LOGIN}/>
                         <Route component={SignIn} path={ROUTES.REGISTRATION}/>
                         <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
