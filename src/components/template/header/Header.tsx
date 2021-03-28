@@ -71,6 +71,27 @@ const Header = () => {
                     >
                         {translate('calculatorPage')}
                     </NavLink>
+                    <NavLink
+                        to={ROUTES.ABOUT_US}
+                        className={style.link}
+                        activeClassName={style.activeLink}
+                    >
+                        {translate('aboutUsPage')}
+                    </NavLink>
+                    <NavLink
+                        to={ROUTES.HOW_TO_USE}
+                        className={style.link}
+                        activeClassName={style.activeLink}
+                    >
+                        {translate('howToUsePage')}
+                    </NavLink>
+                    <NavLink
+                        to={ROUTES.SUPPORT}
+                        className={style.link}
+                        activeClassName={style.activeLink}
+                    >
+                        {translate('supportPage')}
+                    </NavLink>
                     <Switcher
                         items={[
                             {

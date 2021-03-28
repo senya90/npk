@@ -19,6 +19,9 @@ import {Locale} from 'helpers/translate/translate';
 import {LocaleService} from "../core/services/localeService/LocaleService";
 import {ILocaleService} from "../core/services/localeService/LocaleServiceTypes";
 import {Footer} from "../components/template/footer/Footer";
+import {AboutUs} from "../components/pages/aboutUs/AboutUs";
+import {HowToUse} from "../components/pages/howToUse/HowToUse";
+import { Support } from 'components/pages/support/Support';
 
 
 const App = () => {
@@ -64,7 +67,7 @@ const App = () => {
     const callForceUpdate = () => setForceUpdate({})
 
     return (
-        <div style={{overflow: 'hidden', height: '100%'}}>
+        <div style={{overflowX: 'hidden', height: '100%', position: 'relative'}}>
             <AppContext.Provider value={{
                 localStorageProvider: localStorageProvider,
                 userService: userService,
@@ -77,6 +80,9 @@ const App = () => {
                         <Route exact component={Home} path={ROUTES.HOME_PAGE}/>
                         <Route component={SignIn} path={ROUTES.LOGIN}/>
                         <Route component={SignIn} path={ROUTES.REGISTRATION}/>
+                        <Route component={AboutUs} path={ROUTES.ABOUT_US}/>
+                        <Route component={HowToUse} path={ROUTES.HOW_TO_USE}/>
+                        <Route component={Support} path={ROUTES.SUPPORT}/>
                         <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                     </Switch>
                 </div>

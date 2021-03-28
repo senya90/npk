@@ -131,6 +131,18 @@
         "ru": "Главная",
         "en": "Home"
     },
+    "aboutUsPage": {
+        "ru": "О нас",
+        "en": "About"
+    },
+    "howToUsePage": {
+        "ru": "Обучение",
+        "en": "How to use"
+    },
+    "supportPage": {
+        "ru": "Поддержка",
+        "en": "Support"
+    },
     "login": {
         "ru": "Войти",
         "en": "Login"
