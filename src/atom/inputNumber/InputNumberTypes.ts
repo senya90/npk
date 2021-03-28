@@ -5,6 +5,7 @@ export interface InputNumberProps {
     defaultValue?: number
     isPositive?: boolean
     className?: string
+    placeholder?: string
     onChange: (e?: ReactText) => void
 }
 

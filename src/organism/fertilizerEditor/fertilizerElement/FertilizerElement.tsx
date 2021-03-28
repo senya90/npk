@@ -52,7 +52,6 @@ const FertilizerElement: FunctionComponent<FertilizerElementProps> = ({ingredien
                     onChange={onNameChange}
                 />
                 <InputNumber
-                    defaultValue={0}
                     value={ingredient.valuePercent}
                     isPositive={true}
                     onChange={onPercentChange}
