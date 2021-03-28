@@ -27,6 +27,14 @@ export class Utils {
         const seconds = new Date().valueOf() / MILLISECONDS_TO_SECONDS
         return Math.trunc(seconds)
     }
+
+    static addSpaces = (target: string, twoSides = true, spaceSymbol = ' ') => {
+        if (!twoSides) {
+            return spaceSymbol + target
+        }
+
+        return spaceSymbol + target + spaceSymbol
+    }
 }
 
 export const isExist = (value: any) => {

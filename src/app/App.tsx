@@ -18,6 +18,7 @@ import {IUserService} from "../core/services/userService/UserServiceTypes";
 import {Locale} from 'helpers/translate/translate';
 import {LocaleService} from "../core/services/localeService/LocaleService";
 import {ILocaleService} from "../core/services/localeService/LocaleServiceTypes";
+import {Footer} from "../components/template/footer/Footer";
 
 
 const App = () => {
@@ -63,7 +64,7 @@ const App = () => {
     const callForceUpdate = () => setForceUpdate({})
 
     return (
-        <div style={{overflow: 'hidden'}}>
+        <div style={{overflow: 'hidden', height: '100%'}}>
             <AppContext.Provider value={{
                 localStorageProvider: localStorageProvider,
                 userService: userService,
@@ -79,7 +80,7 @@ const App = () => {
                         <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                     </Switch>
                 </div>
-
+                <Footer/>
                 <NotificationBar
                     onNotificationHide={onNotificationHide}
                 />
