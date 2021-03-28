@@ -1,12 +1,12 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import {Calculator} from "template/calculator/Calculator";
-import { Home } from 'template/home/Home';
-import { Header } from 'organism/header/Header';
+import {Calculator} from "components/template/calculator/Calculator";
+import { Home } from 'components/template/home/Home';
+import { Header } from 'components/template/header/Header';
 import {ROUTES} from "core/routes/routes";
-import { SignIn } from 'pages/signIn/SignIn';
-import {NotificationBar} from "../organism/notificationBar/NotificationBar";
+import { SignIn } from 'components/pages/signIn/SignIn';
+import {NotificationBar} from "../components/organism/notificationBar/NotificationBar";
 import {LocalStorageProvider} from "core/services/localStorageProvider/LocalStorageProvider";
 import { AppContext } from 'helpers/contexts/AppContext';
 import style from './App.module.scss'
@@ -79,6 +79,7 @@ const App = () => {
                         <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                     </Switch>
                 </div>
+
                 <NotificationBar
                     onNotificationHide={onNotificationHide}
                 />

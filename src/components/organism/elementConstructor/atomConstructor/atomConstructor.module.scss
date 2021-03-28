@@ -1,0 +1,68 @@
+@import "../../../../index";
+
+.atom {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    background-color: $back_constructor_atom;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+
+    &:hover {
+        .atomsCountButtons {
+            display: block;
+        }
+
+        .removeButton {
+            display: flex;
+        }
+    }
+}
+
+.atomSelect {
+    min-width: 100px;
+    margin-right: 5px;
+    margin-bottom: 19px;
+}
+
+.atomCount {
+    max-width: 36px;
+    margin-top: 20px;
+    border-radius: 13px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.removeButton {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}
+
+.atomsCountButtons {
+    display: none;
+    position: absolute;
+    left: 5px;
+    bottom: -11px;
+    font-size: 1em;
+    font-family: $font_family_secondary;
+}
+
+.removeAtomButton {
+    margin-right: 5px;
+}
+
+@media screen and (max-width: 1279px) {
+    .atomsCountButtons {
+        display: block;
+    }
+
+    .removeButton {
+        display: flex;
+    }
+}

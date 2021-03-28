@@ -1,0 +1,73 @@
+@import "../../../../index";
+
+.aggregate {
+    padding: 10px 10px 25px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 10px;
+    border: 1px solid $color_backPrimary;
+    border-radius: 7px;
+}
+
+.multiplierWrapper {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    z-index: 100;
+
+    &:hover {
+        .multiplierButtons {
+            display: block;
+        }
+    }
+}
+
+.multiplier {
+    max-width: 50px;
+    height: 100%;
+    padding: 3px;
+    text-align: center;
+    background-color: $back_constructor_multiplier;
+    border-radius: 7px;
+}
+
+.multiplierButtons {
+    display: none;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+
+    text-align: center;
+    transform: translate(-50%, 0);
+}
+
+.addAtomButton {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 55px 0 7px 7px;
+}
+
+.addMultiplierButton {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.smallButtonRemove {
+    margin-right: 5px;
+}
+
+.removeAggregation {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 7px;
+    border: none;
+    padding: 3px 7px;
+
+    line-height: .5;
+    height: 20px;
+}

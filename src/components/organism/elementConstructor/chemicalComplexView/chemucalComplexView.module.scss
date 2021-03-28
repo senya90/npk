@@ -1,0 +1,54 @@
+@import "../../../../index";
+
+.complexItem {
+    display: inline-block;
+    position: relative;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    color: $color_text;
+    background-color: $color_backPrimary;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color .15s;
+
+    &:hover {
+        background-color: $color_backPrimary + 30%;
+
+        .complexItemDelete {
+            visibility: visible;
+        }
+    }
+}
+
+.complexItemNotOwner {
+    background-color: $color_backPrimaryDark;
+
+    &:hover {
+        background-color: $color_backPrimaryDark + 30%;
+    }
+}
+
+.complexItemDelete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 15px!important;
+    height: 15px;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 1;
+    visibility: hidden;
+}
+
+@media screen and (max-width: 1279px) {
+
+    .complexItem {
+        .complexItemDelete {
+            visibility: visible;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import { SelectOption } from "atom/select/SelectTypes"
+import { SelectOption } from "components/atom/select/SelectTypes"
 import {ChemicalComplex} from "models/chemicalComplex/chemicalComplex";
 import { isArray } from "helpers/utils";
 
