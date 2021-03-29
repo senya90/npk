@@ -47,9 +47,18 @@ const App = () => {
         return new LocaleService(dispatch, new LocalStorageProvider())
     }, [dispatch])
 
+    const callForceUpdate = useCallback(() => {
+            setForceUpdate({})
+    }, [setForceUpdate])
+
+    const onChangeLocale = useCallback((locale: Locale) => {
+        localeService.setLocale(locale)
+        callForceUpdate()
+    }, [callForceUpdate, localeService])
+
     useEffect(() => {
-        localeService.switchTranslateTo(locale)
-    }, [locale, localeService])
+        onChangeLocale(locale)
+    }, [locale, onChangeLocale])
 
     useEffect(() => {
         userService.setAuthByStorage()
@@ -59,12 +68,6 @@ const App = () => {
         notificationService.clearNotification()
     }, [notificationService])
 
-    const onChangeLocale = (locale: Locale) => {
-        localeService.setLocale(locale)
-        callForceUpdate()
-    }
-
-    const callForceUpdate = () => setForceUpdate({})
 
     return (
         <div style={{overflowX: 'hidden', height: '100%', position: 'relative'}}>
