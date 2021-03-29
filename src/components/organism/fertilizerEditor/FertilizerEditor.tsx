@@ -106,7 +106,7 @@ const FertilizerEditor: FunctionComponent<FertilizerEditorProps> = ({editableFer
                     className={`${commonStyles.mb_nano}`}
                     onClick={addElement}
                 >
-                    {translate('addElement')}
+                    {translate('compoundEditor')}
                 </Button>
             </div>
         </form>

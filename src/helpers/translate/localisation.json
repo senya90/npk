@@ -243,6 +243,10 @@
         "ru": "Добавить соединение",
         "en": "Add compound"
     },
+    "compoundEditor": {
+        "ru": "Редактор соединений",
+        "en": "Compound editor"
+    },
     "admin": {
         "ru": "Админ",
         "en": "Admin"
@@ -274,5 +278,33 @@
     "fromSrc": {
         "ru": "из",
         "en": "from"
+    },
+    "homePageP1": {
+        "ru": "- веб-приложение, позволяющее подобрать оптимальный состав удобрений для ваших растений",
+        "en": "is a web application that allows you to choose the optimal fertilizer composition for your plants"
+    },
+    "homePageP2": {
+        "ru": "Найдите требуемый состав микро- и макроэлементов путём добавления и дозировки ваших удобрений",
+        "en": "Find the required composition of micro and macronutrients by adding and dosing your fertilizers"
+    },
+    "homePageP3": {
+        "ru": "Пройдите раздел Обучения, чтобы получить навыки использования Калькулятора",
+        "en": "Go through the Tutorial section to learn how to use the Calculator"
+    },
+    "aboutPageP1": {
+        "ru": "Данный проект является опенсорс веб приложением, которое поможет вам подобрать удобрения для различных видов растений. Все части этого приложения написаны и поддерживаются мной одним.",
+        "en": "This project is an open source web application that will help you choose fertilizers for different types of plants. All parts of this app are coded and maintained by me alone."
+    },
+    "aboutPageP2": {
+        "ru": "Если у вас есть идеи по доработке приложения, или вы нашли баги, неправильный перевод - пожалуйста сообщите мне об этом на почту.\nВ скором времени я смог бы заняться внедрением новых фич или исправлением багов.",
+        "en": "If you have ideas for improving the application, or if you find bugs, incorrect translation - please let me know by email.\nSoon I could start introducing new features or fixing bugs."
+    },
+    "aboutPageP3": {
+        "ru": "Помните: ваше мнение важно и оно развивает приложение. Спасибо Вам!",
+        "en": "Remember: your opinion is important and it develops the application. Thank you!"
+    },
+    "aboutPageP4": {
+        "ru": "Если вы хотите поддержать меня материально, то можете отправить донат.",
+        "en": "If you want to support me financially, you can send a donation."
     }
 }
