@@ -158,7 +158,7 @@ const Fertilizers:FunctionComponent<FertilizersProps> = ({
 
             {isShowElementConstructor &&
             <Modal
-                title={translate('elementConstructor')}
+                title={translate('compoundConstructor')}
                 onClose={closeElementConstructor}
             >
                 <ElementConstructor chemicalComplexes={chemicalComplexes}/>

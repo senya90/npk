@@ -137,7 +137,7 @@
     },
     "howToUsePage": {
         "ru": "Обучение",
-        "en": "How to use"
+        "en": "Tutorial"
     },
     "supportPage": {
         "ru": "Поддержка",
@@ -183,9 +183,9 @@
         "ru": "Добавьте агрокультуру",
         "en": "Add agriculture"
     },
-    "elementConstructor": {
-        "ru": "Конструктор химических элементов",
-        "en": "Chemical elements constructor"
+    "compoundConstructor": {
+        "ru": "Конструктор химических соединений",
+        "en": "Chemical compounds constructor"
     },
     "attention": {
         "ru": "Внимание",
