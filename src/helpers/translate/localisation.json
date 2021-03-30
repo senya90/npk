@@ -135,9 +135,13 @@
         "ru": "О нас",
         "en": "About"
     },
-    "howToUsePage": {
+    "tutorialPage": {
         "ru": "Обучение",
         "en": "Tutorial"
+    },
+    "howToUse": {
+        "ru": "Как использовать",
+        "en": "How to use"
     },
     "supportPage": {
         "ru": "Поддержка",
@@ -310,5 +314,57 @@
     "createSolutions": {
         "ru": "Создайте растворы из удобрений",
         "en": "Create solutions from fertilizers"
+    },
+    "registerForUse": {
+        "ru": "Чтобы начать использовать Калькулятор зарегистрируйтесь в приложении",
+        "en": "To start using the Calculator register in the app"
+    },
+    "fertilizerAddition": {
+        "ru": "Добавьте удобрение",
+        "en": "Add fertilizer"
+    },
+    "fertilizerAdditionStep1": {
+        "ru": "Дайте название удобрению",
+        "en": "Name fertilizer"
+    },
+    "fertilizerAdditionStep2": {
+        "ru": "С помощью выпадающего списка выберите элемент, из которого состоит удобрение. В поле рядом введите проценты ",
+        "en": "Use the drop-down list to select the element that the fertilizer consists of. In the text input next to it, enter percentages"
+    },
+    "fertilizerAdditionStep2Note": {
+        "ru": "Причемание: обычно эти данные написаны на упаковке удобрения, например: MgSO4 12%, N 5%, Fe 0.001%",
+        "en": "Note: usually these data are written on the fertilizer package, for example: MgSO4 12%, N 5%, Fe 0.001%"
+    },
+    "fertilizerAdditionStep3": {
+        "ru": "Добавляйте новые химические соединения в состав удобрения с помощью соответствующей кнопки",
+        "en": "Add new chemical compounds to the fertilizer using the corresponding button"
+    },
+    "plantAddition": {
+        "ru": "Добавьте данные о растении",
+        "en": "Add plant data"
+    },
+    "plantAdditionDescription": {
+        "ru": "для которой вы подбираете состав удобрений. Это табличные данные и вы можете поискать их в Интернете, разлиных справочниках агронома или на тематических форумах",
+        "en": "for which you select the composition of the fertilizers. These are tabular data and you can search for them on the Internet, various agronomist reference books or on thematic forums"
+    },
+    "plantAdditionStep1": {
+        "ru": "Дайте название растению",
+        "en": "Name the plant"
+    },
+    "plantAdditionStep2": {
+        "ru": "Введите значения элементов (измеряется в мг/л) требуемых растению на этапах вегетации и цветения",
+        "en": "Enter the values of the elements (measured in mg/l) required by the plant during the growing and flowering stages"
+    },
+    "plantAdditionStep2Note": {
+        "ru": "Примечание: необязательно заполнять все поля",
+        "en": "Note: it is not necessary to fill in all fields"
+    },
+    "plantAdditionStep3": {
+        "ru": "",
+        "en": ""
+    },
+    "agricultureAddition1": {
+        "ru": "",
+        "en": ""
     }
 }

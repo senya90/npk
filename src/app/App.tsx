@@ -20,7 +20,7 @@ import {LocaleService} from "../core/services/localeService/LocaleService";
 import {ILocaleService} from "../core/services/localeService/LocaleServiceTypes";
 import {Footer} from "../components/template/footer/Footer";
 import {AboutUs} from "../components/pages/aboutUs/AboutUs";
-import {HowToUse} from "../components/pages/howToUse/HowToUse";
+import {Tutorial} from "../components/pages/tutorial/Tutorial";
 import { Support } from 'components/pages/support/Support';
 
 
@@ -84,7 +84,7 @@ const App = () => {
                         <Route component={SignIn} path={ROUTES.LOGIN}/>
                         <Route component={SignIn} path={ROUTES.REGISTRATION}/>
                         <Route component={AboutUs} path={ROUTES.ABOUT_US}/>
-                        <Route component={HowToUse} path={ROUTES.HOW_TO_USE}/>
+                        <Route component={Tutorial} path={ROUTES.HOW_TO_USE}/>
                         <Route component={Support} path={ROUTES.SUPPORT}/>
                         <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                     </Switch>

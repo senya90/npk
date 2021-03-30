@@ -83,7 +83,7 @@ const Header = () => {
                         className={style.link}
                         activeClassName={style.activeLink}
                     >
-                        {translate('howToUsePage')}
+                        {translate('tutorialPage')}
                     </NavLink>
                     <NavLink
                         to={ROUTES.SUPPORT}

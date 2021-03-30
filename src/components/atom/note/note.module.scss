@@ -1,0 +1,13 @@
+@import "src/index";
+
+.note {
+    display: inline-block;
+    border-radius: 13px;
+    color: $color_note;
+    background-color: $back_note;
+    padding: 10px 20px;
+    font-size: .8em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
