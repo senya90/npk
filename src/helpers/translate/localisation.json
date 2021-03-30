@@ -306,5 +306,9 @@
     "aboutPageP4": {
         "ru": "Если вы хотите поддержать меня материально, то можете отправить донат.",
         "en": "If you want to support me financially, you can send a donation."
+    },
+    "createSolutions": {
+        "ru": "Создайте растворы из удобрений",
+        "en": "Create solutions from fertilizers"
     }
 }

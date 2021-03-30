@@ -32,4 +32,5 @@ export class ICON_TYPE {
     static readonly Fertilizer = 'Fertilizer'
     static readonly Flasks = 'Flasks'
     static readonly Agriculture = 'Agriculture'
+    static readonly BucketWithLiquid = 'BucketWithLiquid'
 }
