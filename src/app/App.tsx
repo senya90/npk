@@ -18,7 +18,6 @@ import {IUserService} from "../core/services/userService/UserServiceTypes";
 import {Locale} from 'helpers/translate/translate';
 import {LocaleService} from "../core/services/localeService/LocaleService";
 import {ILocaleService} from "../core/services/localeService/LocaleServiceTypes";
-import {Footer} from "../components/template/footer/Footer";
 import {AboutUs} from "../components/pages/aboutUs/AboutUs";
 import {Tutorial} from "../components/pages/tutorial/Tutorial";
 import { Support } from 'components/pages/support/Support';
@@ -89,7 +88,7 @@ const App = () => {
                         <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                     </Switch>
                 </div>
-                <Footer/>
+                {/*<Footer/>*/}
                 <NotificationBar
                     onNotificationHide={onNotificationHide}
                 />

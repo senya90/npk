@@ -359,6 +359,46 @@
         "ru": "Примечание: необязательно заполнять все поля",
         "en": "Note: it is not necessary to fill in all fields"
     },
+    "createSolutionTutor": {
+        "ru": "Создайте раствора из удобрений",
+        "en": "Create a fertilizer solution"
+    },
+    "createSolutionTutorStep1": {
+        "ru": "Добавьте одно или несколько удобрений. Для этого нажмите на иконке",
+        "en": "Add one or more fertilizers. To do this, click on the icon"
+    },
+    "createSolutionTutorStep1.1": {
+        "ru": "После удачного добавления удобрения появятся в блоке \"Состав раствора\".",
+        "en": "After successful addition, fertilizers will appear in the \"Solution composition\" block."
+    },
+    "createSolutionTutorStep2": {
+        "ru": "Выберите растение для которого хотите найти оптимальный раствор удобрений",
+        "en": "Choose the plant for which you want to find the optimal fertilizer solution"
+    },
+    "createSolutionTutorStep3": {
+        "ru": "Теперь нажимая +/- или вводя значения в поле удобрений в блоке \"Состав раствора\", вы можете изменять дозировку текущего удобрения в составе общего раствора удобрений",
+        "en": "Now by pressing +/- or typing values in the fertilizer field in the \"Solution composition\" block, you can change the dosage of the current fertilizer in the total fertilizer solution."
+    },
+    "createSolutionTutorStep4": {
+        "ru": "Подобрав оптимальное количество удобрений, дайте название для раствораи сохраните его. После сохранения раствор появится в блоке \"Готовые растворы\"",
+        "en": "After choosing the optimal amount of fertilizer, give a name for the solution and save it. After saving, the solution will appear in the \"Ready-to-use solutions\" block"
+    },
+    "readySolutionsTutor": {
+        "ru": "Готовые растворы",
+        "en": "Ready solutions"
+    },
+    "readySolutionsTutorStep1": {
+        "ru": "Кликните на нужный вам раствор из блока \"Готовые растворы\"",
+        "en": "Click on the solution you need from the \"Ready-to-use solutions\" block"
+    },
+    "readySolutionsTutorStep2": {
+        "ru": "Далее в первом поле ввода укажите на какой объем воды вы хотели бы применить раствор. После ввода вы увидите - сколько грамм какого удобрения надо добавить",
+        "en": "Next, in the first input field, type how much water you would like to apply the solution. After typing, you will see how many grams of each fertilizer you need to add"
+    },
+    "readySolutionsTutorStep3": {
+        "ru": "Если вы хотите изменить концентрацию вашего раствора (по умолчанию раствор 100%), то введите значение процента во второе поле ввода",
+        "en": "If you want to change the concentration of your solution (by default, the solution is 100%), then type the percentage value in the second input field"
+    },
     "plantAdditionStep3": {
         "ru": "",
         "en": ""
