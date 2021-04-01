@@ -79,9 +79,9 @@
         "ru": "Готовые растворы",
         "en": "Ready-to-use solutions"
     },
-    "agriculture": {
-        "ru": "Агрокультуры",
-        "en": "Agriculture"
+    "plants": {
+        "ru": "Растения",
+        "en": "Plants"
     },
     "tableSolutions": {
         "ru": "Таблица смесей",
@@ -95,17 +95,17 @@
         "ru": "Удобрение",
         "en": "Fertilizer"
     },
-    "addAgriculture": {
-        "ru": "Добавить агрокультуру",
-        "en": "Add agriculture"
+    "addPlant": {
+        "ru": "Добавить растение",
+        "en": "Add plant"
     },
-    "editAgriculture": {
-        "ru": "Редактировать агрокультуру",
-        "en": "Edit agriculture"
+    "editPlant": {
+        "ru": "Редактировать растение",
+        "en": "Edit plant"
     },
-    "enterAgricultureName": {
-        "ru": "Введите название агрокультуры",
-        "en": "Enter the name of the agriculture"
+    "enterPlantName": {
+        "ru": "Введите название растения",
+        "en": "Enter the name of the plant"
     },
     "bloom": {
         "ru": "Цветение",
@@ -183,9 +183,9 @@
         "ru": "Добавьте удобрения из вашего списка",
         "en": "Add fertilizers from your list"
     },
-    "addYourAgriculture": {
-        "ru": "Добавьте агрокультуру",
-        "en": "Add agriculture"
+    "addYourPlant": {
+        "ru": "Добавьте растение",
+        "en": "Add the plant"
     },
     "compoundConstructor": {
         "ru": "Конструктор химических соединений",
@@ -267,13 +267,13 @@
         "ru": "Удалить удобрение",
         "en": "Delete fertilizer"
     },
-    "deleteAgriculture": {
-        "ru": "Удалить агрокультуру",
-        "en": "Delete agriculture"
+    "deletePlant": {
+        "ru": "Удалить растение",
+        "en": "Delete plant"
     },
-    "chooseAgriculture": {
-        "ru": "Выберите агрокультуру или добавьте удобрение в раствор",
-        "en": "Choose an agriculture or add fertilizers to the solution"
+    "choosePlant": {
+        "ru": "Выберите растение или добавьте удобрение в раствор",
+        "en": "Choose a plant or add fertilizers to the solution"
     },
     "thanksForIcons": {
         "ru": "Благодарность",

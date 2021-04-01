@@ -65,7 +65,7 @@ const AgricultureItem: FunctionComponent<AgricultureItemProps> = ({agriculture, 
                 />
                 <Popover
                     visible={isShowTooltip}
-                    title={`${translate('deleteAgriculture')}?`}
+                    title={`${translate('deletePlant')}?`}
                     onVisibleChange={onVisibleChange}
                     content={
                         <div className={stylePopover.modalButtonsBox}>

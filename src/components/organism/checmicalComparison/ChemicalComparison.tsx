@@ -117,7 +117,7 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = ({
                             />
                         }
                     >
-                        {translate('chooseAgriculture')}
+                        {translate('choosePlant')}
                     </Gag>
                 </div>
             }

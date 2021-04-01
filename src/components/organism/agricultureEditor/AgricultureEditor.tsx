@@ -140,7 +140,7 @@ const AgricultureEditor: FC<AgricultureEditorProps> =
                 className={style.name}
                 onChange={changeName}
                 value={name ? name : ''}
-                placeholder={translate('enterAgricultureName')}
+                placeholder={translate('enterPlantName')}
             />
             <div className={style.editor}>
                 <div className={style.editorField}>

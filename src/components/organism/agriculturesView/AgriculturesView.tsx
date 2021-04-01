@@ -88,10 +88,10 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = ({
 
     const getTitle = (): string => {
         if (editableAgriculture) {
-            return translate('editAgriculture')
+            return translate('editPlant')
         }
 
-        return translate('addAgriculture')
+        return translate('addPlant')
     }
 
     const isEmptyAgricultureList = () => {
@@ -105,7 +105,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = ({
 
     return (
         <div className={wrapperStyles}>
-            <Title border>{translate('agriculture')}</Title>
+            <Title border>{translate('plants')}</Title>
             {isEmptyAgricultureList() &&
                 <div className={style.gagWrapper}>
                     <Gag
@@ -113,7 +113,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = ({
                             <Icon type={ICON_TYPE.Agriculture} size={100}/>
                         }
                     >
-                        {translate('addYourAgriculture')}
+                        {translate('addYourPlant')}
                     </Gag>
                 </div>
             }
@@ -133,7 +133,7 @@ const AgriculturesView: FunctionComponent<AgriculturesProps> = ({
                 className={style.addButton}
                 type={BUTTON_TYPE.PRIMARY}
             >
-                {translate('addAgriculture')}
+                {translate('addPlant')}
             </Button>
             {isOpenAddEditModal() &&
             <Modal
