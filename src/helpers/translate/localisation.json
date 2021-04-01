@@ -185,7 +185,7 @@
     },
     "addYourPlant": {
         "ru": "Добавьте растение",
-        "en": "Add the plant"
+        "en": "Add a plant"
     },
     "compoundConstructor": {
         "ru": "Конструктор химических соединений",
@@ -353,7 +353,7 @@
     },
     "plantAdditionStep2": {
         "ru": "Введите значения элементов (измеряется в мг/л) требуемых растению на этапах вегетации и цветения",
-        "en": "Enter the values of the elements (measured in mg/l) required by the plant during the growing and flowering stages"
+        "en": "Enter the values of the elements (measured in mg/l) required by a plant during the growing and flowering stages"
     },
     "plantAdditionStep2Note": {
         "ru": "Примечание: необязательно заполнять все поля",
@@ -373,7 +373,7 @@
     },
     "createSolutionTutorStep2": {
         "ru": "Выберите растение для которого хотите найти оптимальный раствор удобрений",
-        "en": "Choose the plant for which you want to find the optimal fertilizer solution"
+        "en": "Choose a plant for which you want to find the optimal fertilizer solution"
     },
     "createSolutionTutorStep3": {
         "ru": "Теперь нажимая +/- или вводя значения в поле удобрений в блоке \"Состав раствора\", вы можете изменять дозировку текущего удобрения в составе общего раствора удобрений",
@@ -398,13 +398,5 @@
     "readySolutionsTutorStep3": {
         "ru": "Если вы хотите изменить концентрацию вашего раствора (по умолчанию раствор 100%), то введите значение процента во второе поле ввода",
         "en": "If you want to change the concentration of your solution (by default, the solution is 100%), then type the percentage value in the second input field"
-    },
-    "plantAdditionStep3": {
-        "ru": "",
-        "en": ""
-    },
-    "agricultureAddition1": {
-        "ru": "",
-        "en": ""
     }
 }
