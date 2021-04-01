@@ -139,6 +139,14 @@
         "ru": "Обучение",
         "en": "Tutorial"
     },
+    "basicsTutor": {
+        "ru": "Основы",
+        "en": "Basics"
+    },
+    "advancedTutor": {
+        "ru": "Дополнительно",
+        "en": "Advanced"
+    },
     "howToUse": {
         "ru": "Как использовать",
         "en": "How to use"
