@@ -17,6 +17,8 @@
     margin-bottom: 10px;
     z-index: 100;
 
+    min-height: 72px;
+
     &:hover {
         .multiplierButtons {
             display: block;
@@ -26,7 +28,7 @@
 
 .multiplier {
     max-width: 50px;
-    height: 100%;
+    min-height: 72px;
     padding: 3px;
     text-align: center;
     background-color: $back_constructor_multiplier;
