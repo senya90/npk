@@ -15,6 +15,8 @@ import step3_3Img from 'core/images/tutorial/step3/step3_3.png'
 import step4_2Img from 'core/images/tutorial/step4/step4_2.png'
 import step4_3Img from 'core/images/tutorial/step4/step4_3.png'
 
+import step5_3Img from 'core/images/tutorial/step5/step5_3.png'
+
 
 const Tutorial = () => {
     return (
@@ -86,6 +88,27 @@ const Tutorial = () => {
             </article>
 
             <h2>{translate('advancedTutor')}</h2>
+            <article>
+                <h3>{translate('constructorTutor')}</h3>
+                <p>{translate('constructorTutorDescription1')}</p>
+                <p>{translate('constructorTutorDescription2')}</p>
+
+                <h3>{translate('compoundsCreatingTutor')}</h3>
+                <ol>
+                    <li><span>{translate('compoundsCreatingTutorStep1')}</span></li>
+                    <li><span>{translate('compoundsCreatingTutorStep2')}</span></li>
+                    <li>
+                        <span>{translate('compoundsCreatingTutorStep3')}</span>
+                        <img className={style.tutorialPicture} src={step5_3Img} alt="step 5.3"/>
+                    </li>
+                </ol>
+
+                <h3>{translate('compoundsDeletingTutor')}</h3>
+                <p>
+                    {translate('compoundsDeletingTutorDescription1')}
+                    <Note>{translate('compoundsDeletingTutorNote')}</Note>
+                </p>
+            </article>
         </div>
     );
 };

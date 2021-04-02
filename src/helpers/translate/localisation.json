@@ -406,5 +406,49 @@
     "readySolutionsTutorStep3": {
         "ru": "Если вы хотите изменить концентрацию вашего раствора (по умолчанию раствор 100%), то введите значение процента во второе поле ввода",
         "en": "If you want to change the concentration of your solution (by default, the solution is 100%), then type the percentage value in the second input field"
+    },
+    "constructorTutor": {
+        "ru": "Конструктор химических соединений",
+        "en": "Chemical compounds constructor"
+    },
+    "constructorTutorDescription1": {
+        "ru": "Конструктор содержит химические соединения, которые являются строительными блоками удобрений",
+        "en": "The Construction set contains chemical compounds that are the building blocks of fertilizers"
+    },
+    "constructorTutorDescription2": {
+        "ru": "Если у вашего удобрения есть химическое соединение, которого нет в списке Конструктора, то вы можете сами создать такое соединение. Чтобы попасть в Конструктор нажмите Добавить удобрение -> Редактор соединений",
+        "en": "If your fertilizer has a chemical compound that is not in the Constructor list, then you can create such a compound yourself. To get to the Constructor, click Add fertilizer -> Compound editor"
+    },
+    "compoundsCreatingTutor": {
+        "ru": "Создание химических соединений",
+        "en": "Creation of chemical compounds"
+    },
+    "compoundsCreatingTutorStep1": {
+        "ru": "Чтобы создать химическое соединение в Конструкторе нажмите Добавить соединение",
+        "en": "To create a chemical compound in the Constructor, click Add compound"
+    },
+    "compoundsCreatingTutorStep2": {
+        "ru": "В появившемся блоке добавляйте атомы, изменяйте количество атомов. Вы также можете добавить множитель",
+        "en": "In the block that appears, add atoms, change the number of atoms. You can also add a multiplier"
+    },
+    "compoundsCreatingTutorStep3": {
+        "ru": "Если ваше химическое соединение сложное и состоит из нескольких частей, то вы можете добавить еще одно соединение. Вот пример как получить химическео соединение MgSO4 * 7H20",
+        "en": "If your chemical compound is complex and has several parts, then you can add another compound. Here's an example of how to get the chemical compound MgSO4 * 7H20"
+    },
+    "compoundsDeletingTutor": {
+        "ru": "Создание и редактирование",
+        "en": "Deleting and editing"
+    },
+    "compoundsDeletingTutorDescription1": {
+        "ru": "Чтобы удалить химическое соединение наведите на него курсор мыши. Чтобы редактировать существующее химическое соединение кликните на него",
+        "en": "To delete a chemical compound, move the mouse cursor over it. To edit an existing chemical compound, click on it"
+    },
+    "compoundsDeletingTutorNote": {
+        "ru": "Примечание: вы можете редактировать только собственные соединения. Соединения, которые были по умолчанию в списке доступных, являются общими и вы неможете их удалить или редактировать",
+        "en": "Note: you can only edit your own compounds. Compounds, which were by default in the list of available ones, are general and you cannot delete or edit them"
+    },
+    "fromSrc1": {
+        "ru": "",
+        "en": ""
     }
 }
