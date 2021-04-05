@@ -307,9 +307,13 @@
         "ru": "Данный проект является опенсорс веб приложением, которое поможет вам подобрать удобрения для различных видов растений. Все части этого приложения написаны и поддерживаются мной одним.",
         "en": "This project is an open source web application that will help you choose fertilizers for different types of plants. All parts of this app are coded and maintained by me alone."
     },
-    "aboutPageP2": {
-        "ru": "Если у вас есть идеи по доработке приложения, или вы нашли баги, неправильный перевод - пожалуйста сообщите мне об этом на почту.\nВ скором времени я смог бы заняться внедрением новых фич или исправлением багов.",
-        "en": "If you have ideas for improving the application, or if you find bugs, incorrect translation - please let me know by email.\nSoon I could start introducing new features or fixing bugs."
+    "aboutPageP2_1": {
+        "ru": "Если у вас есть идеи по доработке приложения, или вы нашли баги, неправильный перевод - пожалуйста сообщите мне об этом на почту ",
+        "en": "If you have ideas for improving the application, or if you find bugs, incorrect translation - please let me know by email"
+    },
+    "aboutPageP2_2": {
+        "ru": "В скором времени я смог бы заняться внедрением новых фич или исправлением багов",
+        "en": "Soon I could start introducing new features or fixing bugs"
     },
     "aboutPageP3": {
         "ru": "Помните: ваше мнение важно и оно развивает приложение. Спасибо Вам!",
@@ -447,8 +451,12 @@
         "ru": "Примечание: вы можете редактировать только собственные соединения. Соединения, которые были по умолчанию в списке доступных, являются общими и вы неможете их удалить или редактировать",
         "en": "Note: you can only edit your own compounds. Compounds, which were by default in the list of available ones, are general and you cannot delete or edit them"
     },
-    "fromSrc1": {
-        "ru": "",
-        "en": ""
+    "mail": {
+        "ru": "Почта",
+        "en": "Email"
+    },
+    "supportProject": {
+        "ru": "Поддержите проект",
+        "en": "Support the project"
     }
 }
