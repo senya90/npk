@@ -71,3 +71,13 @@ $back_constructor_aggregation: #f3ee5a;
 $back_constructor_atom: #54BCB4;
 $back_constructor_multiplier: #fffc9c;
 
+
+
+article {
+
+    img {
+        border-radius: 13px;
+
+        box-shadow: -1px 1px 7px 0 $color_background_transparent;
+    }
+}

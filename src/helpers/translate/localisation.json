@@ -292,14 +292,26 @@
         "en": "from"
     },
     "homePageP1": {
-        "ru": "- веб-приложение, позволяющее подобрать оптимальный состав удобрений для ваших растений",
-        "en": "is a web application that allows you to choose the optimal fertilizer composition for your plants"
+        "ru": "веб-приложение, позволяющее подобрать оптимальный состав удобрений для ваших растений",
+        "en": "web application that allows you to choose the optimal fertilizer composition for your plants"
     },
     "homePageP2": {
-        "ru": "Найдите требуемый состав микро- и макроэлементов путём добавления и дозировки ваших удобрений",
-        "en": "Find the required composition of micro and macronutrients by adding and dosing your fertilizers"
+        "ru": "Добавьте свои удобрения",
+        "en": "Add your fertilizers"
+    },
+    "homePageP2_2": {
+        "ru": "Создайте свою библиотеку удобрений",
+        "en": "Create your fertilizer library"
     },
     "homePageP3": {
+        "ru": "Найдите требуемый состав микро- и макроэлементов путём добавления и дозировки удобрений",
+        "en": "Find the required composition of micro and macronutrients by adding and dosing fertilizers"
+    },
+    "homePageP4": {
+        "ru": "Приготовьте нужный объем раствора",
+        "en": "Make the required volume of solution"
+    },
+    "homePageP5": {
         "ru": "Пройдите раздел Обучения, чтобы получить навыки использования Калькулятора",
         "en": "Go through the Tutorial section to learn how to use the Calculator"
     },
