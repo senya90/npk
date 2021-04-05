@@ -54,3 +54,43 @@
 
     @include hover(1);
 }
+
+@media screen and (max-width: 1279px) {
+
+    .mainTitle {
+        text-align: center;
+    }
+
+    .homeSection {
+        img {
+            max-width: 50%;
+        }
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .homeSection {
+        flex-wrap: wrap;
+
+        img {
+            order: 1;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+    }
+
+    .homeSubtitle {
+        width: 100%;
+        order: 0;
+    }
+
+    .questionTutorial {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .homeWrapper {
+        font-size: 1em;
+    }
+}

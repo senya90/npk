@@ -10,3 +10,15 @@
     overflow: hidden;
     position: relative;
 }
+
+@media screen and (max-width: 1279px) {
+    .container {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 639px) {
+    .container {
+        font-size: 10px;
+    }
+}
