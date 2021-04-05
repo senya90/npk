@@ -21,6 +21,7 @@ import {ILocaleService} from "../core/services/localeService/LocaleServiceTypes"
 import {AboutUs} from "../components/pages/aboutUs/AboutUs";
 import {Tutorial} from "../components/pages/tutorial/Tutorial";
 import { Support } from 'components/pages/support/Support';
+import { Footer } from 'components/template/footer/Footer';
 
 
 const App = () => {
