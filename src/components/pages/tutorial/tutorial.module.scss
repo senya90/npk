@@ -1,7 +1,6 @@
 @import "src/index";
 
 .tutorialWrapper {
-    padding-top: 60px;
     font-size: 1.3em;
 
     h1 {
@@ -33,7 +32,6 @@
 
 @media screen and (max-width: 1023px) {
     .tutorialWrapper {
-        padding-top: 20px;
 
         ol {
             padding-left: 20px;

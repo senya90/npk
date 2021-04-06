@@ -1,0 +1,11 @@
+.mainWrapper {
+    padding-top: 60px;
+    padding-bottom: 70px;
+}
+
+@media screen and (max-width: 1279px) {
+    .mainWrapper {
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+}

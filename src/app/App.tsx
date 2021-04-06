@@ -21,6 +21,7 @@ import {ILocaleService} from "../core/services/localeService/LocaleServiceTypes"
 import {AboutUs} from "../components/pages/aboutUs/AboutUs";
 import {Tutorial} from "../components/pages/tutorial/Tutorial";
 import { Support } from 'components/pages/support/Support';
+import { Footer } from 'components/template/footer/Footer';
 
 
 const App = () => {
@@ -69,31 +70,33 @@ const App = () => {
 
 
     return (
-        <div style={{overflowX: 'hidden', height: '100%', position: 'relative'}}>
-            <AppContext.Provider value={{
-                localStorageProvider: localStorageProvider,
-                userService: userService,
-                notificationService: notificationService,
-                onChangeLocale
-            }}>
-                <Header/>
-                <div className={style.container}>
-                    <Switch>
-                        <Route exact component={Home} path={ROUTES.HOME_PAGE}/>
-                        <Route component={SignIn} path={ROUTES.LOGIN}/>
-                        <Route component={SignIn} path={ROUTES.REGISTRATION}/>
-                        <Route component={AboutUs} path={ROUTES.ABOUT_US}/>
-                        <Route component={Tutorial} path={ROUTES.TUTORIAL}/>
-                        <Route component={Support} path={ROUTES.SUPPORT}/>
-                        <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
-                    </Switch>
+        <AppContext.Provider value={{
+            localStorageProvider: localStorageProvider,
+            userService: userService,
+            notificationService: notificationService,
+            onChangeLocale
+        }}>
+            <div className={style.mainContainer}>
+                <div className={style.mainContent}>
+                    <Header/>
+                    <div className={style.pageContent}>
+                        <Switch>
+                            <Route exact component={Home} path={ROUTES.HOME_PAGE}/>
+                            <Route component={SignIn} path={ROUTES.LOGIN}/>
+                            <Route component={SignIn} path={ROUTES.REGISTRATION}/>
+                            <Route component={AboutUs} path={ROUTES.ABOUT_US}/>
+                            <Route component={Tutorial} path={ROUTES.TUTORIAL}/>
+                            <Route component={Support} path={ROUTES.SUPPORT}/>
+                            <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
+                        </Switch>
+                    </div>
+                    <NotificationBar
+                        onNotificationHide={onNotificationHide}
+                    />
                 </div>
-                {/*<Footer/>*/}
-                <NotificationBar
-                    onNotificationHide={onNotificationHide}
-                />
-            </AppContext.Provider>
-        </div>
+                <Footer/>
+            </div>
+        </AppContext.Provider>
     );
 }
 

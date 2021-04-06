@@ -1,7 +1,9 @@
 import React from 'react';
+import cn from 'classnames'
 import { translate } from 'helpers/translate/translate';
 
 import style from './tutorial.module.scss'
+import wrapperStyle from 'components/atom/mainWrapper/mainWrapper.module.scss'
 import { Note } from 'components/atom/note/Note';
 
 import step1_1Img from 'core/images/tutorial/step1/step1_1.png'
@@ -20,7 +22,7 @@ import step5_3Img from 'core/images/tutorial/step5/step5_3.png'
 
 const Tutorial = () => {
     return (
-        <div className={style.tutorialWrapper}>
+        <div className={cn(style.tutorialWrapper, wrapperStyle.mainWrapper)}>
             <h1>{translate('howToUse')} npkcalculator?</h1>
             <h2>{translate('basicsTutor')}</h2>
             <article>

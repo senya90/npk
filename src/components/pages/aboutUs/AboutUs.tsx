@@ -1,13 +1,15 @@
 import React from 'react';
+import cn from 'classnames'
 import { translate } from 'helpers/translate/translate';
 
 import style from './aboutUs.module.scss'
 import linkStyle from 'components/atom/link/link.module.scss'
+import wrapperStyle from 'components/atom/mainWrapper/mainWrapper.module.scss'
 
 
 const AboutUs = () => {
     return (
-        <div className={style.aboutUs}>
+        <div className={cn(style.aboutUs, wrapperStyle.mainWrapper)}>
             <article>
                 <p>{translate('aboutPageP1')}</p>
                 <p>

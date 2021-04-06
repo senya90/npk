@@ -5,14 +5,15 @@ import {translate} from "../../../helpers/translate/translate";
 import createFertilizersLibrary from 'core/images/home/createFertilizersLibrary.png'
 import makeSolutionVolume from 'core/images/home/makeSolutionVolume.png'
 import findSolution from 'core/images/home/findSolution.png'
+import {ROUTES} from "../../../core/routes/routes";
 
 import style from './home.module.scss'
-import {ROUTES} from "../../../core/routes/routes";
+import wrapperStyle from 'components/atom/mainWrapper/mainWrapper.module.scss'
 
 
 const Home = () => {
     return (
-        <div className={style.homeWrapper}>
+        <div className={cn(style.homeWrapper, wrapperStyle.mainWrapper)}>
             <article>
                 <h1 className={style.mainTitle}><span className={style.keyword}>npkcalculator</span> - {translate('homePageP1')}</h1>
                 <section className={style.homeSection}>

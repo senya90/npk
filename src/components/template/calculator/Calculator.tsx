@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
+import cn from 'classnames'
 import {Fertilizers} from "components/organism/fertilizers/Fertilizers";
 import {Fertilizer} from 'models/fertilizer/fertilizer';
 import {SolutionComposition} from "components/organism/solutionComposition/SolutionComposition";
 
-import style from './calculator.module.scss'
 import {CalculatorContext} from 'helpers/contexts/CalculatorContext';
 import {Solution, SolutionDTO} from "models/solution/solution";
 import { Solutions } from 'components/organism/solutions/Solutions';
@@ -19,6 +19,9 @@ import { FertilizerDTO } from 'models/_types/fertilizer';
 import { ChemicalComplexDTO } from 'models/_types/chemicalComplex';
 import {Dosage} from "../../../models/dosage/dosage";
 import {ServerResponse} from "../../../models/_types/serverResponse";
+
+import style from './calculator.module.scss'
+import wrapperStyle from 'components/atom/mainWrapper/mainWrapper.module.scss'
 
 
 const Calculator = () => {
@@ -321,7 +324,7 @@ const Calculator = () => {
     }
 
     return (
-        <div>
+        <div className={wrapperStyle.mainWrapper}>
             <CalculatorContext.Provider value={{
                 chemicals: chemicals,
                 onDeleteFertilizer: onDeleteFertilizer,
@@ -346,7 +349,7 @@ const Calculator = () => {
                 onDeleteAgricultures: onDeleteAgricultures
             }}
             >
-                <div className={style.box}>
+                <div className={style.calculatorWrapper}>
                     <Fertilizers
                         className={style.calculatorItem}
                         fertilizers={fertilizers}
