@@ -26,3 +26,29 @@
     }
 }
 
+.footerMainInfo {
+    display: flex;
+}
+
+.footerNavigation {
+    display: inline-block;
+    width: 100%;
+    max-width: 30%;
+}
+
+.thanks {
+    display: inline-block;
+}
+
+@media screen and (max-width: 1023px) {
+    .footerMainInfo {
+        flex-wrap: wrap;
+    }
+    .footerNavigation {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        max-width: 100%;
+        margin-bottom: 1.5em;
+    }
+}

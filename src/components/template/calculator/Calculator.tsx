@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import cn from 'classnames'
 import {Fertilizers} from "components/organism/fertilizers/Fertilizers";
 import {Fertilizer} from 'models/fertilizer/fertilizer';
 import {SolutionComposition} from "components/organism/solutionComposition/SolutionComposition";
