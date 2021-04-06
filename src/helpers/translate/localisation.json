@@ -63,6 +63,10 @@
         "ru": "г/л",
         "en": "g/l"
     },
+    "milligramLiter": {
+        "ru": "мг/л",
+        "en": "mg/l"
+    },
     "forValue": {
         "ru": "на",
         "en": "for"

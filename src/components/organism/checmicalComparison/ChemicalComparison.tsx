@@ -13,7 +13,7 @@ import {Icon} from "../../atom/icon/Icon";
 import {ICON_TYPE} from "../../atom/icon/IconTypes";
 import {Gag} from "../../molecule/gag/Gag";
 
-import style from './chemicalConparison.module.scss'
+import style from './chemicalComparison.module.scss'
 import {colors} from "../../../helpers/commonStyle/colors";
 
 const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = ({
@@ -96,10 +96,21 @@ const ChemicalComparison: FunctionComponent<ChemicalComparisonProps> = ({
                 <Table full>
                     <thead>
                     <TableRaw>
-                        <TableCell header>{translate('element')}</TableCell>
-                        <TableCell header>{translate('mixed')}</TableCell>
-                        <TableCell header>{translate('vegetation')}</TableCell>
-                        <TableCell header>{translate('bloom')}</TableCell>
+                        <TableCell header>
+                            {translate('element')}
+                        </TableCell>
+                        <TableCell header>
+                            {translate('mixed')}
+                            <span className={style.measurement}>{translate('milligramLiter')}</span>
+                        </TableCell>
+                        <TableCell header>
+                            {translate('vegetation')}
+                            <span className={style.measurement}>{translate('milligramLiter')}</span>
+                        </TableCell>
+                        <TableCell header>
+                            {translate('bloom')}
+                            <span className={style.measurement}>{translate('milligramLiter')}</span>
+                        </TableCell>
                     </TableRaw>
                     </thead>
                     <tbody>
