@@ -1,6 +1,7 @@
 @import "../../../index";
 
 .box {
+    padding-top: 60px;
     display: flex;
     margin-bottom: 60px;
 }
@@ -22,6 +23,12 @@
     .calculatorItem {
         flex: 1 1 50%;
         margin-bottom: 5em;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .box {
+        padding-top: 20px;
     }
 }
 
