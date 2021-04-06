@@ -35,6 +35,22 @@ export class Utils {
 
         return spaceSymbol + target + spaceSymbol
     }
+
+    static truncate = (value: string | null | undefined, availableSymbolsCount = 15, endBy = '…'): string => {
+        if (!value) {
+            return ''
+        }
+
+        if (availableSymbolsCount === 0) {
+            return ''
+        }
+
+        if (value.length < availableSymbolsCount) {
+            return value
+        }
+
+        return value.slice(0, availableSymbolsCount) + endBy
+    }
 }
 
 export const isExist = (value: any) => {

@@ -19,6 +19,7 @@ import {Switcher} from "../../atom/switcher/Switcher";
 import { Icon } from 'components/atom/icon/Icon';
 import { ICON_TYPE } from 'components/atom/icon/IconTypes';
 import { Logo } from 'components/atom/logo/Logo';
+import {Utils} from "../../../helpers/utils";
 
 const Header = () => {
     const {localStorageProvider, onChangeLocale} = useContext(AppContext)
@@ -121,7 +122,7 @@ const Header = () => {
                             ]}
                         >
                             <div className={style.usernameWrapper}>
-                                <div className={style.username}>{user.login}</div>
+                                <div className={style.username}>{Utils.truncate(user.login)}</div>
                             </div>
                         </Dropdown>
 

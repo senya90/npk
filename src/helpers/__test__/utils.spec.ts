@@ -162,7 +162,6 @@ describe('Utils', () => {
             expect(notEmptyArray(true)).toBe(false)
             expect(notEmptyArray({})).toBe(false)
         })
-
     })
 
     describe('notEmptyString', () => {
@@ -191,7 +190,38 @@ describe('Utils', () => {
             expect(notEmptyString({field: 'test'})).toBe(false)
             expect(notEmptyString({})).toBe(false)
         })
+    })
 
+    describe('truncate', () => {
+        let testText = 'some big text about lorem ipsum story'
+
+        it('default values', () => {
+            expect(Utils.truncate(testText)).toEqual('some big text a…')
+        })
+
+        it('null or undefined', () => {
+            expect(Utils.truncate(undefined)).toEqual('')
+            expect(Utils.truncate(null)).toEqual('')
+        })
+
+        it('replace end symbol', () => {
+            const result1 = Utils.truncate(testText, undefined, '!')
+            const result2 = Utils.truncate(testText, undefined, '')
+            expect(result1).toEqual('some big text a!')
+            expect(result2).toEqual('some big text a')
+        })
+
+        it('change default length', () => {
+            expect(Utils.truncate(testText, 5)).toEqual('some …')
+        })
+
+        it('length 0', () => {
+            expect(Utils.truncate(testText, 0)).toEqual('')
+        })
+
+        it('length is longer than the length of the text', () => {
+            expect(Utils.truncate(testText, 9999)).toEqual('some big text about lorem ipsum story')
+        })
     })
 
 })
