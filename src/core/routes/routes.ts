@@ -4,6 +4,6 @@ export const ROUTES = {
     REGISTRATION: '/registration',
     CALCULATOR: '/calculator',
     ABOUT_US: '/about-us',
-    HOW_TO_USE: '/how-to-use',
+    TUTORIAL: '/tutorial',
     SUPPORT: '/support'
 }

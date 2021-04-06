@@ -83,7 +83,7 @@ const App = () => {
                         <Route component={SignIn} path={ROUTES.LOGIN}/>
                         <Route component={SignIn} path={ROUTES.REGISTRATION}/>
                         <Route component={AboutUs} path={ROUTES.ABOUT_US}/>
-                        <Route component={Tutorial} path={ROUTES.HOW_TO_USE}/>
+                        <Route component={Tutorial} path={ROUTES.TUTORIAL}/>
                         <Route component={Support} path={ROUTES.SUPPORT}/>
                         <PrivateRoute component={Calculator} path={ROUTES.CALCULATOR}/>
                     </Switch>

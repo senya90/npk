@@ -50,6 +50,10 @@ const Header = () => {
         {[style.navigationActive]: showMenu}
     )
 
+    const onClickNavLink = () => {
+        toggleMenu()
+    }
+
     return (
         <div className={style.header}>
             <div className={style.headerContainer}>
@@ -58,6 +62,7 @@ const Header = () => {
                 </NavLink>
                 <nav className={navStyle}>
                     <NavLink
+                        onClick={onClickNavLink}
                         to={ROUTES.HOME_PAGE}
                         className={style.link}
                         activeClassName={style.activeLink}
@@ -66,6 +71,7 @@ const Header = () => {
                         {translate('mainPage')}
                     </NavLink>
                     <NavLink
+                        onClick={onClickNavLink}
                         to={ROUTES.CALCULATOR}
                         className={style.link}
                         activeClassName={style.activeLink}
@@ -73,6 +79,7 @@ const Header = () => {
                         {translate('calculatorPage')}
                     </NavLink>
                     <NavLink
+                        onClick={onClickNavLink}
                         to={ROUTES.ABOUT_US}
                         className={style.link}
                         activeClassName={style.activeLink}
@@ -80,13 +87,15 @@ const Header = () => {
                         {translate('aboutUsPage')}
                     </NavLink>
                     <NavLink
-                        to={ROUTES.HOW_TO_USE}
+                        onClick={onClickNavLink}
+                        to={ROUTES.TUTORIAL}
                         className={style.link}
                         activeClassName={style.activeLink}
                     >
                         {translate('tutorialPage')}
                     </NavLink>
                     <NavLink
+                        onClick={onClickNavLink}
                         to={ROUTES.SUPPORT}
                         className={style.link}
                         activeClassName={style.activeLink}
@@ -128,6 +137,7 @@ const Header = () => {
 
                         :
                         <NavLink
+                            onClick={onClickNavLink}
                             to={ROUTES.LOGIN}
                             className={style.link}
                             activeClassName={style.activeLink}

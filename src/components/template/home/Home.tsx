@@ -28,7 +28,7 @@ const Home = () => {
                     <img src={makeSolutionVolume} alt="make solution"/>
                 </section>
                 <section>
-                    <a className={cn(style.homeSection, style.tutorialLink)} href={ROUTES.HOW_TO_USE} >
+                    <a className={cn(style.homeSection, style.tutorialLink)} href={ROUTES.TUTORIAL} >
                         <span className={style.questionTutorial}>?</span>
                         <h2 className={style.homeSubtitle}>{translate('homePageP5')}</h2>
                     </a>
