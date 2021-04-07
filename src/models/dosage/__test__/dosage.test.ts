@@ -1,10 +1,9 @@
 import {Dosage} from '../dosage'
-import {fertilizersMock, fertilizersStubs} from "../../../mocks/fertilizersMock";
+import {fertilizersStubs} from "../../../mocks/fertilizersMock";
 import {ChemicalComplex} from "../../chemicalComplex/chemicalComplex";
-import {FertilizerIngredient} from "../../fertilizer/fertilizerIngredient";
 import {chemicalComplexMock} from "../../../mocks/chemicalComplexMock";
 
-describe.only('', () => {
+describe('Dosage model', () => {
 
     describe('subtractPreviouslyUsedIngredients', () => {
 

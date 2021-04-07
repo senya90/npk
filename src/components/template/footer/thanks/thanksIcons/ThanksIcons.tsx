@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import cn from 'classnames'
 import { customIcons } from 'components/atom/icon/customIcons';
-import {Author} from "models/author/Author";
+import {Author} from "models/author/author";
 
 import style from './thanksIcon.module.scss'
 import { Utils } from 'helpers/utils';
@@ -14,22 +14,11 @@ interface ThanksIconsProps {
 
 const ThanksIcons: FC<ThanksIconsProps> = ({className}) => {
 
-    const getCustomIconsAuthors = (): Author[] => {
-        const authorsAndLinks: Author[] = []
-
-        for (const key in customIcons) {
-            if (customIcons.hasOwnProperty(key)) {
-                authorsAndLinks.push(customIcons[key].author)
-            }
-        }
-
-        return authorsAndLinks
-    }
-
     const renderAuthors = () => {
-        const authors = getCustomIconsAuthors()
+        const authors = Author.getCustomIconsAuthors(customIcons)
+        const uniqueAuthors = Author.deleteIdentical(authors)
 
-        return authors.map((author, index) => {
+        return uniqueAuthors.map((author, index) => {
             return (
                 <span key={index}>
                     <a className={cn(style.thanksLink, style.author)} href={author.authorLink} title={author.name} target='_blank' rel="noreferrer" >{author.name}</a>

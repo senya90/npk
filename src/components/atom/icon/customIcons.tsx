@@ -1,5 +1,5 @@
 import React from 'react'
-import {Author} from "../../../models/author/Author";
+import {Author} from "../../../models/author/author";
 
 export type CustomIcon = {
     viewBox: string
