@@ -29,7 +29,9 @@ const Tutorial = () => {
                 <h3>• {translate('registerForUse')}</h3>
 
                 <h3>• {translate('fertilizerAddition')}</h3>
-                <img className={style.tutorialPicture} src={step1_1Img} alt="step 1.1"/>
+                <a href={step1_1Img} className={style.imageLink} target="_blank" rel="noreferrer">
+                    <img className={style.tutorialPicture} src={step1_1Img} alt="step 1.1"/>
+                </a>
                 <ol>
                     <li>
                         <span>{translate('fertilizerAdditionStep1')}</span>
@@ -40,7 +42,9 @@ const Tutorial = () => {
                     </li>
                     <li>
                         <span>{translate('fertilizerAdditionStep3')}</span>
-                        <img className={style.tutorialPicture} src={step1_3Img} alt="step 1.3"/>
+                        <a href={step1_3Img} className={style.imageLink} target="_blank" rel="noreferrer">
+                            <img className={style.tutorialPicture} src={step1_3Img} alt="step 1.3"/>
+                        </a>
                     </li>
                 </ol>
 
@@ -51,7 +55,9 @@ const Tutorial = () => {
                     <li><span>{translate('plantAdditionStep2')}</span></li>
                     <span>
                         <Note>{translate('plantAdditionStep2Note')}</Note>
-                        <img className={style.tutorialPicture} src={step2_1Img} alt="step 2.2"/>
+                        <a href={step2_1Img} className={style.imageLink} target="_blank" rel="noreferrer">
+                            <img className={style.tutorialPicture} src={step2_1Img} alt="step 2.2"/>
+                        </a>
                     </span>
                 </ol>
 
@@ -61,14 +67,18 @@ const Tutorial = () => {
                         <span>{translate('createSolutionTutorStep1')}</span>
                         <br/>
                         <span>{translate('createSolutionTutorStep1.1')}</span>
-                        <img className={style.tutorialPicture} src={step3_1Img} alt="step 3.1"/>
+                        <a href={step3_1Img} className={style.imageLink} target="_blank" rel="noreferrer">
+                            <img className={style.tutorialPicture} src={step3_1Img} alt="step 3.1"/>
+                        </a>
                     </li>
                     <li>
                         <span>{translate('createSolutionTutorStep2')}</span>
                     </li>
                     <li>
                         <span>{translate('createSolutionTutorStep3')}</span>
-                        <img className={style.tutorialPicture} src={step3_3Img} alt="step 3.3"/>
+                        <a href={step3_3Img} className={style.imageLink} target="_blank" rel="noreferrer">
+                            <img className={style.tutorialPicture} src={step3_3Img} alt="step 3.3"/>
+                        </a>
                     </li>
                     <li>
                         <span>{translate('createSolutionTutorStep4')}</span>
@@ -80,11 +90,15 @@ const Tutorial = () => {
                     <li><span>{translate('readySolutionsTutorStep1')}</span></li>
                     <li>
                         <span>{translate('readySolutionsTutorStep2')}</span>
-                        <img className={style.tutorialPicture} src={step4_2Img} alt="step 4.2"/>
+                        <a href={step4_2Img} className={style.imageLink} target="_blank" rel="noreferrer">
+                            <img className={style.tutorialPicture} src={step4_2Img} alt="step 4.2"/>
+                        </a>
                     </li>
                     <li>
                         <span>{translate('readySolutionsTutorStep3')}</span>
-                        <img className={style.tutorialPicture} src={step4_3Img} alt="step 4.3"/>
+                        <a href={step4_3Img} className={style.imageLink} target="_blank" rel="noreferrer">
+                            <img className={style.tutorialPicture} src={step4_3Img} alt="step 4.3"/>
+                        </a>
                     </li>
                 </ol>
             </article>
@@ -101,7 +115,9 @@ const Tutorial = () => {
                     <li><span>{translate('compoundsCreatingTutorStep2')}</span></li>
                     <li>
                         <span>{translate('compoundsCreatingTutorStep3')}</span>
-                        <img className={style.tutorialPicture} src={step5_3Img} alt="step 5.3"/>
+                        <a href={step5_3Img} className={style.imageLink} target="_blank" rel="noreferrer">
+                            <img className={style.tutorialPicture} src={step5_3Img} alt="step 5.3"/>
+                        </a>
                     </li>
                 </ol>
 
