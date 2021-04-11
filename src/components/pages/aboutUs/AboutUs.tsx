@@ -17,6 +17,7 @@ const AboutUs = () => {
                 <meta name="keywords" content={`${translate('helmetMainKeywords')}`} />
             </Helmet>
             <article>
+                <h1>{translate('aboutUsPage')}</h1>
                 <p>{translate('aboutPageP1')}</p>
                 <p>
                     {translate('aboutPageP2_1')} <a className={linkStyle.underline} href="mailto:npkcalculatororg@gmail.com">npkcalculatororg@gmail.com</a>. {translate('aboutPageP2_2')}

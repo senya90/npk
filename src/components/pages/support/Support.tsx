@@ -17,13 +17,17 @@ const Support = () => {
                 <meta name="keywords" content={`${translate('helmetMainDescription')}`} />
                 <meta name="keywords" content={`${translate('helmetMainKeywords')}`} />
             </Helmet>
-            <div className={style.support}>
-                {translate('aboutPageP2_1')} <a className={linkStyle.underline} href="mailto:npkcalculatororg@gmail.com">npkcalculatororg@gmail.com</a>
-            </div>
-            <div className={style.support}>
-                {translate('supportProject')}
-                <Donate />
-            </div>
+            <article>
+                <h1>{translate('supportPage')}</h1>
+
+                <p className={style.support}>
+                    {translate('aboutPageP2_1')} <a className={linkStyle.underline} href="mailto:npkcalculatororg@gmail.com">npkcalculatororg@gmail.com</a>
+                </p>
+                <p className={style.support}>
+                    {translate('supportProject')}
+                    <Donate />
+                </p>
+            </article>
 
         </div>
     );
