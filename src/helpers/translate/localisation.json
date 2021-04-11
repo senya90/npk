@@ -464,7 +464,7 @@
         "en": "To delete a chemical compound, move the mouse cursor over it. To edit an existing chemical compound, click on it"
     },
     "compoundsDeletingTutorNote": {
-        "ru": "Примечание: вы можете редактировать только собственные соединения. Соединения, которые были по умолчанию в списке доступных, являются общими и вы неможете их удалить или редактировать",
+        "ru": "Примечание: вы можете редактировать только собственные соединения. Соединения, которые были по умолчанию в списке доступных, являются общими и вы не можете их удалить или редактировать",
         "en": "Note: you can only edit your own compounds. Compounds, which were by default in the list of available ones, are general and you cannot delete or edit them"
     },
     "mail": {
@@ -474,5 +474,41 @@
     "supportProject": {
         "ru": "Поддержите проект",
         "en": "Support the project"
+    },
+    "helmetHomeTitle": {
+        "ru": "NPK | Главная",
+        "en": "NPK | Home"
+    },
+    "helmetCalculatorTitle": {
+        "ru": "NPK | Калькулятор",
+        "en": "NPK | Calculator"
+    },
+    "helmetTutorialTitle": {
+        "ru": "NPK | Обучение",
+        "en": "NPK | Tutorial"
+    },
+    "helmetSupportTitle": {
+        "ru": "NPK | Поддержка",
+        "en": "NPK | Support"
+    },
+    "helmetAboutTitle": {
+        "ru": "NPK | О нас",
+        "en": "NPK | About us"
+    },
+    "helmetLoginTitle": {
+        "ru": "NPK | Войти",
+        "en": "NPK | Login"
+    },
+    "helmetRegistrationTitle": {
+        "ru": "NPK | Регистрация",
+        "en": "NPK | Registration"
+    },
+    "helmetMainDescription": {
+        "ru": "Добавляйте удобрения, создавайте растворы, выращивайте растения",
+        "en": "Add fertilizers, make solutions, grow plants"
+    },
+    "helmetMainKeywords": {
+        "ru": "выращивание, выращивание растений, нпк, npk, нпк кальулятор, npk calculator, удобрения, удобрение, раствор, микроэлементы, макроэлементы, подкормка, как удобрять растения, азот, калий, фосфор, кальций, магний, как пользоваться нпк калькулятором",
+        "en": "growing, growing plants, npk, npk calculator, fertilizers, fertilizer, solution, micro elements, macronutrients, nutritions, how to fertilize plants, nitrogen, potassium, phosphorus, calcium, magnesium, how to use npk calculator"
     }
 }

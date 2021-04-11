@@ -18,11 +18,18 @@ import step4_2Img from 'core/images/tutorial/step4/step4_2.png'
 import step4_3Img from 'core/images/tutorial/step4/step4_3.png'
 
 import step5_3Img from 'core/images/tutorial/step5/step5_3.png'
+import {Helmet} from "react-helmet";
 
 
 const Tutorial = () => {
     return (
         <div className={cn(style.tutorialWrapper, wrapperStyle.mainWrapper)}>
+            <Helmet>
+                <title>{translate('helmetTutorialTitle')}</title>
+                <meta name="keywords" content={`${translate('helmetMainDescription')}`} />
+                <meta name="keywords" content={`${translate('helmetMainKeywords')}`} />
+            </Helmet>
+
             <h1>{translate('howToUse')} npkcalculator?</h1>
             <h2>{translate('basicsTutor')}</h2>
             <article>

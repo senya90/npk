@@ -9,11 +9,17 @@ import {ROUTES} from "../../../core/routes/routes";
 
 import style from './home.module.scss'
 import wrapperStyle from 'components/atom/mainWrapper/mainWrapper.module.scss'
+import {Helmet} from "react-helmet";
 
 
 const Home = () => {
     return (
         <div className={cn(style.homeWrapper, wrapperStyle.mainWrapper)}>
+            <Helmet>
+                <title>{translate('helmetHomeTitle')}</title>
+                <meta name="keywords" content={`${translate('helmetMainDescription')}`} />
+                <meta name="keywords" content={`${translate('helmetMainKeywords')}`} />
+            </Helmet>
             <article>
                 <h1 className={style.mainTitle}><span className={style.keyword}>npkcalculator</span> - {translate('homePageP1')}</h1>
                 <section className={style.homeSection}>

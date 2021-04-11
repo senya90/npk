@@ -8,6 +8,7 @@ import {translate} from "helpers/translate/translate";
 import style from './signIn.module.scss'
 import { ROUTES } from 'core/routes/routes';
 import wrapperStyle from 'components/atom/mainWrapper/mainWrapper.module.scss'
+import {Helmet} from "react-helmet";
 
 
 const SignIn: FC<SignInProps> = ({...rest}) => {
@@ -17,9 +18,15 @@ const SignIn: FC<SignInProps> = ({...rest}) => {
     }
 
     const path = rest.location.pathname
+    const headTitle = path === ROUTES.LOGIN ? translate('helmetLoginTitle') : translate('helmetRegistrationTitle')
 
     return (
         <div className={cn(style.signInWrapper, wrapperStyle.mainWrapper)}>
+            <Helmet>
+                <title>{headTitle}</title>
+                <meta name="keywords" content={`${translate('helmetMainDescription')}`} />
+                <meta name="keywords" content={`${translate('helmetMainKeywords')}`} />
+            </Helmet>
             <Tabs
                 activeKey={path}
                 defaultActiveKey={ROUTES.LOGIN}

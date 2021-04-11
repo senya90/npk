@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
+import {Helmet} from 'react-helmet'
 import {Fertilizers} from "components/organism/fertilizers/Fertilizers";
 import {Fertilizer} from 'models/fertilizer/fertilizer';
 import {SolutionComposition} from "components/organism/solutionComposition/SolutionComposition";
@@ -21,6 +22,7 @@ import {ServerResponse} from "../../../models/_types/serverResponse";
 
 import style from './calculator.module.scss'
 import wrapperStyle from 'components/atom/mainWrapper/mainWrapper.module.scss'
+import {translate} from "../../../helpers/translate/translate";
 
 
 const Calculator = () => {
@@ -349,6 +351,11 @@ const Calculator = () => {
             }}
             >
                 <div className={style.calculatorWrapper}>
+                    <Helmet>
+                        <title>{translate('helmetCalculatorTitle')}</title>
+                        <meta name="keywords" content={`${translate('helmetMainDescription')}`} />
+                        <meta name="keywords" content={`${translate('helmetMainKeywords')}`} />
+                    </Helmet>
                     <Fertilizers
                         className={style.calculatorItem}
                         fertilizers={fertilizers}
